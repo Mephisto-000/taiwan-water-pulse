@@ -1,6 +1,6 @@
 # Two-stage SAR storage alignment / 兩段式蓄水率估計
 
-Status: local ADV-10 implementation, not pushed or deployed. The current public website and historical deployment evidence are separate from this change.
+Status: ADV-10 feature commit `e33cf7a` has been merged into `main`, pushed and deployed to Vercel with status READY at 23:44:00 on 14 November 2026 (Asia/Taipei). Production verification passed for all 337 public files and the chart interactions. See the [latest release record](deployment.md#最新發版adv-10); earlier deployment evidence describes its own historical release.
 
 In Charts, **Estimate storage from SAR / 由 SAR 估計蓄水率** defaults to two-stage estimation. **Adjust prediction method / 調整估計方法** retains the original first-N linear model as a comparison. Grade A is required for either method. Feitsui is grade B because its variation is smaller than method sensitivity; Shimen is grade C because its signal cannot be resolved reliably. Their method dialogs explain why estimation is unavailable. This restriction does not change any grade, published area, classification threshold or official observation.
 
@@ -102,11 +102,11 @@ npm --prefix web run check:deploy
 
 The evaluation script reads the existing published manifest, reservoir metadata and paired area series, and writes only the separate storage-estimation report. `--check` checks deterministic recomputation against the saved report without rewriting it. `--output PATH` writes an alternative report. `--source-commit SHA` selects a source reference; the default is `b037f2b`, and the script compares each scientific input against that commit before attributing it. Source hashes and definitions make the result traceable. It neither downloads new observations nor runs the classification/export pipeline. No new dependency, Earthdata credential or network request is needed.
 
-DEF-12 specifies what to calculate, but supplies no numerical acceptance threshold. The report's `gate` contains a `passed` flag and named checks of whether the prescribed evaluation is complete and internally consistent; passing it is not a scientific accuracy certification. A missing or failed report must not enable two-stage estimation. Merge/publication remains separate from calculation: this local change is not pushed or deployed.
+DEF-12 specifies what to calculate, but supplies no numerical acceptance threshold. The report's `gate` contains a `passed` flag and named checks of whether the prescribed evaluation is complete and internally consistent; passing it is not a scientific accuracy certification. A missing or failed report must not enable two-stage estimation. After reviewing the completed evaluation, the user authorized merging `e33cf7a`, pushing `main` and deploying to Vercel. Publication evidence remains separate from this calculation and is recorded in the [latest release record](deployment.md#最新發版adv-10).
 
-## Local verification and changed files
+## Implementation verification and changed files
 
-The ADV-10 implementation passed 115 frontend tests, 9 deployment-guard tests and 61 Python tests, including 14 new calculation tests. TypeScript/build, frontend formatting, deterministic report comparison, the deployment artifact check and Ruff on the three new Python files passed. Browser checks covered both languages, both estimation methods, the grade B/C explanations and the selected-date result. The final chart had no console errors or horizontal overflow.
+Before the release authorization, the ADV-10 implementation passed 115 frontend tests, 9 deployment-guard tests and 61 Python tests, including 14 new calculation tests. TypeScript/build, frontend formatting, deterministic report comparison, the deployment artifact check and Ruff on the three new Python files passed. Local browser checks covered both languages, both estimation methods, the grade B/C explanations and the selected-date result. The final local chart had no console errors or horizontal overflow. This is the implementation-stage record; production checks belong to the [latest release record](deployment.md#最新發版adv-10).
 
 The repository-wide Ruff check still reports 17 pre-existing issues in `fetch_weather.py` and `test_fetch_weather.py`. Those unrelated files were not changed; this is not a claim that the entire existing CI workflow is green. No new dependency was installed, and all nine existing scientific input files matched the source commit byte for byte.
 

@@ -6,9 +6,9 @@
 
 Explore a year of reservoir retreat and recovery using NISAR L-band radar and Taiwan Water Resources Agency observations. The interface follows the browser language, with explicit `?lang=en` and `?lang=zh-TW` options. This is a historical archive, not live monitoring.
 
-## Local addition: two-stage storage estimation (ADV-10)
+## Two-stage storage estimation (ADV-10)
 
-**This feature has not been pushed or deployed.** In Charts, **Estimate storage from SAR** now uses two stages: area within the full-pool variation range produces only **High; finer levels unresolved**. Area below that range receives a piecewise-linear estimate from drawdown calibration points, with extrapolation explicitly marked below the smallest calibrated area. The original **First N pairs: linear calibration** remains a comparison option. Neither method estimates storage for grade B or C reservoirs.
+**Feature commit `e33cf7a` has been merged into `main`, pushed and deployed to Vercel with status READY at 23:44:00 on 14 November 2026 (Asia/Taipei). Production verification passed for all 337 public files and the chart interactions.** In Charts, **Estimate storage from SAR** now uses two stages: area within the full-pool variation range produces only **High; finer levels unresolved**. Area below that range receives a piecewise-linear estimate from drawdown calibration points, with extrapolation explicitly marked below the smallest calibrated area. The original **First N pairs: linear calibration** remains a comparison option. Neither method estimates storage for grade B or C reservoirs.
 
 | DEF-12 evaluation | Baoshan II | Liyutan |
 | --- | ---: | ---: |
@@ -24,7 +24,7 @@ See the [estimation method](docs/storage-prediction.md), [data report](web/publi
 
 ## Released workspace
 
-The interface follows design direction 3: a workspace for reading imagery, dates and evidence together. The existing [deployment records](docs/deployment.md) retain the 14 November 2026, 17:34:36 (Asia/Taipei) release and its verification scope; they do not establish that the local ADV-10 feature above has been released.
+The interface follows design direction 3: a workspace for reading imagery, dates and evidence together. See the [latest release record](docs/deployment.md#最新發版adv-10) for ADV-10 progress and verification scope. The 14 November 2026, 17:34:36 (Asia/Taipei) record remains historical evidence for the earlier release.
 
 - Three desktop columns: reservoirs and dates on the left, imagery or charts in the centre, and **This day / Methods / Sources** on the right. Mobile uses a reservoir selector, an accessible details panel and a fixed bottom timeline.
 - Light and dark themes initially follow the system preference. System fonts, monospaced numbers, fine dividers and blue data marks require no font downloads or added packages.
@@ -108,7 +108,7 @@ uv run --project pipeline pytest pipeline/tests/test_storage_estimation.py
 
 The GitHub repository remains private. The public UI links to same-origin methods and reports. Git integration is not connected: pushing does not deploy. Checked `web/dist` artifacts are uploaded through the authenticated Vercel plugin.
 
-The historical deployment record identifies source `5dbcfea5`. Data were generated from clean source `ed5d561e` (`code_dirty=false`). At that release, all 332 public files passed anonymous HTTP, SHA-256 and cache checks; 65 frontend, 9 deployment-guard and 47 Python tests passed. The private-email history has been repaired: all 15 reachable commits in that publication audit used GitHub noreply identities. Secret scans of source, artifacts and reachable history reported no findings. These historical counts do not establish publication of the local ADV-10 change.
+The historical deployment record identifies source `5dbcfea5`. Data were generated from clean source `ed5d561e` (`code_dirty=false`). At that release, all 332 public files passed anonymous HTTP, SHA-256 and cache checks; 65 frontend, 9 deployment-guard and 47 Python tests passed. The private-email history has been repaired: all 15 reachable commits in that publication audit used GitHub noreply identities. Secret scans of source, artifacts and reachable history reported no findings. These counts belong only to that historical audit; refer to the [latest release record](docs/deployment.md#最新發版adv-10) for ADV-10.
 
 No Earthdata credentials or custom environment variables are needed on Vercel. Environment files, credentials, keys, local settings and raw caches stay outside the deployment. See [deployment evidence](docs/deployment.md) for the released commit, hashes and verification.
 

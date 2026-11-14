@@ -1,8 +1,29 @@
 # Vercel 部署與安全查核
 
-Production：[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)。方向 3 工作區版本為 **READY**，於 **2026-11-14 17:34:36（Asia/Taipei）** 上線，正式網域維持不變。
+Production：[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)。目前為 ADV-10 兩段式蓄水率估計版本，狀態 **READY**。
 
-## 目前 production
+## 最新發版：ADV-10
+
+- 上線時間：**2026-11-14 23:44:00.989（Asia/Taipei）**。
+- 部署來源：`e33cf7af5b78af1930f5b01964a5028742f03b5e`，已依使用者授權快轉合併到 `main` 並 push 至 `Mephisto-000/taiwan-water-pulse`。後續文件 commit 不改變部署產物。
+- 發布範圍：337 個受檢靜態檔案，共 50,933,785 bytes；另附靜態 Vercel 設定。沿用專案、正式網域、Node 24.x、`web` Root Directory 及原有 Deployment Protection，未新增套件、環境變數或付費功能。
+- Git integration 仍未連結；本次以已驗證的 `web/dist` 產物部署。上傳封裝保留 `web/` 路徑，符合既有 Root Directory；首次缺少該路徑的部署被 Vercel 拒絕，修正封裝後成功，未替換當時的正式版本。
+- **337/337 個檔案匿名 HTTP 200、無重新導向，大小與 SHA-256 全數相符，`/assets/` 與 `/data/` 快取標頭符合設定。** `.env`、`token.md`、`.netrc`、`.git/config`、`README.md`、`pipeline/pyproject.toml` 均為 404。
+- 正式網站確認兩段式為預設、DEF-12 分開呈現高水位與數字評估、可切換前 N 筆直線對照、B/C 級停用且能開啟原因說明，以及選取日的校正點標示。觀測視窗寬 867 px 無水平溢出，console error/warning 為 0；本部署最近 15 分鐘 error/fatal runtime logs 無紀錄（純靜態站）。
+- 實作驗證為 115 個前端、9 個部署防護與 61 個 Python 測試通過。發布時重做正式建置、產物檢查、DEF-12 決定性重算、14 個新增計算測試與新增 Python 檔 Ruff，均通過；9 份科學輸入與既有來源逐位元一致。
+- 全專案仍有 17 項既有 Ruff 問題，全部位於未修改的 `fetch_weather.py` 與 `test_fetch_weather.py`；不宣稱整體 GitHub CI 全綠。發布未重新下載科學或天氣資料。
+
+完整證據：[檔案 manifest](review/adv10-deployment-manifest.json)、[線上驗證](review/adv10-deployment-verification.json)、[估計定義與評估](storage-prediction.md)。
+
+![ADV-10 正式網站](review/adv10-production.jpg)
+
+如需回復，前一個成功 production 為來源 `b037f2bfd4985ee9651b57a46f9a8dc68fff3010` 的天氣與事件工作區版本；本次未執行 rollback。
+
+## 歷史發版：方向 3 工作區
+
+以下保留 **2026-11-14 17:34:36（Asia/Taipei）** 的原始紀錄；其中測試數量、manifest、驗證檔與前一版本描述均屬該次歷史發布，不代表目前 ADV-10。
+
+### 當時 production
 
 | 項目 | 實際值 |
 | --- | --- |
