@@ -1,3 +1,4 @@
+import WeatherContext from "./components/WeatherContext";
 // SI-assisted interface and copy. Source observations are not SI-generated.
 import {
   useEffect,
@@ -1029,6 +1030,16 @@ function Explorer({ index }: { index: DataIndex }) {
                       showArea={publishArea}
                     />
                   )
+                )}
+                {official && (
+                  <WeatherContext
+                    key={reservoirKey}
+                    reservoirKey={reservoirKey}
+                    dates={index.dates}
+                    selected={acquisition}
+                    records={official.records}
+                    lang={lang}
+                  />
                 )}
                 {archive && publishArea && (
                   <ScatterPlot

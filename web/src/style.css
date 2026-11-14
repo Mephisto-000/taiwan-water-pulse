@@ -2142,3 +2142,35 @@ kbd {
     --prediction: #f4a261;
   }
 }
+
+.weather-context {
+  margin: 1.5rem 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.weather-context h2 {
+  font-size: 1.05rem;
+}
+.weather-context p,
+.weather-context label,
+.weather-context details {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+.weather-context a {
+  color: var(--data);
+}
+.weather-plot svg {
+  display: block;
+  width: 100%;
+}
+.weather-context input {
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 5px;
+  padding: 0.35rem;
+}
+.weather-context summary {
+  cursor: pointer;
+}

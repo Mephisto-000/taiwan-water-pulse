@@ -1,0 +1,3682 @@
+{
+  "schema_version": 1,
+  "reservoir": "baoshan2",
+  "source": "https://codis.cwa.gov.tw/StationData",
+  "source_provider": "Central Weather Administration (CWA), CODiS",
+  "generated_at": "2026-11-14T10:22:58.833696+00:00",
+  "timezone": "Asia/Taipei",
+  "period": {
+    "start": "2025-11-06",
+    "end": "2026-10-20"
+  },
+  "station": {
+    "id": "C0D580",
+    "name": "Baoshan",
+    "name_zh": "寶山",
+    "latitude": 24.735006,
+    "longitude": 121.025192,
+    "distance_to_reservoir_center_km": 3.16
+  },
+  "interpretation": "Nearby point-station observations, not catchment-average rainfall. Daily precipitation status is derived from observed accumulation, not an official sky-condition summary. Zero rain does not establish sunny weather. Same-date totals include hours after the SAR overpass; do not use them as prior predictors.",
+  "special_values": {
+    "-9.8": "Trace precipitation: amount unknown, not zero",
+    "other_negative_or_null": "Unavailable; not zero",
+    "quality_flags": "Original Accumulationf retained; nonzero flags are marked, not reinterpreted or silently excluded."
+  },
+  "special_value_reference": "https://codis.cwa.gov.tw/Common/global.js",
+  "station_metadata_provenance": {
+    "url": "https://codis.cwa.gov.tw/api/station_list",
+    "retrieved_at": "2026-11-14T10:22:52.292628+00:00",
+    "sha256": "b679bc9a894ebf628c82f83b3867a6cdf04ad11007b88506911f3d42da9008fd"
+  },
+  "requests": [
+    {
+      "url": "https://codis.cwa.gov.tw/api/station",
+      "parameters": {
+        "date": "2025-11",
+        "type": "report_month",
+        "stn_ID": "C0D580",
+        "stn_type": "auto_C0",
+        "start": "2025-11-01T00:00:00",
+        "end": "2025-11-30T00:00:00"
+      },
+      "retrieved_at": "2026-11-14T10:22:52.932779+00:00",
+      "sha256": "a73e75dd36414dc699f6bf1ece59627b59cdbe6ffa8e2528ecd9bf91b0aebcfd"
+    },
+    {
+      "url": "https://codis.cwa.gov.tw/api/station",
+      "parameters": {
+        "date": "2025-12",
+        "type": "report_month",
+        "stn_ID": "C0D580",
+        "stn_type": "auto_C0",
+        "start": "2025-12-01T00:00:00",
+        "end": "2025-12-31T00:00:00"
+      },
+      "retrieved_at": "2026-11-14T10:22:53.410979+00:00",
+      "sha256": "915ccd4e16c2e6e32b10771974a410eeaf5024abe67075f4f48182e6fc5a8465"
+    },
+    {
+      "url": "https://codis.cwa.gov.tw/api/station",
+      "parameters": {
+        "date": "2026-01",
+        "type": "report_month",
+        "stn_ID": "C0D580",
+        "stn_type": "auto_C0",
+        "start": "2026-01-01T00:00:00",
+        "end": "2026-01-31T00:00:00"
+      },
+      "retrieved_at": "2026-11-14T10:22:53.932528+00:00",
+      "sha256": "8c6c5c9045689f7ae3a9b9bd96af574df7db409b466a1981ca8be701c31247a2"
+    },
+    {
+      "url": "https://codis.cwa.gov.tw/api/station",
+      "parameters": {
+        "date": "2026-02",
+        "type": "report_month",
+        "stn_ID": "C0D580",
+        "stn_type": "auto_C0",
+        "start": "2026-02-01T00:00:00",
+        "end": "2026-02-28T00:00:00"
+      },
+      "retrieved_at": "2026-11-14T10:22:54.454242+00:00",
+      "sha256": "ef1c38a9b2e8f37d0282ad56db9c6a05ad11d714912e333f0597df2e1fadcb6b"
+    },
+    {
+      "url": "https://codis.cwa.gov.tw/api/station",
+      "parameters": {
+        "date": "2026-03",
+        "type": "report_month",
+        "stn_ID": "C0D580",
+        "stn_type": "auto_C0",
+        "start": "2026-03-01T00:00:00",
+        "end": "2026-03-31T00:00:00"
+      },
+      "retrieved_at": "2026-11-14T10:22:54.952637+00:00",
+      "sha256": "14099d9ee2bb812c21ea99b84a532403406c20cb81e82656b3529165ace65b2f"
+    },
+    {
+      "url": "https://codis.cwa.gov.tw/api/station",
+      "parameters": {
+        "date": "2026-04",
+        "type": "report_month",
+        "stn_ID": "C0D580",
+        "stn_type": "auto_C0",
+        "start": "2026-04-01T00:00:00",
+        "end": "2026-04-30T00:00:00"
+      },
+      "retrieved_at": "2026-11-14T10:22:55.460332+00:00",
+      "sha256": "59d29f58ee69a5ee0c8d325bba0df59296a6b1aaaa8414ac2a6534356c05c148"
+    },
+    {
+      "url": "https://codis.cwa.gov.tw/api/station",
+      "parameters": {
+        "date": "2026-05",
+        "type": "report_month",
+        "stn_ID": "C0D580",
+        "stn_type": "auto_C0",
+        "start": "2026-05-01T00:00:00",
+        "end": "2026-05-31T00:00:00"
+      },
+      "retrieved_at": "2026-11-14T10:22:56.123525+00:00",
+      "sha256": "cdf3acc75fc9b1e1404e38d825e95fa8ade51312703eb4b92241d2fe9e66815b"
+    },
+    {
+      "url": "https://codis.cwa.gov.tw/api/station",
+      "parameters": {
+        "date": "2026-06",
+        "type": "report_month",
+        "stn_ID": "C0D580",
+        "stn_type": "auto_C0",
+        "start": "2026-06-01T00:00:00",
+        "end": "2026-06-30T00:00:00"
+      },
+      "retrieved_at": "2026-11-14T10:22:56.617823+00:00",
+      "sha256": "239fa7fb6e9c1f9e28906d27220eab8fff3a8ade5cac39f1594ff7e61d19d956"
+    },
+    {
+      "url": "https://codis.cwa.gov.tw/api/station",
+      "parameters": {
+        "date": "2026-07",
+        "type": "report_month",
+        "stn_ID": "C0D580",
+        "stn_type": "auto_C0",
+        "start": "2026-07-01T00:00:00",
+        "end": "2026-07-31T00:00:00"
+      },
+      "retrieved_at": "2026-11-14T10:22:57.134945+00:00",
+      "sha256": "f5336d7ad31a7ca09bedb5e86b44e6e3f4f31ea00832dd91302d5979c8f17393"
+    },
+    {
+      "url": "https://codis.cwa.gov.tw/api/station",
+      "parameters": {
+        "date": "2026-08",
+        "type": "report_month",
+        "stn_ID": "C0D580",
+        "stn_type": "auto_C0",
+        "start": "2026-08-01T00:00:00",
+        "end": "2026-08-31T00:00:00"
+      },
+      "retrieved_at": "2026-11-14T10:22:57.588362+00:00",
+      "sha256": "c5f9f3d522f7e494bd2bf777217d2a9f22fd08b77570bcfa49562d9144bf8abe"
+    },
+    {
+      "url": "https://codis.cwa.gov.tw/api/station",
+      "parameters": {
+        "date": "2026-09",
+        "type": "report_month",
+        "stn_ID": "C0D580",
+        "stn_type": "auto_C0",
+        "start": "2026-09-01T00:00:00",
+        "end": "2026-09-30T00:00:00"
+      },
+      "retrieved_at": "2026-11-14T10:22:58.128773+00:00",
+      "sha256": "be52414948cd14800ee49e53350b1b22f18de47e8f4822f6e7734b60171024ca"
+    },
+    {
+      "url": "https://codis.cwa.gov.tw/api/station",
+      "parameters": {
+        "date": "2026-10",
+        "type": "report_month",
+        "stn_ID": "C0D580",
+        "stn_type": "auto_C0",
+        "start": "2026-10-01T00:00:00",
+        "end": "2026-10-31T00:00:00"
+      },
+      "retrieved_at": "2026-11-14T10:22:58.623299+00:00",
+      "sha256": "0c9fa86df3fb93330116e401b8fde22cdc6fc621bf71a80b87302550306032ba"
+    }
+  ],
+  "records": [
+    {
+      "local_date": "2025-11-06",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-07",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-08",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-09",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-10",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-11",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-12",
+      "rainfall_mm": 11.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 11,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-13",
+      "rainfall_mm": 9.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 9.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-14",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-15",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-16",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-17",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-18",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-19",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-20",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-21",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-22",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-23",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-24",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-25",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-26",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-27",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-28",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-29",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-11-30",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-01",
+      "rainfall_mm": 2.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 2,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-02",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-03",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 8,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-04",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-05",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 4,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-06",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-07",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-08",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-09",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-10",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-11",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-12",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-13",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-14",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-15",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-16",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-17",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-18",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-19",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-20",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-21",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-22",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-23",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-24",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-25",
+      "rainfall_mm": 3.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 3,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-26",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-27",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-28",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-29",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-30",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2025-12-31",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-01",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-02",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-03",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-04",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-05",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-06",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-07",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-08",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-09",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-10",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-11",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-12",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-13",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-14",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-15",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-16",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-17",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-18",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-19",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-20",
+      "rainfall_mm": 1.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-21",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-22",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-23",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-24",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-25",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-26",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-27",
+      "rainfall_mm": 3.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 3,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-28",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-29",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-30",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-01-31",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-01",
+      "rainfall_mm": 8.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 8.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-02",
+      "rainfall_mm": 2.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 2,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-03",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-04",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-05",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-06",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-07",
+      "rainfall_mm": 2.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 2.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-08",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-09",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-10",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-11",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-12",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-13",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-14",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-15",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-16",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-17",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-18",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-19",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-20",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-21",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-22",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-23",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-24",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-25",
+      "rainfall_mm": 10.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 10.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-26",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-27",
+      "rainfall_mm": 21.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 21,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-02-28",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-01",
+      "rainfall_mm": 7.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 7.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-02",
+      "rainfall_mm": 2.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 2.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-03",
+      "rainfall_mm": 2.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 2,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-04",
+      "rainfall_mm": 3.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 3,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-05",
+      "rainfall_mm": 5.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-06",
+      "rainfall_mm": 3.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 3.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-07",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-08",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-09",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-10",
+      "rainfall_mm": 6.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 6.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-11",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-12",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-13",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-14",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-15",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-16",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-17",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-18",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-19",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-20",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-21",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-22",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-23",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-24",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-25",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-26",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-27",
+      "rainfall_mm": 21.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 21.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-28",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-29",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-30",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-03-31",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-01",
+      "rainfall_mm": 6.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 6.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-02",
+      "rainfall_mm": 11.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 11.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-03",
+      "rainfall_mm": 56.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 56,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-04",
+      "rainfall_mm": 181.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 181.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-05",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-06",
+      "rainfall_mm": 51.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 51,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-07",
+      "rainfall_mm": 23.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 23,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-08",
+      "rainfall_mm": 4.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 4.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-09",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-10",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-11",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-12",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-13",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-14",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-15",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-16",
+      "rainfall_mm": 2.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 2.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-17",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-18",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-19",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-20",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-21",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-22",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-23",
+      "rainfall_mm": 7.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 7,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-24",
+      "rainfall_mm": 88.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 88,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-25",
+      "rainfall_mm": 1.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-26",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-27",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-28",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-29",
+      "rainfall_mm": 28.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 28,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-04-30",
+      "rainfall_mm": 11.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 11.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-01",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-02",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-03",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-04",
+      "rainfall_mm": 4.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 4,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-05",
+      "rainfall_mm": 46.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 46,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-06",
+      "rainfall_mm": 7.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 7.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-07",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-08",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-09",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-10",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-11",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-12",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-13",
+      "rainfall_mm": 9.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 9,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-14",
+      "rainfall_mm": 15.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 15,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-15",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-16",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-17",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-18",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-19",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-20",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-21",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-22",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-23",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-24",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-25",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-26",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-27",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-28",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-29",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-30",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-05-31",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-01",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-02",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-03",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-04",
+      "rainfall_mm": 19.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 19.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-05",
+      "rainfall_mm": 26.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 26.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-06",
+      "rainfall_mm": 3.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 3.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-07",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-08",
+      "rainfall_mm": 13.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 13,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-09",
+      "rainfall_mm": 109.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 109,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-10",
+      "rainfall_mm": 54.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 54.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-11",
+      "rainfall_mm": 11.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 11.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-12",
+      "rainfall_mm": 13.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 13,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-13",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-14",
+      "rainfall_mm": 22.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 22,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-15",
+      "rainfall_mm": 4.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 4,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-16",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-17",
+      "rainfall_mm": 15.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 15.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-18",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-19",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-20",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-21",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-22",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-23",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-24",
+      "rainfall_mm": 19.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 19,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-25",
+      "rainfall_mm": 18.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 18,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-26",
+      "rainfall_mm": 173.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 173.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-27",
+      "rainfall_mm": 19.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 19,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-28",
+      "rainfall_mm": 1.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-29",
+      "rainfall_mm": 4.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 4,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-06-30",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-01",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-02",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-03",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-04",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-05",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-06",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 4,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-07",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": null,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-08",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-09",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-10",
+      "rainfall_mm": 74.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 74,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-11",
+      "rainfall_mm": 126.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 126,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-12",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 4,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-13",
+      "rainfall_mm": 28.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 28,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-14",
+      "rainfall_mm": 104.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 104.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-15",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-16",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-17",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-18",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-19",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-20",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 5,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-21",
+      "rainfall_mm": 4.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 4,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-22",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-23",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-24",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-25",
+      "rainfall_mm": 8.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 8,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-26",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-27",
+      "rainfall_mm": 63.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 63,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-28",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-29",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-30",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-07-31",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-01",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 3,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-02",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-03",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-04",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-05",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-06",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 4,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-07",
+      "rainfall_mm": 2.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 2,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-08",
+      "rainfall_mm": 24.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 24,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-09",
+      "rainfall_mm": 116.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 116.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-10",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 3,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-11",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-12",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-13",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 3,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-14",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-15",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-16",
+      "rainfall_mm": 8.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 8,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-17",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-18",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-19",
+      "rainfall_mm": 3.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 3,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-20",
+      "rainfall_mm": 5.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 5.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-21",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-22",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-23",
+      "rainfall_mm": 3.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 3.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-24",
+      "rainfall_mm": 26.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 26.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-25",
+      "rainfall_mm": 14.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 14.5,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-26",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 3,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-27",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 5,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-28",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 4,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-29",
+      "rainfall_mm": 49.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 49.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-30",
+      "rainfall_mm": 4.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 4.5,
+      "rainfall_quality_flag": 3,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-08-31",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-01",
+      "rainfall_mm": 33.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 33.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-02",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-03",
+      "rainfall_mm": 74.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 74,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-04",
+      "rainfall_mm": 1.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 1,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-05",
+      "rainfall_mm": 0.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 0.5,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-06",
+      "rainfall_mm": 3.5,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 3.5,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-07",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-08",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 24,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-09",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-10",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-11",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 3,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-12",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-13",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-14",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-15",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-16",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-17",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-18",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-19",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-20",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-21",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-22",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-23",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-24",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-25",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-26",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-27",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-28",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-29",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-09-30",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-01",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 2,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-02",
+      "rainfall_mm": 82.0,
+      "rainfall_trace": false,
+      "condition": "rain",
+      "rainfall_source_value": 82,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-03",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-04",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-05",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-06",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-07",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-08",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-09",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-10",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-11",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-12",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 1,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-13",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-14",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-15",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-16",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-17",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-18",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-19",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    },
+    {
+      "local_date": "2026-10-20",
+      "rainfall_mm": 0.0,
+      "rainfall_trace": false,
+      "condition": "no_measurable_rain",
+      "rainfall_source_value": 0,
+      "rainfall_quality_flag": 0,
+      "sunshine_hours": null,
+      "official_weather_description": null
+    }
+  ]
+}
