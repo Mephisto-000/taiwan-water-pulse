@@ -1,18 +1,10 @@
 {
-  "verified_at": "2026-11-14T13:00:49.806580+08:00",
+  "verified_at": "2026-11-14T15:44:40.649673+08:00",
   "production_url": "https://taiwan-water-pulse.vercel.app/",
-  "source_commit": "2a879bbca54dc55f0a257a1a12dd0284b1289bad",
+  "source_commit": "56159dd5a9f38fa554f1be853683cfcb311f2d9b",
   "assets": [
     {
-      "path": "assets/index-B4IhABPV.js",
-      "status": 200,
-      "sha256_matches": true,
-      "cache_control": "public, max-age=31536000, immutable",
-      "content_type": "application/javascript; charset=utf-8",
-      "redirected": false
-    },
-    {
-      "path": "assets/index-dypmAjzK.css",
+      "path": "assets/index-BEXa-pJw.css",
       "status": 200,
       "sha256_matches": true,
       "cache_control": "public, max-age=31536000, immutable",
@@ -20,15 +12,7 @@
       "redirected": false
     },
     {
-      "path": "assets/maplibre-gl-DU2Xt96S.js",
-      "status": 200,
-      "sha256_matches": true,
-      "cache_control": "public, max-age=31536000, immutable",
-      "content_type": "application/javascript; charset=utf-8",
-      "redirected": false
-    },
-    {
-      "path": "assets/maplibre-gl-worker-Dlv-oLtU.js",
+      "path": "assets/index-BxXqIa71.js",
       "status": 200,
       "sha256_matches": true,
       "cache_control": "public, max-age=31536000, immutable",
@@ -372,11 +356,35 @@
       "redirected": false
     },
     {
+      "path": "data/diagnostics.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/historical-validation.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
       "path": "data/index.json",
       "status": 200,
       "sha256_matches": true,
       "cache_control": "public, max-age=0, must-revalidate",
       "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/methods.md",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "text/markdown; charset=utf-8",
       "redirected": false
     },
     {
@@ -412,6 +420,14 @@
       "redirected": false
     },
     {
+      "path": "data/otsu-review-validation.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
       "path": "data/provenance.json",
       "status": 200,
       "sha256_matches": true,
@@ -420,7 +436,2191 @@
       "redirected": false
     },
     {
+      "path": "data/reservoirs/baoshan2/20251105_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251105_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251117_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251117_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251129_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251129_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251211_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251211_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251223_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251223_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260116_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260116_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260128_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260128_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260209_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260209_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260221_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260221_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260305_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260305_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260317_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260317_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260621_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260621_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260703_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260703_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260715_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260715_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260727_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260727_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260820_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260820_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260901_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260901_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260913_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260913_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260925_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260925_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20261007_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20261007_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20261019_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20261019_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20251105_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20251117_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20251129_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20251211_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20251223_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260116_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260128_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260209_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260221_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260305_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260317_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260621_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260703_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260715_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260727_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260820_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260901_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260913_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260925_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20261007_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20261019_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/mask.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/mask.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/meta.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/timeseries.csv",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "text/csv; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/baoshan2/timeseries.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20251105_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20251105_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20251117_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20251117_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20251129_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20251129_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20251211_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20251211_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20251223_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20251223_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260116_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260116_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260128_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260128_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260209_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260209_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260221_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260221_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260305_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260305_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260317_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260317_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260621_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260621_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260703_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260703_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260715_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260715_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260727_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260727_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260820_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260820_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260901_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260901_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260913_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260913_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260925_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20260925_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20261007_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20261007_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20261019_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/20261019_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20251105_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20251117_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20251129_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20251211_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20251223_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260116_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260128_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260209_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260221_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260305_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260317_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260621_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260703_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260715_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260727_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260820_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260901_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260913_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20260925_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20261007_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/20261019_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/analysis/mask.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/mask.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/meta.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/timeseries.csv",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "text/csv; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/feitsui/timeseries.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20251105_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20251105_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20251117_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20251117_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20251129_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20251129_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20251211_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20251211_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20251223_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20251223_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260116_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260116_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260128_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260128_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260209_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260209_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260221_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260221_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260305_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260305_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260317_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260317_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260621_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260621_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260703_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260703_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260715_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260715_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260727_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260727_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260820_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260820_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260901_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260901_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260913_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260913_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260925_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20260925_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20261007_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20261007_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20261019_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/20261019_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20251105_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20251117_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20251129_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20251211_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20251223_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260116_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260128_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260209_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260221_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260305_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260317_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260621_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260703_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260715_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260727_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260820_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260901_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260913_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20260925_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20261007_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/20261019_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/analysis/mask.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/mask.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/meta.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/timeseries.csv",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "text/csv; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/liyutan/timeseries.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20251105_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20251105_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20251117_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20251117_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20251129_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20251129_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20251211_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20251211_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20251223_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20251223_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260116_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260116_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260128_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260128_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260209_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260209_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260221_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260221_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260305_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260305_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260317_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260317_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260621_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260621_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260703_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260703_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260715_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260715_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260727_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260727_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260820_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260820_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260901_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260901_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260913_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260913_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260925_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20260925_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20261007_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20261007_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20261019_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/20261019_HV.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20251105_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20251117_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20251129_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20251211_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20251223_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260116_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260128_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260209_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260221_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260305_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260317_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260621_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260703_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260715_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260727_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260820_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260901_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260913_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20260925_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20261007_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/20261019_HH.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/analysis/mask.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/mask.bin",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/octet-stream",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/meta.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/timeseries.csv",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "text/csv; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/reservoirs/shimen/timeseries.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
       "path": "data/si-usage.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/validation.json",
       "status": 200,
       "sha256_matches": true,
       "cache_control": "public, max-age=0, must-revalidate",
@@ -441,6 +2641,14 @@
       "sha256_matches": true,
       "cache_control": "public, max-age=0, must-revalidate",
       "content_type": "text/html; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "social-preview.jpg",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/jpeg",
       "redirected": false
     }
   ],
@@ -471,11 +2679,62 @@
     }
   ],
   "si_checks": {
-    "declaration_version": "1.0.0",
+    "declaration_version": "1.1.0",
     "tool": "OpenAI Codex",
     "source_observations_si_generated": false,
     "browse_images_si_generated": false,
     "html_si_meta_present": true,
     "html_declaration_link_present": true
+  },
+  "review_checks": {
+    "release_method": "relative_power_v3",
+    "image_reservoirs": [
+      "baoshan2",
+      "liyutan",
+      "shimen",
+      "feitsui"
+    ],
+    "date_count": 21,
+    "data_code_commit": "9d332fd500e52a3a280df067a397e71802a1979b",
+    "data_code_dirty": false
+  },
+  "browser_checks": {
+    "anonymous_production": true,
+    "english_and_traditional_chinese": true,
+    "reservoirs_observed": [
+      "baoshan2",
+      "liyutan",
+      "shimen"
+    ],
+    "hh_hv_switch": true,
+    "comparison_keyboard_divider": [
+      50,
+      51
+    ],
+    "baoshan_storage_pct": 28.2,
+    "liyutan_storage_pct": 34.4,
+    "shimen_low_confidence_visible": true,
+    "pipeline_commit_visible": "9d332fd5",
+    "console_errors": 0,
+    "console_warnings": 0,
+    "screenshot": "review/released-site.jpg",
+    "local_responsive_check": {
+      "desktop_width_px": 1440,
+      "iframe_width_px": 375,
+      "horizontal_document_overflow": false
+    },
+    "mobile_cellular_tested": false
+  },
+  "checks": {
+    "frontend_tests": 40,
+    "deployment_guard_tests": 9,
+    "python_tests": 34,
+    "typescript_build": true,
+    "ruff": true,
+    "prettier": true,
+    "gitleaks_new_commits_findings": 0,
+    "gitleaks_artifacts_findings": 0,
+    "known_credential_exact_matches": 0,
+    "runtime_error_fatal_logs_latest_15m": 0
   }
 }

@@ -19,3 +19,7 @@ These three genuine captures document the final local preview of the **historica
 ## Capture the reviewed release before submission
 
 Capture new images from the final public deployment, in both English and Traditional Chinese where needed. Include the calibrated reservoir crop and two-date comparison; the distinct 30 m analysis grid and 10/20 m display grids; the fixed 60% land-reference threshold and 50%–70% sensitivity; the A/A/B/A grades with Shimen's LOW_CONFIDENCE notice; the radar gap; and visible source/SI disclosures. Preserve authentic UI content and do not relabel the historical JPGs as current evidence. The `?demo=1` tour provides five English chapters after data preloading; it is not itself a saved video.
+
+## Reviewed production release
+
+[Calibrated comparison, 2026-11-14](../review/released-site.jpg) is a genuine anonymous capture of the current Vercel production release. It shows Baoshan II HH images, the OSM outline, official storage and exploratory grade/interval. The source observations are not SI-generated; interface and plotting code are SI-assisted. Earlier images above remain historical.

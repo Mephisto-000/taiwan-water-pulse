@@ -1,89 +1,59 @@
 # Vercel 部署與安全查核
 
-Production：[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)。含 SI 標記的版本狀態 **READY**，於 2026-11-14 12:59:45（Asia/Taipei）重新上線。只對外提供此 production 網域。
+Production：[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)。校準影像與 relative-power v3 版本為 **READY**，於 2026-11-14 15:43:57（Asia/Taipei）上線。對外使用此 production 網域。
 
-## 目前 production 部署
+## 目前 production
 
 | 項目 | 實際值 |
 | --- | --- |
-| GitHub owner / repository | `Mephisto-000/taiwan-water-pulse`；維持 private，未變更可見性 |
-| Vercel scope | `mephisto-000s-projects` |
-| Project | `taiwan-water-pulse`；內部 project ID 不納入 repository 文件 |
-| Deployment | 以 production 網域、來源 SHA 與 artifact manifest 追蹤；內部 deployment ID 不納入 repository 文件 |
-| Target | `production` |
-| 前端 | Vite / React，純靜態產物 |
-| 來源 commit | `2a879bbca54dc55f0a257a1a12dd0284b1289bad` |
-| 發布時的來源狀態 | `main` 已推送 GitHub，工作目錄乾淨；僅發布此版本的靜態產物 |
-| Node / npm | 本機 `24.15.0` / `11.12.1`；Vercel 專案 Node `24.x` |
+| GitHub | `Mephisto-000/taiwan-water-pulse`；維持 private |
+| Vercel project / scope | `taiwan-water-pulse` / `mephisto-000s-projects` |
+| Target / frontend | `production`；Vite / React 純靜態產物 |
+| 部署來源 commit | `56159dd5a9f38fa554f1be853683cfcb311f2d9b` |
+| 資料處理來源 commit | `9d332fd500e52a3a280df067a397e71802a1979b`；`code_dirty=false` |
+| 發布順序 | 功能提交 → 從乾淨 commit 重建資料 → 資料提交 → push `main` → 建置與掃描 → Vercel |
+| 發布範圍 | 331 個 `web/dist` 檔案，共 49,713,814 bytes；另附一份無秘密的靜態部署設定 |
+| 本機 Node / npm | `24.15.0` / `11.12.1`；Vercel Node `24.x` |
 | Root Directory | `web` |
-| 發布方式 | 本機建置及檢查後，透過已連結的 Vercel plugin 上傳靜態檔案並建立 production deployment |
-| 發布範圍 | 55 個 `web/dist` 檔案（54,316,881 bytes），另加一份不含秘密的靜態部署設定；11 個更新檔案重新上傳，其餘 44 個沿用已驗證的內容雜湊 |
-| 處理耗時 | Vercel `buildingAt` 到 `ready` 約 2.805 秒，靜態輸出步驟 189 ms；本機 Vite 建置 187 ms，不包含 TypeScript 檢查 |
-| Deployment Protection | Standard Protection：`all_except_custom_domains`；production 未暫時鎖定 |
-| 自訂 Environment Variables | 0 筆；未上傳 Earthdata 認證 |
-| 方案／費用 | 未升級、未啟用 trial 或付費附加功能。連接器未回傳 billing plan，現有帳號是否標為 Hobby 尚未獨立確認 |
+| 建置時間 | 本機 Vite 125 ms（不含 TypeScript）；Vercel 靜態輸出 258 ms，building 到 ready 約 3.1 秒 |
+| Deployment Protection | `all_except_custom_domains`；production 匿名可達，未降低既有保護 |
+| 自訂 Environment Variables | 查核為 0；未上傳 Earthdata 認證 |
+| 費用設定 | 未升級、未啟用 trial、付費附加功能或監控；connector 未提供帳號 billing plan，未自行宣稱已確認 Hobby |
 
-來源建置設定保存在 `web/vercel.json`：`npm ci` → `npm run build && npm run check:deploy` → `dist`。本次在本機完成檢查後，API deployment 使用僅適用於編譯產物的設定：`framework: null`、空白 install/build command、`outputDirectory: "."`，並保留相同快取標頭。只有產物被傳送，沒有把 repository 根目錄當成網站目錄。
+GitHub 先成功推送 `9d332fd` 與 `56159dd`，再透過已連結的 Vercel plugin 上傳已檢查產物。資料來源 commit 與部署 commit 不同，是為了從乾淨程式版本產生資料，再提交產物；不是未提交的程式變更。後續純部署紀錄 commit 不改變線上產物。
 
-雲端日誌顯示 Vercel 平台使用 CLI `65.14.0`；本機沒有安裝 CLI 或建立 token。[檔案清單與 SHA-256](deployment-manifest.json)記錄每個公開檔案；[線上驗證結果](deployment-verification.json)記錄實際 HTTP 狀態、時間與雜湊比對。
+來源設定為 `web/vercel.json`：`npm ci` → `npm run build && npm run check:deploy` → `dist`。API 發布只傳送編譯產物，使用 `framework: null`、空白 install/build command、`outputDirectory: "."` 與相同快取標頭。未傳送 repository 根目錄。Vercel 平台使用 CLI `65.14.0`；本機未安裝 CLI 或建立 token。
 
-## GitHub 與認證資料查核
+[部署 manifest](deployment-manifest.json)包含每個公開檔案的大小、SHA-1 與 SHA-256；[線上驗證](deployment-verification.json)記錄實際狀態、雜湊、快取與互動結果。內部 team/project/deployment ID 不寫入文件。
 
-初次部署時的查核範圍為本專案可取得的所有 branch/tag 歷史、目前可提交檔案與公開產物；當時遠端只有 `main`，完整歷史共 3 個 commit、129 個不同 blob，非 shallow clone。GitHub connector 無此 private repo 權限，因此以本機 Git 的既有認證唯讀取得遠端 refs。匿名開啟 repo 回傳 404，與 private 狀態一致。本次 SI 版本已完成提交前掃描；重新部署前另檢查全部 55 個公開產物，Gitleaks 與已知認證、私人姓名、email、本機路徑的比對均無命中。
+## 測試與線上驗證
 
-- Gitleaks `8.30.1`：完整 Git 歷史、目前可提交檔案與 `web/dist` 均為 0 findings；報告啟用完整遮蔽。
-- 本機 `token.md` 存在，`git check-ignore` 確認已忽略，且不在任一歷史 tree。認證檔解析出的 2 個值另在記憶體內與歷史 blob、公開產物做 exact-value comparison，0 matches；值未寫入報告、環境變數或部署設定。
-- 未發現已提交的 `.env`、`.netrc`、`.npmrc`、私鑰或聊天紀錄檔。`.env.example` 認證欄位皆空白；測試中的示範密碼為 fixture。
-- **既有 Git 歷史仍含個人資訊：** 初次部署前的三個 commit，其 author/committer metadata 含非 GitHub noreply email；舊版依賴文件含本機使用者名稱的絕對路徑。現行文件已改為實測後的專案相對路徑，但舊 commit 不會因此消失。初次 artifact 部署沒有推送 GitHub 或傳送 commit email 到 Vercel；後續的設定提交不改寫既有歷史。
-- 此次不包含其他 repo、私訊服務、已刪除且無法取得的 refs、GitHub Actions artifacts/logs 或圖片 OCR。秘密掃描無法保證找出每一種自訂格式。
+- 40 個前端、9 個部署防護、34 個 Python 測試通過；TypeScript、正式建置、Prettier、Ruff 均通過。
+- 4 庫 × 21 期分析面積與 50%／70% 敏感度由瀏覽器算法重算，84 筆均與 Python 相符至小數點後 9 位。
+- 331 個公開檔案全部匿名 HTTP 200，SHA-256 全數與本機相符，未轉向登入頁。
+- `/assets/` 為 `public, max-age=31536000, immutable`；`/data/` 為 `public, max-age=0, must-revalidate`。
+- 匿名瀏覽器核對中英文、寶山第二／鯉魚潭／石門切換、HH／HV、比較滑桿鍵盤 50→51、28.2%／34.4% 官方紀錄與石門低信心提示；所檢查流程 console error / warning 均為 0。
+- 線上方法為 `relative_power_v3`、4 庫 21 日期、資料來源 commit `9d332fd5`、SI declaration `1.1.0`。原始觀測與影像標示不是 SI-generated。
+- `.env`、`token.md`、`.netrc`、`.git/config`、`README.md`、`pipeline/pyproject.toml` 均為 404。
+- 本 deployment 最近 15 分鐘 error/fatal runtime logs 無紀錄；此站為純靜態站。
+- 本機驗證 1440 px 桌面及 375 px iframe 行動版無文件水平溢出，英文五幕導覽可完成並自動停止。尚未實測手機行動網路、跨瀏覽器矩陣或正式 WCAG 稽核。
 
-`.gitignore` 排除認證檔、私鑰與 `.vercel/`；`.vercelignore` 採 frontend allowlist，並排除認證與本機產物。`.vercelignore` 是 CLI 上傳規則，不能清除 Git 歷史。未來 push 前仍須審查 diff 並重跑掃描。
+![正式網站校準影像比較](review/released-site.jpg)
 
-本次 README 與部署設定提交使用 owner 的公開 GitHub handle，以及依 GitHub 公開帳號 ID 對應的 `noreply` email，作為 author 與 committer。僅套用於這個 commit，不修改全域 Git 設定。推送前檢查 staged snapshot、Git 歷史、公開產物及本機已知認證值；報告只保留類型與位置，不記錄秘密值。
+新版移除 MapLibre；JavaScript 約 298 KB、gzip 約 95 KB，不再有舊版大型 MapLibre chunk。校準影像按水庫載入，完整公開資料總量不等於首次頁面傳輸量。
 
-```bash
-# 從 repository 根目錄執行，只輸出遮蔽後結果
-gitleaks git --redact=100 --no-banner --log-opts='--all --full-history'
-npm --prefix web run test:deploy
-npm --prefix web test
-npm --prefix web run format:check
-npm --prefix web run build
-npm --prefix web run check:deploy
-gitleaks dir web/dist --redact=100 --no-banner
-```
+## 敏感資訊與提交範圍
 
-## 驗證結果
+本次新增提交與全部 `web/dist` 經 Gitleaks `8.30.1` 完整遮蔽掃描，0 findings。全部 476 個可提交檔案（部署紀錄截圖加入前）及 331 個公開檔案另與本機已知認證、私人姓名、email 和 home path 做記憶體內 exact-value comparison，0 matches。認證值未寫入報告、部署 metadata 或 Vercel 環境變數。最終部署文件提交另重跑相同檢查。
 
-| 檢查 | 結果 |
-| --- | --- |
-| 來源版本測試 | 提交前 23 個 Python、15 個前端、5 個部署防護測試與格式檢查通過；本次重新執行 TypeScript、正式建置、部署檢查及秘密掃描通過 |
-| DV-01 匿名公開可達 | 通過；未登入 Vercel 的瀏覽器可操作 production 網域 |
-| DV-02 資料載入 | 通過；線上 55 個檔案皆 HTTP 200，SHA-256 全部與本機相符 |
-| 互動 | 寶山第二切換鯉魚潭、HH 切換 HV、2026-03-17 切換 2026-06-21；2016 px 雷達圖與官方 82.5% 蓄水率正常顯示，所檢查流程無 console error / warning |
-| DV-03 版本識別 | 通過；deployment metadata 來源 SHA 正確，公開位元組以 manifest 全量比對 |
-| DV-05 快取 | `/assets/`：`public, max-age=31536000, immutable`；`/data/`：`public, max-age=0, must-revalidate` |
-| DV-06 手機行動網路 | 尚未測試；目前只驗證此工作環境與匿名瀏覽器 |
-| DV-07 秘密檢查 | 通過；check:deploy 與 Gitleaks 均無 findings |
-| SI 標記 | 首頁與方法區可見揭露、`SI-generated icon`、HTML meta、`/data/si-usage.json` 及資料來源排除標記均已在線上驗證 |
-| 私人路徑 | `.env`、`token.md`、`.netrc`、`.git/config`、`README.md`、`pipeline/pyproject.toml` 均為 404 |
-| Runtime logs | 本 deployment 最近 15 分鐘 error/fatal 無紀錄；純靜態站沒有 application server runtime |
+`token.md` 存在但已忽略；不在 staged snapshot 或任一歷史 tree。`.env.example` 認證欄位留空；`.gitignore` 排除秘密、原始快取與 `.vercel/`。新提交採公開 GitHub handle 及 GitHub noreply email，只作用於這次 commit，未修改全域身份設定。
 
-未啟用 Web Analytics、Speed Insights、資料庫、Function 或付費監控。Vite 有既有 MapLibre chunk 大於 500 kB 的警告；最大公開檔案約 1.42 MB，通過部署門檻。
+**既有歷史限制：** 初次部署前 3 個 commit 的 author/committer 含非 GitHub noreply email，舊文件也曾含本機使用者絕對路徑。本次沒有改寫歷史；現行文件使用專案相對路徑。初次完整掃描未發現已提交的帳號密碼、token、私鑰或聊天紀錄。本次也重新掃描既有歷史及新增提交，秘密掃描 0 findings。掃描不涵蓋其他 repository、私訊服務、無法取得的 refs、Actions artifacts/logs 或圖片 OCR，也不能保證識別所有自訂秘密格式。
 
-## 更新與 Git integration
+## 更新、Git integration 與回復
 
-### SI 標記更新（2026-11-14）
+GitHub repo 維持 private。Vercel Git integration 尚未連結，**push 不會自動更新網站**；本次依使用者要求先 push，再透過 artifact API 部署。若日後啟用 Git integration，需由 owner 授權 Vercel App 存取此 repo，再保留 production branch `main`、Root Directory `web`、Vite、Node `24.x`。目前沒有宣稱 Git-trigger deployment 已驗證。
 
-本次更新已透過 artifact API 重新發布，首頁 SI 提示、圖示可見標記、HTML metadata、`si-usage.json`，以及 index、provenance 和官方資料 JSON 的 SI 使用欄位均已上線。原始預覽圖與觀測值未變動。本頁的 manifest 與 HTTP 驗證結果已更新為此版本；第一次部署的紀錄可從 Git 歷史取得。GitHub push 仍不會自動更新 production。
+後續發版仍須建置、秘密掃描、上傳受檢產物，再匿名驗證正式網址與雜湊。資料重建使用 `water-pulse release --offline`；舊 `all --offline`／`export --offline` 只重建 Browse 備援。
 
-匯入 private repo 時 Vercel 回傳 `repo_not_found`。現在站台已透過 artifact API 上線，**GitHub push 不會自動更新此站台**。
-
-若日後要完成附件 §5 步驟 8，owner 需在 GitHub 的 Vercel App 權限中只授權此 repository，再將專案連結至 `Mephisto-000/taiwan-water-pulse`，保留 production branch `main`、Root Directory `web`、Vite、Node `24.x`。經明確授權提交與推送本機設定後，確認 `web/vercel.json` 生效，Environment Variables 維持空白。
-
-目前未實測 owner push → 自動 deployment。因此 G-G 的公開可達部分通過，附件要求的完整 G-G（含 Git-trigger）仍為部分完成。下一次手動 artifact 發布必須重建、掃描，再發布至同一 Vercel project；每次更新都重做 DV-01、DV-02、DV-03。
-
-## 回復
-
-本次為第二個 production deployment；上一個成功版本為初次上線的 Browse 版本，來源 SHA `44019e1752645fd4198e132721bbe07031d2c103`。需要時可在 Vercel 後台恢復上一個成功版本，或重新發布已驗證產物。保留 manifest、來源 SHA 與 Git 歷史以追蹤版本。Git integration 啟用後，可由 owner 透過 `git revert` 加上授權的 push 發布修正版；使用平台 rollback 後，後續發版須確認 production 網域已重新指向選定部署。
-
-平台來源：[Node.js 版本](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions)、[Hobby](https://vercel.com/docs/plans/hobby)、[檔案排除](https://vercel.com/docs/deployments/vercel-ignore)、[Standard Protection](https://vercel.com/docs/deployment-protection/methods-to-protect-deployments/vercel-authentication)。
+前一個成功 production 為 2026-11-14 12:59:45 的 SI Browse 版本，來源 `2a879bbca54dc55f0a257a1a12dd0284b1289bad`。必要時可由 Vercel rollback 恢復，或重新發布相應 Git 版本的已驗證產物。此文件不會自行觸發 rollback。
