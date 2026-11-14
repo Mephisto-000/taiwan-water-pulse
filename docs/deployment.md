@@ -1,6 +1,20 @@
 # Vercel 部署與安全查核
 
-Production：[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)。目前為 ADV-10 兩段式蓄水率估計版本，狀態 **READY**。
+Production：[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)。目前為完成 CI 修復後重新發布的 ADV-10 兩段式蓄水率估計版本，狀態 **READY**。
+
+## 最新發版：CI 修復（2026-11-15）
+
+- 上線時間：**2026-11-15 02:37:38.065（Asia/Taipei）**；Vercel 為 READY。
+- 部署來源：`b3bb0fe1568d3e44cadb0678f9e2a8e40ac420b6`，已 push 至 `main`。
+- 修復天氣腳本的 17 項 Ruff 問題：UTC alias、匯入排序與行長；沿用原有檢查規則。AST 比對確認除等價的 UTC alias／import 正規化外，運算與字串內容一致。
+- CI 現在執行 4 個既有天氣測試，連同 pipeline 原有測試共 65 個；115 個前端與 9 個部署防護測試、Ruff、Prettier、TypeScript、DEF-12 決定性重算及 offline 發布完整性檢查均通過。
+- [GitHub CI #17](https://github.com/Mephisto-000/taiwan-water-pulse/actions/runs/43627551543) 的 `web`、`pipeline` 全數成功；歷史 #16 的失敗紀錄保留，不會因新提交而消失。
+- 337 個網站產物、50,933,785 bytes，與前一 ADV-10 發布逐位元一致；Vercel 沿用既有內容雜湊，再以修復來源版本建立 production deployment。無套件、觀測資料、環境變數或存取保護變更。
+- 337/337 個公開檔案匿名 HTTP 200、無 redirect，大小與 SHA-256 全數相符，快取檢查通過；6 個私人路徑皆 404。正式站確認影像、28.2% 官方紀錄、兩段式估計與圖表切換，所檢查流程 console error/warning 為 0。
+- 來源候選快照、可達 Git 歷史、修復 commit 與部署產物 Gitleaks 均 0 findings；本機已知認證與私人身份比對 0 matches。提交使用公開 GitHub handle 與 noreply；未改寫歷史。
+- 前一成功 production 為來源 `e33cf7a` 的 ADV-10 發布。後續純文件 commit 不改變線上產物。
+
+證據：[manifest](review/ci-repair-deployment-manifest.json)、[HTTP 驗證](review/ci-repair-deployment-verification.json)、[CI 畫面](review/ci-repair-github.jpg)、[正式站畫面](review/ci-repair-production.jpg)。
 
 ## 最新發版：ADV-10
 
