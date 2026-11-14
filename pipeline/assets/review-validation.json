@@ -2,8 +2,8 @@
   "schema_version": 2,
   "method": "relative_power_v3",
   "review_version": "2026-11-14-v2",
-  "code_version": "27d126e9cf7dc4b4644f811105d3c05bb95bc604",
-  "code_dirty": true,
+  "code_version": "ed5d561e6b35c8e717e4748bdb63573223e93520",
+  "code_dirty": false,
   "method_description": "Fixed HH, 30 m native linear-power multilooking, exact unbuffered OSM mask, per-date threshold 0.6 times exterior reference median power. No official-data threshold/polarization/buffer fitting.",
   "analysis_policy": {
     "spacing_m": 30,

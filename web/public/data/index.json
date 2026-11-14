@@ -6,7 +6,7 @@
   "generated_at": "2026-11-14T03:02:42.315314Z",
   "si_usage": {
     "tool": "OpenAI Codex",
-    "declaration_version": "1.1.0",
+    "declaration_version": "1.2.0",
     "declaration_data_path": "si-usage.json",
     "code_status": "SI-generated and SI-assisted",
     "status": "Prepared using SI-assisted code; source observations are not SI-generated",
@@ -416,8 +416,8 @@
     "liyutan",
     "feitsui"
   ],
-  "code_version": "27d126e9cf7dc4b4644f811105d3c05bb95bc604",
-  "code_dirty": true,
+  "code_version": "ed5d561e6b35c8e717e4748bdb63573223e93520",
+  "code_dirty": false,
   "release_method": "relative_power_v3",
   "review_version": "2026-11-14-v2"
 }

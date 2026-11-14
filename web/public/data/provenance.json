@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "mode": "mixed",
-  "code_version": "27d126e9cf7dc4b4644f811105d3c05bb95bc604",
-  "code_dirty": true,
+  "code_version": "ed5d561e6b35c8e717e4748bdb63573223e93520",
+  "code_dirty": false,
   "si_usage": {
     "tool": "OpenAI Codex",
-    "declaration_version": "1.1.0",
+    "declaration_version": "1.2.0",
     "declaration_data_path": "si-usage.json",
     "code_status": "SI-generated and SI-assisted",
     "status": "Prepared using SI-assisted code; source observations are not SI-generated",
@@ -1267,7 +1267,7 @@
     {
       "path": "reservoirs/baoshan2/meta.json",
       "bytes": 121521,
-      "sha256": "d9c084d4c087bac0249351242ba8c7b8a27ded01cce7848b65a8d2ed17cc35ef",
+      "sha256": "dc2101903a1df1dd1386e83e393c12bd57dcbf1dfcfe48441c7ae72b9294d0f5",
       "si_generated": false
     },
     {
@@ -1279,7 +1279,7 @@
     {
       "path": "reservoirs/baoshan2/timeseries.json",
       "bytes": 65635,
-      "sha256": "bf25bc1b51817a50af83d601d63937182f6f2eb0fc7c72af735b2e6a8cab47f6",
+      "sha256": "72694fe126d4853e3e9dd183e94dc270de46b8e62e97cea18732bafccbfcb76d",
       "si_generated": false
     },
     {
@@ -1675,7 +1675,7 @@
     {
       "path": "reservoirs/liyutan/meta.json",
       "bytes": 255796,
-      "sha256": "037f8711706bbcd788b88dc8f54d40e75780b212bf717ff4a7bf6646e26de94c",
+      "sha256": "b9a2d12249a726b17d2204988fe3b20b5f11008978001667f4faa0f2399842e8",
       "si_generated": false
     },
     {
@@ -1687,7 +1687,7 @@
     {
       "path": "reservoirs/liyutan/timeseries.json",
       "bytes": 61166,
-      "sha256": "2f7d5c1e45e96b9682fefc6dc5d21246dba406f1964d8725a68a5ceff0305d9d",
+      "sha256": "74c25a0451f9fb458bb19668d2defc3e497af703908ee29767482ee701684a5e",
       "si_generated": false
     },
     {
@@ -2083,7 +2083,7 @@
     {
       "path": "reservoirs/shimen/meta.json",
       "bytes": 416784,
-      "sha256": "3bb1cc0fb0a08334ccda38a85a08ff42aecfd9583c32f42f12ccce5a5f98e069",
+      "sha256": "c34689829fa4b6882eb40b62a71f8a069cd74b9d068931c063be1371c30205d7",
       "si_generated": false
     },
     {
@@ -2095,7 +2095,7 @@
     {
       "path": "reservoirs/shimen/timeseries.json",
       "bytes": 72043,
-      "sha256": "57247a2177b651710652271e2098284c6af9998716b1e437fad5f5822568bf97",
+      "sha256": "55fce36752a695e5d80d812d9aaea2902c23b95b1a875ee97271831e2a6124fe",
       "si_generated": false
     },
     {
@@ -2491,7 +2491,7 @@
     {
       "path": "reservoirs/feitsui/meta.json",
       "bytes": 218962,
-      "sha256": "d7d69bb7fed90f67d116901450588b7f63c9cbb23301efac4ac46d42822e5aff",
+      "sha256": "05f748160cdd8efe0d43e50be50f6aeb62a0f264cc6db854aeab6a5db5790d20",
       "si_generated": false
     },
     {
@@ -2503,7 +2503,7 @@
     {
       "path": "reservoirs/feitsui/timeseries.json",
       "bytes": 61086,
-      "sha256": "09ce4088af3a72b10ce9a7b26c56e72dca509ca51f5a747e5dad73577a44e396",
+      "sha256": "598a49be9c795e2005ab7a9e7fc4c52fe5e41c54f4d0ad230ddd0710c2ecf474",
       "si_generated": false
     }
   ],
