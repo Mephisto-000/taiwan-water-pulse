@@ -1832,3 +1832,120 @@ footer > span:last-child {
   color: #e0ece5;
   white-space: nowrap;
 }
+
+/* Traditional Chinese uses local Taiwan fonts and readable label sizes. */
+:root {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei",
+    "Noto Sans TC", sans-serif;
+}
+h1,
+.methods-intro h2,
+.chart-heading h2 {
+  font-family: Georgia, "Songti TC", "Noto Serif TC", serif;
+}
+.section-label,
+.eyebrow,
+.notice-label {
+  font-size: 10px;
+  letter-spacing: 0.6px;
+}
+.mode-notice p,
+.intro p {
+  font-size: 12px;
+}
+.brand {
+  font-size: 21px;
+}
+.brand small {
+  font-size: 8px;
+}
+.scene-meta,
+.scene-meta > span:last-child,
+.scene-caption,
+.scene-caption > span:last-child,
+.channel-note {
+  font-size: 10px;
+}
+.timeline-foot {
+  font-size: 9px;
+}
+.timeline-months {
+  font-size: 8px;
+}
+.timeline-gap > span {
+  font-size: 8px;
+  top: -15px;
+}
+.chart-footer p,
+.chart-footer > span,
+.chart-legend {
+  font-size: 10px;
+}
+.locator-caption {
+  font-size: 9px;
+}
+.radar-explainer p,
+.area-unavailable p,
+.area-unavailable > small {
+  font-size: 11px;
+}
+.metric-label,
+.gauge-date,
+.change-label,
+.level-metric > span,
+.provenance-button {
+  font-size: 11px;
+}
+.source-chip,
+.gauge-date > span,
+.change-label > span {
+  font-size: 9px;
+}
+.scene-label small,
+.scene-bottom > span,
+.north-label small {
+  font-size: 8px;
+}
+.method-columns dl,
+.method-columns ul,
+.method-columns a,
+.method-source-links a {
+  font-size: 11px;
+}
+.method-columns dt,
+.science-note p,
+footer p {
+  font-size: 10px;
+}
+.context-title {
+  font-size: 9px;
+  letter-spacing: 0;
+}
+@media (max-width: 600px) {
+  .brand {
+    font-size: 17px;
+  }
+  .brand small {
+    font-size: 7px;
+  }
+  .github-link {
+    font-size: 10px;
+  }
+  .timeline-foot {
+    font-size: 8px;
+  }
+  .timeline-gap > span {
+    font-size: 6px;
+  }
+  .scene-meta,
+  .scene-meta > span:last-child {
+    font-size: 8px;
+  }
+  .chart-legend {
+    flex-wrap: wrap;
+  }
+  .timeline-months {
+    font-size: 7px;
+  }
+}

@@ -5,7 +5,7 @@ This record separates the released browse experience from the numerical methods 
 ## Established automated evidence
 
 - Python pipeline: 22 tests passed; Ruff clean. Seed checksums, missingness, dates, quantization, synthetic area/Otsu behavior, exported assets and OSM area/frame consistency are covered.
-- Frontend: 14 Vitest tests passed. These cover the tested pure functions and data parsing; they are not a full browser automation suite.
+- Frontend: 15 Vitest tests passed. These cover the tested pure functions and data parsing; they are not a full browser automation suite.
 - Frontend production build: TypeScript check and Vite build with GitHub Pages base path passed; Prettier format check passed.
 - Public assets: all 42 HH/HV browse PNGs were downloaded anonymously and checksummed.
 - Official data: 88 sampled dates per station; the original 25-date seed remains separately available.
@@ -50,3 +50,7 @@ Use the same base variable for both commands, then open the printed URL with `/t
 - Review the final tracked diff and generated output for secrets; local credentials and cache files stay ignored.
 
 The initial release must not be reported as completing every Must feature in the original numerical specification. Authenticated access and HDF5 inspection passed, but the original HH direction gate failed and both R-01 classifiers failed the 17-date held-out Spearman target. Safe failed-method reports remain in the repository; no numerical results are enabled in the public UI.
+
+## Taiwan Traditional Chinese update
+
+The main UI uses `zh-Hant`, Taiwan Traditional Chinese terminology and `zh-TW` dates. The README is available in Traditional Chinese and English. Browser checks confirmed channel selection, chapter navigation, date synchronization and the sources panel with no console errors. At a 1280 px viewport, document width was 1265 px (no horizontal overflow). The current interface is captured in `submission/04-traditional-chinese.jpg`. The frontend suite now has 15 passing tests, including Chinese date formatting; the production build also passed.

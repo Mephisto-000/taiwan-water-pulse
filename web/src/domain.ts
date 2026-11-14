@@ -42,7 +42,7 @@ export interface OfficialSeries {
 export const dataUrl = (path: string) =>
   `${import.meta.env.BASE_URL}data/${path}`;
 export function formatDate(value: string, short = false): string {
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Intl.DateTimeFormat("zh-TW", {
     day: "2-digit",
     month: short ? "short" : "long",
     ...(short ? {} : { year: "numeric" }),
@@ -128,9 +128,7 @@ export function parseIndex(value: unknown): DataIndex {
     !Number.isFinite(Date.parse(String(value.gap.start))) ||
     !Number.isFinite(Date.parse(String(value.gap.end)))
   )
-    throw new Error(
-      "The data manifest is invalid. Re-run the pipeline export.",
-    );
+    throw new Error("資料清單格式有誤，請重新執行 pipeline 匯出。");
   for (const r of value.reservoirs)
     if (
       !object(r) ||
@@ -147,7 +145,7 @@ export function parseIndex(value: unknown): DataIndex {
       r.bbox.length !== 4 ||
       !r.bbox.every(Number.isFinite)
     )
-      throw new Error("Invalid reservoir metadata");
+      throw new Error("水庫中繼資料格式有誤");
   if (
     value.mode === "mixed" &&
     (!Array.isArray(value.numeric_reservoirs) ||
@@ -176,7 +174,7 @@ export function parseIndex(value: unknown): DataIndex {
           typeof (d.available as Record<string, unknown>)[p] === "boolean",
       )
     )
-      throw new Error("Invalid acquisition metadata");
+      throw new Error("取像中繼資料格式有誤");
   return value as unknown as DataIndex;
 }
 export function parseOfficial(value: unknown): OfficialSeries {
@@ -188,7 +186,7 @@ export function parseOfficial(value: unknown): OfficialSeries {
     !Array.isArray(value.records) ||
     !value.records.length
   )
-    throw new Error("Invalid official gauge series");
+    throw new Error("官方觀測時間序列格式有誤");
   for (const record of value.records)
     if (
       !object(record) ||
@@ -201,7 +199,7 @@ export function parseOfficial(value: unknown): OfficialSeries {
           (typeof record[k] === "number" && Number.isFinite(record[k])),
       )
     )
-      throw new Error("Invalid official gauge observation");
+      throw new Error("官方觀測值格式有誤");
   return value as unknown as OfficialSeries;
 }
 export async function loadJson<T>(
@@ -211,8 +209,6 @@ export async function loadJson<T>(
 ): Promise<T> {
   const response = await fetch(dataUrl(path), { signal });
   if (!response.ok)
-    throw new Error(
-      `Could not load ${path} (${response.status}). Please retry.`,
-    );
+    throw new Error(`無法載入 ${path}（${response.status}），請重試。`);
   return parse(await response.json());
 }

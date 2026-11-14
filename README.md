@@ -1,31 +1,33 @@
-# Taiwan's Water Pulse
+# 台灣水庫的旱澇節奏｜Taiwan's Water Pulse
 
-Explore Taiwan's reservoirs through NISAR's first year and the official gauges.
+**繁體中文** | [English](README.en.md)
 
-This first release is the **browse-image fallback** defined in the project brief: a historical, static experience with 21 NISAR acquisition dates, HH/HV browse images, four reservoir selections, 88 sampled official dates per reservoir, and traceable sources. Browse images support visual inspection. They are not calibrated raster values and cannot provide a water-area measurement.
+透過 NISAR 首年的 L 波段雷達（L-band radar）影像與水利署官方觀測，回顧台灣水庫的退水與回補。主要介面採用台灣慣用的繁體中文，必要技術名詞附上英文。
 
-**Numerical water area, a threshold overlay, sensitivity intervals and area-versus-level correlations are unavailable in this release.** Authenticated HDF5 access succeeded, but the frozen threshold methods failed independent validation on 17 held-out dates. The numerical results are therefore withheld. The interface describes this limitation instead of inventing measurements.
+初版依實作規格採用**預覽圖備援方案（Browse edition）**：提供四座水庫、21 個取像日期、HH／HV 預覽圖、每座水庫 88 個日期的官方取樣值，以及可追溯的資料來源。預覽圖僅供目視比較，不能當作校準後的像素值來量測水面積。
 
-![Baoshan II dry-period explorer](docs/submission/01-dry-winter.jpg)
+**本版不提供雷達水面積、門檻疊圖、敏感度範圍或面積與水位的相關係數。** 雖然認證後的 HDF5 資料已成功讀取，但固定門檻方法未通過另外 17 個日期的獨立驗證，因此不發布數值結果。
 
-[Three representative screenshots](docs/submission/screenshots.md) show the local browse edition.
+![寶山第二水庫的互動探索畫面](docs/submission/04-traditional-chinese.jpg)
 
-## Why numerical results are withheld
+[代表性畫面與說明](docs/submission/screenshots.md)。
 
-An authenticated read of one granule's four reservoir windows completed in 91.279 seconds without a full-file download, and the actual HDF5 projection, coordinates, fill values and mask attributes were inspected. A first HH method failed the expected full-to-dry ordering. We then froze alternative settings on four calibration dates and tested the other 17 dates without retuning:
+## 為什麼不發布水面積結果？
 
-| Reservoir | Frozen classifier | Held-out Spearman ρ against water level | Paired n | Required |
+從單一資料產品（Granule）讀取四座水庫的研究區（AOI）視窗，耗時 91.279 秒，沒有下載整個檔案；已查核實際投影、座標、填補值與遮罩屬性。原先的 HH 方法未呈現預期的「滿庫 → 退水」方向。接著以四個校準日期固定替代方法，再用其餘 17 個日期驗證，不重新調整門檻。
+
+| 水庫 | 固定分類方法 | 獨立驗證：面積對水位的 Spearman ρ | 配對樣本數 n | 標準 |
 | --- | --- | ---: | ---: | ---: |
-| Baoshan II | HV, unbuffered OSM polygon | 0.422 | 17 | ≥0.8 |
-| Liyutan | HH, 150 m buffered polygon | 0.437 | 17 | ≥0.8 |
+| 寶山第二 | HV，未加緩衝區的 OSM 多邊形 | 0.422 | 17 | ≥0.8 |
+| 鯉魚潭 | HH，外擴 150 m 的多邊形 | 0.437 | 17 | ≥0.8 |
 
-Both failed. The public explorer consequently shows real imagery and official gauges, with no radar area, threshold overlay, sensitivity range or correlation result. The numbers above are reproducible failed-method diagnostics, not validated water measurements. Full records and the frozen date split are in [calibration](pipeline/assets/numeric-calibration.json), [validation](pipeline/assets/numeric-validation.json) and [gate evidence](docs/gates.md).
+兩者均未達標。上述數字是可重現的失敗方法診斷，**不是通過驗證的水面積量測**。完整紀錄見[校準設定](pipeline/assets/numeric-calibration.json)、[獨立驗證報告](pipeline/assets/numeric-validation.json)與[關卡證據](docs/gates.md)。介面保留真實影像與官方觀測，明確揭露限制。
 
-## Run locally
+## 在本機執行
 
-Requirements: Node.js 24 LTS (`>=24.15.0`), npm 11, Python 3.14 and uv. Dependencies stay inside the project; no global package installation is required.
+需求：Node.js 24 LTS（`>=24.15.0`）、npm 11、Python 3.14 與 uv。依賴套件安裝於專案內，不必安裝全域套件。
 
-From the repository root:
+以下指令皆從儲存庫根目錄執行：
 
 ```bash
 uv sync --project pipeline --frozen
@@ -34,122 +36,126 @@ uv run --project pipeline water-pulse all --offline
 npm --prefix web run dev -- --host 127.0.0.1
 ```
 
-Open the Local URL printed by Vite. Tracked public assets allow a normal demonstration without NASA or WRA runtime requests. Basemap tiles, if enabled, remain an external map dependency.
+開啟 Vite 顯示的本機網址。預覽影像與資料已納入版本控制，展示時不會向 NASA 或水利署查詢；底圖圖磚仍使用外部服務。
 
 ```bash
-# Verify the pipeline and frontend
+# 檢查離線處理流程與前端
 uv run --project pipeline pytest pipeline/tests
 uv run --project pipeline ruff check pipeline
 npm --prefix web test
 npm --prefix web run format:check
 npm --prefix web run build
 
-# Serve the production build
+# 預覽正式建置結果
 npm --prefix web run preview -- --host 127.0.0.1
 ```
 
-## Refresh and reproduce the assets
+## 更新與重現資料
 
 ```bash
-# Inspect the intended work without network requests or writes
+# 僅顯示預定工作，不連線也不寫入檔案
 uv run --project pipeline water-pulse all --dry-run
 
-# Rebuild from tracked sources without accessing external services
+# 使用已納入版本控制的資料重建，不存取外部服務
 uv run --project pipeline water-pulse all --offline
 
-# Fetch the public catalog, boundaries, official data and browse images
+# 更新公開目錄、水庫邊界、官方資料與預覽圖
 uv run --project pipeline water-pulse all --refresh
 
-# Scope a run to reservoirs and UTC acquisition dates
+# 指定水庫與 UTC 取像日期
 uv run --project pipeline water-pulse export --offline \
   --reservoirs baoshan2,liyutan --dates 2025-11-05,2026-03-17,2026-06-21
 ```
 
-The CLI also exposes `discover`, `geometry`, `official`, `export` and `gates`. `all` builds the browse fallback; its success does not imply numerical validation. The offline numerical investigation is documented separately in the methods and its recorded reports; numerical feature code remains disabled in the released archive. See [the methods](docs/methods.md) and [gate evidence](docs/gates.md).
+CLI 另提供 `discover`、`geometry`、`official`、`export` 與 `gates`。`all` 建置的是預覽圖備援版本；執行成功不代表數值驗證通過。數值功能程式碼保留供研究，但在目前發布資料中停用。詳見[方法](docs/methods.md)與[關卡證據](docs/gates.md)。
 
-A scoped export replaces the exported selection; run `all --offline` again to restore the full demonstration.
+指定部分資料匯出會取代目前的匯出範圍；再次執行 `all --offline` 可還原完整展示內容。
 
-To reproduce the failed numerical investigation, first provide Earthdata credentials through your local environment, then run:
+若要重現失敗的數值實驗，請先在本機環境變數設定 Earthdata 認證，再執行：
 
 ```bash
 uv run --project pipeline water-pulse read --reservoirs baoshan2,liyutan
 uv run --project pipeline water-pulse process --reservoirs baoshan2,liyutan --offline
-# Expected exit code 2: the original four-date HH direction gate fails.
+# 預期結束代碼為 2：原先四日期的 HH 方向檢查失敗
 uv run --project pipeline water-pulse gates --offline
-# Expected exit code 2: both held-out classifiers fail the required correlation.
+# 預期結束代碼為 2：兩種分類方法的獨立驗證未達標
 uv run --project pipeline water-pulse measure --reservoirs baoshan2,liyutan --offline
-# Also rejects publication with exit code 2; the released archive remains browse-only.
+# 同樣以結束代碼 2 拒絕發布，保留預覽圖版本
 uv run --project pipeline water-pulse export --numeric --reservoirs baoshan2,liyutan --offline
 ```
 
-Raw windows and processed candidate rasters remain in ignored `data/cache/`. The CLI can read an explicit local `--credentials-file`; never commit that file. Reproducing the public browse experience requires no Earthdata account.
+原始視窗與候選數值影像存放於已忽略的 `data/cache/`。CLI 可透過 `--credentials-file` 指定本機認證檔；請勿將認證檔提交至版本控制。重現公開的預覽圖版本不需要 Earthdata 帳號。
 
-## What to explore
+## 可以探索什麼？
 
-- Select Baoshan II, Liyutan, Shimen or Feitsui and inspect the official record for the same observation.
-- Select a real acquisition date, play the sequence, or move with the keyboard.
-- Switch HH/HV to select channels NISAR actually measured.
-- Inspect the official curve, the long radar observation gap and the source details.
-- Follow the five story chapters to compare the western reservoirs with Feitsui.
+- 切換寶山第二、鯉魚潭、石門與翡翠水庫，對照同次取像的官方觀測。
+- 選擇實際存在的取像日期、播放時間序列，或使用鍵盤方向鍵切換。
+- 切換 NISAR 實際量測的 HH／HV 極化通道（Polarization）。
+- 查看官方曲線、雷達觀測缺口與各筆資料來源。
+- 跟隨五幕故事，比較西部水庫與翡翠水庫的不同節奏。
 
-The official observation is at 07:00 in Taiwan. A NISAR acquisition around 21:16 UTC corresponds to about 05:16 the following Taiwan calendar day, approximately 1.7 hours before the gauge record. Missing gauge records remain missing. A line joining sampled official values is a visual guide, not a new observation.
+官方觀測時間為台灣時間 07:00。NISAR 約於 UTC 21:16 取像，對應台灣隔日約 05:16，比官方觀測早約 1.7 小時。官方缺值保持留白；取樣值之間的連線僅協助閱讀，不代表新增觀測。
 
-## Publish with GitHub Pages
+## 發布到 GitHub Pages
 
-CI runs on pushes to `main` and pull requests. The separate **Deploy GitHub Pages** workflow builds the static frontend only when manually dispatched (`workflow_dispatch`); pushing does not automatically deploy. In repository **Settings → Pages**, choose **GitHub Actions** as the source, then run the Pages workflow from the Actions tab. The workflow uses the repository subpath for Vite's base path. Review the workflow's trigger and environment settings before enabling publication. A successful Git push alone does not establish that Pages is enabled or publicly reachable.
+推送至 `main` 或建立 Pull Request 時會執行 CI。獨立的 **Deploy GitHub Pages** 工作流程（Workflow）僅接受手動觸發（`workflow_dispatch`）；推送不會自動部署。
 
-Expected project URL after successful deployment: [mephisto-000.github.io/taiwan-water-pulse](https://mephisto-000.github.io/taiwan-water-pulse/).
+請在儲存庫 **Settings → Pages** 選擇 **GitHub Actions**，再到 Actions 分頁執行部署工作流程。建置會設定 Vite 的儲存庫子路徑。部署前請確認觸發條件與環境設定；Git push 成功不代表 Pages 已啟用或可公開存取。
 
-To preview the GitHub Pages subpath locally, use the same base path for both commands:
+部署成功後的預期網址：[mephisto-000.github.io/taiwan-water-pulse](https://mephisto-000.github.io/taiwan-water-pulse/)。
+
+在本機預覽 Pages 子路徑時，兩個指令須使用相同的 base path：
 
 ```bash
 VITE_BASE_PATH=/taiwan-water-pulse/ npm --prefix web run build
 VITE_BASE_PATH=/taiwan-water-pulse/ npm --prefix web run preview
 ```
 
-Open `http://127.0.0.1:4173/taiwan-water-pulse/`. The normal build/preview commands above use the root path without this variable. For another host or path, configure both commands consistently as described in [dependency management](docs/dependency-management.md).
+開啟 `http://127.0.0.1:4173/taiwan-water-pulse/`。一般根路徑建置與預覽則不設定此變數。其他主機與路徑的設定見[依賴管理文件](docs/dependency-management.md)。
 
-## Project structure
+## 專案結構
 
 ```text
-pipeline/                 Python CLI, source snapshots and numerical unit tests
-web/                      Vite + React + strict TypeScript static frontend
-web/public/data/          Tracked, same-origin demonstration assets and provenance
-docs/                     Methods, source attribution, gates and decisions
-docs/submission/          English project-page draft and 30-second demo script
-data/cache/               Ignored local downloads and working data
+pipeline/                 Python CLI、來源快照與數值測試
+web/                      Vite + React + strict TypeScript 靜態前端
+web/public/data/          納入版本控制的同源資料、預覽圖與來源紀錄
+README.md                 繁體中文說明
+README.en.md              英文說明
+docs/                     方法、資料來源、關卡與決策紀錄
+docs/submission/          英文作品介紹草稿與 30 秒展示腳本
+data/cache/               不納入版本控制的本機工作資料
 ```
 
-## Data and scientific limits
+## 資料來源與科學限制
 
-NASA/JPL and ISRO's NISAR mission, distributed by ASF DAAC: `NISAR_L2_GCOV_PROVISIONAL_V1`, Track 111 ascending, Frame 014, mode 4005, HH/HV, CRID P05023. Products have **Provisional** maturity and near-real-time orbit precision. Browse imagery is a visualization whose display stretch must not be treated as calibrated γ⁰ values. Zooming does not create spatial detail.
+NISAR 為 NASA/JPL 與 ISRO 的聯合任務，資料由 ASF DAAC 發布。本專案使用 `NISAR_L2_GCOV_PROVISIONAL_V1`、升軌 Track 111、Frame 014、mode 4005、HH/HV、CRID P05023。產品成熟度為 **Provisional**，軌道精度旗標為 near-real-time。預覽圖的顯示亮度不能視為校準後的 γ⁰ 數值，放大也不會增加真實細節。
 
-Official storage and water levels: 經濟部水利署 防災資訊服務網. The published official curves use a fresh cached response retrieved on 2026-11-14 at 11:02 Taiwan time. The supplied 25-date seed snapshot is retained separately as a fallback and integrity fixture. OpenStreetMap reservoir geometry: © OpenStreetMap contributors, ODbL. OSM water boundaries are context, not validation truth. Source URLs, retrieval details and limitations are in [data sources](docs/data-sources.md) and the exported provenance.
+官方蓄水率與水位來自經濟部水利署防災資訊服務網，曲線使用 2026-11-14 台灣時間 11:02 擷取的查詢回應快取；附錄的 25 日期種子資料另外保留作為備援與完整性檢查。水庫幾何邊界來自 © OpenStreetMap contributors，採 ODbL 授權。OSM 水域邊界只提供脈絡，不是驗證真值。來源網址、擷取時間與限制見[資料來源](docs/data-sources.md)及匯出的來源紀錄（Provenance）。
 
-Wind, rainfall, floating debris, smooth exposed banks, layover, radar shadow and speckle complicate water detection. Surface area is not storage volume. The project does not infer volume or claim causal explanations from correlated observations.
+風浪、降雨、漂流物、平滑裸露岸地、疊置（Layover）、雷達陰影（Shadow）與斑點雜訊（Speckle）都可能影響水體判讀。**水面積不等於蓄水量**；本專案不推估水量，也不從相關性推論因果關係。
 
-## Maintain dependencies
+## 維護依賴套件
 
 ```bash
-# Review available Node updates; apply and test an intentional update
+# 檢視可更新版本；確認更新範圍後再更新與測試
 npm --prefix web outdated
 npm --prefix web update
 npm --prefix web test
 npm --prefix web run format:check
 npm --prefix web run build
 
-# Upgrade Python locks, then restore and test
+# 更新 Python 鎖定版本，還原環境並測試
 uv lock --project pipeline --upgrade
 uv sync --project pipeline --frozen
 uv run --project pipeline pytest pipeline/tests
 
-# Remove an unnecessary dependency, substituting its real package name
+# 移除套件，將 PACKAGE_NAME 換成實際名稱
 npm --prefix web uninstall PACKAGE_NAME
 uv remove --project pipeline PACKAGE_NAME
 ```
 
-Commit `web/package-lock.json` and `pipeline/uv.lock` alongside manifest changes. Use `npm install --save-dev` / `uv add --dev` for development-only tools. See [dependency management](docs/dependency-management.md) for exact versions, measured installation locations, environment variables and troubleshooting.
+依賴變更時，請一併提交 `web/package-lock.json`、`pipeline/uv.lock` 與對應設定檔。開發用套件使用 `npm install --save-dev` 或 `uv add --dev`。實際版本、查證過的安裝位置、環境變數與常見問題見[依賴管理文件](docs/dependency-management.md)。
 
-## License and AI assistance
+## 授權與 AI 協作
 
-Project code is licensed under [MIT](LICENSE). Third-party data and libraries retain their own terms; the MIT license does not relicense them. [AI usage](docs/ai-usage.md) records generated code and text and the limits of review.
+程式碼採用 [MIT 授權](LICENSE)。第三方資料與套件各自保留原有授權；MIT 不會重新授權這些內容。[AI 使用紀錄](docs/ai-usage.md)說明程式碼、文案的產生方式與審閱範圍。

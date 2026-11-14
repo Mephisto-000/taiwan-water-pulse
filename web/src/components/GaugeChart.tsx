@@ -65,7 +65,7 @@ export default function GaugeChart({
         className="gauge-chart"
         viewBox={`0 0 ${width} ${height}`}
         role="group"
-        aria-label="Official storage percentage over time. The shaded interval has no NISAR products. Select a sampled gauge point to change radar date."
+        aria-label="官方蓄水率時間序列。陰影區間沒有 NISAR 產品；選擇取樣點可切換雷達日期。"
       >
         <defs>
           <pattern
@@ -125,7 +125,7 @@ export default function GaugeChart({
           textAnchor="middle"
           className="gap-label"
         >
-          NO RADAR OBSERVATIONS
+          無雷達觀測
         </text>
         {segments.map((path, i) => (
           <path
@@ -159,7 +159,7 @@ export default function GaugeChart({
               className="chart-point"
               tabIndex={0}
               role="button"
-              aria-label={`${formatDate(record.local)}: ${areaSeries.stats.classification_channel} area ${record.area_km2.primary.toFixed(3)} square kilometers, sensitivity ${record.area_km2.primary_lo.toFixed(3)} to ${record.area_km2.primary_hi.toFixed(3)}. ${record.qa.join(". ")} Select radar observation.`}
+              aria-label={`${formatDate(record.local)}: ${areaSeries.stats.classification_channel} area ${record.area_km2.primary.toFixed(3)}  平方公里，敏感度範圍  ${record.area_km2.primary_lo.toFixed(3)} to ${record.area_km2.primary_hi.toFixed(3)}. ${record.qa.join(". ")}  選擇雷達觀測。`}
               onClick={() => onSelect(index)}
               onKeyDown={(event) => {
                 if (event.key === "Enter" || event.key === " ") {
@@ -174,7 +174,7 @@ export default function GaugeChart({
                 {record.area_km2.primary.toFixed(3)} km² ·{" "}
                 {record.qa.length
                   ? `QA: ${record.qa.join("; ")}`
-                  : "No QA flags"}
+                  : "無品質旗標（QA）"}
               </title>
               <line
                 x1={position}
@@ -247,7 +247,7 @@ export default function GaugeChart({
                 key={record.local_date}
                 role="button"
                 tabIndex={0}
-                aria-label={`${formatDate(record.local_date)}: ${record.pct?.toFixed(1)}% storage. Select radar observation.`}
+                aria-label={`${formatDate(record.local_date)}: ${record.pct?.toFixed(1)}% 蓄水率。選擇雷達觀測。`}
                 onClick={() => onSelect(index)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
@@ -307,10 +307,10 @@ export default function GaugeChart({
           </text>
         ))}
       </svg>
-      <span className="chart-y-label">STORAGE %</span>
+      <span className="chart-y-label">蓄水率 %</span>
       {areaSeries && (
         <span className="chart-area-label">
-          {areaSeries.stats.classification_channel} AREA km² · ±1.5 dB
+          {areaSeries.stats.classification_channel} 面積 km² · ±1.5 dB
         </span>
       )}
     </div>

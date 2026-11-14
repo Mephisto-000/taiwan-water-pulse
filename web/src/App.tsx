@@ -19,38 +19,38 @@ import {
 const chapters = [
   {
     number: "01",
-    title: "Full to the brim",
+    title: "滿庫的起點",
     date: "2025-11-05",
     reservoir: "baoshan2",
-    text: "The story begins with full reservoirs. On 6 November, Baoshan II stood at 100.0% storage.",
+    text: "故事從滿庫開始。2025 年 11 月 6 日，寶山第二水庫的蓄水率為 100.0%。",
   },
   {
     number: "02",
-    title: "A dry winter",
+    title: "乾旱的冬季",
     date: "2026-03-17",
     reservoir: "baoshan2",
-    text: "By 18 March, Baoshan II was at 28.2%. Follow the official gauges as the winter unfolds.",
+    text: "到了 2026 年 3 月 18 日，寶山第二水庫蓄水率降至 28.2%。沿著官方觀測資料，回顧冬季的變化。",
   },
   {
     number: "03",
-    title: "The blind spot",
+    title: "觀測的空白",
     date: "2026-03-17",
     reservoir: "liyutan",
-    text: "No NISAR products are available for this frame from 18 March to 20 June (UTC product dates). Gauge samples continue; radar observations do not.",
+    text: "這個影幅（Frame）在 2026 年 3 月 18 日至 6 月 20 日沒有 NISAR 產品（UTC 日期）。官方資料仍有取樣，雷達觀測則留白。",
   },
   {
     number: "04",
-    title: "Water returns",
+    title: "水又回來了",
     date: "2026-06-21",
     reservoir: "baoshan2",
-    text: "On 22 June, Baoshan II was back at 100.0%. Radar observations resume after the gap.",
+    text: "2026 年 6 月 22 日，寶山第二水庫蓄水率回到 100.0%。雷達觀測也在缺口後恢復。",
   },
   {
     number: "05",
-    title: "A different rhythm",
+    title: "不同的節奏",
     date: "2026-08-20",
     reservoir: "feitsui",
-    text: "Feitsui follows a different pattern: 91.9% on 18 March, then 74.1% on 21 August. Why it differs remains a hypothesis to investigate.",
+    text: "翡翠水庫呈現不同節奏：2026 年 3 月 18 日蓄水率為 91.9%，8 月 21 日為 74.1%。差異的成因仍是假說（Hypothesis），有待查證。",
   },
 ];
 function PulseIcon() {
@@ -81,9 +81,7 @@ export default function App() {
       .then(setIndex)
       .catch((e: unknown) => {
         if (!controller.signal.aborted)
-          setError(
-            e instanceof Error ? e.message : "Data could not be loaded.",
-          );
+          setError(e instanceof Error ? e.message : "無法載入資料。");
       });
     return () => controller.abort();
   }, [retry]);
@@ -91,17 +89,17 @@ export default function App() {
     return (
       <main className="boot">
         <PulseIcon />
-        <h1>The archive could not be loaded</h1>
+        <h1>無法載入歷史資料</h1>
         <p role="alert">{error}</p>
-        <button onClick={() => setRetry((n) => n + 1)}>Retry loading</button>
+        <button onClick={() => setRetry((n) => n + 1)}>重新載入</button>
       </main>
     );
   if (!index)
     return (
       <main className="boot" aria-live="polite">
         <PulseIcon />
-        <h1>Taiwan’s Water Pulse</h1>
-        <p>Opening the reservoir archive…</p>
+        <h1>台灣水庫的旱澇節奏</h1>
+        <p>正在載入水庫歷史資料…</p>
         <div className="loading-bar" />
       </main>
     );
@@ -206,7 +204,7 @@ function Explorer({ index }: { index: DataIndex }) {
       .catch((e: unknown) => {
         if (!controller.signal.aborted)
           setGaugeError(
-            e instanceof Error ? e.message : "Gauge data could not be loaded",
+            e instanceof Error ? e.message : "無法載入官方觀測資料",
           );
       });
     return () => controller.abort();
@@ -289,7 +287,7 @@ function Explorer({ index }: { index: DataIndex }) {
   return (
     <>
       <a className="skip-link" href="#explorer">
-        Skip to explorer
+        跳至互動探索
       </a>
       <header className="site-header">
         <a className="brand" href={import.meta.env.BASE_URL}>
@@ -297,10 +295,11 @@ function Explorer({ index }: { index: DataIndex }) {
             <PulseIcon />
           </span>
           <span>
-            Taiwan’s Water Pulse<small>A RESERVOIR STORY, SEEN BY RADAR</small>
+            台灣水庫的旱澇節奏
+            <small>Taiwan’s Water Pulse · NISAR</small>
           </span>
         </a>
-        <nav aria-label="Main navigation">
+        <nav aria-label="主要導覽">
           {(["explore", "story", "methods"] as const).map((item) => (
             <button
               key={item}
@@ -312,10 +311,10 @@ function Explorer({ index }: { index: DataIndex }) {
               aria-current={tab === item ? "page" : undefined}
             >
               {item === "explore"
-                ? "The explorer"
+                ? "互動探索"
                 : item === "story"
-                  ? "The story"
-                  : "Data & methods"}
+                  ? "水庫故事"
+                  : "資料與方法"}
             </button>
           ))}
         </nav>
@@ -325,41 +324,38 @@ function Explorer({ index }: { index: DataIndex }) {
           target="_blank"
           rel="noreferrer"
         >
-          View source <span aria-hidden="true">↗</span>
+          檢視原始碼 <span aria-hidden="true">↗</span>
         </a>
       </header>
       <main id="explorer">
         <section className="intro">
           <div>
             <div className="eyebrow">
-              <span /> NISAR FIRST-YEAR ARCHIVE{" "}
-              <span className="eyebrow-divider">/</span> TAIWAN
+              <span /> NISAR 首年歷史資料{" "}
+              <span className="eyebrow-divider">/</span> 台灣
             </div>
-            <h1>Every reservoir has a rhythm.</h1>
-            <p>
-              Follow a year of falling water and returning rain, through the
-              eyes of L-band radar.
-            </p>
+            <h1>每座水庫，都有自己的節奏。</h1>
+            <p>透過 L 波段雷達（L-band radar），回顧水庫一年間的退水與回補。</p>
           </div>
           <div className="archive-tag">
-            <span>HISTORICAL OBSERVATIONS</span>
+            <span>歷史觀測資料</span>
             <strong>
-              Nov 2025 <span>—</span> Oct 2026
+              2025 年 11 月 <span>—</span> 2026 年 10 月
             </strong>
             <small>
-              {index.dates.length} passes · {index.reservoirs.length} reservoirs
-              · one changing landscape
+              {index.dates.length} 次通過 · {index.reservoirs.length} 座水庫 ·
+              一段地景的變化
             </small>
           </div>
         </section>
         <div className="mode-notice">
           <span className="notice-label">
-            {numericMode ? "CALIBRATED GCOV" : "BROWSE EDITION"}
+            {numericMode ? "校準資料（GCOV）" : "預覽圖版本（Browse）"}
           </span>
           <p>
             {numericMode
-              ? "Explore calibrated radar backscatter, adjust the water threshold, and compare estimated surface area with official gauge samples."
-              : "Real radar previews and official gauges. Calibrated access succeeded; water-area estimates are withheld because independent validation did not meet the publication criterion."}
+              ? "探索校準後的雷達後向散射（Backscatter），調整水體門檻，並與官方觀測資料比較。"
+              : "使用真實雷達預覽圖與官方觀測資料。校準資料已成功讀取，但水面積估算未達獨立驗證標準，因此不予發布。"}
           </p>
           <button
             onClick={() => {
@@ -367,11 +363,11 @@ function Explorer({ index }: { index: DataIndex }) {
               setDetails(true);
             }}
           >
-            What this means <span aria-hidden="true">↗</span>
+            了解版本限制 <span aria-hidden="true">↗</span>
           </button>
         </div>
         {tab === "story" && (
-          <section className="story-panel" aria-label="Five chapter tour">
+          <section className="story-panel" aria-label="五幕故事導覽">
             <div className="story-chapters">
               {chapters.map((c, i) => (
                 <button
@@ -386,14 +382,14 @@ function Explorer({ index }: { index: DataIndex }) {
             </div>
             <p aria-live="polite">{chapters[chapter].text}</p>
             <button className="text-button" onClick={() => setTab("explore")}>
-              Leave the guided story <span aria-hidden="true">↗</span>
+              離開故事導覽 <span aria-hidden="true">↗</span>
             </button>
           </section>
         )}
         <div className="workspace">
           <aside className="sidebar">
             <div className="section-label">
-              01 <span>CHOOSE A RESERVOIR</span>
+              01 <span>選擇水庫</span>
             </div>
             <div className="reservoir-list">
               {index.reservoirs.map((r, i) => (
@@ -408,9 +404,9 @@ function Explorer({ index }: { index: DataIndex }) {
                 >
                   <span className="reservoir-number">0{i + 1}</span>
                   <span className="reservoir-name">
-                    {r.name}
+                    {r.name_zh}
                     <small>
-                      {r.name_zh} {r.key === "feitsui" ? "· comparison" : ""}
+                      {r.name} {r.key === "feitsui" ? "· 對照水庫" : ""}
                     </small>
                   </span>
                   <span className="choice-arrow" aria-hidden="true">
@@ -421,7 +417,7 @@ function Explorer({ index }: { index: DataIndex }) {
             </div>
             <div className="reservoir-context">
               <div className="context-title">
-                <span className="tiny-dot" /> NORTHERN & CENTRAL TAIWAN
+                <span className="tiny-dot" /> 台灣北中部
               </div>
               <Locator reservoir={reservoir} />
               <div className="coordinate-row">
@@ -434,12 +430,12 @@ function Explorer({ index }: { index: DataIndex }) {
               </div>
             </div>
             <div className="radar-explainer">
-              <span className="eyebrow">A DIFFERENT KIND OF LIGHT</span>
+              <span className="eyebrow">雷達如何看見水</span>
               <svg
                 className="radar-diagram"
                 viewBox="0 0 230 65"
                 role="img"
-                aria-label="Calm water reflects radar away; rough land scatters radar back"
+                aria-label="平靜水面將雷達反射至別處；粗糙陸地將部分訊號散射回衛星"
               >
                 <path
                   d="M24 8l43 42 43-42M144 8l33 40-6-27m6 27 17-37"
@@ -455,34 +451,33 @@ function Explorer({ index }: { index: DataIndex }) {
                   strokeWidth="2"
                 />
                 <text x="68" y="64" textAnchor="middle">
-                  WATER
+                  水面
                 </text>
                 <text x="174" y="64" textAnchor="middle">
-                  LAND
+                  陸地
                 </text>
               </svg>
               <p>
-                Calm water reflects the radar pulse away, so it looks dark. Land
-                and vegetation scatter some of it back, so they look brighter.
+                平靜水面將雷達脈衝反射至衛星以外的方向，因此影像偏暗；陸地與植被將部分訊號散射回來，因此較亮。
               </p>
             </div>
           </aside>
           <div className="main-column">
-            <section className="radar-card" aria-label="NISAR radar scene">
+            <section className="radar-card" aria-label="NISAR 雷達影像">
               <div className="card-heading">
                 <div>
                   <span className="section-label">
-                    02 <span>READ THE RADAR</span>
+                    02 <span>閱讀雷達影像</span>
                   </span>
                   <h2>
-                    {reservoir.name}
-                    <span className="chinese-name">{reservoir.name_zh}</span>
+                    {reservoir.name_zh}
+                    <span className="chinese-name">{reservoir.name}</span>
                   </h2>
                 </div>
                 <div
                   className="channel-control"
                   role="group"
-                  aria-label="Measured radar channel"
+                  aria-label="實際量測的雷達通道"
                 >
                   {(["HH", "HV"] as const).map((pol) => (
                     <button
@@ -500,10 +495,11 @@ function Explorer({ index }: { index: DataIndex }) {
                 <span>
                   <span className="tiny-dot" />{" "}
                   {formatDate(acquisition.local.slice(0, 10))}{" "}
-                  <span className="muted">· Taiwan</span>
+                  <span className="muted">· 台灣時間</span>
                 </span>
                 <span>
-                  TRACK 111 ↑ <span className="muted">/</span> FRAME 014
+                  軌道（Track）111 ↑ <span className="muted">/</span>{" "}
+                  影幅（Frame）014
                 </span>
               </div>
               <div className="scene-view">
@@ -523,7 +519,7 @@ function Explorer({ index }: { index: DataIndex }) {
                       key={`${imagePath}-${imageRetry}`}
                       className={`radar-image ${imageState === "ready" ? "loaded" : ""}`}
                       src={dataUrl(imagePath)}
-                      alt={`Full-frame NISAR ${polarization} radar browse image acquired ${acquisition.utc}. This is a browse preview, not a georeferenced reservoir overlay.`}
+                      alt={`NISAR ${polarization} 完整影幅預覽圖，取像時間為 ${acquisition.utc}。僅供目視判讀，並非具有地理定位的水庫疊圖。`}
                       style={{ transform: `scale(${zoom})` }}
                       onLoad={() => setImageState("ready")}
                       onError={() => {
@@ -534,19 +530,17 @@ function Explorer({ index }: { index: DataIndex }) {
                   )}
                 </div>
                 <div className="scene-label">
-                  <span className="scene-dot" /> L-BAND / {polarization}{" "}
+                  <span className="scene-dot" /> L 波段 / {polarization}{" "}
                   <small>
                     {numericMode
-                      ? "CALIBRATED RESERVOIR GRID · EPSG:3857"
-                      : "FULL-FRAME BROWSE PREVIEW"}
+                      ? "校準水庫格網 · EPSG:3857"
+                      : "完整影幅預覽圖（Browse）"}
                   </small>
                 </div>
                 <span className="north-label">
-                  {numericMode ? "N ↑" : "NATIVE"}
+                  {numericMode ? "N ↑" : "原始格網"}
                   <small>
-                    {numericMode
-                      ? "North-up · fixed grid"
-                      : "Product grid orientation"}
+                    {numericMode ? "北向上 · 固定格網" : "依產品格網方向"}
                   </small>
                 </span>
                 {(numericMode
@@ -554,7 +548,7 @@ function Explorer({ index }: { index: DataIndex }) {
                   : imageState === "loading" && available) && (
                   <div className="scene-status" role="status">
                     <div className="loading-bar" />
-                    Loading radar observation…
+                    正在載入雷達觀測…
                   </div>
                 )}
                 {(numericMode
@@ -562,14 +556,12 @@ function Explorer({ index }: { index: DataIndex }) {
                   : !available || imageState === "error") && (
                   <div className="scene-status" role="alert">
                     <strong>
-                      {numericMode
-                        ? "Numerical data unavailable"
-                        : "Preview unavailable"}
+                      {numericMode ? "無法載入數值資料" : "無法載入預覽圖"}
                     </strong>
                     <span>
                       {numericMode
                         ? numerical.error
-                        : "This observation cannot be displayed. Other dates and gauges remain available."}
+                        : "無法顯示這筆觀測，仍可查看其他日期與官方資料。"}
                     </span>
                     {available && (
                       <button
@@ -579,7 +571,7 @@ function Explorer({ index }: { index: DataIndex }) {
                             : setImageRetry((i) => i + 1)
                         }
                       >
-                        Retry image
+                        重新載入影像
                       </button>
                     )}
                   </div>
@@ -587,25 +579,22 @@ function Explorer({ index }: { index: DataIndex }) {
                 <div className="scene-bottom">
                   <span>
                     {numericMode
-                      ? `γ⁰ · −35 to +5 dB · blue = ${classificationChannel} water candidates`
-                      : "γ⁰ browse · display values only"}
+                      ? `γ⁰ · −35 至 +5 dB · 藍色為 ${classificationChannel} 候選水體`
+                      : "γ⁰ 預覽圖 · 僅供目視判讀"}
                   </span>
                   <div className="zoom-controls">
                     <button
-                      aria-label="Zoom out preview"
+                      aria-label="縮小影像"
                       disabled={zoom <= 1}
                       onClick={() => setZoom((z) => Math.max(1, z - 0.5))}
                     >
                       −
                     </button>
-                    <button
-                      aria-label="Reset preview zoom"
-                      onClick={() => setZoom(1)}
-                    >
+                    <button aria-label="重設縮放" onClick={() => setZoom(1)}>
                       {zoom.toFixed(1)}×
                     </button>
                     <button
-                      aria-label="Zoom in preview"
+                      aria-label="放大影像"
                       disabled={zoom >= 3}
                       onClick={() => setZoom((z) => Math.min(3, z + 0.5))}
                     >
@@ -616,43 +605,36 @@ function Explorer({ index }: { index: DataIndex }) {
               </div>
               <div className="scene-caption">
                 <span>
-                  Dark ≈ low return <span className="gray-scale" /> Bright ≈
-                  high return
+                  暗 ≈ 低回波 <span className="gray-scale" /> 亮 ≈ 高回波
                 </span>
                 <span>
                   {numericMode
-                    ? `Blue mask uses ${classificationChannel}, independent of displayed channel`
-                    : "No dB values or area derived from previews"}
+                    ? `藍色遮罩以 ${classificationChannel} 判定，與顯示通道無關`
+                    : "不從預覽圖推算 dB 或水面積"}
                 </span>
               </div>
               <div className="channel-note">
                 <span aria-hidden="true">ⓘ</span>{" "}
                 {polarization === "HH"
-                  ? "HH: horizontal transmit, horizontal receive."
-                  : "HV: horizontal transmit, vertical receive."}{" "}
-                Switching channels selects existing measurements, not a new
-                observation.
+                  ? "HH：水平極化發射、水平極化接收。"
+                  : "HV：水平極化發射、垂直極化接收。"}{" "}
+                切換極化（Polarization）是選擇既有量測通道，不會產生新的觀測。
               </div>
             </section>
-            <section
-              className="timeline-card"
-              aria-label="Acquisition timeline"
-            >
+            <section className="timeline-card" aria-label="取像時間軸">
               <div className="timeline-heading">
                 <span className="section-label">
-                  03 <span>MOVE THROUGH TIME</span>
+                  03 <span>探索時間變化</span>
                 </span>
                 <span className="observation-count">
-                  OBSERVATION {String(dateIndex + 1).padStart(2, "0")}{" "}
+                  觀測 {String(dateIndex + 1).padStart(2, "0")}{" "}
                   <span>/ {index.dates.length}</span>
                 </span>
               </div>
               <div className="timeline-controls">
                 <button
                   className={`play-button ${playing ? "playing" : ""}`}
-                  aria-label={
-                    playing ? "Pause observations" : "Play observations"
-                  }
+                  aria-label={playing ? "暫停播放" : "播放觀測"}
                   onClick={() => setPlaying((p) => !p)}
                 >
                   {playing ? "Ⅱ" : "▶"}
@@ -666,12 +648,12 @@ function Explorer({ index }: { index: DataIndex }) {
                       width: `${datePosition(index.gap.end, index.dates[0].utc_date, index.dates.at(-1)!.utc_date) - datePosition(index.gap.start, index.dates[0].utc_date, index.dates.at(-1)!.utc_date)}%`,
                     }}
                   >
-                    <span>No products available</span>
+                    <span>沒有可用產品</span>
                   </div>
                   {index.dates.map((d, i) => (
                     <button
                       key={d.utc_date}
-                      aria-label={`Select ${formatDate(d.local.slice(0, 10))}`}
+                      aria-label={`選擇 ${formatDate(d.local.slice(0, 10))}`}
                       aria-pressed={i === dateIndex}
                       title={
                         qaByDate.get(d.utc_date)?.join(" · ") ||
@@ -695,25 +677,25 @@ function Explorer({ index }: { index: DataIndex }) {
                     </button>
                   ))}
                   <div className="timeline-months">
-                    <span>Nov ’25</span>
-                    <span>Jan ’26</span>
-                    <span>Mar</span>
-                    <span>May</span>
-                    <span>Jul</span>
-                    <span>Sep</span>
-                    <span>Oct</span>
+                    <span>2025/11</span>
+                    <span>2026/01</span>
+                    <span>3 月</span>
+                    <span>5 月</span>
+                    <span>7 月</span>
+                    <span>9 月</span>
+                    <span>10 月</span>
                   </div>
                 </div>
                 <div className="step-buttons">
                   <button
-                    aria-label="Previous observation"
+                    aria-label="上一筆觀測"
                     disabled={dateIndex === 0}
                     onClick={() => selectDate(dateIndex - 1)}
                   >
                     <Arrow left />
                   </button>
                   <button
-                    aria-label="Next observation"
+                    aria-label="下一筆觀測"
                     disabled={dateIndex === index.dates.length - 1}
                     onClick={() => selectDate(dateIndex + 1)}
                   >
@@ -722,20 +704,20 @@ function Explorer({ index }: { index: DataIndex }) {
                 </div>
               </div>
               <div className="timeline-foot">
-                <span>Dates are spaced by elapsed time. Use ← → to step.</span>
-                <span>UTC product gap: 18 Mar — 20 Jun 2026</span>
+                <span>刻度依實際時間排列，可用 ← → 切換。</span>
+                <span>產品缺口（UTC）：2026/03/18–06/20</span>
               </div>
             </section>
           </div>
           <aside className="gauge-sidebar">
             <div className="section-label">
-              04 <span>CHECK THE GAUGES</span>
+              04 <span>對照官方資料</span>
             </div>
             <div className="gauge-date">
               {formatDate(acquisition.local.slice(0, 10), true)}{" "}
-              <span>· 07:00 TAIWAN</span>
+              <span>· 台灣時間 07:00</span>
             </div>
-            <div className="metric-label">Official storage</div>
+            <div className="metric-label">官方蓄水率</div>
             <div className="storage-metric">
               {current?.pct != null ? current.pct.toFixed(1) : "—"}
               <span>%</span>
@@ -745,51 +727,46 @@ function Explorer({ index }: { index: DataIndex }) {
             </div>
             <div className="change-label">
               {change === null
-                ? "No official observation"
-                : `${change > 0 ? "+" : ""}${change.toFixed(1)} percentage points`}
+                ? "無官方觀測值"
+                : `${change > 0 ? "+" : ""}${change.toFixed(1)} 個百分點`}
               <span>
-                since{" "}
-                {first
-                  ? formatDate(first.local_date, true)
-                  : "first observation"}
+                相較於 {first ? formatDate(first.local_date, true) : "首筆觀測"}
               </span>
             </div>
             <div className="level-metric">
-              <span>Water level</span>
+              <span>水位</span>
               <strong>
                 {current?.level_m != null ? current.level_m.toFixed(2) : "—"}{" "}
                 <small>m</small>
               </strong>
             </div>
-            <div className="source-chip">WRA · OFFICIAL GAUGE</div>
+            <div className="source-chip">水利署（WRA）· 官方觀測</div>
             <div className="area-unavailable">
-              <span className="metric-label">Radar water area</span>
+              <span className="metric-label">雷達水面積</span>
               {numericMode ? (
                 <div className="numeric-area">
                   {estimate?.area.toFixed(3) ?? "—"} <small>km²</small>
                 </div>
               ) : (
-                <strong>Not measured</strong>
+                <strong>未提供估算</strong>
               )}
               <p>
                 {numericMode
-                  ? `Dark valid ${classificationChannel} pixels inside the fixed reservoir mask. Surface area is an estimate, not storage volume.`
-                  : "Browse images support visual comparison. Reliable area estimates require calibrated GCOV pixels and a validated classifier."}
+                  ? `在固定水庫遮罩內計算偏暗的有效 ${classificationChannel} 像素。水面積僅為估算，不是蓄水量。`
+                  : "預覽圖僅供目視比較；可靠的水面積估算需要校準後的 GCOV 像素與通過驗證的分類方法。"}
               </p>
               {numericMode && estimate && (
                 <div className="numeric-sensitivity">
-                  Sensitivity: {estimate.low.toFixed(3)}–
+                  敏感度範圍： {estimate.low.toFixed(3)}–
                   {estimate.high.toFixed(3)} km²
                   <br />
-                  {classificationChannel} threshold ±1.5 dB
+                  {classificationChannel} 門檻 ±1.5 dB
                 </div>
               )}
               <label className={numericMode ? "threshold-control" : undefined}>
-                {numericMode
-                  ? `${classificationChannel} water threshold`
-                  : "Water threshold"}{" "}
+                {numericMode ? `${classificationChannel} 水體門檻` : "水體門檻"}{" "}
                 <span>
-                  {numericMode ? `${threshold.toFixed(1)} dB` : "unavailable"}
+                  {numericMode ? `${threshold.toFixed(1)} dB` : "未提供"}
                 </span>
                 <input
                   type="range"
@@ -800,8 +777,8 @@ function Explorer({ index }: { index: DataIndex }) {
                   disabled={!numericMode || !archive}
                   aria-label={
                     numericMode
-                      ? `${classificationChannel} water threshold in decibels`
-                      : "Water threshold unavailable in browse edition"
+                      ? `${classificationChannel} 水體門檻，單位 dB`
+                      : "預覽圖版本不提供水體門檻"
                   }
                   onChange={(event) =>
                     setThresholdOverride({
@@ -816,7 +793,7 @@ function Explorer({ index }: { index: DataIndex }) {
                   className="threshold-reset"
                   onClick={() => setThresholdOverride(null)}
                 >
-                  Reset to pooled Otsu default
+                  重設為 Otsu 預設門檻
                 </button>
               )}
               {!!areaObservation?.qa.length && (
@@ -826,8 +803,8 @@ function Explorer({ index }: { index: DataIndex }) {
               )}
               <small>
                 {numericMode
-                  ? `Chart points and correlations use the fixed default ${classificationChannel} threshold. The slider updates this observation and its blue overlay.`
-                  : "Thresholds, sensitivity intervals and correlations are disabled in this edition."}
+                  ? `圖表與相關係數使用固定的 ${classificationChannel} 預設門檻；滑桿僅更新目前觀測與藍色疊圖。`
+                  : "此版本停用門檻運算、敏感度範圍與相關係數。"}
               </small>
             </div>
             <button
@@ -837,28 +814,28 @@ function Explorer({ index }: { index: DataIndex }) {
                 setTab("methods");
               }}
             >
-              Source & limitations <span aria-hidden="true">↗</span>
+              來源與限制 <span aria-hidden="true">↗</span>
             </button>
           </aside>
         </div>
         <section className="chart-card">
           <div className="chart-heading">
             <div>
-              <span className="section-label">THE YEAR IN CONTEXT</span>
-              <h2>A gauge on the changing landscape</h2>
+              <span className="section-label">放回一整年的脈絡</span>
+              <h2>用官方觀測，看見水情變化</h2>
             </div>
             <div className="chart-legend">
               <span>
-                <i /> Official storage (%)
+                <i /> 官方蓄水率（%）
               </span>
               {numericMode && (
                 <span>
-                  <i className="area-legend" /> Radar {classificationChannel}{" "}
-                  area (km²)
+                  <i className="area-legend" /> 雷達 {classificationChannel}{" "}
+                  面積（km²）
                 </span>
               )}
               <span>
-                <i className="hatch" /> NISAR gap
+                <i className="hatch" /> NISAR 資料缺口
               </span>
             </div>
           </div>
@@ -866,7 +843,7 @@ function Explorer({ index }: { index: DataIndex }) {
             <div className="inline-error" role="alert">
               {gaugeError}
               <button onClick={() => setGaugeRetry((i) => i + 1)}>
-                Retry gauges
+                重新載入官方資料
               </button>
             </div>
           ) : series ? (
@@ -880,83 +857,80 @@ function Explorer({ index }: { index: DataIndex }) {
             />
           ) : (
             <div className="chart-loading" role="status">
-              Loading official gauge samples…
+              正在載入官方取樣資料…
             </div>
           )}
           <div className="chart-footer">
             <p>
               {series?.source_kind === "live"
-                ? `${series.records.length} sampled official dates. Lines are visual guides, not daily observations.`
-                : "25 sampled official dates from the supplied WRA archive; connecting lines are visual guides, not daily observations."}{" "}
-              Missing values remain gaps.
+                ? `官方資料共取樣 ${series.records.length} 個日期。連線僅協助閱讀，不代表每日觀測。`
+                : "附錄提供 25 個日期的官方取樣值；連線僅協助閱讀，不代表每日觀測。"}{" "}
+              缺值保持留白。
             </p>
             <span>
               {archive
-                ? `Spearman ρ = ${archive.series.stats.spearman_area_vs_level?.toFixed(3) ?? "unavailable"} · n = ${archive.series.stats.n} · default ${classificationChannel} area vs water level`
-                : "Radar area correlation: not published (validation criteria not met)"}
+                ? `Spearman ρ = ${archive.series.stats.spearman_area_vs_level?.toFixed(3) ?? "未提供"} · n = ${archive.series.stats.n} · 固定預設 ${classificationChannel} 面積對水位`
+                : "水面積相關係數：不予發布（未達驗證標準）"}
             </span>
           </div>
         </section>
         {(tab === "methods" || details) && (
           <section className="methods-panel" id="methods" ref={methodsRef}>
             <div className="methods-intro">
-              <div className="eyebrow">TRACE EVERY OBSERVATION</div>
-              <h2>The evidence, and its limits.</h2>
+              <div className="eyebrow">追溯每筆觀測</div>
+              <h2>看見證據，也看見限制。</h2>
               <p>
-                Surface area is not storage volume.{" "}
+                水面積不等於蓄水量（Storage volume）。{" "}
                 {numericMode
-                  ? "We compare estimated radar surface area with water level. The relationship checks the method; it does not infer water volume."
-                  : "This edition shows imagery and gauges side by side; it does not measure water area or infer water volume."}
+                  ? "以雷達估計的水面積對照水位，檢查方法是否合理，不用來推估蓄水量。"
+                  : "此版本並列顯示影像與官方觀測，不量測水面積，也不推估蓄水量。"}
               </p>
             </div>
             <div className="method-columns">
               <div>
-                <h3>Current observation</h3>
+                <h3>目前觀測</h3>
                 <dl>
-                  <dt>Product</dt>
-                  <dd>{index.collection} · Provisional</dd>
+                  <dt>產品</dt>
+                  <dd>{index.collection} · 成熟度：Provisional</dd>
                   {numericMode && (
                     <>
-                      <dt>Processing</dt>
+                      <dt>處理流程</dt>
                       <dd>
-                        Invalid mask filtering → 3×3 linear-power mean → fixed
-                        EPSG:3857 bilinear grid → 10·log10 → Uint8 quantization
-                        (0 = invalid). One pooled Otsu threshold per reservoir;
-                        sensitivity ±1.5 dB.
+                        排除無效像素 → 3×3 線性 power 平均 → EPSG:3857
+                        固定格網雙線性重採樣 → 10·log10 → Uint8 量化（0
+                        為無效值）。每座水庫使用固定 Otsu 門檻，敏感度範圍為
+                        ±1.5 dB。
                       </dd>
-                      <dt>Current {classificationChannel} threshold</dt>
+                      <dt>目前 {classificationChannel} 門檻</dt>
                       <dd>
-                        {threshold.toFixed(1)} dB · pixel area{" "}
+                        {threshold.toFixed(1)} dB · 像素面積{" "}
                         {archive?.meta.pixel_area_m2.toFixed(2) ?? "—"} m²
                       </dd>
                     </>
                   )}
-                  <dt>Granule</dt>
+                  <dt>資料產品識別碼（Granule）</dt>
                   <dd className="granule">{acquisition.granule}</dd>
-                  <dt>Acquired · UTC</dt>
+                  <dt>取像時間 · UTC</dt>
                   <dd>{acquisition.utc}</dd>
-                  <dt>Acquired · Taiwan (UTC+8)</dt>
+                  <dt>取像時間 · 台灣（UTC+8）</dt>
                   <dd>{acquisition.local}</dd>
-                  <dt>Official observation · Taiwan</dt>
+                  <dt>官方觀測時間 · 台灣</dt>
                   <dd>
                     {current &&
                     (current.pct !== null || current.level_m !== null)
                       ? `${current.local_date} 07:00:00 +08:00`
-                      : "No valid gauge reading for this date"}
+                      : "此日期無有效官方觀測值"}
                   </dd>
-                  <dt>Numerical validation</dt>
+                  <dt>數值驗證</dt>
                   <dd>
-                    Authenticated AOI reads passed. Frozen water-classification
-                    methods did not reach the required independent correlation.
-                    Area results are not published in this edition.
+                    研究區（AOI）認證讀取已通過；固定水體分類方法未達獨立驗證的相關性標準，因此本版不發布水面積結果。
                   </dd>
-                  <dt>Gauge archive</dt>
+                  <dt>官方資料快取</dt>
                   <dd>
                     {series?.source_kind === "live"
-                      ? "Endpoint observations"
-                      : "Supplied seed archive"}{" "}
-                    · retrieved{" "}
-                    {series?.retrieved_at || index.seed_retrieved_at}
+                      ? "查詢端點觀測值"
+                      : "附錄種子資料"}{" "}
+                    · 擷取時間 {series?.retrieved_at || index.seed_retrieved_at}
                   </dd>
                 </dl>
                 <a
@@ -964,7 +938,7 @@ function Explorer({ index }: { index: DataIndex }) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Open machine-readable provenance ↗
+                  開啟資料來源紀錄（Provenance）↗
                 </a>
                 <br />
                 <a
@@ -972,43 +946,41 @@ function Explorer({ index }: { index: DataIndex }) {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Inspect the independent validation report ↗
+                  查看獨立驗證報告 ↗
                 </a>
               </div>
               <div>
-                <h3>Read this before interpreting</h3>
+                <h3>判讀前，請先了解</h3>
                 <ul>
                   <li>
-                    Track 111 ascending, Frame 014, 40+5 MHz, HH/HV. No VV or VH
-                    measurements are present.
+                    採用升軌（Ascending）Track 111、Frame 014、40+5
+                    MHz、HH/HV；此資料不含 VV 或 VH 量測。
                   </li>
                   <li>
                     {numericMode
-                      ? `The radar grid is north-up and fixed across dates. Blue water candidates use ${classificationChannel}, independent of the displayed HH/HV channel. Zoom adds no spatial detail.`
-                      : "Browse previews are display images, not calibrated dB rasters. Zoom adds no detail. The location map is separate from the radar image."}
+                      ? `雷達格網為北向上，所有日期使用同一格網。藍色候選水體以 ${classificationChannel} 判定，不受顯示中的 HH/HV 通道影響；放大不會增加真實細節。`
+                      : "預覽圖（Browse）是顯示影像，不是校準後的 dB 格網。放大不會增加真實細節；定位地圖與雷達影像分開呈現。"}
                   </li>
                   <li>
-                    Calibrated GCOV gamma-nought power must be filtered and
-                    resampled in linear units before conversion to dB.
+                    GCOV 的 gamma-nought（γ⁰）功率（Power）
+                    必須先在線性單位下濾波、重採樣，最後才轉為 dB。
                   </li>
                   <li>
-                    Wind, rain, floating debris, steep-bank layover and shadow,
-                    and speckle all affect radar interpretation.
+                    風浪、降雨、漂流物、陡岸疊置（Layover）、雷達陰影（Shadow）與斑點雜訊（Speckle）都會影響判讀。
                   </li>
                   <li>
-                    Provisional calibration may change with reprocessing; orbit
-                    accuracy is near-real-time. Pixel spacing is not spatial
-                    resolution.
+                    產品成熟度為
+                    Provisional，重新處理可能改變校準值；軌道精度旗標為
+                    near-real-time。像素間距不等於空間解析度。
                   </li>
                   <li>
                     {numericMode
-                      ? "8-bit quantization uses 0 for invalid values and maps valid values over −35 to +5 dB (about 0.157 dB per step). Sensitivity intervals reflect threshold ±1.5 dB, not a statistical confidence interval."
-                      : "A future numerical edition uses 8-bit quantization and threshold sensitivity ranges. Neither is applied to these browse images."}
+                      ? "8-bit 量化以 0 表示無效值，有效值涵蓋 −35 至 +5 dB（每階約 0.157 dB）。敏感度範圍反映門檻 ±1.5 dB 的變動，不是統計信賴區間（Confidence interval）。"
+                      : "後續數值版會使用 8-bit 量化（Quantization）與門檻敏感度範圍；本版預覽圖不套用這些計算。"}
                   </li>
                   <li>
-                    The 07:00 gauge reading is about 1.7 hours after the
-                    acquisition. No radar products are available from 18 March
-                    through 20 June 2026 (UTC product dates).
+                    官方 07:00 觀測約比取像晚 1.7 小時；2026/03/18–06/20
+                    沒有雷達產品（UTC 日期）。
                   </li>
                 </ul>
               </div>
@@ -1019,21 +991,21 @@ function Explorer({ index }: { index: DataIndex }) {
                 target="_blank"
                 rel="noreferrer"
               >
-                NISAR GCOV guide ↗
+                NISAR GCOV 產品指南 ↗
               </a>
               <a
                 href="https://fhy.wra.gov.tw/fhyv2/monitor/reservoir"
                 target="_blank"
                 rel="noreferrer"
               >
-                WRA reservoir information ↗
+                水利署（WRA）水庫資訊 ↗
               </a>
               <a
                 href="https://github.com/Mephisto-000/taiwan-water-pulse/blob/main/docs/methods.md"
                 target="_blank"
                 rel="noreferrer"
               >
-                Reproduce the methods ↗
+                查看可重現的方法 ↗
               </a>
             </div>
           </section>
@@ -1041,28 +1013,26 @@ function Explorer({ index }: { index: DataIndex }) {
         <div className="science-note">
           <span aria-hidden="true">≈</span>
           <p>
-            <strong>
-              A surface tells a story. It does not tell the whole story.
-            </strong>{" "}
-            Water area is not storage volume.{" "}
+            <strong>水面能說出故事，卻不是故事的全部。</strong>{" "}
+            水面積不等於蓄水量。{" "}
             {numericMode
-              ? "Wind, debris, exposed banks and radar geometry affect the estimate. Explore the threshold, the gauge record and the limitations together."
-              : "Gauge samples provide context; they do not validate measurements from browse previews."}
+              ? "風浪、漂流物、裸露岸地與雷達幾何都會影響估算；請一併檢視門檻、官方紀錄與方法限制。"
+              : "官方取樣值提供脈絡，不能用來宣稱預覽圖能量測水面積。"}
           </p>
           <span className="edition-tag">
-            v0.1 / {numericMode ? "CALIBRATED GCOV" : "BROWSE EDITION"}
+            v0.1 / {numericMode ? "校準資料（GCOV）" : "預覽圖版本（Browse）"}
           </span>
         </div>
       </main>
       <footer>
         <span className="footer-brand">
-          <PulseIcon /> Taiwan’s Water Pulse
+          <PulseIcon /> 台灣水庫的旱澇節奏
         </span>
         <p>
           NISAR · NASA/JPL & ISRO · ASF DAAC <span>/</span> © OpenStreetMap
           contributors <span>/</span> 經濟部水利署
         </p>
-        <span>Open data. Visible limits.</span>
+        <span>開放資料，也揭露限制。</span>
       </footer>
     </>
   );

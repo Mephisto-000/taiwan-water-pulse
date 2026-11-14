@@ -20,3 +20,7 @@ Recorded 2026-11-14 (Asia/Taipei).
 | D-12 | Traditional Chinese Conventional Commit message. | The user explicitly selected this language for the initial commit. No AI signature trailer is added; assistance is recorded in ai-usage.md. |
 
 The fallback is a scoped initial release, not completion of the original numerical acceptance criteria. Authenticated access and actual HDF5 inspection have passed. The completed held-out investigation rejected quantitative publication. A later method needs new independent validation before revisiting D-03 and D-04; the already-inspected 17 dates cannot be reused as an untouched test set.
+
+## Language update
+
+The user requested Traditional Chinese and English README versions and a Traditional Chinese main interface. `README.md` is the Taiwan Traditional Chinese entry point; `README.en.md` retains the English version, with reciprocal links. UI copy, dates, accessible labels and error messages use Taiwan terminology, with English technical terms where useful. This supersedes the original brief's English UI/README assumption. Scientific results and publication gates are unchanged.

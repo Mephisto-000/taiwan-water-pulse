@@ -15,3 +15,5 @@ No synthetic radar images, fabricated reservoir observations or invented officia
 The human user supplied the product brief and authorized the initial GitHub push, selecting Traditional Chinese commit messages. That authorization does not constitute a scientific review. No independent human verification of the calibrated SAR method or competition submission has been claimed. The team should review the published data provenance, scientific limits, screenshot content and current competition rules before submitting.
 
 Automated tests and successful builds provide evidence about the checked code paths. They do not establish calibrated water-detection accuracy or prove a causal connection between imagery and storage changes. See [gates](gates.md) for the recorded validation scope.
+
+The localization update translated the main interface and README into Taiwan Traditional Chinese, retained a separate English README, and adjusted typography and accessible labels. Data values and scientific publication criteria were unchanged.

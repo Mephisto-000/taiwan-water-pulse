@@ -62,7 +62,7 @@ export default function NumericScene({
         width={archive.meta.grid.width}
         height={archive.meta.grid.height}
         style={{ transform: `scale(${zoom})` }}
-        aria-label={`Calibrated ${polarization} gamma-nought backscatter. Blue pixels satisfy the ${classifier} water threshold ${threshold} dB inside the reservoir mask.`}
+        aria-label={`校準後的 ${polarization} gamma-nought 後向散射。藍色像素為水庫遮罩內低於 ${classifier} 門檻 ${threshold} dB 的候選水體。`}
         onPointerLeave={() => setPixel(null)}
         onPointerMove={(event) => {
           const rect = event.currentTarget.getBoundingClientRect();
@@ -107,9 +107,9 @@ export default function NumericScene({
       )}
       {pixel && (
         <div className="pixel-inspector">
-          HH {pixel.hh?.toFixed(2) ?? "invalid"} dB · HV{" "}
-          {pixel.hv?.toFixed(2) ?? "invalid"} dB ·{" "}
-          {pixel.water ? "water candidate" : "not classified as water"}
+          HH {pixel.hh?.toFixed(2) ?? "無效值"} dB · HV{" "}
+          {pixel.hv?.toFixed(2) ?? "無效值"} dB ·{" "}
+          {pixel.water ? "候選水體" : "未判定為水體"}
         </div>
       )}
     </>

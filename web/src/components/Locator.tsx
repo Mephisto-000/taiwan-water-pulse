@@ -44,6 +44,12 @@ export default function Locator({ reservoir }: { reservoir: Reservoir }) {
               (latestBounds.current[0] + latestBounds.current[1]) / 2,
             ],
             zoom: 10,
+            locale: {
+              "NavigationControl.ZoomIn": "放大地圖",
+              "NavigationControl.ZoomOut": "縮小地圖",
+              "AttributionControl.ToggleAttribution": "切換資料來源標示",
+              "Map.Title": "水庫定位地圖",
+            },
             attributionControl: { compact: true },
           });
           map.current = view;
@@ -127,21 +133,19 @@ export default function Locator({ reservoir }: { reservoir: Reservoir }) {
       <div
         ref={element}
         className="locator"
-        aria-label={`Reservoir locator: ${reservoir.name}`}
+        aria-label={`水庫定位：${reservoir.name_zh}（${reservoir.name}）`}
       />
       {unavailable && (
         <div className="map-fallback">
-          <span>Base map unavailable</span>
+          <span>無法載入底圖</span>
           <strong>
             {((bounds[0] + bounds[1]) / 2).toFixed(4)}° N<br />
             {((bounds[2] + bounds[3]) / 2).toFixed(4)}° E
           </strong>
-          <small>The radar archive remains available.</small>
+          <small>仍可查看雷達歷史資料。</small>
         </div>
       )}
-      <span className="locator-caption">
-        LOCATION ONLY · NOT A RADAR OVERLAY
-      </span>
+      <span className="locator-caption">僅供定位 · 非雷達疊圖</span>
     </div>
   );
 }

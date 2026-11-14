@@ -4,6 +4,7 @@ import baoshan from "../public/data/official/baoshan2.json";
 import feitsui from "../public/data/official/feitsui.json";
 import {
   datePosition,
+  formatDate,
   decodeDb,
   localGaugeDate,
   nearestAcquisition,
@@ -85,4 +86,9 @@ describe("time and scientific primitives", () => {
     expect(waterAreaKm2(q, mask, -18, 20, 60)).toBeCloseTo(0.0001, 12);
     expect(() => waterAreaKm2(q, new Uint8Array(0), -18, 20, 60)).toThrow();
   });
+});
+
+it("formats display dates in Taiwan Traditional Chinese", () => {
+  expect(formatDate("2026-03-18")).toBe("2026年3月18日");
+  expect(formatDate("2026-03-18", true)).toBe("3月18日");
 });
