@@ -8,7 +8,7 @@ Explore a year of reservoir retreat and recovery using NISAR L-band radar and Ta
 
 ## What changed
 
-The interface follows design direction 3: a workspace for reading imagery, dates and evidence together. The following describes this implementation; [deployment records](docs/deployment.md) identify the actual live version and release status.
+The interface follows design direction 3: a workspace for reading imagery, dates and evidence together. This version reached Vercel production READY on 14 November 2026 at 17:34:36 (Asia/Taipei). [Deployment records](docs/deployment.md) identify the source versions and verification scope.
 
 - Three desktop columns: reservoirs and dates on the left, imagery or charts in the centre, and **This day / Methods / Sources** on the right. Mobile uses a reservoir selector, an accessible details panel and a fixed bottom timeline.
 - Light and dark themes initially follow the system preference. System fonts, monospaced numbers, fine dividers and blue data marks require no font downloads or added packages.
@@ -18,7 +18,7 @@ The interface follows design direction 3: a workspace for reading imagery, dates
 - Charts fit the data range and explicitly identify nonzero axes. Complete correlations and intervals live in Methods. Grade C keeps imagery while withholding quantitative area and classification overlays.
 - The five-part tour follows the interface language, supports pause/previous/next and Esc to end, and pauses on image or date interaction. UI dates use Taiwan time; Sources also records UTC.
 
-![Calibrated HH data illustration, not a screenshot of the new workspace](web/public/social-preview.jpg)
+![Production observation workspace](docs/review/released-workspace.jpg)
 
 ## Scientific scope
 
@@ -83,6 +83,8 @@ uv run --project pipeline water-pulse release --offline
 ## Deployment and privacy
 
 The GitHub repository remains private. The public UI links to same-origin methods and reports. Git integration is not connected: pushing does not deploy. Checked `web/dist` artifacts are uploaded through the authenticated Vercel plugin.
+
+Deployment source: `5dbcfea5`. Data were generated from clean source `ed5d561e` (`code_dirty=false`). All 332 public files passed anonymous HTTP, SHA-256 and cache checks; 65 frontend, 9 deployment-guard and 47 Python tests passed. The private-email history has been repaired: all 15 reachable commits in the publication audit used GitHub noreply identities. Secret scans of source, artifacts and reachable history reported no findings.
 
 No Earthdata credentials or custom environment variables are needed on Vercel. Environment files, credentials, keys, local settings and raw caches stay outside the deployment. See [deployment evidence](docs/deployment.md) for the released commit, hashes and verification.
 

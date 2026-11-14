@@ -1,22 +1,22 @@
 {
-  "verified_at": "2026-11-14T15:44:40.649673+08:00",
+  "verified_at": "2026-11-14T17:35:14.606876+08:00",
   "production_url": "https://taiwan-water-pulse.vercel.app/",
-  "source_commit": "56159dd5a9f38fa554f1be853683cfcb311f2d9b",
+  "source_commit": "5dbcfea5acbd45cee1e95abd621bcf64419a15fb",
   "assets": [
     {
-      "path": "assets/index-BEXa-pJw.css",
-      "status": 200,
-      "sha256_matches": true,
-      "cache_control": "public, max-age=31536000, immutable",
-      "content_type": "text/css; charset=utf-8",
-      "redirected": false
-    },
-    {
-      "path": "assets/index-BxXqIa71.js",
+      "path": "assets/index-B6SpT4AW.js",
       "status": 200,
       "sha256_matches": true,
       "cache_control": "public, max-age=31536000, immutable",
       "content_type": "application/javascript; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "assets/index-C1ceY-2p.css",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=31536000, immutable",
+      "content_type": "text/css; charset=utf-8",
       "redirected": false
     },
     {
@@ -357,6 +357,14 @@
     },
     {
       "path": "data/diagnostics.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/events.json",
       "status": 200,
       "sha256_matches": true,
       "cache_control": "public, max-age=0, must-revalidate",
@@ -2679,7 +2687,7 @@
     }
   ],
   "si_checks": {
-    "declaration_version": "1.1.0",
+    "declaration_version": "1.2.0",
     "tool": "OpenAI Codex",
     "source_observations_si_generated": false,
     "browse_images_si_generated": false,
@@ -2695,46 +2703,36 @@
       "feitsui"
     ],
     "date_count": 21,
-    "data_code_commit": "9d332fd500e52a3a280df067a397e71802a1979b",
+    "data_code_commit": "ed5d561e6b35c8e717e4748bdb63573223e93520",
     "data_code_dirty": false
   },
-  "browser_checks": {
-    "anonymous_production": true,
-    "english_and_traditional_chinese": true,
-    "reservoirs_observed": [
-      "baoshan2",
-      "liyutan",
-      "shimen"
+  "browser": {
+    "production_url": "https://taiwan-water-pulse.vercel.app/",
+    "checked_at": "2026-11-14T09:38:11.095Z",
+    "desktop_frame": {
+      "width": 1440,
+      "height": 900
+    },
+    "flows": [
+      "Traditional Chinese HH comparison at low-storage date",
+      "Playback start, date advancement and pause observed; no network-throttling test",
+      "HV display uses -21 to -6 dB; HH classification labels remain explicit",
+      "Methods show 30 m, 0.6 relative threshold and Pearson/Spearman intervals",
+      "English Shimen view suppresses numeric area and shows official values"
     ],
-    "hh_hv_switch": true,
-    "comparison_keyboard_divider": [
-      50,
-      51
-    ],
-    "baoshan_storage_pct": 28.2,
-    "liyutan_storage_pct": 34.4,
-    "shimen_low_confidence_visible": true,
-    "pipeline_commit_visible": "9d332fd5",
     "console_errors": 0,
     "console_warnings": 0,
-    "screenshot": "review/released-site.jpg",
-    "local_responsive_check": {
-      "desktop_width_px": 1440,
-      "iframe_width_px": 375,
-      "horizontal_document_overflow": false
-    },
-    "mobile_cellular_tested": false
+    "screenshot": "review/released-workspace.jpg"
   },
-  "checks": {
-    "frontend_tests": 40,
-    "deployment_guard_tests": 9,
-    "python_tests": 34,
-    "typescript_build": true,
-    "ruff": true,
-    "prettier": true,
-    "gitleaks_new_commits_findings": 0,
-    "gitleaks_artifacts_findings": 0,
-    "known_credential_exact_matches": 0,
-    "runtime_error_fatal_logs_latest_15m": 0
+  "runtime_logs": {
+    "environment": "production",
+    "levels": [
+      "error",
+      "fatal"
+    ],
+    "window_minutes": 15,
+    "records": 0,
+    "checked_at": "2026-11-14T09:38:26.730Z",
+    "site_type": "static"
   }
 }

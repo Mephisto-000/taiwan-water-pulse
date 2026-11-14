@@ -1,0 +1,570 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-14T09:32:20.642523+00:00",
+  "measurement": "Deterministic gzip build-artifact body sum; not a browser or CDN transfer measurement",
+  "source": "production build directory",
+  "dataCodeVersion": "ed5d561e6b35c8e717e4748bdb63573223e93520",
+  "dataCodeDirty": false,
+  "compression": {
+    "format": "gzip",
+    "level": 9,
+    "mtime": 0,
+    "comparisonLevel": 6,
+    "pythonVersion": "3.9.6"
+  },
+  "headerAndTransportOverheadIncluded": false,
+  "selection": {
+    "reservoir": "baoshan2",
+    "selectedUtcDate": "2026-03-17",
+    "referenceUtcDate": "2025-11-05",
+    "polarization": "HH"
+  },
+  "budgetBytes": 700000,
+  "budgetUnit": "decimal bytes; 700 KB means 700000 bytes",
+  "priority": {
+    "files": 20,
+    "rawBytes": 2094901,
+    "gzipArtifactBytes": 512090,
+    "gzipLevel6ArtifactBytes": 519905,
+    "withinArtifactBudget": true
+  },
+  "priorityPessimisticDuplicateActiveSummary": {
+    "explanation": "App summary and numerical metadata loaders independently request the active meta/series; browser request coalescing is not assumed here",
+    "extraRawBytes": 187156,
+    "extraGzipBytes": 29192,
+    "gzipArtifactBytes": 541282
+  },
+  "priorityIfBinaryResponsesAreUncompressed": {
+    "explanation": "Diagnostic bound only; actual Content-Encoding must be measured on the deployed site",
+    "bodyBytes": 729648
+  },
+  "withNeighbors": {
+    "files": 24,
+    "rawBytes": 2378457,
+    "gzipArtifactBytes": 718246,
+    "gzipLevel6ArtifactBytes": 726061
+  },
+  "withAllHhBackground": {
+    "files": 58,
+    "rawBytes": 4788683,
+    "gzipArtifactBytes": 2463693,
+    "gzipLevel6ArtifactBytes": 2471508
+  },
+  "categories": {
+    "all-reservoir-summaries": {
+      "files": 8,
+      "rawBytes": 1272993,
+      "gzipArtifactBytes": 189002,
+      "gzipLevel6ArtifactBytes": 196112
+    },
+    "application": {
+      "files": 4,
+      "rawBytes": 359027,
+      "gzipArtifactBytes": 110064,
+      "gzipLevel6ArtifactBytes": 110367
+    },
+    "manifest": {
+      "files": 1,
+      "rawBytes": 17392,
+      "gzipArtifactBytes": 2273,
+      "gzipLevel6ArtifactBytes": 2290
+    },
+    "masks": {
+      "files": 2,
+      "rawBytes": 141778,
+      "gzipArtifactBytes": 2049,
+      "gzipLevel6ArtifactBytes": 2310
+    },
+    "official": {
+      "files": 1,
+      "rawBytes": 20155,
+      "gzipArtifactBytes": 2975,
+      "gzipLevel6ArtifactBytes": 3099
+    },
+    "priority-frames": {
+      "files": 4,
+      "rawBytes": 283556,
+      "gzipArtifactBytes": 205727,
+      "gzipLevel6ArtifactBytes": 205727
+    }
+  },
+  "priorityArtifacts": [
+    {
+      "path": "index.html",
+      "category": "application",
+      "rawBytes": 1853,
+      "gzipBytes": 847,
+      "gzipLevel6Bytes": 847,
+      "sha256": "410ac4755e47965d2f1eac066c05fa1089421542235873eccd76abf1b0cf4409"
+    },
+    {
+      "path": "favicon.svg",
+      "category": "application",
+      "rawBytes": 430,
+      "gzipBytes": 307,
+      "gzipLevel6Bytes": 307,
+      "sha256": "16ebbe6141ceac5957d56e6e5c7e6e51bd34a238ab747522b76e7481237b25e0"
+    },
+    {
+      "path": "assets/index-B6SpT4AW.js",
+      "category": "application",
+      "rawBytes": 326475,
+      "gzipBytes": 102343,
+      "gzipLevel6Bytes": 102579,
+      "sha256": "c6c598df0d1eab19c8b8e5052028db0cc56175109ad9d49e4d6cd2d0d1a83f60"
+    },
+    {
+      "path": "assets/index-C1ceY-2p.css",
+      "category": "application",
+      "rawBytes": 30269,
+      "gzipBytes": 6567,
+      "gzipLevel6Bytes": 6634,
+      "sha256": "22e86be04a1a3017f4104dd3b8a111437da3ab5cbd78db5366b14731cdfe6505"
+    },
+    {
+      "path": "data/index.json",
+      "category": "manifest",
+      "rawBytes": 17392,
+      "gzipBytes": 2273,
+      "gzipLevel6Bytes": 2290,
+      "sha256": "8dc21b847775e9cb3be2d7235e46f8d9d1e7174e44263d2d42054ab3c000d99b"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/meta.json",
+      "category": "all-reservoir-summaries",
+      "rawBytes": 121521,
+      "gzipBytes": 20632,
+      "gzipLevel6Bytes": 21179,
+      "sha256": "dc2101903a1df1dd1386e83e393c12bd57dcbf1dfcfe48441c7ae72b9294d0f5"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/timeseries.json",
+      "category": "all-reservoir-summaries",
+      "rawBytes": 65635,
+      "gzipBytes": 8560,
+      "gzipLevel6Bytes": 8897,
+      "sha256": "72694fe126d4853e3e9dd183e94dc270de46b8e62e97cea18732bafccbfcb76d"
+    },
+    {
+      "path": "data/reservoirs/liyutan/meta.json",
+      "category": "all-reservoir-summaries",
+      "rawBytes": 255796,
+      "gzipBytes": 39889,
+      "gzipLevel6Bytes": 41355,
+      "sha256": "b9a2d12249a726b17d2204988fe3b20b5f11008978001667f4faa0f2399842e8"
+    },
+    {
+      "path": "data/reservoirs/liyutan/timeseries.json",
+      "category": "all-reservoir-summaries",
+      "rawBytes": 61166,
+      "gzipBytes": 8027,
+      "gzipLevel6Bytes": 8393,
+      "sha256": "74c25a0451f9fb458bb19668d2defc3e497af703908ee29767482ee701684a5e"
+    },
+    {
+      "path": "data/reservoirs/shimen/meta.json",
+      "category": "all-reservoir-summaries",
+      "rawBytes": 416784,
+      "gzipBytes": 58874,
+      "gzipLevel6Bytes": 61484,
+      "sha256": "c34689829fa4b6882eb40b62a71f8a069cd74b9d068931c063be1371c30205d7"
+    },
+    {
+      "path": "data/reservoirs/shimen/timeseries.json",
+      "category": "all-reservoir-summaries",
+      "rawBytes": 72043,
+      "gzipBytes": 9003,
+      "gzipLevel6Bytes": 9392,
+      "sha256": "55fce36752a695e5d80d812d9aaea2902c23b95b1a875ee97271831e2a6124fe"
+    },
+    {
+      "path": "data/reservoirs/feitsui/meta.json",
+      "category": "all-reservoir-summaries",
+      "rawBytes": 218962,
+      "gzipBytes": 35899,
+      "gzipLevel6Bytes": 36979,
+      "sha256": "05f748160cdd8efe0d43e50be50f6aeb62a0f264cc6db854aeab6a5db5790d20"
+    },
+    {
+      "path": "data/reservoirs/feitsui/timeseries.json",
+      "category": "all-reservoir-summaries",
+      "rawBytes": 61086,
+      "gzipBytes": 8118,
+      "gzipLevel6Bytes": 8433,
+      "sha256": "598a49be9c795e2005ab7a9e7fc4c52fe5e41c54f4d0ad230ddd0710c2ecf474"
+    },
+    {
+      "path": "data/official/baoshan2.json",
+      "category": "official",
+      "rawBytes": 20155,
+      "gzipBytes": 2975,
+      "gzipLevel6Bytes": 3099,
+      "sha256": "ebac8c31bbc9481d0fb37efc6967756a3936c0179a09fac99e413e0ad71df39a"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/mask.bin",
+      "category": "masks",
+      "rawBytes": 126290,
+      "gzipBytes": 1615,
+      "gzipLevel6Bytes": 1853,
+      "sha256": "943e6e66c4050727410f694f32e682ce0659d683f4534a97c8cf005502ce583c"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/mask.bin",
+      "category": "masks",
+      "rawBytes": 15488,
+      "gzipBytes": 434,
+      "gzipLevel6Bytes": 457,
+      "sha256": "75986cc34e78fb2e9a85a5bf3cc6f59757e7c70cb556bac5e2399d65a88258be"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251105_HH.bin",
+      "category": "priority-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90315,
+      "gzipLevel6Bytes": 90315,
+      "sha256": "21470e260fb8d20d8786e10f2141b34a01f03751164b75a757dd6e6d2d75975c"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20251105_HH.bin",
+      "category": "priority-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11877,
+      "gzipLevel6Bytes": 11877,
+      "sha256": "38ee2677dc22be16de1289e3a74dbe67a1a46bff62c438c5f20c088e13d64796"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260317_HH.bin",
+      "category": "priority-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 91574,
+      "gzipLevel6Bytes": 91574,
+      "sha256": "76756ad264b0e97237a8c1ba44142461a13d15c80943ea9b78aeed303db06958"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260317_HH.bin",
+      "category": "priority-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11961,
+      "gzipLevel6Bytes": 11961,
+      "sha256": "c5aaec97ea0e5a05c4b8e67f6d7f40b266b41114bfc67a85ac961a3b8eb84ffe"
+    }
+  ],
+  "deferredArtifacts": [
+    {
+      "path": "data/reservoirs/baoshan2/20260305_HH.bin",
+      "category": "neighbor-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 91716,
+      "gzipLevel6Bytes": 91716,
+      "sha256": "2e8c5667e23e096f4da50556807df57ceae3b30c5e19f456613b55ebb35ddca5"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260305_HH.bin",
+      "category": "neighbor-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11968,
+      "gzipLevel6Bytes": 11968,
+      "sha256": "60ac6cb842b4a43c284d0b7815abb6666eb2210b6e623e4624215ef9d226915d"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260621_HH.bin",
+      "category": "neighbor-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90548,
+      "gzipLevel6Bytes": 90548,
+      "sha256": "2b3ec035ebe8fe8e8712e044e205516600df296ca4009b3d69cfced61918760d"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260621_HH.bin",
+      "category": "neighbor-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11924,
+      "gzipLevel6Bytes": 11924,
+      "sha256": "07365c28795384c606296ecc25f1822b6833f30da9a7db78623117aab5250426"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251117_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 89946,
+      "gzipLevel6Bytes": 89946,
+      "sha256": "19a90c0ad586f237326c80888f4a226015a2eb2143b356335b42474ccbb327df"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20251117_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11836,
+      "gzipLevel6Bytes": 11836,
+      "sha256": "1d6706ae43834458ac798fafa97cfe1f95064754107d37c54354c646f138036c"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251129_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90680,
+      "gzipLevel6Bytes": 90680,
+      "sha256": "ff698fae388a2f2d10e48c0e360e19caa80a6d4f2f0caca4154d4c136fda8d05"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20251129_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11903,
+      "gzipLevel6Bytes": 11903,
+      "sha256": "8143c06dba144f36eedbf10f23052a81b052a9cbcd56807b8ccfcf4f3739753a"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251211_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90874,
+      "gzipLevel6Bytes": 90874,
+      "sha256": "e6185fe102be9c1c3db70a3877c27c5d63dce979adcd59eceed63322c6220d33"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20251211_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11943,
+      "gzipLevel6Bytes": 11943,
+      "sha256": "e6ac1c71473e1d9b124273e5d2e49cf3e13d5347fd76b8d9ca85e0b752ed3f44"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20251223_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90969,
+      "gzipLevel6Bytes": 90969,
+      "sha256": "5950f74f4bde91cbbc029a8c8a4b35f70e0c9b19823d58940d9d75e9694abcc8"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20251223_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11958,
+      "gzipLevel6Bytes": 11958,
+      "sha256": "6ea353474d4618f35a854ea1ed9964eecac583f0e784fd7b21c91620786400d4"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260116_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90684,
+      "gzipLevel6Bytes": 90684,
+      "sha256": "2ba020762359e004393108b599c2d3d41a91fb89f4798fd77711d42a1f2e2b44"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260116_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11928,
+      "gzipLevel6Bytes": 11928,
+      "sha256": "3f72e1fee40d40997ec8fb1035950c82b99cf40431204493d1c2e10e6462d87f"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260128_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 91414,
+      "gzipLevel6Bytes": 91414,
+      "sha256": "5e08a0bf2842e6e24b6dc185bd71a65c2a7779fad35958122241d79518a9e1c8"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260128_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11978,
+      "gzipLevel6Bytes": 11978,
+      "sha256": "6435e310bef8f2023799499817bb43ba63919141659db530b7c3fdbfcb132a55"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260209_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 91818,
+      "gzipLevel6Bytes": 91818,
+      "sha256": "de8e8f627d429985750bf87004a8d3211ad1db24923161670a14d0c1e761b058"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260209_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 12020,
+      "gzipLevel6Bytes": 12020,
+      "sha256": "95c20c508b4751c2b099e8f45d5e3c4a51de60c104133415131ccf2e15dc1d48"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260221_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 91726,
+      "gzipLevel6Bytes": 91726,
+      "sha256": "7c5c6cda447c1f766dd3a98a7d68d770d81e8d4e40c8a6564ea722951b71ab61"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260221_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 12000,
+      "gzipLevel6Bytes": 12000,
+      "sha256": "cce1f3cf9558c98e4fce13b622ba393dbe8339157eaa3f1afacd6fbd315536b7"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260703_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 89056,
+      "gzipLevel6Bytes": 89056,
+      "sha256": "d2886a3d221a470d3ed0d302e2b677ce7ac99564a8f3f3db6c7ebc4c44312d13"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260703_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11767,
+      "gzipLevel6Bytes": 11767,
+      "sha256": "9831a42783c32154a9aa186751ae9259a4d4d61f1a3bf47dc92fbcf1ee406321"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260715_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 91806,
+      "gzipLevel6Bytes": 91806,
+      "sha256": "f30b75cd6910a3ae36c760943dda1eee712014510ab7ba7e4e1edc58558c4f18"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260715_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 12020,
+      "gzipLevel6Bytes": 12020,
+      "sha256": "9462a780c01fe429e8bbcbbd4203afd378898984eeb930691a7efff13157820f"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260727_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90855,
+      "gzipLevel6Bytes": 90855,
+      "sha256": "68305ddb1055048651e7a5ef8a54296ddd9e3af970d0ecd54ea0eb5fb0e6e2ac"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260727_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11937,
+      "gzipLevel6Bytes": 11937,
+      "sha256": "0ebb4e9dc179d0bd5592061140a1e32f3650851669fccfc91f2c594263bdfca6"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260820_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90986,
+      "gzipLevel6Bytes": 90986,
+      "sha256": "de2f47c8da4c30c15b9916967e63a08e27002d79eb9c26bb34df86df333e91a1"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260820_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11943,
+      "gzipLevel6Bytes": 11943,
+      "sha256": "29625332a0d15789ae532e9ce86ce89e8a70782fbeee6fd6acb6390285878294"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260901_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90449,
+      "gzipLevel6Bytes": 90449,
+      "sha256": "ade48fd6fd22bac20db6eecebe7518fe4ca2f4449aaa64aafddc23d18c7e59ed"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260901_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11872,
+      "gzipLevel6Bytes": 11872,
+      "sha256": "37ae131cf9b275ea901c79a98b6372d651aa000770f65ddf369fea44fb2115a2"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260913_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90665,
+      "gzipLevel6Bytes": 90665,
+      "sha256": "12863ab5bf204c36eb070bdc229e8fe5899bfc04ffa64e871e59be7fb91bc682"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260913_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11910,
+      "gzipLevel6Bytes": 11910,
+      "sha256": "72b0d519e217ffb534a6cb2e12f8fd18cfe8a9fc1e2a288369d03db932eb2e63"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20260925_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90081,
+      "gzipLevel6Bytes": 90081,
+      "sha256": "6874e2f4f8137ebd5177c1cdf16162311288f1b019bfcbe666a63058dc584216"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20260925_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11838,
+      "gzipLevel6Bytes": 11838,
+      "sha256": "cbafc4c581795fa0ffcb4d85f5bf25b427f0bd95d0057bac8ac1aca65051cbac"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20261007_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90415,
+      "gzipLevel6Bytes": 90415,
+      "sha256": "812cc6c095c05bbbed8c8f1d53741fe49191d394c02ca3218b92f74d95856a4a"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20261007_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11893,
+      "gzipLevel6Bytes": 11893,
+      "sha256": "e1c190e9a612e8aede953fe2143c4bb61bf0035ec69f1767935046fd46abcf9c"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/20261019_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 126290,
+      "gzipBytes": 90401,
+      "gzipLevel6Bytes": 90401,
+      "sha256": "037b5265fc01d4064ab420161fc69f394177da6963c7de951b2c79df2fb5498e"
+    },
+    {
+      "path": "data/reservoirs/baoshan2/analysis/20261019_HH.bin",
+      "category": "background-frames",
+      "rawBytes": 15488,
+      "gzipBytes": 11876,
+      "gzipLevel6Bytes": 11876,
+      "sha256": "d4d2efdfee69e956cea10254535140ccfa0e462f06e0883ef36eeb57c3dca961"
+    }
+  ],
+  "unmeasuredExternalAssetHosts": [],
+  "notes": [
+    "Only HTML-linked scripts, styles, icons and CSS resources are counted as initial application assets.",
+    "All four reservoir meta/series summaries are included because App requests them on mount.",
+    "No HV files are needed for the default HH first pair.",
+    "Neighbor prefetch waits at least 350 ms and browser idle time; the remaining HH queue waits a further 1500 ms and idle time, with cancellation.",
+    "The background total is separate from the first-interactive artifact budget.",
+    "OG social images, rel=describedby JSON and data fetched only by unopened panels are not assumed to load on normal initial navigation.",
+    "HTTP headers, cache behavior, Brotli/gzip negotiation and aborted requests require deployed-browser measurements.",
+    "Paths are build-relative; no credentials, local absolute paths, environment variables or Git identities are read."
+  ]
+}
