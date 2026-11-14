@@ -20,7 +20,7 @@ The chosen packages serve the purposes below. Resolved versions and licenses wer
 | Dependency (installed version) | Class | Purpose | License / compatibility decision |
 | --- | --- | --- | --- |
 | React and react-dom (`19.3.1`) | Production | UI state and accessible declarative controls | MIT; keep matching versions. |
-| MapLibre GL JS (`6.18.0`) | Production | Geographic locator / map context | BSD-3-Clause; requires a supported WebGL environment. Browse images stay outside its geographic layers. |
+| MapLibre GL JS (`6.18.0`, removed) | Former production dependency | Replaced by a same-origin Canvas radar viewer and SVG coordinate locator | Removed with npm; 25 packages left the installed tree. No new runtime dependency or external map tiles. |
 | Vite (`8.3.8`) and @vitejs/plugin-react (`6.3.0`) | Development/build | Local server and optimized static output | MIT; use a release supporting Node 24. |
 | TypeScript (`6.0.3`) and @types/react / @types/react-dom (`19.3.0`) | Development | Strict static typing | Apache-2.0 for TypeScript; MIT for DefinitelyTyped declarations. |
 | Prettier (`3.8.3`) | Development | Consistent formatting of source and Vite configuration | MIT; build-time tooling only, no runtime bundle impact. |
@@ -83,7 +83,7 @@ npm --prefix web ci
 ## Start, test and build
 
 ```bash
-uv run --project pipeline water-pulse all --offline
+# Published assets are already version-controlled; do not regenerate them to start the UI.
 npm --prefix web run dev -- --host 127.0.0.1
 uv run --project pipeline pytest pipeline/tests
 uv run --project pipeline ruff check pipeline
@@ -142,7 +142,7 @@ The lock file's resolved URLs were normalized to the official npm registry while
 
 | Variable | Use |
 | --- | --- |
-| `EARTHDATA_TOKEN` | Optional secret for authenticated offline GCOV reads. Not required by the browse fallback. |
+| `EARTHDATA_TOKEN` | Optional secret for authenticated GCOV source downloads. Not required to serve the site or rebuild offline from complete local caches. |
 | `EARTHDATA_USERNAME`, `EARTHDATA_PASSWORD` | Alternative optional Earthdata credentials. Keep both out of source, logs and static assets. |
 | `VITE_BASE_PATH` | Public build-time path, e.g. `/taiwan-water-pulse/`; configure for the host. Never put secrets in `VITE_*`, which are public frontend configuration. |
 
@@ -156,13 +156,13 @@ The pipeline reads exported environment variables and does not implicitly load `
 - **Network or authentication failure:** distinguish DNS/connection errors, HTTP access errors and missing credentials. Offline exports use tracked snapshots; failed downloads remain unavailable.
 - **Blank page under a repository URL:** rebuild with the correct base path and publish `web/dist`, not the source tree.
 - **Missing browse PNG:** rerun the public refresh when the source is reachable. Do not replace it with an unrelated or generated picture.
-- **No WebGL map:** use the interface's fallback context; the image and official chart must remain readable. A locator failure does not justify georeferencing browse pixels.
-- **Stale generated files:** rebuild with `all --offline`, or refresh sources intentionally; confirm provenance before committing outputs.
+- **Locator:** The current SVG locator does not require WebGL or external tiles.
+- **Stale generated files:** rebuild the current calibrated archive with `uv run --project pipeline water-pulse release --offline` after obtaining the required AOI caches; confirm provenance before committing outputs. `all --offline` builds the historical Browse fallback instead.
 - **Security audit findings:** inspect dependency paths and advisories, apply a compatible fix and run verification. Do not use an unreviewed force upgrade merely to clear a report.
 
 ## Vercel deployment (2026-11-14)
 
-The SI disclosure update adds no dependencies. `si-usage.json` is repository metadata; the existing Python export copies it into `web/public/data/` and labels generated JSON. Rebuild with `uv run --project pipeline water-pulse export --offline`, then run the existing Python/frontend tests and build commands below. Runtime, package-manager versions and measured installation locations remain as recorded above.
+The original SI disclosure update added no dependencies. `si-usage.json` is repository metadata; the pipeline copies it into `web/public/data/` and labels generated JSON. For the current calibrated release, rebuild with `uv run --project pipeline water-pulse release --offline`, then run the Python/frontend tests and build commands below. The older `export --offline` command reproduces the Browse fallback, not this release. Runtime, package-manager versions and measured installation locations remain as recorded above.
 
 `web/package.json` pins `engines.node` to `24.x`; `.nvmrc` pins local Node to `24.15.0`. npm remains `11.12.1`. No package was added or upgraded for deployment. `check:deploy` and its tests use Node built-ins. `npm ci` uses the existing `web/package-lock.json`; modules were rechecked at `web/node_modules` with `npm --prefix web root`. Python paths above were rechecked with the actual project interpreter.
 
@@ -175,3 +175,26 @@ npm --prefix web run check:deploy
 ```
 
 Vercel needs no Earthdata or application environment variables. The initial deployment uploads only checked `web/dist` files through the authenticated Vercel plugin. No Vercel CLI was installed, no token was created, and no CLI dependency was added to either lock file. See [deployment](deployment.md) for the exact delivery mode and Git integration status.
+
+## Review improvements and calibrated release (2026-11-14)
+
+Removed `maplibre-gl` using `npm --prefix web uninstall maplibre-gl --ignore-scripts --offline`. The lock file and installed tree now contain only React/react-dom as direct runtime dependencies; 25 packages were removed, with no version upgrades. The current radar viewer uses Canvas and SVG, and the locator needs no map tiles. Scientific diagnostics use the existing NumPy/rasterio/SciPy environment; quickview annotations use macOS system Swift/AppKit, not a new project package. This renderer is optional and platform-specific.
+
+`npm --prefix web root` and `npm --prefix web ls --depth=0` were rerun after removal. The measured install location remains `web/node_modules`; the project Python executable, NumPy module and site-packages locations were also rechecked and match the relative paths above. The offline npm removal printed an audit summary, but it is not evidence of a fresh online advisory review.
+
+```bash
+# Restore the updated dependency trees
+npm --prefix web ci
+uv sync --project pipeline --frozen
+
+# Current calibrated release: requires existing ignored AOI caches
+uv run --project pipeline water-pulse release --offline
+
+# Get missing source windows with locally configured Earthdata credentials
+uv run --project pipeline water-pulse read \
+  --reservoirs baoshan2,liyutan,shimen,feitsui
+```
+
+`release --offline` replaces the public archive with the current calibrated release. The historical `all --offline` / `export --offline` commands instead produce the Browse fallback and are not the current release-reproduction command. Starting or building the frontend needs neither raw caches nor Earthdata credentials.
+
+The test suite checks real exported analysis grids against the browser's area calculations. Node filesystem integration tests are `.test.mjs` files, executed by the existing Vitest installation; no extra Node type package was added. Frontend and Python lock files remain the single locks for their ecosystems.

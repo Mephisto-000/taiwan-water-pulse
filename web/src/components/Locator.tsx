@@ -1,151 +1,106 @@
-import { useEffect, useRef, useState } from "react";
 import type { Reservoir } from "../domain";
-import type { Map as MapLibreMap, GeoJSONSource } from "maplibre-gl";
-import "maplibre-gl/dist/maplibre-gl.css";
-import workerUrl from "maplibre-gl/dist/maplibre-gl-worker.mjs?worker&url";
+import type { Language } from "../i18n";
 
-export default function Locator({ reservoir }: { reservoir: Reservoir }) {
-  const element = useRef<HTMLDivElement>(null);
-  const map = useRef<MapLibreMap | null>(null);
-  const [unavailable, setUnavailable] = useState(false);
-  const bounds = reservoir.bbox;
-  const latestBounds = useRef(bounds);
-  latestBounds.current = bounds;
-  useEffect(() => {
-    let cancelled = false;
-    void import("maplibre-gl")
-      .then(({ Map, NavigationControl, ScaleControl, setWorkerUrl }) => {
-        if (cancelled || !element.current) return;
-        try {
-          setWorkerUrl(workerUrl);
-          const view = new Map({
-            container: element.current,
-            style: {
-              version: 8,
-              sources: {
-                osm: {
-                  type: "raster",
-                  tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
-                  tileSize: 256,
-                  attribution: "© OpenStreetMap contributors",
-                },
-              },
-              layers: [
-                {
-                  id: "osm",
-                  type: "raster",
-                  source: "osm",
-                  paint: { "raster-saturation": -0.9, "raster-opacity": 0.8 },
-                },
-              ],
-            },
-            center: [
-              (latestBounds.current[2] + latestBounds.current[3]) / 2,
-              (latestBounds.current[0] + latestBounds.current[1]) / 2,
-            ],
-            zoom: 10,
-            locale: {
-              "NavigationControl.ZoomIn": "放大地圖",
-              "NavigationControl.ZoomOut": "縮小地圖",
-              "AttributionControl.ToggleAttribution": "切換資料來源標示",
-              "Map.Title": "水庫定位地圖",
-            },
-            attributionControl: { compact: true },
-          });
-          map.current = view;
-          view.addControl(
-            new NavigationControl({ showCompass: false }),
-            "top-right",
-          );
-          view.addControl(
-            new ScaleControl({ maxWidth: 65, unit: "metric" }),
-            "bottom-left",
-          );
-          let errors = 0;
-          view.on("error", () => {
-            if (++errors > 2) setUnavailable(true);
-          });
-          view.on("load", () => {
-            if (cancelled) return;
-            const bounds = latestBounds.current;
-            view.jumpTo({
-              center: [
-                (bounds[2] + bounds[3]) / 2,
-                (bounds[0] + bounds[1]) / 2,
-              ],
-            });
-            view.addSource("selection", {
-              type: "geojson",
-              data: {
-                type: "Feature",
-                properties: {},
-                geometry: {
-                  type: "Point",
-                  coordinates: [
-                    (bounds[2] + bounds[3]) / 2,
-                    (bounds[0] + bounds[1]) / 2,
-                  ],
-                },
-              },
-            });
-            view.addLayer({
-              id: "selection",
-              type: "circle",
-              source: "selection",
-              paint: {
-                "circle-radius": 7,
-                "circle-color": "#1d6972",
-                "circle-stroke-width": 3,
-                "circle-stroke-color": "#ffffff",
-              },
-            });
-          });
-        } catch {
-          setUnavailable(true);
-        }
-      })
-      .catch(() => setUnavailable(true));
-    return () => {
-      cancelled = true;
-      map.current?.remove();
-      map.current = null;
-    };
-    // The map instance persists; selection changes are handled below.
-  }, []);
-  useEffect(() => {
-    const view = map.current;
-    if (!view) return;
-    const center: [number, number] = [
-      (bounds[2] + bounds[3]) / 2,
-      (bounds[0] + bounds[1]) / 2,
-    ];
-    view.flyTo({ center, zoom: 10, duration: 900 });
-    const source = view.getSource("selection") as GeoJSONSource | undefined;
-    if (source)
-      source.setData({
-        type: "Feature",
-        properties: {},
-        geometry: { type: "Point", coordinates: center },
-      });
-  }, [bounds]);
+/** A lightweight coordinate locator; this is not a radar basemap. */
+export default function Locator({
+  reservoir,
+  reservoirs = [reservoir],
+  lang = "zh-TW",
+}: {
+  reservoir: Reservoir;
+  reservoirs?: Reservoir[];
+  lang?: Language;
+}) {
+  const en = lang === "en";
+  const longitude = (reservoir.bbox[2] + reservoir.bbox[3]) / 2;
+  const latitude = (reservoir.bbox[0] + reservoir.bbox[1]) / 2;
+  const x = (value: number) => 46 + ((value - 120.5) / 1.5) * 248;
+  const y = (value: number) => 186 - ((value - 24) / 1.4) * 158;
   return (
-    <div className="locator-shell">
-      <div
-        ref={element}
-        className="locator"
-        aria-label={`水庫定位：${reservoir.name_zh}（${reservoir.name}）`}
-      />
-      {unavailable && (
-        <div className="map-fallback">
-          <span>無法載入底圖</span>
-          <strong>
-            {((bounds[0] + bounds[1]) / 2).toFixed(4)}° N<br />
-            {((bounds[2] + bounds[3]) / 2).toFixed(4)}° E
-          </strong>
-          <small>仍可查看雷達歷史資料。</small>
-        </div>
-      )}
-      <span className="locator-caption">僅供定位 · 非雷達疊圖</span>
-    </div>
+    <figure className="locator-shell" style={{ margin: 0 }}>
+      <svg
+        viewBox="0 0 320 232"
+        role="img"
+        aria-label={`${en ? "Reservoir coordinate locator" : "水庫經緯度定位"}: ${reservoir.name} · ${latitude.toFixed(4)}° N, ${longitude.toFixed(4)}° E`}
+        style={{ display: "block", width: "100%", minWidth: 260 }}
+      >
+        <metadata>
+          SI-generated coordinate diagram; coordinates from reservoir source
+          metadata; no agency branding.
+        </metadata>
+        <rect x="0" y="0" width="320" height="232" rx="8" fill="#e8eeeb" />
+        {[24, 24.5, 25].map((value) => (
+          <g key={value}>
+            <line
+              x1="46"
+              x2="294"
+              y1={y(value)}
+              y2={y(value)}
+              stroke="#9cacaa"
+              strokeDasharray="3 5"
+            />
+            <text
+              x="8"
+              y={y(value) + 4}
+              style={{ fontSize: 16, fill: "#385b59" }}
+            >
+              {value}°
+            </text>
+          </g>
+        ))}
+        {[120.5, 121, 121.5, 122].map((value) => (
+          <g key={value}>
+            <line
+              x1={x(value)}
+              x2={x(value)}
+              y1="28"
+              y2="186"
+              stroke="#9cacaa"
+              strokeDasharray="3 5"
+            />
+            <text
+              x={x(value)}
+              y="211"
+              textAnchor="middle"
+              style={{ fontSize: 16, fill: "#385b59" }}
+            >
+              {value}°
+            </text>
+          </g>
+        ))}
+        {reservoirs.map((item) => {
+          const cx = x((item.bbox[2] + item.bbox[3]) / 2);
+          const cy = y((item.bbox[0] + item.bbox[1]) / 2);
+          const selected = item.key === reservoir.key;
+          return (
+            <g key={item.key}>
+              <circle
+                cx={cx}
+                cy={cy}
+                r={selected ? 8 : 5}
+                fill={selected ? "#175b64" : "#718b88"}
+                stroke="#fff"
+                strokeWidth="2"
+              />
+              <title>{en ? item.name : item.name_zh}</title>
+            </g>
+          );
+        })}
+        <text
+          x="292"
+          y="20"
+          textAnchor="end"
+          style={{ fontSize: 16, fill: "#284e4d" }}
+        >
+          ↑ N
+        </text>
+      </svg>
+      <figcaption>
+        {latitude.toFixed(4)}° N · {longitude.toFixed(4)}° E<br />
+        {en
+          ? "SI-generated coordinate locator · no basemap"
+          : "SI 生成經緯度示意 · 無底圖"}
+      </figcaption>
+    </figure>
   );
 }

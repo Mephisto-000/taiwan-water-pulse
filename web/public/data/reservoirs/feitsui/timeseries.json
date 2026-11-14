@@ -1,0 +1,959 @@
+{
+  "si_usage": {
+    "tool": "OpenAI Codex",
+    "declaration_version": "1.1.0",
+    "code_status": "SI-generated and SI-assisted",
+    "status": "Prepared using SI-assisted code; source observations are not SI-generated",
+    "scope": [
+      "source retrieval",
+      "format conversion",
+      "sampling and export",
+      "validation diagnostics"
+    ],
+    "source_observations_si_generated": false,
+    "browse_images_si_generated": false,
+    "synthetic_arrays": "Unit-test fixtures only; not exported as observations"
+  },
+  "records": [
+    {
+      "utc": "2025-11-05T21:16:41Z",
+      "local": "2025-11-06T05:16:41+08:00",
+      "granule": "NISAR_L2_PR_GCOV_004_111_A_014_4005_DHDH_A_20251105T211641_20251105T211714_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.153,
+        "hh_lo": 8.9829,
+        "hh_hi": 9.2772,
+        "hv": 9.333,
+        "hv_lo": 9.2196,
+        "hv_hi": 9.4104,
+        "primary": 9.153,
+        "primary_lo": 8.9829,
+        "primary_hi": 9.2772
+      },
+      "classification_channel": "HH",
+      "threshold_db": -6.970093122779748,
+      "land_median_db": -4.7516056266161835,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.1958889735274902,
+        "HV": 3.826784595437331
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24337,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24337,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2025-11-06T07:00:00+08:00",
+        "pct": 93.13341519999999,
+        "level_m": 167.2
+      }
+    },
+    {
+      "utc": "2025-11-17T21:16:42Z",
+      "local": "2025-11-18T05:16:42+08:00",
+      "granule": "NISAR_L2_PR_GCOV_005_111_A_014_4005_DHDH_A_20251117T211642_20251117T211714_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.1548,
+        "hh_lo": 9.0144,
+        "hh_hi": 9.2673,
+        "hv": 9.3483,
+        "hv_lo": 9.2196,
+        "hv_hi": 9.4149,
+        "primary": 9.1548,
+        "primary_lo": 9.0144,
+        "primary_hi": 9.2673
+      },
+      "classification_channel": "HH",
+      "threshold_db": -6.70189840278318,
+      "land_median_db": -4.483410906619616,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.257972163105585,
+        "HV": 3.92827582740052
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24337,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24337,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2025-11-18T07:00:00+08:00",
+        "pct": 94.51613000000002,
+        "level_m": 167.77
+      }
+    },
+    {
+      "utc": "2025-11-29T21:16:42Z",
+      "local": "2025-11-30T05:16:42+08:00",
+      "granule": "NISAR_L2_PR_GCOV_006_111_A_014_4005_DHDH_A_20251129T211642_20251129T211715_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.1881,
+        "hh_lo": 9.0477,
+        "hh_hi": 9.2925,
+        "hv": 9.3528,
+        "hv_lo": 9.2322,
+        "hv_hi": 9.4446,
+        "primary": 9.1881,
+        "primary_lo": 9.0477,
+        "primary_hi": 9.2925
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.263871362468683,
+      "land_median_db": -5.0453838663051185,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.2584548600698304,
+        "HV": 3.903465618972537
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24336,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24336,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2025-11-30T07:00:00+08:00",
+        "pct": 94.2001,
+        "level_m": 167.64
+      }
+    },
+    {
+      "utc": "2025-12-11T21:16:43Z",
+      "local": "2025-12-12T05:16:43+08:00",
+      "granule": "NISAR_L2_PR_GCOV_007_111_A_014_4005_DHDH_A_20251211T211643_20251211T211715_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.2088,
+        "hh_lo": 9.0423,
+        "hh_hi": 9.3348,
+        "hv": 9.3996,
+        "hv_lo": 9.2871,
+        "hv_hi": 9.468,
+        "primary": 9.2088,
+        "primary_lo": 9.0423,
+        "primary_hi": 9.3348
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.31809535964356,
+      "land_median_db": -5.099607863479996,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.2156102746672097,
+        "HV": 3.9216418740581767
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24336,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24336,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2025-12-12T07:00:00+08:00",
+        "pct": 95.83317,
+        "level_m": 168.31
+      }
+    },
+    {
+      "utc": "2025-12-23T21:16:43Z",
+      "local": "2025-12-24T05:16:43+08:00",
+      "granule": "NISAR_L2_PR_GCOV_008_111_A_014_4005_DHDH_A_20251223T211643_20251223T211716_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.2277,
+        "hh_lo": 9.072,
+        "hh_hi": 9.3213,
+        "hv": 9.3924,
+        "hv_lo": 9.2844,
+        "hv_hi": 9.4797,
+        "primary": 9.2277,
+        "primary_lo": 9.072,
+        "primary_hi": 9.3213
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.355730824222548,
+      "land_median_db": -5.137243328058984,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.216158435858724,
+        "HV": 3.8390204709511906
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24337,
+          "ring": 21115
+        },
+        "HV": {
+          "inside": 24337,
+          "ring": 21115
+        }
+      },
+      "official": {
+        "local": "2025-12-24T07:00:00+08:00",
+        "pct": 96.22479,
+        "level_m": 168.47
+      }
+    },
+    {
+      "utc": "2026-01-16T21:16:44Z",
+      "local": "2026-01-17T05:16:44+08:00",
+      "granule": "NISAR_L2_PR_GCOV_010_111_A_014_4005_DHDH_A_20260116T211644_20260116T211717_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.2268,
+        "hh_lo": 9.0909,
+        "hh_hi": 9.3429,
+        "hv": 9.3573,
+        "hv_lo": 9.2475,
+        "hv_hi": 9.4554,
+        "primary": 9.2268,
+        "primary_lo": 9.0909,
+        "primary_hi": 9.3429
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.435820780582167,
+      "land_median_db": -5.2173332844186024,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.0907285099349844,
+        "HV": 3.4941115571909225
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24337,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24337,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2026-01-17T07:00:00+08:00",
+        "pct": 93.95727000000001,
+        "level_m": 167.54
+      }
+    },
+    {
+      "utc": "2026-01-28T21:16:45Z",
+      "local": "2026-01-29T05:16:45+08:00",
+      "granule": "NISAR_L2_PR_GCOV_011_111_A_014_4005_DHDH_A_20260128T211645_20260128T211718_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.2448,
+        "hh_lo": 9.1053,
+        "hh_hi": 9.3366,
+        "hv": 9.4041,
+        "hv_lo": 9.2961,
+        "hv_hi": 9.4878,
+        "primary": 9.2448,
+        "primary_lo": 9.1053,
+        "primary_hi": 9.3366
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.022251672189817,
+      "land_median_db": -4.803764176026253,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.114010861376423,
+        "HV": 3.752419182009636
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24337,
+          "ring": 21117
+        },
+        "HV": {
+          "inside": 24337,
+          "ring": 21117
+        }
+      },
+      "official": {
+        "local": "2026-01-29T07:00:00+08:00",
+        "pct": 94.83251,
+        "level_m": 167.9
+      }
+    },
+    {
+      "utc": "2026-02-09T21:16:46Z",
+      "local": "2026-02-10T05:16:46+08:00",
+      "granule": "NISAR_L2_PR_GCOV_012_111_A_014_4005_DHDH_A_20260209T211646_20260209T211718_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.2394,
+        "hh_lo": 9.0972,
+        "hh_hi": 9.3474,
+        "hv": 9.4194,
+        "hv_lo": 9.3114,
+        "hv_hi": 9.4869,
+        "primary": 9.2394,
+        "primary_lo": 9.0972,
+        "primary_hi": 9.3474
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.304662792181907,
+      "land_median_db": -5.086175296018343,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.2080796438313355,
+        "HV": 3.8501239748753107
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24336,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24336,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2026-02-10T07:00:00+08:00",
+        "pct": 94.03013,
+        "level_m": 167.57
+      }
+    },
+    {
+      "utc": "2026-02-21T21:16:46Z",
+      "local": "2026-02-22T05:16:46+08:00",
+      "granule": "NISAR_L2_PR_GCOV_013_111_A_014_4005_DHDH_A_20260221T211646_20260221T211719_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.2556,
+        "hh_lo": 9.1089,
+        "hh_hi": 9.3555,
+        "hv": 9.3906,
+        "hv_lo": 9.2736,
+        "hv_hi": 9.4878,
+        "primary": 9.2556,
+        "primary_lo": 9.1089,
+        "primary_hi": 9.3555
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.244190046271714,
+      "land_median_db": -5.02570255010815,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.1191076532908175,
+        "HV": 3.807057551294073
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24337,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24337,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2026-02-22T07:00:00+08:00",
+        "pct": 91.44545,
+        "level_m": 166.5
+      }
+    },
+    {
+      "utc": "2026-03-05T21:16:46Z",
+      "local": "2026-03-06T05:16:46+08:00",
+      "granule": "NISAR_L2_PR_GCOV_014_111_A_014_4005_DHDH_A_20260305T211646_20260305T211719_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.2106,
+        "hh_lo": 9.0738,
+        "hh_hi": 9.3195,
+        "hv": 9.3789,
+        "hv_lo": 9.2484,
+        "hv_hi": 9.4689,
+        "primary": 9.2106,
+        "primary_lo": 9.0738,
+        "primary_hi": 9.3195
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.108777873460518,
+      "land_median_db": -4.890290377296954,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.1870824875314923,
+        "HV": 3.88349061220342
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24336,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24336,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2026-03-06T07:00:00+08:00",
+        "pct": 89.4828,
+        "level_m": 165.68
+      }
+    },
+    {
+      "utc": "2026-03-17T21:16:47Z",
+      "local": "2026-03-18T05:16:47+08:00",
+      "granule": "NISAR_L2_PR_GCOV_015_111_A_014_4005_DHDH_A_20260317T211647_20260317T211719_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.2187,
+        "hh_lo": 9.0855,
+        "hh_hi": 9.3285,
+        "hv": 9.3807,
+        "hv_lo": 9.279,
+        "hv_hi": 9.4689,
+        "primary": 9.2187,
+        "primary_lo": 9.0855,
+        "primary_hi": 9.3285
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.398738441720993,
+      "land_median_db": -5.180250945557429,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.1948454756141462,
+        "HV": 3.7593261028698115
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24336,
+          "ring": 21115
+        },
+        "HV": {
+          "inside": 24336,
+          "ring": 21115
+        }
+      },
+      "official": {
+        "local": "2026-03-18T07:00:00+08:00",
+        "pct": 91.87838000000002,
+        "level_m": 166.68
+      }
+    },
+    {
+      "utc": "2026-06-21T21:16:44Z",
+      "local": "2026-06-22T05:16:44+08:00",
+      "granule": "NISAR_L2_PR_GCOV_023_111_A_014_4005_DHDH_A_20260621T211644_20260621T211716_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.1737,
+        "hh_lo": 8.9829,
+        "hh_hi": 9.2907,
+        "hv": 9.3015,
+        "hv_lo": 9.1503,
+        "hv_hi": 9.4014,
+        "primary": 9.1737,
+        "primary_lo": 8.9829,
+        "primary_hi": 9.2907
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.4178231574996385,
+      "land_median_db": -5.199335661336074,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.0408302856534415,
+        "HV": 3.182435024827976
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24337,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24337,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2026-06-22T07:00:00+08:00",
+        "pct": 82.32088,
+        "level_m": 162.62
+      }
+    },
+    {
+      "utc": "2026-07-03T21:16:43Z",
+      "local": "2026-07-04T05:16:43+08:00",
+      "granule": "NISAR_L2_PR_GCOV_024_111_A_014_4005_DHDH_A_20260703T211643_20260703T211715_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.1026,
+        "hh_lo": 8.892,
+        "hh_hi": 9.2313,
+        "hv": 9.3042,
+        "hv_lo": 9.162,
+        "hv_hi": 9.3924,
+        "primary": 9.1026,
+        "primary_lo": 8.892,
+        "primary_hi": 9.2313
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.353814711376215,
+      "land_median_db": -5.135327215212651,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 2.838960084987318,
+        "HV": 3.439079588591215
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24336,
+          "ring": 21118
+        },
+        "HV": {
+          "inside": 24336,
+          "ring": 21118
+        }
+      },
+      "official": {
+        "local": "2026-07-04T07:00:00+08:00",
+        "pct": 83.89063,
+        "level_m": 163.3
+      }
+    },
+    {
+      "utc": "2026-07-15T21:16:42Z",
+      "local": "2026-07-16T05:16:42+08:00",
+      "granule": "NISAR_L2_PR_GCOV_025_111_A_014_4005_DHDH_A_20260715T211642_20260715T211714_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.1548,
+        "hh_lo": 9.0045,
+        "hh_hi": 9.2583,
+        "hv": 9.3438,
+        "hv_lo": 9.225,
+        "hv_hi": 9.4455,
+        "primary": 9.1548,
+        "primary_lo": 9.0045,
+        "primary_hi": 9.2583
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.274430985896923,
+      "land_median_db": -5.055943489733359,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.122286150181598,
+        "HV": 3.8144385352693497
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24337,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24337,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2026-07-16T07:00:00+08:00",
+        "pct": 79.94088999999998,
+        "level_m": 161.58
+      }
+    },
+    {
+      "utc": "2026-07-27T21:16:42Z",
+      "local": "2026-07-28T05:16:42+08:00",
+      "granule": "NISAR_L2_PR_GCOV_026_111_A_014_4005_DHDH_A_20260727T211642_20260727T211713_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.1296,
+        "hh_lo": 8.9577,
+        "hh_hi": 9.2403,
+        "hv": 9.3429,
+        "hv_lo": 9.2097,
+        "hv_hi": 9.4437,
+        "primary": 9.1296,
+        "primary_lo": 8.9577,
+        "primary_hi": 9.2403
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.5934537350064595,
+      "land_median_db": -5.374966238842895,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.0056091843701265,
+        "HV": 3.695662873857464
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24336,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24336,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2026-07-28T07:00:00+08:00",
+        "pct": 75.64876000000001,
+        "level_m": 159.67
+      }
+    },
+    {
+      "utc": "2026-08-20T21:16:40Z",
+      "local": "2026-08-21T05:16:40+08:00",
+      "granule": "NISAR_L2_PR_GCOV_028_111_A_014_4005_DHDH_A_20260820T211640_20260820T211713_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.099,
+        "hh_lo": 8.8992,
+        "hh_hi": 9.2268,
+        "hv": 9.3393,
+        "hv_lo": 9.2034,
+        "hv_hi": 9.4338,
+        "primary": 9.099,
+        "primary_lo": 8.8992,
+        "primary_hi": 9.2268
+      },
+      "classification_channel": "HH",
+      "threshold_db": -6.905725091290275,
+      "land_median_db": -4.687237595126711,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24302,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.0171214878871013,
+        "HV": 3.759241426394237
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24336,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24336,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2026-08-21T07:00:00+08:00",
+        "pct": 74.12537000000002,
+        "level_m": 158.98
+      }
+    },
+    {
+      "utc": "2026-09-01T21:16:40Z",
+      "local": "2026-09-02T05:16:40+08:00",
+      "granule": "NISAR_L2_PR_GCOV_029_111_A_014_4005_DHDH_A_20260901T211640_20260901T211712_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.0981,
+        "hh_lo": 8.919,
+        "hh_hi": 9.2367,
+        "hv": 9.3519,
+        "hv_lo": 9.2052,
+        "hv_hi": 9.4383,
+        "primary": 9.0981,
+        "primary_lo": 8.919,
+        "primary_hi": 9.2367
+      },
+      "classification_channel": "HH",
+      "threshold_db": -6.9910269881994545,
+      "land_median_db": -4.77253949203589,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.1256972694609773,
+        "HV": 3.86526556072423
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24336,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24336,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2026-09-02T07:00:00+08:00",
+        "pct": 77.61142,
+        "level_m": 160.55
+      }
+    },
+    {
+      "utc": "2026-09-13T21:16:40Z",
+      "local": "2026-09-14T05:16:40+08:00",
+      "granule": "NISAR_L2_PR_GCOV_030_111_A_014_4005_DHDH_A_20260913T211640_20260913T211712_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.1206,
+        "hh_lo": 8.9424,
+        "hh_hi": 9.2304,
+        "hv": 9.342,
+        "hv_lo": 9.1917,
+        "hv_hi": 9.4248,
+        "primary": 9.1206,
+        "primary_lo": 8.9424,
+        "primary_hi": 9.2304
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.198311519147539,
+      "land_median_db": -4.9798240229839745,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.1173441009330185,
+        "HV": 3.8715152695352177
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24336,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24336,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2026-09-14T07:00:00+08:00",
+        "pct": 77.81349,
+        "level_m": 160.64
+      }
+    },
+    {
+      "utc": "2026-09-25T21:16:40Z",
+      "local": "2026-09-26T05:16:40+08:00",
+      "granule": "NISAR_L2_PR_GCOV_031_111_A_014_4005_DHDH_A_20260925T211640_20260925T211712_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.1278,
+        "hh_lo": 8.9604,
+        "hh_hi": 9.2331,
+        "hv": 9.3222,
+        "hv_lo": 9.1782,
+        "hv_hi": 9.4131,
+        "primary": 9.1278,
+        "primary_lo": 8.9604,
+        "primary_hi": 9.2331
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.43256169548332,
+      "land_median_db": -5.2140741993197555,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.059050478467419,
+        "HV": 3.8430349867947897
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24337,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24337,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2026-09-26T07:00:00+08:00",
+        "pct": 76.07069400000002,
+        "level_m": 159.86
+      }
+    },
+    {
+      "utc": "2026-10-07T21:16:40Z",
+      "local": "2026-10-08T05:16:40+08:00",
+      "granule": "NISAR_L2_PR_GCOV_032_111_A_014_4005_DHDH_A_20261007T211640_20261007T211713_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.0369,
+        "hh_lo": 8.8452,
+        "hh_hi": 9.1602,
+        "hv": 9.2709,
+        "hv_lo": 9.1296,
+        "hv_hi": 9.3735,
+        "primary": 9.0369,
+        "primary_lo": 8.8452,
+        "primary_hi": 9.1602
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.2578198489826,
+      "land_median_db": -5.039332352819036,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 2.9947895451482944,
+        "HV": 3.796391540002549
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24336,
+          "ring": 21117
+        },
+        "HV": {
+          "inside": 24336,
+          "ring": 21117
+        }
+      },
+      "official": {
+        "local": "2026-10-08T07:00:00+08:00",
+        "pct": 74.54342,
+        "level_m": 159.17
+      }
+    },
+    {
+      "utc": "2026-10-19T21:16:40Z",
+      "local": "2026-10-20T05:16:40+08:00",
+      "granule": "NISAR_L2_PR_GCOV_033_111_A_014_4005_DHDH_A_20261019T211640_20261019T211713_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 9.0414,
+        "hh_lo": 8.8362,
+        "hh_hi": 9.1719,
+        "hv": 9.2943,
+        "hv_lo": 9.1791,
+        "hv_hi": 9.405,
+        "primary": 9.0414,
+        "primary_lo": 8.8362,
+        "primary_hi": 9.1719
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.541596672992342,
+      "land_median_db": -5.323109176828778,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 24303,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.126277157607791,
+        "HV": 3.834840205795503
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 24336,
+          "ring": 21116
+        },
+        "HV": {
+          "inside": 24336,
+          "ring": 21116
+        }
+      },
+      "official": {
+        "local": "2026-10-20T07:00:00+08:00",
+        "pct": null,
+        "level_m": null
+      }
+    }
+  ],
+  "stats": {
+    "n": 20,
+    "pearson_area_vs_level": 0.8206265715556702,
+    "spearman_area_vs_level": 0.7461452201224567,
+    "pearson_ci95": [
+      0.67370780346485,
+      0.9176433955453274
+    ],
+    "spearman_ci95": [
+      0.43079618657333113,
+      0.8874588759325398
+    ],
+    "bootstrap_repetitions": 2000,
+    "bootstrap_valid_replicates": 2000,
+    "bootstrap_seed": 20261114,
+    "leave_one_out_pearson_range": [
+      0.800271481714952,
+      0.8550083642034099
+    ],
+    "classification_channel": "HH",
+    "grade": "A",
+    "publish_area": true,
+    "reason": "review_correlation_criteria_met",
+    "method": "relative_power_v3",
+    "pearson_area_hh_vs_level": 0.8206265715556702,
+    "spearman_area_hh_vs_level": 0.7461452201224567,
+    "below_95": {
+      "n": 18,
+      "pearson_area_vs_level": 0.8048206716422013,
+      "spearman_area_vs_level": 0.7547755265002958,
+      "pearson_ci95": [
+        0.6302961981488038,
+        0.9209803399410355
+      ],
+      "spearman_ci95": [
+        0.435701297555286,
+        0.898525436882811
+      ],
+      "bootstrap_repetitions": 2000,
+      "bootstrap_valid_replicates": 2000,
+      "bootstrap_seed": 20261114,
+      "leave_one_out_pearson_range": [
+        0.7817680070859936,
+        0.8463774331235743
+      ]
+    },
+    "physical_checks": {
+      "passed": true,
+      "osm_area_km2": 9.722,
+      "full_storage_max_area_km2": 9.2277,
+      "full_storage_within_1_1_osm": true,
+      "lowest_observed_utc": "2026-08-20T21:16:40Z",
+      "full_reference_utc": "2025-12-23T21:16:43Z",
+      "lowest_area_smaller_than_full": true,
+      "matched_level_tolerance_m": 0.5,
+      "matched_level_pairs": []
+    }
+  }
+}

@@ -1,6 +1,61 @@
 # Gate evidence
 
-Date: 2026-11-14 (Asia/Taipei). This is a fallback-level-2 release. The original numerical acceptance criteria remain open.
+Date: 2026-11-14 (Asia/Taipei). Current release uses calibrated reservoir images and per-reservoir descriptive review grades. The original failed experiments below remain historical evidence; they have not been relabelled as passes.
+
+
+## Current relative-power v3 release
+
+The fixed common method is HH, native 30 m linear-power multilooking, reference ratio 0.6 and exact OSM mask with 0 m buffer. Display imagery remains 10 m (20 m Feitsui). Otsu v2 below is an intermediate diagnostic, not the released classifier. See [sequential diagnostics](relative-diagnostics.md) and [methods](methods.md).
+
+| Reservoir | n | Pearson r (95% interval) | Spearman rho (95% interval) | Grade |
+| --- | ---: | --- | --- | --- |
+| Baoshan II | 21 | 0.936345 (0.734129, 0.979717) | 0.755686 (0.386019, 0.950349) | A |
+| Liyutan | 21 | 0.914557 (0.753336, 0.960851) | 0.782510 (0.421708, 0.951698) | A |
+| Shimen | 21 | 0.504781 (-0.357065, 0.828193) | 0.083523 (-0.449416, 0.553796) | B |
+| Feitsui | 20 | 0.820627 (0.673708, 0.917643) | 0.746145 (0.430796, 0.887459) | A |
+
+All four pass the fixed physical checks. Shimen is nevertheless explicitly `LOW_CONFIDENCE`: its interval includes zero and rho is near zero. Its B label is not an endorsement of a reliable relationship. Below-95% subsets, seeded bootstrap/leave-one-out evidence, per-date cutoffs and every matched-water-level area difference are retained in final validation JSON.
+
+
+Below-95% storage subset (same fixed classifier; 2,000 seeded paired bootstrap draws):
+
+| Reservoir | n | Pearson r (95% interval) | Spearman rho (95% interval) |
+| --- | ---: | --- | --- |
+| Baoshan II | 10 | 0.960225 (0.909379, 0.988510) | 0.939394 (0.617284, 1.000000) |
+| Liyutan | 12 | 0.948054 (0.863712, 0.985124) | 0.867133 (0.464286, 1.000000) |
+| Shimen | 5 | 0.885773 (-0.061763, 1.000000) | 0.900000 (0.111111, 1.000000) |
+| Feitsui | 18 | 0.804821 (0.630296, 0.920980) | 0.754776 (0.435701, 0.898525) |
+
+Feitsui has 21 images but only 20 paired official levels; the missing official observation is retained as null. Shimen has only five observations below 95%; its wide interval does not establish reliable performance. Paired bootstrap assumes exchangeable dates; temporal dependence can make these intervals optimistic.
+
+Both core 170 m bbox checks exceeded the predeclared r>0.85 prerequisite. The five-scale HH/HV ladder and 10/30/170 m OSM checks are fully retained. 30 m is the finest listed scale with both core reservoirs meeting grade A, while 10 m still contains a strong signal. Scale selection is exploratory and not independent validation; channel, threshold ratio and buffer remain fixed.
+
+The Python suite now has 34 passing tests, with Ruff clean. Added tests demonstrate linear averaging before log, actual-grid alignment, reference median semantics, and ratio sensitivity on the separate analysis grid. Frontend parity matched all 84 observation area/sensitivity values to nine decimal places. Deployment verification is recorded separately after final integration.
+
+## Intermediate Otsu v2 diagnostic — superseded by relative-power v3
+
+The review's Q-01 assumption was checked against the real report: the old split selected four calibration dates across both sides of the gap, with the other 17 held out. It was not a post-gap-only validation set. Q-02 initially found 21 calibrated caches each for Baoshan II/Liyutan and four each for Shimen/Feitsui. The 34 missing AOIs were subsequently read without full-granule downloads. All four reservoirs now have 21 HH/HV calibrated windows. Source hashes and UTC identities are retained in `pipeline/assets/review-validation.json` and the public `data/validation.json`.
+
+The new method uses one unclipped, image-only pooled Otsu threshold per reservoir/channel, exact unbuffered OSM masks, and predeclared HH primary classification. No official value selects a threshold, mask or channel. These are descriptive review results with paired bootstrap intervals, not fresh held-out validation. The former results are retained unchanged in `numeric-validation.json` and the public `historical-validation.json`.
+
+| Reservoir | Ground grid | HH threshold dB | n | Pearson r (95% interval) | Spearman rho (95% interval) | Grade / display |
+| --- | --- | ---: | ---: | --- | --- | --- |
+| Baoshan II | 10 m | -10.068282 | 21 | 0.759013 (0.112611, 0.941828) | 0.381293 (-0.153780, 0.821991) | B: experimental area and sensitivity |
+| Liyutan | 10 m | -10.703125 | 21 | 0.901268 (0.704326, 0.959417) | 0.701755 (0.331228, 0.917166) | A: experimental area and sensitivity |
+| Shimen | 10 m | -10.515810 | 21 | 0.036084 (-0.331859, 0.408125) | -0.166342 (-0.587908, 0.288007) | C: calibrated images only |
+| Feitsui | 20 m | -10.022146 | 20 | 0.694487 (0.469584, 0.897965) | 0.679699 (0.334308, 0.878381) | B: experimental area and sensitivity |
+
+The below-95% storage subsets are separately reported: Baoshan II n=10/r=0.939602/rho=0.927273; Liyutan n=12/r=0.911050/rho=0.755245; Shimen n=5/r=0.738809/rho=0.800000; Feitsui n=18/r=0.645878/rho=0.603715. Their intervals and leave-one-out influence ranges are in the machine-readable report. The small Shimen subset does not override its failed whole-series/physical result.
+
+All reservoirs satisfy the 1.1× OSM bound for high-storage observations. Baoshan II, Liyutan and Feitsui have lower candidate area at the lowest observed storage date than at the maximum-storage reference. Shimen fails this direction check as well as having weak correlation, so no water-area display or threshold classification is enabled. Pre/post-gap water-level pairs within fixed 0.5 m tolerance number 18, 0, 48 and 0 respectively; every pair's area difference is retained rather than inventing a match where none exists.
+
+The pipeline has 31 passing tests and passes Ruff. Tests cover deterministic bootstrap and missingness, unclipped Otsu, publication grades/physical failures, source hash preservation, all calibrated output hashes, exact frame lengths and credential isolation across redirects. Frontend cross-language smoke verification independently matched every displayed area and sensitivity value for all 84 observations to nine decimal places. Complete browser/deployment verification is recorded separately after final integration.
+
+Public data currently totals 44,078,578 bytes across 236 files before frontend build assets. The old 52,259,971-byte full-frame browse source set remains outside public output; the site serves small 384-pixel overviews and calibrated reservoir grids. Each channel stays below the 12 MiB reservoir budget and the overall deployment stays below 90 MB.
+
+## Historical evidence — initial browse release
+
+The sections below describe the earlier scope and decisions. They remain unchanged as an audit trail; current publication is governed by the review method above and `docs/methods.md`.
 
 ## Preflight
 

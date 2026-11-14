@@ -1,3 +1,5 @@
+import type { Language } from "./i18n";
+
 export type Polarization = "HH" | "HV";
 export interface Reservoir {
   key: string;
@@ -19,6 +21,7 @@ export interface Acquisition {
 export interface DataIndex {
   mode: "browse" | "numeric" | "mixed";
   numeric_reservoirs?: string[];
+  image_reservoirs?: string[];
   collection: string;
   generated_at: string;
   reservoirs: Reservoir[];
@@ -41,8 +44,12 @@ export interface OfficialSeries {
 }
 export const dataUrl = (path: string) =>
   `${import.meta.env.BASE_URL}data/${path}`;
-export function formatDate(value: string, short = false): string {
-  return new Intl.DateTimeFormat("zh-TW", {
+export function formatDate(
+  value: string,
+  short = false,
+  lang: Language = "zh-TW",
+): string {
+  return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "zh-TW", {
     day: "2-digit",
     month: short ? "short" : "long",
     ...(short ? {} : { year: "numeric" }),
@@ -113,11 +120,21 @@ function object(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null;
 }
 const text = (v: unknown): v is string => typeof v === "string";
+const validDate = (value: unknown): value is string =>
+  text(value) && Number.isFinite(Date.parse(value));
+const assetPath = (value: unknown): value is string =>
+  text(value) &&
+  /^[a-zA-Z0-9_./-]+$/.test(value) &&
+  !value.startsWith("/") &&
+  !value
+    .split("/")
+    .some((part) => part === ".." || part === "." || part === "");
 export function parseIndex(value: unknown): DataIndex {
   if (
     !object(value) ||
     !["browse", "numeric", "mixed"].includes(String(value.mode)) ||
     !text(value.collection) ||
+    !validDate(value.generated_at) ||
     !Array.isArray(value.reservoirs) ||
     value.reservoirs.length === 0 ||
     !Array.isArray(value.dates) ||
@@ -146,35 +163,58 @@ export function parseIndex(value: unknown): DataIndex {
       !r.bbox.every(Number.isFinite)
     )
       throw new Error("水庫中繼資料格式有誤");
+  const reservoirKeys = new Set(
+    value.reservoirs.map((reservoir) => reservoir.key),
+  );
+  if (reservoirKeys.size !== value.reservoirs.length)
+    throw new Error("Duplicate reservoir keys.");
+  for (const field of ["numeric_reservoirs", "image_reservoirs"]) {
+    const keys = value[field];
+    if (
+      keys !== undefined &&
+      (!Array.isArray(keys) ||
+        new Set(keys).size !== keys.length ||
+        !keys.every((key) => text(key) && reservoirKeys.has(key)))
+    )
+      throw new Error("Invalid numerical reservoir selection.");
+  }
+  if (value.mode === "mixed" && !Array.isArray(value.numeric_reservoirs))
+    throw new Error(
+      "Mixed archives must declare which reservoirs publish area.",
+    );
   if (
-    value.mode === "mixed" &&
-    (!Array.isArray(value.numeric_reservoirs) ||
-      value.numeric_reservoirs.length === 0 ||
-      !value.numeric_reservoirs.every(
-        (key) =>
-          text(key) &&
-          value.reservoirs instanceof Array &&
-          value.reservoirs.some((r) => object(r) && r.key === key),
-      ))
+    Array.isArray(value.image_reservoirs) &&
+    Array.isArray(value.numeric_reservoirs) &&
+    !value.numeric_reservoirs.every((key) =>
+      (value.image_reservoirs as unknown[]).includes(key),
+    )
   )
-    throw new Error("Invalid numerical reservoir selection");
+    throw new Error("Area publication requires a calibrated image archive.");
   for (const d of value.dates)
     if (
       !object(d) ||
       !text(d.utc_date) ||
       !Number.isFinite(Date.parse(d.utc_date)) ||
-      !text(d.utc) ||
-      !text(d.local) ||
+      !validDate(d.utc) ||
+      !validDate(d.local) ||
+      d.utc.slice(0, 10) !== d.utc_date ||
+      localGaugeDate(d.utc) !== d.local.slice(0, 10) ||
+      Date.parse(d.utc) !== Date.parse(d.local) ||
       !text(d.granule) ||
       !object(d.browse) ||
       !object(d.available) ||
       !["HH", "HV"].every(
         (p) =>
-          text((d.browse as Record<string, unknown>)[p]) &&
+          assetPath((d.browse as Record<string, unknown>)[p]) &&
           typeof (d.available as Record<string, unknown>)[p] === "boolean",
       )
     )
       throw new Error("取像中繼資料格式有誤");
+  const timestamps = value.dates.map((date) => Date.parse(date.utc));
+  if (
+    timestamps.some((timestamp, i) => i > 0 && timestamp <= timestamps[i - 1])
+  )
+    throw new Error("Acquisitions must be unique and chronological.");
   return value as unknown as DataIndex;
 }
 export function parseOfficial(value: unknown): OfficialSeries {

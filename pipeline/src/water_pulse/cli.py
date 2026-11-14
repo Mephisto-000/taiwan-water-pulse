@@ -34,6 +34,7 @@ def parser() -> argparse.ArgumentParser:
             "export",
             "all",
             "gates",
+            "release",
         ],
     )
     value.add_argument(
@@ -211,6 +212,28 @@ def main() -> int:
         )
         return 0
     try:
+        if args.command == "release":
+            if args.dates:
+                raise ValueError("The reviewed release requires the complete acquisition list.")
+            from .release import release
+
+            report = release(ROOT, all_names, keys)
+            print(
+                json.dumps(
+                    {
+                        key: {
+                            "grade": item["statistics"]["grade"],
+                            "n": item["statistics"]["n"],
+                            "pearson_r": item["statistics"]["pearson_area_vs_level"],
+                            "spearman_rho": item["statistics"]["spearman_area_vs_level"],
+                            "pearson_ci95": item["statistics"]["pearson_ci95"],
+                        }
+                        for key, item in report["reservoirs"].items()
+                    },
+                    indent=2,
+                )
+            )
+            return 0
         if args.command == "read":
             _read(args, names, keys)
             return 0

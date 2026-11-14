@@ -1,0 +1,210 @@
+{
+  "si_usage": "SI-assisted plotting code and annotations; radar observations are not SI-generated",
+  "display_note": "Identical fixed dB mapping for every date and reservoir; OSM is a reference outline, not water truth.",
+  "figures": [
+    {
+      "reservoir": "baoshan2",
+      "utc_date": "2025-11-05",
+      "figure": "baoshan2-2025-11-05-gcov-hh.png",
+      "source_cached_aoi": "data/cache/baoshan2_20251105.npz",
+      "source_cached_aoi_sha256": "13e0c3533c2f95fd20a64a334239eef5904ac49b710f189d71ec791d7c8c81ab",
+      "cached_granule": "NISAR_L2_PR_GCOV_004_111_A_014_4005_DHDH_A_20251105T211641_20251105T211714_P05023_N_F_J_001",
+      "source_grid": {
+        "epsg": 32651,
+        "width": 388,
+        "height": 367,
+        "pixel_spacing": [
+          10.0,
+          -10.0
+        ],
+        "top_left_pixel_center": [
+          301395.0,
+          2738055.0
+        ]
+      },
+      "source_valid_fraction_inside_osm": 1.0,
+      "display_db_range": [
+        -35.0,
+        5.0
+      ],
+      "processing": "10*log10(raw positive finite HHHH power), fixed display clipping, no filtering or reprojection; OSM boundary rasterized from WGS84 into actual source UTM coordinates",
+      "official_record": {
+        "local_date": "2025-11-06",
+        "nisar_utc_date": "2025-11-05",
+        "pct": 100.0,
+        "level_m": 151.373
+      },
+      "figure_sha256": "8b166862dc1b5dc5ebc7f01784ad3a3c16972170e3d0d91b42537dca30635d14"
+    },
+    {
+      "reservoir": "baoshan2",
+      "utc_date": "2026-03-17",
+      "figure": "baoshan2-2026-03-17-gcov-hh.png",
+      "source_cached_aoi": "data/cache/baoshan2_20260317.npz",
+      "source_cached_aoi_sha256": "607e1891cbfc83bc829e3caf61d1b4fa4a17f5891e338d61b09d02c500b1eb5d",
+      "cached_granule": null,
+      "source_grid": {
+        "epsg": 32651,
+        "width": 388,
+        "height": 367,
+        "pixel_spacing": [
+          10.0,
+          -10.0
+        ],
+        "top_left_pixel_center": [
+          301395.0,
+          2738055.0
+        ]
+      },
+      "source_valid_fraction_inside_osm": 1.0,
+      "display_db_range": [
+        -35.0,
+        5.0
+      ],
+      "processing": "10*log10(raw positive finite HHHH power), fixed display clipping, no filtering or reprojection; OSM boundary rasterized from WGS84 into actual source UTM coordinates",
+      "official_record": {
+        "local_date": "2026-03-18",
+        "nisar_utc_date": "2026-03-17",
+        "pct": 28.190063569277505,
+        "level_m": 130.808
+      },
+      "figure_sha256": "16dff9bfb5c14b6d548d758042d42c5dda0cf03378617ba61630343c9a24ca2f"
+    },
+    {
+      "reservoir": "baoshan2",
+      "utc_date": "2026-06-21",
+      "figure": "baoshan2-2026-06-21-gcov-hh.png",
+      "source_cached_aoi": "data/cache/baoshan2_20260621.npz",
+      "source_cached_aoi_sha256": "79587948b90dc15163c2b8f52454022c68dfa59ac951b5837d61ef05c199c133",
+      "cached_granule": "NISAR_L2_PR_GCOV_023_111_A_014_4005_DHDH_A_20260621T211644_20260621T211716_P05023_N_F_J_001",
+      "source_grid": {
+        "epsg": 32651,
+        "width": 388,
+        "height": 367,
+        "pixel_spacing": [
+          10.0,
+          -10.0
+        ],
+        "top_left_pixel_center": [
+          301395.0,
+          2738055.0
+        ]
+      },
+      "source_valid_fraction_inside_osm": 1.0,
+      "display_db_range": [
+        -35.0,
+        5.0
+      ],
+      "processing": "10*log10(raw positive finite HHHH power), fixed display clipping, no filtering or reprojection; OSM boundary rasterized from WGS84 into actual source UTM coordinates",
+      "official_record": {
+        "local_date": "2026-06-22",
+        "nisar_utc_date": "2026-06-21",
+        "pct": 100.0,
+        "level_m": 151.434
+      },
+      "figure_sha256": "36899b60fa4f9d6666ad415d5a0ea2a0ae40a036c553cccce6621762eb90254a"
+    },
+    {
+      "reservoir": "liyutan",
+      "utc_date": "2025-11-05",
+      "figure": "liyutan-2025-11-05-gcov-hh.png",
+      "source_cached_aoi": "data/cache/liyutan_20251105.npz",
+      "source_cached_aoi_sha256": "b724e950a940c2885d24fe69ea4cc9e634efcfe88b5ecaaca049192598cd7367",
+      "cached_granule": "NISAR_L2_PR_GCOV_004_111_A_014_4005_DHDH_A_20251105T211641_20251105T211714_P05023_N_F_J_001",
+      "source_grid": {
+        "epsg": 32651,
+        "width": 739,
+        "height": 365,
+        "pixel_spacing": [
+          10.0,
+          -10.0
+        ],
+        "top_left_pixel_center": [
+          274315.0,
+          2696315.0
+        ]
+      },
+      "source_valid_fraction_inside_osm": 1.0,
+      "display_db_range": [
+        -35.0,
+        5.0
+      ],
+      "processing": "10*log10(raw positive finite HHHH power), fixed display clipping, no filtering or reprojection; OSM boundary rasterized from WGS84 into actual source UTM coordinates",
+      "official_record": {
+        "local_date": "2025-11-06",
+        "nisar_utc_date": "2025-11-05",
+        "pct": 92.03485737223063,
+        "level_m": 297.86
+      },
+      "figure_sha256": "8b31999fa7b564668fd6ef5bd6be3644a1b4335120ba44579bd83d2ad38edd74"
+    },
+    {
+      "reservoir": "liyutan",
+      "utc_date": "2026-03-17",
+      "figure": "liyutan-2026-03-17-gcov-hh.png",
+      "source_cached_aoi": "data/cache/liyutan_20260317.npz",
+      "source_cached_aoi_sha256": "7a57f3ebadf70412a22abc38aaa6abc8de8e69817321c25f2fe6654957212323",
+      "cached_granule": null,
+      "source_grid": {
+        "epsg": 32651,
+        "width": 739,
+        "height": 365,
+        "pixel_spacing": [
+          10.0,
+          -10.0
+        ],
+        "top_left_pixel_center": [
+          274315.0,
+          2696315.0
+        ]
+      },
+      "source_valid_fraction_inside_osm": 1.0,
+      "display_db_range": [
+        -35.0,
+        5.0
+      ],
+      "processing": "10*log10(raw positive finite HHHH power), fixed display clipping, no filtering or reprojection; OSM boundary rasterized from WGS84 into actual source UTM coordinates",
+      "official_record": {
+        "local_date": "2026-03-18",
+        "nisar_utc_date": "2026-03-17",
+        "pct": 34.37508362575371,
+        "level_m": 276.92
+      },
+      "figure_sha256": "cef21da4a761fbbc5dcf73af4d33a41617abe1810d44b86a651109df1079bff4"
+    },
+    {
+      "reservoir": "liyutan",
+      "utc_date": "2026-06-21",
+      "figure": "liyutan-2026-06-21-gcov-hh.png",
+      "source_cached_aoi": "data/cache/liyutan_20260621.npz",
+      "source_cached_aoi_sha256": "3b49d804de2351565d613e1d79eec61418fdcb496d4b3465c57d3645b4e31773",
+      "cached_granule": "NISAR_L2_PR_GCOV_023_111_A_014_4005_DHDH_A_20260621T211644_20260621T211716_P05023_N_F_J_001",
+      "source_grid": {
+        "epsg": 32651,
+        "width": 739,
+        "height": 365,
+        "pixel_spacing": [
+          10.0,
+          -10.0
+        ],
+        "top_left_pixel_center": [
+          274315.0,
+          2696315.0
+        ]
+      },
+      "source_valid_fraction_inside_osm": 1.0,
+      "display_db_range": [
+        -35.0,
+        5.0
+      ],
+      "processing": "10*log10(raw positive finite HHHH power), fixed display clipping, no filtering or reprojection; OSM boundary rasterized from WGS84 into actual source UTM coordinates",
+      "official_record": {
+        "local_date": "2026-06-22",
+        "nisar_utc_date": "2026-06-21",
+        "pct": 82.47155499367888,
+        "level_m": 295.05
+      },
+      "figure_sha256": "f60f775112c7b222acee1a51468ad9846351de22305e530f5a6802bf1706a7f0"
+    }
+  ]
+}

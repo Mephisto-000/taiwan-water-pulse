@@ -4,11 +4,12 @@
 
 | Time | Screen / action | English narration |
 | --- | --- | --- |
-| 0–5 s | Baoshan II, 6 November 2025 official date. Show full-frame radar browse and gauge. | “Taiwan's Water Pulse follows reservoirs through NISAR's first year.” |
-| 5–11 s | Move toward 18 March 2026; point to the official percentage. | “Baoshan II's official storage fell from full to 28.2 percent in this sampled record.” |
-| 11–16 s | Show the marked March–June radar gap and the official samples. | “The radar record has a gap. We show it instead of inventing observations.” |
-| 16–22 s | Select 22 June or 4 July official date; switch HH to HV. | “Storage recovered. These controls switch between two channels the satellite actually measured.” |
-| 22–27 s | Select Feitsui and show its official curve. | “Feitsui follows a different rhythm. Its cause needs further investigation.” |
-| 27–30 s | Open sources and limitations. | “Explore the evidence. Browse imagery is visual; area measurement is not yet validated.” |
+| 0–6 s | Baoshan II, 5 November 2025 UTC, compared with 17 March 2026. The fixed-grid reservoir crop and OSM reference outline remain aligned. | “Taiwan's Water Pulse compares calibrated radar views of a changing water's edge.” |
+| 6–12 s | Baoshan II, 17 March UTC, compared with the starting scene. The paired 18 March Taiwan gauge records 28.2% storage. | “Storage fell to 28.2 percent. Compare the shoreline and radar pattern with the full-storage scene.” |
+| 12–18 s | Liyutan, 17 March UTC versus 21 June. The official sampled minimum occurred on 31 March, inside the radar gap. | “Radar missed the lowest sampled storage. We preserve the gap instead of inventing observations.” |
+| 18–24 s | Baoshan II, 21 June UTC versus 17 March. The 22 June Taiwan gauge records 100.0% storage. | “Water returned. Radar area and official storage show different physical quantities.” |
+| 24–30 s | Feitsui, 20 August UTC versus 17 March. Read the different trajectory without assigning an unsupported cause. | “Feitsui follows a different rhythm. Explore the experimental estimates, uncertainty, and source records.” |
 
-Use the application labels to distinguish UTC acquisition dates from Taiwan gauge dates. Keep captions readable, avoid institutional logos, and do not describe the work as real-time monitoring. A recording, hosting URL and human review remain team tasks.
+Open [the English tour](https://taiwan-water-pulse.vercel.app/?demo=1) at 1920×1080. Wait for the preparation message to finish; the 30-second sequence starts only after required imagery and official records are preloaded. The interface advances through five six-second chapters and stops automatically. The narration above is a recording guide; the application does not generate or play audio.
+
+Use the application labels to distinguish UTC acquisition dates from Taiwan gauge dates. Analysis uses a common 30 m native UTM HH grid, a 60% surrounding-land median power threshold and an exact OSM polygon; finer display grids do not change that analysis resolution. A/A/B/A grades describe exploratory results, not an independent validation pass; Shimen B has low confidence. Keep captions readable, avoid institutional logos, and do not describe the work as real-time monitoring. A recording, public video/slide URL and human review remain team tasks.

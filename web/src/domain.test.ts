@@ -62,6 +62,49 @@ describe("exported archive contract", () => {
       parseOfficial({ ...baoshan, records: [{ local_date: "x", pct: NaN }] }),
     ).toThrow();
   });
+  it("permits calibrated C-grade images without claiming published area", () => {
+    expect(
+      parseIndex({
+        ...manifest,
+        mode: "mixed",
+        image_reservoirs: ["baoshan2"],
+        numeric_reservoirs: [],
+      }).image_reservoirs,
+    ).toEqual(["baoshan2"]);
+    expect(() =>
+      parseIndex({
+        ...manifest,
+        mode: "mixed",
+        image_reservoirs: [],
+        numeric_reservoirs: ["baoshan2"],
+      }),
+    ).toThrow();
+  });
+  it("rejects duplicate acquisitions, inconsistent local timestamps and asset path traversal", () => {
+    expect(() =>
+      parseIndex({
+        ...manifest,
+        dates: [manifest.dates[0], manifest.dates[0]],
+      }),
+    ).toThrow();
+    expect(() =>
+      parseIndex({
+        ...manifest,
+        dates: [{ ...manifest.dates[0], local: "2025-11-06T06:16:41+08:00" }],
+      }),
+    ).toThrow();
+    expect(() =>
+      parseIndex({
+        ...manifest,
+        dates: [
+          {
+            ...manifest.dates[0],
+            browse: { HH: "../../token.md", HV: "browse/20251105_HV.png" },
+          },
+        ],
+      }),
+    ).toThrow();
+  });
 });
 describe("time and scientific primitives", () => {
   it("handles Taiwan midnight across year/month boundaries", () => {
@@ -91,4 +134,6 @@ describe("time and scientific primitives", () => {
 it("formats display dates in Taiwan Traditional Chinese", () => {
   expect(formatDate("2026-03-18")).toBe("2026年3月18日");
   expect(formatDate("2026-03-18", true)).toBe("3月18日");
+  expect(formatDate("2026-03-18", false, "en")).toBe("18 March 2026");
+  expect(formatDate("2026-03-18", true, "en")).toBe("18 Mar");
 });

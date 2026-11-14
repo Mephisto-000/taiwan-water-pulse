@@ -127,6 +127,32 @@ export async function checkDeployment(directory) {
           : (index.numeric_reservoirs ?? []);
       if (!Array.isArray(numericKeys))
         errors.push("Invalid numeric_reservoirs");
+      const imageKeys = index.image_reservoirs ?? numericKeys;
+      const reservoirKeys = new Set(index.reservoirs.map((r) => r?.key));
+      if (
+        !Array.isArray(imageKeys) ||
+        new Set(imageKeys).size !== imageKeys.length ||
+        !imageKeys.every(
+          (key) => typeof key === "string" && reservoirKeys.has(key),
+        )
+      )
+        errors.push("Invalid image_reservoirs");
+      if (
+        Array.isArray(numericKeys) &&
+        Array.isArray(imageKeys) &&
+        !numericKeys.every((key) => imageKeys.includes(key))
+      )
+        errors.push("Published area must have a calibrated image archive");
+      const reviewedRelease = typeof index.release_method === "string";
+      if (reviewedRelease) {
+        requireAsset("methods.md");
+        for (const report of [
+          "validation.json",
+          "historical-validation.json",
+          "si-usage.json",
+        ])
+          await json(`data/${report}`);
+      }
       for (const reservoir of index.reservoirs) {
         if (
           !reservoir ||
@@ -137,12 +163,20 @@ export async function checkDeployment(directory) {
           continue;
         }
         requireAsset(`official/${reservoir.key}.json`);
-        if (Array.isArray(numericKeys) && numericKeys.includes(reservoir.key)) {
+        if (Array.isArray(imageKeys) && imageKeys.includes(reservoir.key)) {
           const base = `data/reservoirs/${reservoir.key}`;
           const meta = await json(`${base}/meta.json`);
           if (meta) declaredAssets(meta, base);
+          const nativeAnalysis =
+            meta?.analysis && typeof meta.analysis === "object";
+          if (
+            String(index.release_method).startsWith("relative_power") &&
+            !nativeAnalysis
+          )
+            errors.push(`Missing native analysis metadata: ${base}/meta.json`);
           for (const file of ["mask.bin", "timeseries.json"])
             requireAsset(file, base);
+          if (reviewedRelease) requireAsset("timeseries.csv", base);
           for (const date of index.dates) {
             if (!/^\d{4}-\d{2}-\d{2}$/.test(date?.utc_date)) {
               errors.push("Invalid acquisition date");
@@ -151,6 +185,11 @@ export async function checkDeployment(directory) {
             for (const pol of ["HH", "HV"])
               requireAsset(
                 `${date.utc_date.replaceAll("-", "")}_${pol}.bin`,
+                base,
+              );
+            if (nativeAnalysis)
+              requireAsset(
+                `analysis/${date.utc_date.replaceAll("-", "")}_HH.bin`,
                 base,
               );
           }

@@ -1,58 +1,66 @@
 # Methods and limitations
 
-## Scope of this release
+## Current release: separate display and analysis grids
 
-The application is a historical browse-image explorer. It presents the supplied 21 NISAR observation dates alongside official reservoir storage and water-level records for Baoshan II, Liyutan, Shimen and Feitsui. This is fallback level 2 in the brief. Calibrated numerical water mapping was tested, failed the held-out validation requirement, and is not presented as a product result.
+The current method is `relative_power_v3`. Four reservoirs each have 21 real NISAR GCOV HH/HV observations. The image viewer uses a fixed, north-up 10 m display grid for Baoshan II, Liyutan and Shimen, and 20 m for Feitsui to respect the per-channel data budget. Classification uses a separate **30 m native UTM grid for all four reservoirs**. Drawing this mask over the finer image does not create a 10 m classification. Grid spacing is not effective spatial resolution.
 
-## Inputs and alignment
+Products are restricted to `NISAR_L2_GCOV_PROVISIONAL_V1`, ascending Track 111, Frame 014, mode 4005 and CRID P05023. Frequency-A `HHHH`/`HVHV` are calibrated gamma-0 linear power. Actual source coordinates are EPSG:32651, 10 m centre spacing and descending y. Mask codes 0 and 255, nonpositive power and nonfinite values are invalid. Source granules, cache hashes and source URLs are retained. Four early caches identify their granule through the UTC filename and original manifest rather than an embedded identity field; provenance explicitly labels that legacy basis.
 
-The catalog restricts products to `NISAR_L2_GCOV_PROVISIONAL_V1`, relative Track 111 ascending, Frame 014, mode 4005, source A, full-frame coverage and CRID P05023. The mixed-mode duplicate is excluded. Each record preserves the full granule name, UTC acquisition time, Taiwan acquisition time and upstream URLs.
+The display pipeline averages valid source power in 3×3 windows, bilinearly reprojects to EPSG:3857, converts with `10 log10(power)`, and quantizes −35 through +5 dB to Uint8 1–255; 0 means no data. The same scale applies to HH and HV and all dates. OSM outlines are geographic references, not surveyed full-storage shorelines. Full-frame browse images are reduced to 384-pixel context overviews; they never enter quantitative processing. Original source PNGs remain outside deployed output with their original checksums.
 
-NISAR observations near 21:16 UTC occur near 05:16 in Taiwan on the following date. The matching WRA gauge record is the local 07:00 observation, about 1.7 hours later. Alignment is by the Taiwan calendar date, including month and year boundaries. It is not a comparison of simultaneous measurements.
+## Fixed relative-power classification
 
-Published official curves use a fresh WRA cache completed at `2026-11-14T03:02:42.315314Z` (11:02 Taiwan time). There are 88 sampled dates per station, including acquisition-aligned dates, the supplied supplementary dates and approximately five-day samples. They are not a complete daily series. The refresh used 45 requests; together with the separate two-date probe this is 46 requests, below the 60-request budget. Official seed records from Appendix B remain a 25-date fallback and checksum fixture for all eight stations. Exported `source_kind` distinguishes a fresh source response from seed data. A blank water level paired with a zero capacity rate is missing, not an empty reservoir. The four main exported series preserve one missing observation each for Baoshan II, Liyutan and Feitsui, and none for Shimen. All seed percentages agree with fresh records at the supplied 0.1% precision. One water-level rounding difference occurs for Baoshan II on 8 October 2026: the seed has 151.13 m while the fresh response rounds to 151.14 m. The export follows the actual response rather than silently changing it to match the seed.
+The analysis pipeline starts separately from the original GCOV linear power. It performs area-weighted averaging onto complete 30 m cells aligned to the actual full-product UTM origin. It does **not** average dB, does not reuse the display pipeline's 3×3-filtered values, and does not apply a second smoothing/reprojection step. Invalid source pixels are excluded from averaging. Every date uses the same analysis grid and exact rasterized OSM polygon with **0 m buffer**.
 
-## Browse imagery
+The predeclared primary channel is HH for every reservoir. For each date, the reference is the median linear HH power of valid complete coarse cells outside the projected geographic reservoir bbox but within the actual cached AOI. The cache extends approximately 600 m around the bbox. This local reference differs from the review screenshot's approximately 5.1 km reference window. It is not verified ground-truth land; another waterbody, urban structure or topography can contaminate it.
 
-The offline pipeline copies public ASF browse PNGs and records their availability and provenance. The browser reads the site's own assets. HH and HV refer to channels actually measured on the acquisition; changing the channel selects existing data. The application does not derive VV or VH.
+A candidate water pixel must be inside the OSM polygon and have power below **0.6 × the same-date reference median power**. The relative ratio is fixed; the corresponding dB cutoff changes with that date's reference. Neither official records nor correlations select the channel, ratio or mask buffer. Analysis power is converted to the same Uint8 dB encoding as the display archive, and classification uses those exported bytes so the frontend and Python results reproduce exactly.
 
-Browse PNGs are display products. Their brightness and display stretch must not be interpreted as calibrated γ⁰ (dB), and their pixel counts must not be converted into water area. Full-frame images are shown separately from the geographic locator. They are not overlaid as a georeferenced numerical raster. Enlargement reveals display pixels, not new spatial detail.
+Area is the classified count times the UTM pixel-square area, 900 m². This is projected-grid area rather than surveyed ground truth. Sensitivity repeats classification at relative ratios **0.5 and 0.7**; a user-adjusted ratio uses ±0.1. This replaces the intermediate Otsu experiment's ±1.5 dB sensitivity. The range is parameter sensitivity, not a statistical confidence interval or a complete error budget. The unbuffered polygon constrains maximum area and can omit inundation beyond the mapped shoreline.
 
-Calm water often looks dark because it reflects the radar pulse away from the satellite. Land and vegetation scatter some energy back. Wind, rain, floating debris and exposed smooth banks can change that contrast. A dark feature alone is insufficient evidence of water.
+`meta.analysis` records the grid, reference medians by UTC date, fixed ratio, sensitivity ratios, mask and affine mapping to display pixels. Its fourth-corner projection residual is retained. Each time-series record stores the actual dB cutoff, reference median, ratio, valid fraction and QA flags. QA retains low-valid-fraction dates rather than deleting observations; no rain/wind flag is inferred merely from brightness.
 
-## Time series and missingness
+## Scale audit and descriptive validation
 
-Date controls use actual acquisitions; the UTC product-date interval from 18 March through 20 June 2026 has no listed product for this frame. The interface labels those UTC dates. On the Taiwan gauge-date axis, the corresponding shaded dates are shifted one day (19 March through 21 June), consistent with the acquisition-to-gauge alignment. It does not interpolate or manufacture radar images. Official observations within the gap remain useful and distinct from radar observations.
+The sequential audit first changed only the historical Baoshan II channel; that did not rescue the old clipped-threshold method. It then reproduced the expected coarse-scale signal from original linear power: 170 m HH bbox dark counts gave r=0.969767 for Baoshan II and r=0.922357 for Liyutan (n=21 each). Only after this passed the predeclared r>0.85 check were the fixed 170, 100, 50, 30 and 10 m HH/HV comparisons examined. All results, including weak/negative ones, remain in the diagnostic report.
 
-Official curves represent sampled gauge records. Connecting available samples guides the eye and does not claim dense daily measurements. A missing official value breaks the curve. Missing values are not replaced by zero or a prior observation.
+With the final exact OSM mask and unchanged HH/0.6/0 m rule, 30 m is the finest listed scale satisfying grade A's r and interval requirements for both core reservoirs. At 10 m, both still have r>0.85, but Baoshan II's interval lower bound is 0.517994, below 0.6. Thus 10 m is not devoid of signal. Scale was selected after exploratory comparison and is **not** an independently held-out result. The 30 m choice also implements a 3×3 native linear multilook while preserving finer display imagery.
 
-Surface area and stored volume are different physical quantities. Storage percentage comes from official gauges. The project does not infer storage volume from imagery.
+Evaluation reports full-series Pearson r and Spearman rho against official water level, paired n, and 95% percentile intervals from 2,000 paired bootstrap samples with fixed seed 20261114. Null official values are excluded from pairing, never replaced with zero. Degenerate constant resamples are excluded and the valid count is reported. The bootstrap assumes exchangeable dates; temporal dependence can make its intervals optimistic. The below-95% storage subset is reported separately. Leave-one-out correlation ranges describe single-date influence, not forecasts or new independent validation.
 
-## Calibrated numerical investigation
+- A: r≥0.8 and the 95% interval lower bound≥0.6, with physical checks passing.
+- B: r≥0.5 with physical checks passing, but A criteria not met. These values are experimental.
+- C: weaker/undefined association or a failed physical check; calibrated imagery remains available while quantitative UI is suppressed.
 
-Authenticated HDF5 window reads and file-structure inspection passed G-A and G-B. Source frequency-A HH/HV arrays were float32 power in EPSG:32651 with 10 m centre spacing and descending y. Dataset attributes identified NaN fill, mask 0 as invalid/partial focus, mask 255 as outside imagery, and positive subswath codes as valid. Actual measured read timing, bytes, source structure and mask attributes are retained in [numeric-gates.json](../pipeline/assets/numeric-gates.json) and [gates](gates.md).
+Current grades are Baoshan II A, Liyutan A, Shimen B and Feitsui A. Even A denotes descriptive review criteria, not independently measured segmentation accuracy. **Shimen is low confidence:** r=0.504781, interval [−0.357065, 0.828193] and rho=0.083523. Its interval crosses zero; it must not be presented as a reliable relationship or effective monitoring result.
 
-The offline path filters 3×3 windows using invalid-aware arithmetic means in linear power, bilinearly reprojects onto a fixed EPSG:3857 reservoir grid and then converts with `10 log10(power)`. Valid dB values over −35 to +5 map to Uint8 1–255; 0 remains invalid. Ground pixel area is latitude-corrected. A sensitivity interval uses threshold ±1.5 dB; it is not a statistical confidence interval.
+Physical checks require lower candidate area at the lowest observed storage date than at the maximum-storage reference and high-storage area≤1.1× supplied OSM area. The polygon itself constrains area, so the latter is a consistency check, not independent water truth. All four pass these checks under the final rule. Pre/post-gap observations within a fixed 0.5 m water-level tolerance have every matched area difference listed; no match is fabricated if none exists.
 
-The initial fixed HH method failed the prescribed temporal-direction gate for Baoshan II. Independent replay directly on the native UTM grid reproduced the failure without Web Mercator reprojection or quantization. That evidence did not support a coordinate-order or pixel-area implementation bug as the explanation. The observed HH water-polygon median was brighter than the specified −14 dB upper threshold bound, so that rule selected a dark tail rather than most mapped water extent. The investigation did not establish a physical cause for the remaining variation.
+## Polarization and the exposed-bed hypothesis
 
-Under the brief's R-01 fallback, two candidate rules were frozen using only these four calibration dates: 2025-11-05, 2026-01-16, 2026-03-17 and 2026-06-21. The remaining 17 listed acquisition dates were held out; no threshold or mask fitting used those dates.
+The candidate-water frequency map counts below-threshold HH pixels on the **analysis grid**, divided by valid observations at that pixel. It describes the 21 listed acquisitions, not long-term climate frequency. The HH/HV spatial-contrast chart separately compares display-grid OSM interiors with a 150–300 m exterior ring: `(median ring dB − median inside dB) / sqrt((variance ring + variance inside) / 2)`. This is spatial brightness contrast, not classification accuracy; neither group is verified water/land truth.
 
-| Reservoir | Frozen classification rule | Held-out Spearman ρ | Held-out Pearson r | Paired n |
-| --- | --- | ---: | ---: | ---: |
-| Baoshan II | HV; 0 m OSM buffer; −15.8587598425 dB | 0.421569 | −0.074494 | 17 |
-| Liyutan | HH; 150 m OSM buffer; −14 dB | 0.436810 | 0.387975 | 17 |
+A separate hypothesis check selects pixels classified as HH water in November but not in March, within the final 30 m OSM mask. Baoshan II has 203 such pixels: March medians are HH −5.55 dB and HV −15.79 dB, changes of +6.61 and +2.20 dB from November. Liyutan has 393: March HH −6.65 dB and HV −14.69 dB, changes of +5.83 and +4.25 dB. HV remains darker than the exterior reference in these candidate transition areas. This is consistent with channel-dependent contrast, but **does not establish exposed dry bed or prove HV misclassification**: HH defines the groups (selection bias), and independent land-cover truth is absent. The report also includes stable-HH-water and exterior-reference comparisons.
 
-The requirement was held-out Spearman **≥0.8 for each reservoir**. Both failed, even though their four calibration dates had the expected direction. Including calibration dates yields Spearman 0.537662 for Baoshan II's HV candidate and 0.482131 for Liyutan's HH candidate (n=21 each); those are descriptive in-sample-inclusive figures, not an independent validation pass. Baoshan II's HH all-date Spearman was −0.4 (n=21).
+## Official data, missingness and history
 
-The safe reports [numeric-calibration.json](../pipeline/assets/numeric-calibration.json) and [numeric-validation.json](../pipeline/assets/numeric-validation.json) preserve the frozen settings, date partitions, candidate counts and statistics. Candidate areas are diagnostic outputs; they are not published as validated water areas. Shimen and Feitsui did not receive a validated numerical product either. The release remains fallback level 2 across all four reservoirs.
+Acquisitions near 21:16 UTC occur near 05:16 Taiwan time the following day. Comparison uses that local date's 07:00 official observation, roughly 1.7 hours later, not a simultaneous measurement. The WRA cache completed at 2026-11-14T03:02:42.315314Z and contains 88 sampled dates per main reservoir, not a complete daily series. The UTC product gap is 2026-03-18 through 2026-06-20; the official local-date gap shading shifts one day. No radar value is interpolated through the gap. Official nulls remain null. Storage percentage is gauge-derived; surface area is not volume.
 
-The code contains numerical processing and UI capabilities, but the released manifest does not enable them and no numerical raster assets are published. A future method needs new, independent validation; retuning against these 17 already-inspected dates must not be presented as a fresh held-out test. Synthetic unit tests establish software behavior, not real-world water-detection accuracy.
+The original four-date calibration / 17-date held-out experiment remains failed. Its validation set was not merely the post-gap full-storage period. The subsequent pooled-Otsu v2 experiment is retained as an **intermediate diagnostic**, not the final method. Neither is rewritten or relabelled a passed independent validation. Original WRA records and source browse bytes remain unchanged; one previously documented 0.01 m seed/live rounding difference follows the fetched response.
 
-A target 10 m pixel spacing does not imply 10 m effective resolution. Provisional calibration and near-real-time orbit precision may change with reprocessing. Speckle, steep-bank layover, radar shadow, wind, debris, resampling and quantization belong in any eventual uncertainty discussion.
+## Reproduction and public evidence
 
-## Interpretation
+With all source AOI caches, run these commands from the repository root:
 
-Differences between Feitsui and western reservoirs are observations in the supplied gauge record. Rainfall patterns, operations and demand may be hypotheses for those differences; they are not established causes in this release. No industry-supply or typhoon attribution is asserted without a supporting source.
+```bash
+uv run --project pipeline python -m water_pulse.diagnostics
+uv run --project pipeline water-pulse release --offline
+uv run --project pipeline pytest pipeline/tests
+uv run --project pipeline ruff check pipeline
+```
 
-See [gate evidence](gates.md), [sources](data-sources.md) and [decisions](decisions.md).
+Export captures the source revision and dirty state before writing generated files. It retains hashes for source caches and published rasters. Raw credentials, temporary signed download locations and local account paths are never exported. The ordinary offline `all` command validates and preserves an existing release rather than reverting it to browse-only output.
+
+[Final validation](https://taiwan-water-pulse.vercel.app/data/validation.json) · [Sequential scale/polarization diagnostics](https://taiwan-water-pulse.vercel.app/data/diagnostics.json) · [Intermediate Otsu diagnostic](https://taiwan-water-pulse.vercel.app/data/otsu-review-validation.json) · [Original failed held-out experiment](https://taiwan-water-pulse.vercel.app/data/historical-validation.json) · [Provenance](https://taiwan-water-pulse.vercel.app/data/provenance.json) · [GCOV documentation](https://nisar-docs.asf.alaska.edu/gcov/)
+
+Calm water can be dark through specular reflection, while shadow and smooth land can also be dark and rough water can brighten. Provisional calibration, orbit uncertainty, speckle, layover, shore mixing, filtering and quantization remain limitations. Rainfall, operations, demand and exposed-bed effects remain hypotheses unless independently supported.

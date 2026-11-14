@@ -39,3 +39,28 @@ The user requested Traditional Chinese and English README versions and a Traditi
 The initial deployment uses the authenticated Vercel file-upload/deployment API instead of installing a CLI or creating a token. It uploads only the 54 checked frontend output files and a static deployment configuration. The source commit and artifact manifest identify the release. Source build settings remain documented for a later authorized Git integration. No commit author is rewritten and no identity restriction is bypassed.
 
 Existing ASF browse filenames retain their `HH`/`HV` polarization suffixes. The deploy checker compares references against actual directory entries, including case, even on macOS; this prevents case-related production 404s without renaming previously exported scientific assets. Empty manifests warn, while the current release verifies every browse, official-data and provenance asset.
+
+
+## Intermediate review decisions (superseded where stated below)
+
+| ID | Decision | Reason and consequence |
+| --- | --- | --- |
+| RV-01 | Supersede initial browse-only D-03/D-04/D-09/D-13 with calibrated reservoir views and per-reservoir descriptive grades. | Complete four-reservoir 21-date HH/HV caches are available. Failed historical independent experiments stay recorded as failures; current grades do not claim an untouched test set. |
+| RV-02 | Fixed HH primary, exact OSM mask and all-image pooled Otsu without the old threshold clamp. | The review calls for image-only thresholds; no official values enter calibration and no per-date/channel optimization against correlation is allowed. All actual results are retained, including Shimen C. |
+| RV-03 | C suppresses quantitative UI even when calibrated images are available. | Shimen fails both the direction check and whole-series correlation. Baoshan II and Feitsui B remain explicitly experimental; Liyutan A is a review grade, not measured segmentation accuracy. |
+| RV-04 | Preserve original browse PNGs in pipeline assets and publish 384-pixel context overviews. | Keep exact original hashes/offline reproduction while the site prioritizes reservoir-scale calibrated grids and stays below 90 MB. |
+| RV-05 | Separate NASA authentication from anonymous CDN Range requests. | Source now redirects to a short-lived download URL. Credentials only reach the original NASA host. A separate request with no Authorization reaches the explicitly allowed CDN; temporary links are never persisted. |
+| RV-06 | Capture source revision/dirty state before any export mutation. | A clean code commit can be referenced by a subsequent reproducible data commit without falsely labelling uncommitted implementation as clean. |
+| RV-07 | Keep all source and validation links accessible on the static site. | GitHub remains private; public users can inspect methodology and both current/historical validation reports without changing repository visibility. |
+| RV-08 | Define polarization comparison as spatial shoreline contrast, not threshold-separated truth. | Use OSM interior versus a fixed 150–300 m exterior ring and report sample counts. Neither group is ground-truth water/land; the UI must not call this segmentation accuracy. |
+
+
+## Final relative-power release decisions
+
+| ID | Decision | Reason and consequence |
+| --- | --- | --- |
+| RV-09 | Supersede RV-02 and the Otsu-specific result in RV-03 with HH / 0.6× local reference power / 0 m OSM buffer. | Follow the user-directed sequential audit. Channel, relative threshold and buffer are common and not fitted to official records. Preserve Otsu v2 as an intermediate report. |
+| RV-10 | Keep fine display imagery and a separate native 30 m analysis grid. | Linear averaging precedes log. 30 m is the finest listed scale meeting A for both core reservoirs; 10 m also has strong r but one interval fails A. This scale choice used exploratory results and must not be called independent validation. |
+| RV-11 | Publish Shimen B with LOW_CONFIDENCE, not as a dependable association. | Its literal r-based grade is B, but its interval spans zero and rho is near zero. All results/uncertainty remain visible; the method is not adjusted to improve Shimen. |
+| RV-12 | Keep the exposed-bed explanation a hypothesis. | HH-selected transition pixels retain lower HV contrast, but selection bias and lack of independent ground truth prevent a causal or misclassification claim. Publish candidate/stable/reference comparisons. |
+| RV-13 | Use ratios 0.5/0.7 for sensitivity and per-date absolute dB cutoffs. | The final threshold is relative to same-date reference power, so the old fixed ±1.5 dB band is superseded. CSV, metadata, UI and cross-language checks must use the analysis grid and ratios consistently. |

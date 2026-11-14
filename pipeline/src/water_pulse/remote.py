@@ -11,7 +11,9 @@ from concurrent.futures import ProcessPoolExecutor, as_completed
 from multiprocessing import get_context
 from pathlib import Path
 from typing import Any
+from urllib.error import HTTPError
 from urllib.parse import urljoin, urlsplit
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 import aiohttp
 import fsspec
@@ -24,6 +26,91 @@ from .models import RESERVOIRS, data_url, observation_times
 from .sources import timestamp, write_json
 
 _worker_filesystem: Any = None
+
+
+class _NoRedirect(HTTPRedirectHandler):
+    def redirect_request(
+        self, request: Any, fp: Any, code: Any, message: Any, headers: Any, new_url: Any
+    ) -> None:
+        return None
+
+
+def _validate_download_url(url: str, *, source: bool) -> None:
+    parsed = urlsplit(url)
+    allowed = (
+        {"nisar.asf.earthdatacloud.nasa.gov"}
+        if source
+        else {"nisar.asf.earthdatacloud.nasa.gov", "d1mv8zhcvry6x4.cloudfront.net"}
+    )
+    if (
+        parsed.scheme != "https"
+        or parsed.hostname not in allowed
+        or parsed.username
+        or parsed.password
+    ):
+        raise ValueError("Unexpected GCOV source or download host.")
+
+
+class ScopedDataFilesystem:
+    """Resolve NASA redirects separately; never attach credentials to CDN requests.
+
+    The ASF endpoint may return a temporary CDN URL. It stays in memory, while
+    provenance retains the original NASA URL. File size is read with a two-byte
+    range request; only later requested HDF5 blocks are downloaded.
+    """
+
+    def __init__(self, token: str, nasa_filesystem: Any) -> None:
+        self._token = token
+        self._nasa = nasa_filesystem
+        self._opener = build_opener(_NoRedirect())
+
+        async def validate(session: Any, context: Any, parameters: Any) -> None:
+            _validate_download_url(str(parameters.url), source=False)
+            if hasattr(parameters, "response"):
+                location = parameters.response.headers.get("Location")
+                if location:
+                    _validate_download_url(urljoin(str(parameters.url), location), source=False)
+
+        trace = aiohttp.TraceConfig()
+        trace.on_request_start.append(validate)
+        trace.on_request_redirect.append(validate)
+        self._anonymous = fsspec.filesystem(
+            "https",
+            skip_instance_cache=True,
+            client_kwargs={
+                "trust_env": False,
+                "timeout": aiohttp.ClientTimeout(total=90, connect=15),
+                "trace_configs": [trace],
+            },
+        )
+
+    def open(self, url: str, mode: str, **kwargs: Any) -> Any:
+        _validate_download_url(url, source=True)
+        request = Request(
+            url, headers={"Authorization": "Bearer " + self._token, "Range": "bytes=0-1"}
+        )
+        try:
+            with self._opener.open(request, timeout=30):
+                return self._nasa.open(url, mode, **kwargs)
+        except HTTPError as response:
+            if response.code not in {301, 302, 303, 307, 308}:
+                raise RuntimeError("NASA source access was refused.") from None
+            location = response.headers.get("Location")
+            response.close()
+        if not location:
+            raise RuntimeError("NASA source omitted its download location.")
+        target = urljoin(url, location)
+        _validate_download_url(target, source=False)
+        # A fresh request has no Authorization header and redirects stay disabled.
+        with self._opener.open(
+            Request(target, headers={"Range": "bytes=0-1"}), timeout=30
+        ) as response:
+            match = re.fullmatch(r"bytes 0-1/(\d+)", response.headers.get("Content-Range", ""))
+            if response.status != 206 or match is None:
+                raise RuntimeError("Download server did not honor the small range probe.")
+            size = int(match.group(1))
+            response.read(2)
+        return self._anonymous.open(target, mode, size=size, **kwargs)
 
 
 def load_credentials(path: Path | None = None) -> None:
@@ -91,7 +178,7 @@ def authenticated_filesystem() -> Any:
     trace = aiohttp.TraceConfig()
     trace.on_request_start.append(validate_host)
     trace.on_request_redirect.append(validate_host)
-    return fsspec.filesystem(
+    nasa_filesystem = fsspec.filesystem(
         "https",
         skip_instance_cache=True,
         client_kwargs={
@@ -101,6 +188,7 @@ def authenticated_filesystem() -> Any:
             "trace_configs": [trace],
         },
     )
+    return ScopedDataFilesystem(authentication.token["access_token"], nasa_filesystem)
 
 
 def read_granule(fs: Any, name: str, keys: list[str], cache: Path) -> dict[str, Any]:

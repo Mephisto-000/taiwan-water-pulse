@@ -1,0 +1,1368 @@
+{
+  "calibration": {
+    "schema_version": 1,
+    "calibration_utc_dates": [
+      "2025-11-05",
+      "2026-01-16",
+      "2026-03-17",
+      "2026-06-21"
+    ],
+    "validation_utc_dates": [
+      "2025-11-17",
+      "2025-11-29",
+      "2025-12-11",
+      "2025-12-23",
+      "2026-01-28",
+      "2026-02-09",
+      "2026-02-21",
+      "2026-03-05",
+      "2026-07-03",
+      "2026-07-15",
+      "2026-07-27",
+      "2026-08-20",
+      "2026-09-01",
+      "2026-09-13",
+      "2026-09-25",
+      "2026-10-07",
+      "2026-10-19"
+    ],
+    "policy": "Frozen on four calibration dates; no fitting on held-out observations.",
+    "required_heldout_spearman": 0.8,
+    "reservoirs": {
+      "baoshan2": {
+        "classification_channel": "HV",
+        "analysis_buffer_m": 0,
+        "thresholds": {
+          "HH": -14.0,
+          "HV": -15.858759842519685
+        }
+      },
+      "liyutan": {
+        "classification_channel": "HH",
+        "analysis_buffer_m": 150,
+        "thresholds": {
+          "HH": -14.0,
+          "HV": -14.911417322834646
+        }
+      }
+    }
+  },
+  "reservoirs": {
+    "baoshan2": {
+      "classification_channel": "HV",
+      "thresholds": {
+        "HH": -14.0,
+        "HV": -15.858759842519685
+      },
+      "analysis_buffer_m": 0,
+      "heldout": {
+        "n": 17,
+        "spearman_area_vs_level": 0.42156862745098045,
+        "pearson_area_vs_level": -0.0744936811329589
+      },
+      "all_dates": {
+        "n": 21,
+        "spearman_area_vs_level": 0.5376623376623377,
+        "pearson_area_vs_level": -0.04111176436735418
+      },
+      "hh_all_dates": {
+        "n": 21,
+        "spearman_area_vs_level": -0.4,
+        "pearson_area_vs_level": -0.12405334324772069
+      },
+      "passed": false,
+      "records": [
+        {
+          "utc": "2025-11-05T21:16:41Z",
+          "local": "2025-11-06T05:16:41+08:00",
+          "granule": "NISAR_L2_PR_GCOV_004_111_A_014_4005_DHDH_A_20251105T211641_20251105T211714_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.1339,
+            "hh_lo": 0.0019,
+            "hh_hi": 0.6406,
+            "hv": 1.2595,
+            "hv_lo": 1.141,
+            "hv_hi": 1.324,
+            "primary": 1.2595,
+            "primary_lo": 1.141,
+            "primary_hi": 1.324
+          },
+          "classification_channel": "HV",
+          "partition": "calibration",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2025-11-06T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 151.373
+          }
+        },
+        {
+          "utc": "2025-11-17T21:16:42Z",
+          "local": "2025-11-18T05:16:42+08:00",
+          "granule": "NISAR_L2_PR_GCOV_005_111_A_014_4005_DHDH_A_20251117T211642_20251117T211714_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.0753,
+            "hh_lo": 0.0006,
+            "hh_hi": 0.5354,
+            "hv": 0.0,
+            "hv_lo": 0.0,
+            "hv_hi": 0.0,
+            "primary": 0.0,
+            "primary_lo": 0.0,
+            "primary_hi": 0.0
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2025-11-18T07:00:00+08:00",
+            "pct": 99.16680967400244,
+            "level_m": 151.146
+          }
+        },
+        {
+          "utc": "2025-11-29T21:16:42Z",
+          "local": "2025-11-30T05:16:42+08:00",
+          "granule": "NISAR_L2_PR_GCOV_006_111_A_014_4005_DHDH_A_20251129T211642_20251129T211715_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.3171,
+            "hh_lo": 0.0145,
+            "hh_hi": 0.8707,
+            "hv": 1.268,
+            "hv_lo": 1.1807,
+            "hv_hi": 1.3258,
+            "primary": 1.268,
+            "primary_lo": 1.1807,
+            "primary_hi": 1.3258
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2025-11-30T07:00:00+08:00",
+            "pct": 94.90055565746883,
+            "level_m": 150.219
+          }
+        },
+        {
+          "utc": "2025-12-11T21:16:43Z",
+          "local": "2025-12-12T05:16:43+08:00",
+          "granule": "NISAR_L2_PR_GCOV_007_111_A_014_4005_DHDH_A_20251211T211643_20251211T211715_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.2162,
+            "hh_lo": 0.0059,
+            "hh_hi": 0.7801,
+            "hv": 1.2526,
+            "hv_lo": 1.1723,
+            "hv_hi": 1.3154,
+            "primary": 1.2526,
+            "primary_lo": 1.1723,
+            "primary_hi": 1.3154
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2025-12-12T07:00:00+08:00",
+            "pct": 86.93583606033528,
+            "level_m": 148.438
+          }
+        },
+        {
+          "utc": "2025-12-23T21:16:43Z",
+          "local": "2025-12-24T05:16:43+08:00",
+          "granule": "NISAR_L2_PR_GCOV_008_111_A_014_4005_DHDH_A_20251223T211643_20251223T211716_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.3682,
+            "hh_lo": 0.0249,
+            "hh_hi": 0.8537,
+            "hv": 1.2615,
+            "hv_lo": 1.1709,
+            "hv_hi": 1.3203,
+            "primary": 1.2615,
+            "primary_lo": 1.1709,
+            "primary_hi": 1.3203
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2025-12-24T07:00:00+08:00",
+            "pct": 81.14788536531962,
+            "level_m": 147.093
+          }
+        },
+        {
+          "utc": "2026-01-16T21:16:44Z",
+          "local": "2026-01-17T05:16:44+08:00",
+          "granule": "NISAR_L2_PR_GCOV_010_111_A_014_4005_DHDH_A_20260116T211644_20260116T211717_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.1449,
+            "hh_lo": 0.0032,
+            "hh_hi": 0.7139,
+            "hv": 1.2334,
+            "hv_lo": 1.0222,
+            "hv_hi": 1.3053,
+            "primary": 1.2334,
+            "primary_lo": 1.0222,
+            "primary_hi": 1.3053
+          },
+          "classification_channel": "HV",
+          "partition": "calibration",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-01-17T07:00:00+08:00",
+            "pct": 71.36233719354513,
+            "level_m": 144.696
+          }
+        },
+        {
+          "utc": "2026-01-28T21:16:45Z",
+          "local": "2026-01-29T05:16:45+08:00",
+          "granule": "NISAR_L2_PR_GCOV_011_111_A_014_4005_DHDH_A_20260128T211645_20260128T211718_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.3677,
+            "hh_lo": 0.0253,
+            "hh_hi": 0.8425,
+            "hv": 1.2592,
+            "hv_lo": 1.1755,
+            "hv_hi": 1.3161,
+            "primary": 1.2592,
+            "primary_lo": 1.1755,
+            "primary_hi": 1.3161
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-01-29T07:00:00+08:00",
+            "pct": 65.67912704377208,
+            "level_m": 143.218
+          }
+        },
+        {
+          "utc": "2026-02-09T21:16:46Z",
+          "local": "2026-02-10T05:16:46+08:00",
+          "granule": "NISAR_L2_PR_GCOV_012_111_A_014_4005_DHDH_A_20260209T211646_20260209T211718_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.272,
+            "hh_lo": 0.0129,
+            "hh_hi": 0.753,
+            "hv": 1.2367,
+            "hv_lo": 1.1234,
+            "hv_hi": 1.3022,
+            "primary": 1.2367,
+            "primary_lo": 1.1234,
+            "primary_hi": 1.3022
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-02-10T07:00:00+08:00",
+            "pct": 58.04963636686411,
+            "level_m": 141.117
+          }
+        },
+        {
+          "utc": "2026-02-21T21:16:46Z",
+          "local": "2026-02-22T05:16:46+08:00",
+          "granule": "NISAR_L2_PR_GCOV_013_111_A_014_4005_DHDH_A_20260221T211646_20260221T211719_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.2755,
+            "hh_lo": 0.0143,
+            "hh_hi": 0.7076,
+            "hv": 1.2386,
+            "hv_lo": 1.13,
+            "hv_hi": 1.3035,
+            "primary": 1.2386,
+            "primary_lo": 1.13,
+            "primary_hi": 1.3035
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-02-22T07:00:00+08:00",
+            "pct": 48.41054743208138,
+            "level_m": 138.215
+          }
+        },
+        {
+          "utc": "2026-03-05T21:16:46Z",
+          "local": "2026-03-06T05:16:46+08:00",
+          "granule": "NISAR_L2_PR_GCOV_014_111_A_014_4005_DHDH_A_20260305T211646_20260305T211719_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.0948,
+            "hh_lo": 0.0011,
+            "hh_hi": 0.4736,
+            "hv": 1.1345,
+            "hv_lo": 0.9781,
+            "hv_hi": 1.2345,
+            "primary": 1.1345,
+            "primary_lo": 0.9781,
+            "primary_hi": 1.2345
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-03-06T07:00:00+08:00",
+            "pct": 38.684757263477074,
+            "level_m": 134.927
+          }
+        },
+        {
+          "utc": "2026-03-17T21:16:47Z",
+          "local": "2026-03-18T05:16:47+08:00",
+          "granule": "NISAR_L2_PR_GCOV_015_111_A_014_4005_DHDH_A_20260317T211647_20260317T211719_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.1887,
+            "hh_lo": 0.0058,
+            "hh_hi": 0.5849,
+            "hv": 1.1858,
+            "hv_lo": 1.0089,
+            "hv_hi": 1.2765,
+            "primary": 1.1858,
+            "primary_lo": 1.0089,
+            "primary_hi": 1.2765
+          },
+          "classification_channel": "HV",
+          "partition": "calibration",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-03-18T07:00:00+08:00",
+            "pct": 28.190063569277505,
+            "level_m": 130.808
+          }
+        },
+        {
+          "utc": "2026-06-21T21:16:44Z",
+          "local": "2026-06-22T05:16:44+08:00",
+          "granule": "NISAR_L2_PR_GCOV_023_111_A_014_4005_DHDH_A_20260621T211644_20260621T211716_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.199,
+            "hh_lo": 0.0048,
+            "hh_hi": 0.7405,
+            "hv": 1.2868,
+            "hv_lo": 1.191,
+            "hv_hi": 1.3436,
+            "primary": 1.2868,
+            "primary_lo": 1.191,
+            "primary_hi": 1.3436
+          },
+          "classification_channel": "HV",
+          "partition": "calibration",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-06-22T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 151.434
+          }
+        },
+        {
+          "utc": "2026-07-03T21:16:43Z",
+          "local": "2026-07-04T05:16:43+08:00",
+          "granule": "NISAR_L2_PR_GCOV_024_111_A_014_4005_DHDH_A_20260703T211643_20260703T211715_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.0143,
+            "hh_lo": 0.0,
+            "hh_hi": 0.2152,
+            "hv": 1.2235,
+            "hv_lo": 0.8779,
+            "hv_hi": 1.3106,
+            "primary": 1.2235,
+            "primary_lo": 0.8779,
+            "primary_hi": 1.3106
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-07-04T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 151.437
+          }
+        },
+        {
+          "utc": "2026-07-15T21:16:42Z",
+          "local": "2026-07-16T05:16:42+08:00",
+          "granule": "NISAR_L2_PR_GCOV_025_111_A_014_4005_DHDH_A_20260715T211642_20260715T211714_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.2769,
+            "hh_lo": 0.0099,
+            "hh_hi": 0.8116,
+            "hv": 1.2782,
+            "hv_lo": 1.201,
+            "hv_hi": 1.3338,
+            "primary": 1.2782,
+            "primary_lo": 1.201,
+            "primary_hi": 1.3338
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-07-16T07:00:00+08:00",
+            "pct": 96.32533520898659,
+            "level_m": 150.555
+          }
+        },
+        {
+          "utc": "2026-07-27T21:16:42Z",
+          "local": "2026-07-28T05:16:42+08:00",
+          "granule": "NISAR_L2_PR_GCOV_026_111_A_014_4005_DHDH_A_20260727T211642_20260727T211713_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.1731,
+            "hh_lo": 0.0035,
+            "hh_hi": 0.705,
+            "hv": 1.2703,
+            "hv_lo": 1.1765,
+            "hv_hi": 1.3273,
+            "primary": 1.2703,
+            "primary_lo": 1.1765,
+            "primary_hi": 1.3273
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-07-28T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 151.416
+          }
+        },
+        {
+          "utc": "2026-08-20T21:16:40Z",
+          "local": "2026-08-21T05:16:40+08:00",
+          "granule": "NISAR_L2_PR_GCOV_028_111_A_014_4005_DHDH_A_20260820T211640_20260820T211713_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.186,
+            "hh_lo": 0.0043,
+            "hh_hi": 0.7508,
+            "hv": 1.2757,
+            "hv_lo": 1.1764,
+            "hv_hi": 1.3332,
+            "primary": 1.2757,
+            "primary_lo": 1.1764,
+            "primary_hi": 1.3332
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-08-21T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 151.411
+          }
+        },
+        {
+          "utc": "2026-09-01T21:16:40Z",
+          "local": "2026-09-02T05:16:40+08:00",
+          "granule": "NISAR_L2_PR_GCOV_029_111_A_014_4005_DHDH_A_20260901T211640_20260901T211712_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.1025,
+            "hh_lo": 0.0006,
+            "hh_hi": 0.6125,
+            "hv": 1.2622,
+            "hv_lo": 1.161,
+            "hv_hi": 1.3264,
+            "primary": 1.2622,
+            "primary_lo": 1.161,
+            "primary_hi": 1.3264
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-09-02T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 151.44
+          }
+        },
+        {
+          "utc": "2026-09-13T21:16:40Z",
+          "local": "2026-09-14T05:16:40+08:00",
+          "granule": "NISAR_L2_PR_GCOV_030_111_A_014_4005_DHDH_A_20260913T211640_20260913T211712_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.1137,
+            "hh_lo": 0.002,
+            "hh_hi": 0.6299,
+            "hv": 1.2766,
+            "hv_lo": 1.1878,
+            "hv_hi": 1.3368,
+            "primary": 1.2766,
+            "primary_lo": 1.1878,
+            "primary_hi": 1.3368
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-09-14T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 151.433
+          }
+        },
+        {
+          "utc": "2026-09-25T21:16:40Z",
+          "local": "2026-09-26T05:16:40+08:00",
+          "granule": "NISAR_L2_PR_GCOV_031_111_A_014_4005_DHDH_A_20260925T211640_20260925T211712_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.237,
+            "hh_lo": 0.0058,
+            "hh_hi": 0.7777,
+            "hv": 1.2716,
+            "hv_lo": 1.1736,
+            "hv_hi": 1.3338,
+            "primary": 1.2716,
+            "primary_lo": 1.1736,
+            "primary_hi": 1.3338
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-09-26T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 151.435
+          }
+        },
+        {
+          "utc": "2026-10-07T21:16:40Z",
+          "local": "2026-10-08T05:16:40+08:00",
+          "granule": "NISAR_L2_PR_GCOV_032_111_A_014_4005_DHDH_A_20261007T211640_20261007T211713_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.1468,
+            "hh_lo": 0.003,
+            "hh_hi": 0.6929,
+            "hv": 1.2628,
+            "hv_lo": 1.1636,
+            "hv_hi": 1.3251,
+            "primary": 1.2628,
+            "primary_lo": 1.1636,
+            "primary_hi": 1.3251
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-10-08T07:00:00+08:00",
+            "pct": 99.00050536245718,
+            "level_m": 151.135
+          }
+        },
+        {
+          "utc": "2026-10-19T21:16:40Z",
+          "local": "2026-10-20T05:16:40+08:00",
+          "granule": "NISAR_L2_PR_GCOV_033_111_A_014_4005_DHDH_A_20261019T211640_20261019T211713_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.3955,
+            "hh_lo": 0.0285,
+            "hh_hi": 0.9323,
+            "hv": 1.266,
+            "hv_lo": 1.1872,
+            "hv_hi": 1.327,
+            "primary": 1.266,
+            "primary_lo": 1.1872,
+            "primary_hi": 1.327
+          },
+          "classification_channel": "HV",
+          "partition": "validation",
+          "valid_fraction": 1.0,
+          "qa": [],
+          "official": {
+            "local": "2026-10-20T07:00:00+08:00",
+            "pct": 93.54170422406175,
+            "level_m": 149.944
+          }
+        }
+      ]
+    },
+    "liyutan": {
+      "classification_channel": "HH",
+      "thresholds": {
+        "HH": -14.0,
+        "HV": -14.911417322834646
+      },
+      "analysis_buffer_m": 150,
+      "heldout": {
+        "n": 17,
+        "spearman_area_vs_level": 0.43681014476292607,
+        "pearson_area_vs_level": 0.38797479872974894
+      },
+      "all_dates": {
+        "n": 21,
+        "spearman_area_vs_level": 0.4821313558400805,
+        "pearson_area_vs_level": 0.48779538519471644
+      },
+      "hh_all_dates": {
+        "n": 21,
+        "spearman_area_vs_level": 0.4821313558400805,
+        "pearson_area_vs_level": 0.48779538519471644
+      },
+      "passed": false,
+      "records": [
+        {
+          "utc": "2025-11-05T21:16:41Z",
+          "local": "2025-11-06T05:16:41+08:00",
+          "granule": "NISAR_L2_PR_GCOV_004_111_A_014_4005_DHDH_A_20251105T211641_20251105T211714_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 2.0962,
+            "hh_lo": 0.3325,
+            "hh_hi": 3.0036,
+            "hv": 3.9287,
+            "hv_lo": 3.6492,
+            "hv_hi": 4.447,
+            "primary": 2.0962,
+            "primary_lo": 0.3325,
+            "primary_hi": 3.0036
+          },
+          "classification_channel": "HH",
+          "partition": "calibration",
+          "valid_fraction": 0.9997015067937054,
+          "qa": [],
+          "official": {
+            "local": "2025-11-06T07:00:00+08:00",
+            "pct": 92.03485737223063,
+            "level_m": 297.86
+          }
+        },
+        {
+          "utc": "2025-11-17T21:16:42Z",
+          "local": "2025-11-18T05:16:42+08:00",
+          "granule": "NISAR_L2_PR_GCOV_005_111_A_014_4005_DHDH_A_20251117T211642_20251117T211714_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 1.3977,
+            "hh_lo": 0.0927,
+            "hh_hi": 2.7128,
+            "hv": 3.8933,
+            "hv_lo": 3.592,
+            "hv_hi": 4.4022,
+            "primary": 1.3977,
+            "primary_lo": 0.0927,
+            "primary_hi": 2.7128
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997492657067125,
+          "qa": [],
+          "official": {
+            "local": "2025-11-18T07:00:00+08:00",
+            "pct": 88.26313086189556,
+            "level_m": 296.82
+          }
+        },
+        {
+          "utc": "2025-11-29T21:16:42Z",
+          "local": "2025-11-30T05:16:42+08:00",
+          "granule": "NISAR_L2_PR_GCOV_006_111_A_014_4005_DHDH_A_20251129T211642_20251129T211715_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 1.7925,
+            "hh_lo": 0.225,
+            "hh_hi": 2.8522,
+            "hv": 3.9553,
+            "hv_lo": 3.6579,
+            "hv_hi": 4.493,
+            "primary": 1.7925,
+            "primary_lo": 0.225,
+            "primary_hi": 2.8522
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997015067937054,
+          "qa": [],
+          "official": {
+            "local": "2025-11-30T07:00:00+08:00",
+            "pct": 84.2127525497762,
+            "level_m": 295.67
+          }
+        },
+        {
+          "utc": "2025-12-11T21:16:43Z",
+          "local": "2025-12-12T05:16:43+08:00",
+          "granule": "NISAR_L2_PR_GCOV_007_111_A_014_4005_DHDH_A_20251211T211643_20251211T211715_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 2.1732,
+            "hh_lo": 0.4419,
+            "hh_hi": 3.0121,
+            "hv": 4.0439,
+            "hv_lo": 3.715,
+            "hv_hi": 4.6373,
+            "primary": 2.1732,
+            "primary_lo": 0.4419,
+            "primary_hi": 3.0121
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997253862502089,
+          "qa": [],
+          "official": {
+            "local": "2025-12-12T07:00:00+08:00",
+            "pct": 80.02909097187153,
+            "level_m": 294.44
+          }
+        },
+        {
+          "utc": "2025-12-23T21:16:43Z",
+          "local": "2025-12-24T05:16:43+08:00",
+          "granule": "NISAR_L2_PR_GCOV_008_111_A_014_4005_DHDH_A_20251223T211643_20251223T211716_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 1.9268,
+            "hh_lo": 0.2973,
+            "hh_hi": 2.9374,
+            "hv": 4.0486,
+            "hv_lo": 3.7153,
+            "hv_hi": 4.6764,
+            "primary": 1.9268,
+            "primary_lo": 0.2973,
+            "primary_hi": 2.9374
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9978508489146787,
+          "qa": [],
+          "official": {
+            "local": "2025-12-24T07:00:00+08:00",
+            "pct": 75.76687513757786,
+            "level_m": 293.14
+          }
+        },
+        {
+          "utc": "2026-01-16T21:16:44Z",
+          "local": "2026-01-17T05:16:44+08:00",
+          "granule": "NISAR_L2_PR_GCOV_010_111_A_014_4005_DHDH_A_20260116T211644_20260116T211717_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 1.9363,
+            "hh_lo": 0.2881,
+            "hh_hi": 2.8838,
+            "hv": 4.0443,
+            "hv_lo": 3.6945,
+            "hv_hi": 4.6767,
+            "primary": 1.9363,
+            "primary_lo": 0.2881,
+            "primary_hi": 2.8838
+          },
+          "classification_channel": "HH",
+          "partition": "calibration",
+          "valid_fraction": 0.99966568760895,
+          "qa": [],
+          "official": {
+            "local": "2026-01-17T07:00:00+08:00",
+            "pct": 68.09808060012,
+            "level_m": 290.67
+          }
+        },
+        {
+          "utc": "2026-01-28T21:16:45Z",
+          "local": "2026-01-29T05:16:45+08:00",
+          "granule": "NISAR_L2_PR_GCOV_011_111_A_014_4005_DHDH_A_20260128T211645_20260128T211718_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 1.9194,
+            "hh_lo": 0.3493,
+            "hh_hi": 2.8449,
+            "hv": 4.0369,
+            "hv_lo": 3.6843,
+            "hv_hi": 4.6773,
+            "primary": 1.9194,
+            "primary_lo": 0.3493,
+            "primary_hi": 2.8449
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9925854287556415,
+          "qa": [],
+          "official": {
+            "local": "2026-01-29T07:00:00+08:00",
+            "pct": 63.90880800390182,
+            "level_m": 289.25
+          }
+        },
+        {
+          "utc": "2026-02-09T21:16:46Z",
+          "local": "2026-02-10T05:16:46+08:00",
+          "granule": "NISAR_L2_PR_GCOV_012_111_A_014_4005_DHDH_A_20260209T211646_20260209T211718_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 1.6136,
+            "hh_lo": 0.2121,
+            "hh_hi": 2.6784,
+            "hv": 4.0119,
+            "hv_lo": 3.6399,
+            "hv_hi": 4.6389,
+            "primary": 1.6136,
+            "primary_lo": 0.2121,
+            "primary_hi": 2.6784
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9996776273372018,
+          "qa": [],
+          "official": {
+            "local": "2026-02-10T07:00:00+08:00",
+            "pct": 59.226111089530264,
+            "level_m": 287.58
+          }
+        },
+        {
+          "utc": "2026-02-21T21:16:46Z",
+          "local": "2026-02-22T05:16:46+08:00",
+          "granule": "NISAR_L2_PR_GCOV_013_111_A_014_4005_DHDH_A_20260221T211646_20260221T211719_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 1.7237,
+            "hh_lo": 0.3198,
+            "hh_hi": 2.6166,
+            "hv": 4.0206,
+            "hv_lo": 3.6024,
+            "hv_hi": 4.6832,
+            "primary": 1.7237,
+            "primary_lo": 0.3198,
+            "primary_hi": 2.6166
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9996776273372018,
+          "qa": [],
+          "official": {
+            "local": "2026-02-22T07:00:00+08:00",
+            "pct": 51.14028840634132,
+            "level_m": 284.48
+          }
+        },
+        {
+          "utc": "2026-03-05T21:16:46Z",
+          "local": "2026-03-06T05:16:46+08:00",
+          "granule": "NISAR_L2_PR_GCOV_014_111_A_014_4005_DHDH_A_20260305T211646_20260305T211719_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 1.2092,
+            "hh_lo": 0.1131,
+            "hh_hi": 2.1711,
+            "hv": 3.7799,
+            "hv_lo": 3.3281,
+            "hv_hi": 4.4496,
+            "primary": 1.2092,
+            "primary_lo": 0.1131,
+            "primary_hi": 2.1711
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997373259784608,
+          "qa": [],
+          "official": {
+            "local": "2026-03-06T07:00:00+08:00",
+            "pct": 41.91422047849037,
+            "level_m": 280.56
+          }
+        },
+        {
+          "utc": "2026-03-17T21:16:47Z",
+          "local": "2026-03-18T05:16:47+08:00",
+          "granule": "NISAR_L2_PR_GCOV_015_111_A_014_4005_DHDH_A_20260317T211647_20260317T211719_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 1.1577,
+            "hh_lo": 0.1198,
+            "hh_hi": 2.2196,
+            "hv": 3.6589,
+            "hv_lo": 2.8889,
+            "hv_hi": 4.3643,
+            "primary": 1.1577,
+            "primary_lo": 0.1198,
+            "primary_hi": 2.2196
+          },
+          "classification_channel": "HH",
+          "partition": "calibration",
+          "valid_fraction": 0.9997492657067125,
+          "qa": [],
+          "official": {
+            "local": "2026-03-18T07:00:00+08:00",
+            "pct": 34.37508362575371,
+            "level_m": 276.92
+          }
+        },
+        {
+          "utc": "2026-06-21T21:16:44Z",
+          "local": "2026-06-22T05:16:44+08:00",
+          "granule": "NISAR_L2_PR_GCOV_023_111_A_014_4005_DHDH_A_20260621T211644_20260621T211716_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 2.3656,
+            "hh_lo": 0.5623,
+            "hh_hi": 3.1368,
+            "hv": 4.1605,
+            "hv_lo": 3.7869,
+            "hv_hi": 4.9118,
+            "primary": 2.3656,
+            "primary_lo": 0.5623,
+            "primary_hi": 3.1368
+          },
+          "classification_channel": "HH",
+          "partition": "calibration",
+          "valid_fraction": 0.9996895670654536,
+          "qa": [],
+          "official": {
+            "local": "2026-06-22T07:00:00+08:00",
+            "pct": 82.47155499367888,
+            "level_m": 295.05
+          }
+        },
+        {
+          "utc": "2026-07-03T21:16:43Z",
+          "local": "2026-07-04T05:16:43+08:00",
+          "granule": "NISAR_L2_PR_GCOV_024_111_A_014_4005_DHDH_A_20260703T211643_20260703T211715_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 0.6335,
+            "hh_lo": 0.0305,
+            "hh_hi": 2.3139,
+            "hv": 4.1148,
+            "hv_lo": 3.7082,
+            "hv_hi": 4.8437,
+            "primary": 0.6335,
+            "primary_lo": 0.0305,
+            "primary_hi": 2.3139
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997015067937054,
+          "qa": [],
+          "official": {
+            "local": "2026-07-04T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 300.01
+          }
+        },
+        {
+          "utc": "2026-07-15T21:16:42Z",
+          "local": "2026-07-16T05:16:42+08:00",
+          "granule": "NISAR_L2_PR_GCOV_025_111_A_014_4005_DHDH_A_20260715T211642_20260715T211714_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 2.5069,
+            "hh_lo": 0.6677,
+            "hh_hi": 3.1981,
+            "hv": 4.1295,
+            "hv_lo": 3.8033,
+            "hv_hi": 4.7891,
+            "primary": 2.5069,
+            "primary_lo": 0.6677,
+            "primary_hi": 3.1981
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997134465219571,
+          "qa": [],
+          "official": {
+            "local": "2026-07-16T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 300.02
+          }
+        },
+        {
+          "utc": "2026-07-27T21:16:42Z",
+          "local": "2026-07-28T05:16:42+08:00",
+          "granule": "NISAR_L2_PR_GCOV_026_111_A_014_4005_DHDH_A_20260727T211642_20260727T211713_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 2.394,
+            "hh_lo": 0.6262,
+            "hh_hi": 3.1223,
+            "hv": 4.0632,
+            "hv_lo": 3.7424,
+            "hv_hi": 4.6807,
+            "primary": 2.394,
+            "primary_lo": 0.6262,
+            "primary_hi": 3.1223
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997492657067125,
+          "qa": [],
+          "official": {
+            "local": "2026-07-28T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 300.09
+          }
+        },
+        {
+          "utc": "2026-08-20T21:16:40Z",
+          "local": "2026-08-21T05:16:40+08:00",
+          "granule": "NISAR_L2_PR_GCOV_028_111_A_014_4005_DHDH_A_20260820T211640_20260820T211713_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 2.1323,
+            "hh_lo": 0.3069,
+            "hh_hi": 3.0545,
+            "hv": 4.0908,
+            "hv_lo": 3.7703,
+            "hv_hi": 4.7218,
+            "primary": 2.1323,
+            "primary_lo": 0.3069,
+            "primary_hi": 3.0545
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997373259784608,
+          "qa": [],
+          "official": {
+            "local": "2026-08-21T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 300.09
+          }
+        },
+        {
+          "utc": "2026-09-01T21:16:40Z",
+          "local": "2026-09-02T05:16:40+08:00",
+          "granule": "NISAR_L2_PR_GCOV_029_111_A_014_4005_DHDH_A_20260901T211640_20260901T211712_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 1.7908,
+            "hh_lo": 0.1987,
+            "hh_hi": 2.8926,
+            "hv": 3.9672,
+            "hv_lo": 3.6859,
+            "hv_hi": 4.4804,
+            "primary": 1.7908,
+            "primary_lo": 0.1987,
+            "primary_hi": 2.8926
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997134465219571,
+          "qa": [],
+          "official": {
+            "local": "2026-09-02T07:00:00+08:00",
+            "pct": 100.0,
+            "level_m": 300.1
+          }
+        },
+        {
+          "utc": "2026-09-13T21:16:40Z",
+          "local": "2026-09-14T05:16:40+08:00",
+          "granule": "NISAR_L2_PR_GCOV_030_111_A_014_4005_DHDH_A_20260913T211640_20260913T211712_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 2.4418,
+            "hh_lo": 0.6859,
+            "hh_hi": 3.1339,
+            "hv": 4.0728,
+            "hv_lo": 3.7406,
+            "hv_hi": 4.7277,
+            "primary": 2.4418,
+            "primary_lo": 0.6859,
+            "primary_hi": 3.1339
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997015067937054,
+          "qa": [],
+          "official": {
+            "local": "2026-09-14T07:00:00+08:00",
+            "pct": 97.83800633843063,
+            "level_m": 299.42
+          }
+        },
+        {
+          "utc": "2026-09-25T21:16:40Z",
+          "local": "2026-09-26T05:16:40+08:00",
+          "granule": "NISAR_L2_PR_GCOV_031_111_A_014_4005_DHDH_A_20260925T211640_20260925T211712_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 2.3063,
+            "hh_lo": 0.4709,
+            "hh_hi": 3.0933,
+            "hv": 4.0746,
+            "hv_lo": 3.7402,
+            "hv_hi": 4.7435,
+            "primary": 2.3063,
+            "primary_lo": 0.4709,
+            "primary_hi": 3.0933
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997134465219571,
+          "qa": [],
+          "official": {
+            "local": "2026-09-26T07:00:00+08:00",
+            "pct": 99.85063124534575,
+            "level_m": 299.96
+          }
+        },
+        {
+          "utc": "2026-10-07T21:16:40Z",
+          "local": "2026-10-08T05:16:40+08:00",
+          "granule": "NISAR_L2_PR_GCOV_032_111_A_014_4005_DHDH_A_20261007T211640_20261007T211713_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 2.0096,
+            "hh_lo": 0.2766,
+            "hh_hi": 3.0223,
+            "hv": 4.0648,
+            "hv_lo": 3.7378,
+            "hv_hi": 4.7444,
+            "primary": 2.0096,
+            "primary_lo": 0.2766,
+            "primary_hi": 3.0223
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997373259784608,
+          "qa": [],
+          "official": {
+            "local": "2026-10-08T07:00:00+08:00",
+            "pct": 99.85063124534575,
+            "level_m": 299.96
+          }
+        },
+        {
+          "utc": "2026-10-19T21:16:40Z",
+          "local": "2026-10-20T05:16:40+08:00",
+          "granule": "NISAR_L2_PR_GCOV_033_111_A_014_4005_DHDH_A_20261019T211640_20261019T211713_P05023_N_F_J_001",
+          "area_km2": {
+            "hh": 2.2546,
+            "hh_lo": 0.4769,
+            "hh_hi": 3.0961,
+            "hv": 4.0552,
+            "hv_lo": 3.7283,
+            "hv_hi": 4.726,
+            "primary": 2.2546,
+            "primary_lo": 0.4769,
+            "primary_hi": 3.0961
+          },
+          "classification_channel": "HH",
+          "partition": "validation",
+          "valid_fraction": 0.9997134465219571,
+          "qa": [],
+          "official": {
+            "local": "2026-10-20T07:00:00+08:00",
+            "pct": 97.02812462116619,
+            "level_m": 299.2
+          }
+        }
+      ]
+    }
+  },
+  "passed": false,
+  "code_version": "3f2c9e9d4b3752d756472c436d765878368c6c71",
+  "code_dirty": true,
+  "publication_status": "diagnostic_only; no validated water-area assets published",
+  "processing": {
+    "source_collection": "NISAR_L2_GCOV_PROVISIONAL_V1",
+    "crid": "P05023",
+    "source_values": "calibrated gamma-0 linear power",
+    "filter": "normalized 3x3 arithmetic mean in linear power, invalid centres retained",
+    "reprojection": "fixed EPSG:3857 grid; bilinear power; nearest validity",
+    "invalid_source_mask_values": [
+      0,
+      255
+    ],
+    "quantization": {
+      "invalid": 0,
+      "min_db": -35,
+      "max_db": 5,
+      "levels": 254
+    },
+    "sensitivity_db": 1.5,
+    "threshold_policy": "four calibration dates only; frozen before17held-out dates"
+  },
+  "inputs": [
+    {
+      "granule": "NISAR_L2_PR_GCOV_004_111_A_014_4005_DHDH_A_20251105T211641_20251105T211714_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_004_111_A_014_4005_DHDH_A_20251105T211641_20251105T211714_P05023_N_F_J_001/NISAR_L2_PR_GCOV_004_111_A_014_4005_DHDH_A_20251105T211641_20251105T211714_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2025-11-05T21:16:41Z",
+      "local": "2025-11-06T05:16:41+08:00",
+      "retrieved_at": "2026-11-14T03:13:14.935860Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_005_111_A_014_4005_DHDH_A_20251117T211642_20251117T211714_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_005_111_A_014_4005_DHDH_A_20251117T211642_20251117T211714_P05023_N_F_J_001/NISAR_L2_PR_GCOV_005_111_A_014_4005_DHDH_A_20251117T211642_20251117T211714_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2025-11-17T21:16:42Z",
+      "local": "2025-11-18T05:16:42+08:00",
+      "retrieved_at": "2026-11-14T03:21:02.719422Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_006_111_A_014_4005_DHDH_A_20251129T211642_20251129T211715_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_006_111_A_014_4005_DHDH_A_20251129T211642_20251129T211715_P05023_N_F_J_001/NISAR_L2_PR_GCOV_006_111_A_014_4005_DHDH_A_20251129T211642_20251129T211715_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2025-11-29T21:16:42Z",
+      "local": "2025-11-30T05:16:42+08:00",
+      "retrieved_at": "2026-11-14T03:21:02.721033Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_007_111_A_014_4005_DHDH_A_20251211T211643_20251211T211715_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_007_111_A_014_4005_DHDH_A_20251211T211643_20251211T211715_P05023_N_F_J_001/NISAR_L2_PR_GCOV_007_111_A_014_4005_DHDH_A_20251211T211643_20251211T211715_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2025-12-11T21:16:43Z",
+      "local": "2025-12-12T05:16:43+08:00",
+      "retrieved_at": "2026-11-14T03:21:02.724249Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_008_111_A_014_4005_DHDH_A_20251223T211643_20251223T211716_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_008_111_A_014_4005_DHDH_A_20251223T211643_20251223T211716_P05023_N_F_J_001/NISAR_L2_PR_GCOV_008_111_A_014_4005_DHDH_A_20251223T211643_20251223T211716_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2025-12-23T21:16:43Z",
+      "local": "2025-12-24T05:16:43+08:00",
+      "retrieved_at": "2026-11-14T03:21:02.768096Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_010_111_A_014_4005_DHDH_A_20260116T211644_20260116T211717_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_010_111_A_014_4005_DHDH_A_20260116T211644_20260116T211717_P05023_N_F_J_001/NISAR_L2_PR_GCOV_010_111_A_014_4005_DHDH_A_20260116T211644_20260116T211717_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-01-16T21:16:44Z",
+      "local": "2026-01-17T05:16:44+08:00",
+      "retrieved_at": "2026-11-14T03:13:14.936060Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_011_111_A_014_4005_DHDH_A_20260128T211645_20260128T211718_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_011_111_A_014_4005_DHDH_A_20260128T211645_20260128T211718_P05023_N_F_J_001/NISAR_L2_PR_GCOV_011_111_A_014_4005_DHDH_A_20260128T211645_20260128T211718_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-01-28T21:16:45Z",
+      "local": "2026-01-29T05:16:45+08:00",
+      "retrieved_at": "2026-11-14T03:21:26.395132Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_012_111_A_014_4005_DHDH_A_20260209T211646_20260209T211718_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_012_111_A_014_4005_DHDH_A_20260209T211646_20260209T211718_P05023_N_F_J_001/NISAR_L2_PR_GCOV_012_111_A_014_4005_DHDH_A_20260209T211646_20260209T211718_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-02-09T21:16:46Z",
+      "local": "2026-02-10T05:16:46+08:00",
+      "retrieved_at": "2026-11-14T03:21:27.560635Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_013_111_A_014_4005_DHDH_A_20260221T211646_20260221T211719_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_013_111_A_014_4005_DHDH_A_20260221T211646_20260221T211719_P05023_N_F_J_001/NISAR_L2_PR_GCOV_013_111_A_014_4005_DHDH_A_20260221T211646_20260221T211719_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-02-21T21:16:46Z",
+      "local": "2026-02-22T05:16:46+08:00",
+      "retrieved_at": "2026-11-14T03:21:28.613215Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_014_111_A_014_4005_DHDH_A_20260305T211646_20260305T211719_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_014_111_A_014_4005_DHDH_A_20260305T211646_20260305T211719_P05023_N_F_J_001/NISAR_L2_PR_GCOV_014_111_A_014_4005_DHDH_A_20260305T211646_20260305T211719_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-03-05T21:16:46Z",
+      "local": "2026-03-06T05:16:46+08:00",
+      "retrieved_at": "2026-11-14T03:21:30.499457Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_015_111_A_014_4005_DHDH_A_20260317T211647_20260317T211719_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_015_111_A_014_4005_DHDH_A_20260317T211647_20260317T211719_P05023_N_F_J_001/NISAR_L2_PR_GCOV_015_111_A_014_4005_DHDH_A_20260317T211647_20260317T211719_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-03-17T21:16:47Z",
+      "local": "2026-03-18T05:16:47+08:00",
+      "retrieved_at": "2026-11-14T03:09:47.706247+00:00",
+      "retrieval_time_basis": "authenticated_AOI_cache_written_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_023_111_A_014_4005_DHDH_A_20260621T211644_20260621T211716_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_023_111_A_014_4005_DHDH_A_20260621T211644_20260621T211716_P05023_N_F_J_001/NISAR_L2_PR_GCOV_023_111_A_014_4005_DHDH_A_20260621T211644_20260621T211716_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-06-21T21:16:44Z",
+      "local": "2026-06-22T05:16:44+08:00",
+      "retrieved_at": "2026-11-14T03:13:14.937803Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_024_111_A_014_4005_DHDH_A_20260703T211643_20260703T211715_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_024_111_A_014_4005_DHDH_A_20260703T211643_20260703T211715_P05023_N_F_J_001/NISAR_L2_PR_GCOV_024_111_A_014_4005_DHDH_A_20260703T211643_20260703T211715_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-07-03T21:16:43Z",
+      "local": "2026-07-04T05:16:43+08:00",
+      "retrieved_at": "2026-11-14T03:21:49.656075Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_025_111_A_014_4005_DHDH_A_20260715T211642_20260715T211714_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_025_111_A_014_4005_DHDH_A_20260715T211642_20260715T211714_P05023_N_F_J_001/NISAR_L2_PR_GCOV_025_111_A_014_4005_DHDH_A_20260715T211642_20260715T211714_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-07-15T21:16:42Z",
+      "local": "2026-07-16T05:16:42+08:00",
+      "retrieved_at": "2026-11-14T03:21:49.815643Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_026_111_A_014_4005_DHDH_A_20260727T211642_20260727T211713_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_026_111_A_014_4005_DHDH_A_20260727T211642_20260727T211713_P05023_N_F_J_001/NISAR_L2_PR_GCOV_026_111_A_014_4005_DHDH_A_20260727T211642_20260727T211713_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-07-27T21:16:42Z",
+      "local": "2026-07-28T05:16:42+08:00",
+      "retrieved_at": "2026-11-14T03:21:50.933494Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_028_111_A_014_4005_DHDH_A_20260820T211640_20260820T211713_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_028_111_A_014_4005_DHDH_A_20260820T211640_20260820T211713_P05023_N_F_J_001/NISAR_L2_PR_GCOV_028_111_A_014_4005_DHDH_A_20260820T211640_20260820T211713_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-08-20T21:16:40Z",
+      "local": "2026-08-21T05:16:40+08:00",
+      "retrieved_at": "2026-11-14T03:21:51.761215Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_029_111_A_014_4005_DHDH_A_20260901T211640_20260901T211712_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_029_111_A_014_4005_DHDH_A_20260901T211640_20260901T211712_P05023_N_F_J_001/NISAR_L2_PR_GCOV_029_111_A_014_4005_DHDH_A_20260901T211640_20260901T211712_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-09-01T21:16:40Z",
+      "local": "2026-09-02T05:16:40+08:00",
+      "retrieved_at": "2026-11-14T03:22:08.977614Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_030_111_A_014_4005_DHDH_A_20260913T211640_20260913T211712_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_030_111_A_014_4005_DHDH_A_20260913T211640_20260913T211712_P05023_N_F_J_001/NISAR_L2_PR_GCOV_030_111_A_014_4005_DHDH_A_20260913T211640_20260913T211712_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-09-13T21:16:40Z",
+      "local": "2026-09-14T05:16:40+08:00",
+      "retrieved_at": "2026-11-14T03:22:11.391406Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_031_111_A_014_4005_DHDH_A_20260925T211640_20260925T211712_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_031_111_A_014_4005_DHDH_A_20260925T211640_20260925T211712_P05023_N_F_J_001/NISAR_L2_PR_GCOV_031_111_A_014_4005_DHDH_A_20260925T211640_20260925T211712_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-09-25T21:16:40Z",
+      "local": "2026-09-26T05:16:40+08:00",
+      "retrieved_at": "2026-11-14T03:22:13.056224Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_032_111_A_014_4005_DHDH_A_20261007T211640_20261007T211713_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_032_111_A_014_4005_DHDH_A_20261007T211640_20261007T211713_P05023_N_F_J_001/NISAR_L2_PR_GCOV_032_111_A_014_4005_DHDH_A_20261007T211640_20261007T211713_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-10-07T21:16:40Z",
+      "local": "2026-10-08T05:16:40+08:00",
+      "retrieved_at": "2026-11-14T03:22:13.930168Z",
+      "retrieval_time_basis": "request_started_at"
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_033_111_A_014_4005_DHDH_A_20261019T211640_20261019T211713_P05023_N_F_J_001",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_033_111_A_014_4005_DHDH_A_20261019T211640_20261019T211713_P05023_N_F_J_001/NISAR_L2_PR_GCOV_033_111_A_014_4005_DHDH_A_20261019T211640_20261019T211713_P05023_N_F_J_001.h5",
+      "crid": "P05023",
+      "utc": "2026-10-19T21:16:40Z",
+      "local": "2026-10-20T05:16:40+08:00",
+      "retrieved_at": "2026-11-14T03:22:27.816390Z",
+      "retrieval_time_basis": "request_started_at"
+    }
+  ]
+}

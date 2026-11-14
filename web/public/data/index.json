@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "mode": "browse",
-  "fallback_level": 2,
+  "mode": "mixed",
+  "fallback_level": null,
   "collection": "NISAR_L2_GCOV_PROVISIONAL_V1",
   "generated_at": "2026-11-14T03:02:42.315314Z",
   "si_usage": {
     "tool": "OpenAI Codex",
-    "declaration_version": "1.0.0",
+    "declaration_version": "1.1.0",
     "declaration_data_path": "si-usage.json",
     "code_status": "SI-generated and SI-assisted",
     "status": "Prepared using SI-assisted code; source observations are not SI-generated",
@@ -403,6 +403,21 @@
   "official_source_kind": "live",
   "seed_retrieved_at": "2026-11-14",
   "source_verified_at": "2026-11-14T02:56:55.379256+00:00",
-  "browse_description": "Full-frame ASF browse images; not calibrated raster values or map overlays.",
-  "numerical_status": "Authenticated GCOV AOI access passed; frozen threshold experiments failed independent held-out validation. Quantitative publication is blocked."
+  "browse_description": "Small full-frame context overviews; reservoir viewer uses calibrated GCOV grids.",
+  "numerical_status": "Per-reservoir descriptive review grades; A/B show experimental area and sensitivity; C shows images only.",
+  "image_reservoirs": [
+    "baoshan2",
+    "liyutan",
+    "shimen",
+    "feitsui"
+  ],
+  "numeric_reservoirs": [
+    "baoshan2",
+    "liyutan",
+    "shimen",
+    "feitsui"
+  ],
+  "code_version": "70bd693122a0e157e7e81b619306052fec005f36",
+  "code_dirty": true,
+  "release_method": "relative_power_v3"
 }

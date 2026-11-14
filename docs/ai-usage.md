@@ -35,3 +35,7 @@ The human user supplied the product brief and authorized the initial GitHub push
 Automated tests and successful builds provide evidence about the checked code paths. They do not establish calibrated water-detection accuracy or prove a causal connection between imagery and storage changes. See [gates](gates.md) for the recorded validation scope.
 
 The localization update translated the main interface and README into Taiwan Traditional Chinese, retained a separate English README, and adjusted typography and accessible labels. Data values and scientific publication criteria were unchanged.
+
+## Calibrated review release
+
+OpenAI Codex also assisted with the English/Traditional Chinese interface, relative-threshold diagnostics, independent display/analysis grids, same-origin scientific charts, CSV exports and the SVG coordinate locator. The locator visibly identifies SI-generated diagram code. Source GCOV arrays, official observations and OSM coordinates are not generated observations. The social preview is a browser capture of real, fixed-scale source-data visualizations; quickview figures are deterministic scientific plots with SI-assisted annotations. No agency logo, flag or mission emblem is included. Current methodological limitations and earlier failed experiments remain explicit.

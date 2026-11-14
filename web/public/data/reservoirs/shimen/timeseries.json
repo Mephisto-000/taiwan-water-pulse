@@ -1,0 +1,1248 @@
+{
+  "si_usage": {
+    "tool": "OpenAI Codex",
+    "declaration_version": "1.1.0",
+    "code_status": "SI-generated and SI-assisted",
+    "status": "Prepared using SI-assisted code; source observations are not SI-generated",
+    "scope": [
+      "source retrieval",
+      "format conversion",
+      "sampling and export",
+      "validation diagnostics"
+    ],
+    "source_observations_si_generated": false,
+    "browse_images_si_generated": false,
+    "synthetic_arrays": "Unit-test fixtures only; not exported as observations"
+  },
+  "records": [
+    {
+      "utc": "2025-11-05T21:16:41Z",
+      "local": "2025-11-06T05:16:41+08:00",
+      "granule": "NISAR_L2_PR_GCOV_004_111_A_014_4005_DHDH_A_20251105T211641_20251105T211714_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6088,
+        "hh_lo": 5.5269,
+        "hh_hi": 5.6601,
+        "hv": 5.6988,
+        "hv_lo": 5.6628,
+        "hv_hi": 5.7294,
+        "primary": 5.6088,
+        "primary_lo": 5.5269,
+        "primary_hi": 5.6601
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.578328291126106,
+      "land_median_db": -5.359840794962542,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.2238004573874406,
+        "HV": 4.339541860768267
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2025-11-06T07:00:00+08:00",
+        "pct": 99.70852966968722,
+        "level_m": 244.93
+      }
+    },
+    {
+      "utc": "2025-11-17T21:16:42Z",
+      "local": "2025-11-18T05:16:42+08:00",
+      "granule": "NISAR_L2_PR_GCOV_005_111_A_014_4005_DHDH_A_20251117T211642_20251117T211714_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6016,
+        "hh_lo": 5.5386,
+        "hh_hi": 5.6583,
+        "hv": 5.6502,
+        "hv_lo": 5.481,
+        "hv_hi": 5.715,
+        "primary": 5.6016,
+        "primary_lo": 5.5386,
+        "primary_hi": 5.6583
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.156951076719366,
+      "land_median_db": -4.938463580555802,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.305561557849244,
+        "HV": 3.1342706671572516
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46718
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46718
+        }
+      },
+      "official": {
+        "local": "2025-11-18T07:00:00+08:00",
+        "pct": 99.5422624963461,
+        "level_m": 244.89
+      }
+    },
+    {
+      "utc": "2025-11-29T21:16:42Z",
+      "local": "2025-11-30T05:16:42+08:00",
+      "granule": "NISAR_L2_PR_GCOV_006_111_A_014_4005_DHDH_A_20251129T211642_20251129T211715_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6349,
+        "hh_lo": 5.5755,
+        "hh_hi": 5.6736,
+        "hv": 5.7105,
+        "hv_lo": 5.6763,
+        "hv_hi": 5.7348,
+        "primary": 5.6349,
+        "primary_lo": 5.5755,
+        "primary_hi": 5.6736
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.651112798219446,
+      "land_median_db": -5.4326253020558815,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.313308748322781,
+        "HV": 4.447183551198267
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2025-11-30T07:00:00+08:00",
+        "pct": 99.45891844489918,
+        "level_m": 244.87
+      }
+    },
+    {
+      "utc": "2025-12-11T21:16:43Z",
+      "local": "2025-12-12T05:16:43+08:00",
+      "granule": "NISAR_L2_PR_GCOV_007_111_A_014_4005_DHDH_A_20251211T211643_20251211T211715_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.625,
+        "hh_lo": 5.5548,
+        "hh_hi": 5.6763,
+        "hv": 5.7195,
+        "hv_lo": 5.6817,
+        "hv_hi": 5.7402,
+        "primary": 5.625,
+        "primary_lo": 5.5548,
+        "primary_hi": 5.6763
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.9574394749828254,
+      "land_median_db": -5.738951978819261,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.243562126263221,
+        "HV": 4.223655422455795
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2025-12-12T07:00:00+08:00",
+        "pct": 99.62560654779303,
+        "level_m": 244.91
+      }
+    },
+    {
+      "utc": "2025-12-23T21:16:43Z",
+      "local": "2025-12-24T05:16:43+08:00",
+      "granule": "NISAR_L2_PR_GCOV_008_111_A_014_4005_DHDH_A_20251223T211643_20251223T211716_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6214,
+        "hh_lo": 5.5575,
+        "hh_hi": 5.6718,
+        "hv": 5.7141,
+        "hv_lo": 5.6772,
+        "hv_hi": 5.742,
+        "primary": 5.6214,
+        "primary_lo": 5.5575,
+        "primary_hi": 5.6718
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.953924958952022,
+      "land_median_db": -5.7354374627884575,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.3666613325391554,
+        "HV": 4.328752457120296
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2025-12-24T07:00:00+08:00",
+        "pct": 98.04417421806488,
+        "level_m": 244.53
+      }
+    },
+    {
+      "utc": "2026-01-16T21:16:44Z",
+      "local": "2026-01-17T05:16:44+08:00",
+      "granule": "NISAR_L2_PR_GCOV_010_111_A_014_4005_DHDH_A_20260116T211644_20260116T211717_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6376,
+        "hh_lo": 5.562,
+        "hh_hi": 5.6889,
+        "hv": 5.7024,
+        "hv_lo": 5.661,
+        "hv_hi": 5.7447,
+        "primary": 5.6376,
+        "primary_lo": 5.562,
+        "primary_hi": 5.6889
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.679138387489112,
+      "land_median_db": -5.460650891325548,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.162544927758202,
+        "HV": 3.570957849432561
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46718
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46718
+        }
+      },
+      "official": {
+        "local": "2026-01-17T07:00:00+08:00",
+        "pct": 98.959695995323,
+        "level_m": 244.75
+      }
+    },
+    {
+      "utc": "2026-01-28T21:16:45Z",
+      "local": "2026-01-29T05:16:45+08:00",
+      "granule": "NISAR_L2_PR_GCOV_011_111_A_014_4005_DHDH_A_20260128T211645_20260128T211718_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6574,
+        "hh_lo": 5.5872,
+        "hh_hi": 5.6979,
+        "hv": 5.7267,
+        "hv_lo": 5.6898,
+        "hv_hi": 5.7528,
+        "primary": 5.6574,
+        "primary_lo": 5.5872,
+        "primary_hi": 5.6979
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.7461947935792965,
+      "land_median_db": -5.527707297415732,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.3696427514963965,
+        "HV": 4.2932931572141975
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2026-01-29T07:00:00+08:00",
+        "pct": 96.58733703595439,
+        "level_m": 244.18
+      }
+    },
+    {
+      "utc": "2026-02-09T21:16:46Z",
+      "local": "2026-02-10T05:16:46+08:00",
+      "granule": "NISAR_L2_PR_GCOV_012_111_A_014_4005_DHDH_A_20260209T211646_20260209T211718_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6646,
+        "hh_lo": 5.6025,
+        "hh_hi": 5.7024,
+        "hv": 5.7294,
+        "hv_lo": 5.6952,
+        "hv_hi": 5.7492,
+        "primary": 5.6646,
+        "primary_lo": 5.6025,
+        "primary_hi": 5.7024
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.732001960491559,
+      "land_median_db": -5.5135144643279945,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.3112672635281992,
+        "HV": 4.309029372167461
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2026-02-10T07:00:00+08:00",
+        "pct": 93.46193510669394,
+        "level_m": 243.42
+      }
+    },
+    {
+      "utc": "2026-02-21T21:16:46Z",
+      "local": "2026-02-22T05:16:46+08:00",
+      "granule": "NISAR_L2_PR_GCOV_013_111_A_014_4005_DHDH_A_20260221T211646_20260221T211719_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6466,
+        "hh_lo": 5.5602,
+        "hh_hi": 5.6979,
+        "hv": 5.715,
+        "hv_lo": 5.6763,
+        "hv_hi": 5.751,
+        "primary": 5.6466,
+        "primary_lo": 5.5602,
+        "primary_hi": 5.6979
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.769793908156736,
+      "land_median_db": -5.551306411993172,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.2512876998074702,
+        "HV": 4.222405263234189
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2026-02-22T07:00:00+08:00",
+        "pct": 85.38934814381759,
+        "level_m": 241.41
+      }
+    },
+    {
+      "utc": "2026-03-05T21:16:46Z",
+      "local": "2026-03-06T05:16:46+08:00",
+      "granule": "NISAR_L2_PR_GCOV_014_111_A_014_4005_DHDH_A_20260305T211646_20260305T211719_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6034,
+        "hh_lo": 5.5386,
+        "hh_hi": 5.6556,
+        "hv": 5.7087,
+        "hv_lo": 5.6691,
+        "hv_hi": 5.7384,
+        "primary": 5.6034,
+        "primary_lo": 5.5386,
+        "primary_hi": 5.6556
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.174194129522966,
+      "land_median_db": -4.9557066333594015,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.2248585287433036,
+        "HV": 4.36834422464567
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2026-03-06T07:00:00+08:00",
+        "pct": 73.8971294942999,
+        "level_m": 238.37
+      }
+    },
+    {
+      "utc": "2026-03-17T21:16:47Z",
+      "local": "2026-03-18T05:16:47+08:00",
+      "granule": "NISAR_L2_PR_GCOV_015_111_A_014_4005_DHDH_A_20260317T211647_20260317T211719_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.5647,
+        "hh_lo": 5.4792,
+        "hh_hi": 5.6385,
+        "hv": 5.6916,
+        "hv_lo": 5.6457,
+        "hv_hi": 5.7276,
+        "primary": 5.5647,
+        "primary_lo": 5.4792,
+        "primary_hi": 5.6385
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.7891831772826015,
+      "land_median_db": -5.570695681119037,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.1114317925290207,
+        "HV": 4.171674723228304
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46718
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46718
+        }
+      },
+      "official": {
+        "local": "2026-03-18T07:00:00+08:00",
+        "pct": 62.28662964045601,
+        "level_m": 235.03
+      }
+    },
+    {
+      "utc": "2026-06-21T21:16:44Z",
+      "local": "2026-06-22T05:16:44+08:00",
+      "granule": "NISAR_L2_PR_GCOV_023_111_A_014_4005_DHDH_A_20260621T211644_20260621T211716_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6367,
+        "hh_lo": 5.553,
+        "hh_hi": 5.6826,
+        "hv": 5.7213,
+        "hv_lo": 5.6754,
+        "hv_hi": 5.7474,
+        "primary": 5.6367,
+        "primary_lo": 5.553,
+        "primary_hi": 5.6826
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.802407312181697,
+      "land_median_db": -5.583919816018133,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.3605601806607304,
+        "HV": 4.237550943564348
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46718
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46718
+        }
+      },
+      "official": {
+        "local": "2026-06-22T07:00:00+08:00",
+        "pct": 96.75402513884829,
+        "level_m": 244.22
+      }
+    },
+    {
+      "utc": "2026-07-03T21:16:43Z",
+      "local": "2026-07-04T05:16:43+08:00",
+      "granule": "NISAR_L2_PR_GCOV_024_111_A_014_4005_DHDH_A_20260703T211643_20260703T211715_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.5746,
+        "hh_lo": 5.4423,
+        "hh_hi": 5.6637,
+        "hv": 5.6988,
+        "hv_lo": 5.6484,
+        "hv_hi": 5.7312,
+        "primary": 5.5746,
+        "primary_lo": 5.4423,
+        "primary_hi": 5.6637
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.303516964199528,
+      "land_median_db": -5.085029468035964,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.014822033798827,
+        "HV": 3.9886367407927685
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2026-07-04T07:00:00+08:00",
+        "pct": 96.87862028646595,
+        "level_m": 244.25
+      }
+    },
+    {
+      "utc": "2026-07-15T21:16:42Z",
+      "local": "2026-07-16T05:16:42+08:00",
+      "granule": "NISAR_L2_PR_GCOV_025_111_A_014_4005_DHDH_A_20260715T211642_20260715T211714_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6385,
+        "hh_lo": 5.5602,
+        "hh_hi": 5.6862,
+        "hv": 5.715,
+        "hv_lo": 5.6817,
+        "hv_hi": 5.7501,
+        "primary": 5.6385,
+        "primary_lo": 5.5602,
+        "primary_hi": 5.6862
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.545078280805198,
+      "land_median_db": -5.326590784641634,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.367599578864731,
+        "HV": 4.3345399385339975
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46720
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46720
+        }
+      },
+      "official": {
+        "local": "2026-07-16T07:00:00+08:00",
+        "pct": 98.7517567962584,
+        "level_m": 244.7
+      }
+    },
+    {
+      "utc": "2026-07-27T21:16:42Z",
+      "local": "2026-07-28T05:16:42+08:00",
+      "granule": "NISAR_L2_PR_GCOV_026_111_A_014_4005_DHDH_A_20260727T211642_20260727T211713_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6367,
+        "hh_lo": 5.5593,
+        "hh_hi": 5.6925,
+        "hv": 5.7195,
+        "hv_lo": 5.6772,
+        "hv_hi": 5.7456,
+        "primary": 5.6367,
+        "primary_lo": 5.5593,
+        "primary_hi": 5.6925
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.712544508060035,
+      "land_median_db": -5.494057011896471,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.3060816733424256,
+        "HV": 4.348736489847476
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2026-07-28T07:00:00+08:00",
+        "pct": 99.5422624963461,
+        "level_m": 244.89
+      }
+    },
+    {
+      "utc": "2026-08-20T21:16:40Z",
+      "local": "2026-08-21T05:16:40+08:00",
+      "granule": "NISAR_L2_PR_GCOV_028_111_A_014_4005_DHDH_A_20260820T211640_20260820T211713_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6547,
+        "hh_lo": 5.5719,
+        "hh_hi": 5.7051,
+        "hv": 5.7195,
+        "hv_lo": 5.6862,
+        "hv_hi": 5.7429,
+        "primary": 5.6547,
+        "primary_lo": 5.5719,
+        "primary_hi": 5.7051
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.150113949414082,
+      "land_median_db": -4.931626453250518,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.2981927839221656,
+        "HV": 4.3726341415395
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2026-08-21T07:00:00+08:00",
+        "pct": 100.0,
+        "level_m": 245.11
+      }
+    },
+    {
+      "utc": "2026-09-01T21:16:40Z",
+      "local": "2026-09-02T05:16:40+08:00",
+      "granule": "NISAR_L2_PR_GCOV_029_111_A_014_4005_DHDH_A_20260901T211640_20260901T211712_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6538,
+        "hh_lo": 5.5692,
+        "hh_hi": 5.6943,
+        "hv": 5.7159,
+        "hv_lo": 5.6862,
+        "hv_hi": 5.7447,
+        "primary": 5.6538,
+        "primary_lo": 5.5692,
+        "primary_hi": 5.6943
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.2259967654098425,
+      "land_median_db": -5.007509269246278,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.3917686062978065,
+        "HV": 4.495453110867907
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2026-09-02T07:00:00+08:00",
+        "pct": 99.33432329728153,
+        "level_m": 244.84
+      }
+    },
+    {
+      "utc": "2026-09-13T21:16:40Z",
+      "local": "2026-09-14T05:16:40+08:00",
+      "granule": "NISAR_L2_PR_GCOV_030_111_A_014_4005_DHDH_A_20260913T211640_20260913T211712_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6205,
+        "hh_lo": 5.5368,
+        "hh_hi": 5.6655,
+        "hv": 5.7114,
+        "hv_lo": 5.6718,
+        "hv_hi": 5.7375,
+        "primary": 5.6205,
+        "primary_lo": 5.5368,
+        "primary_hi": 5.6655
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.679060719075752,
+      "land_median_db": -5.4605732229121875,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.3051562979214872,
+        "HV": 4.335612429807402
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2026-09-14T07:00:00+08:00",
+        "pct": 99.70852966968722,
+        "level_m": 244.93
+      }
+    },
+    {
+      "utc": "2026-09-25T21:16:40Z",
+      "local": "2026-09-26T05:16:40+08:00",
+      "granule": "NISAR_L2_PR_GCOV_031_111_A_014_4005_DHDH_A_20260925T211640_20260925T211712_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6286,
+        "hh_lo": 5.5305,
+        "hh_hi": 5.6682,
+        "hv": 5.7006,
+        "hv_lo": 5.661,
+        "hv_hi": 5.7222,
+        "primary": 5.6286,
+        "primary_lo": 5.5305,
+        "primary_hi": 5.6682
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.912770176461396,
+      "land_median_db": -5.694282680297832,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.337347182243683,
+        "HV": 4.357657890992392
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46717
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46717
+        }
+      },
+      "official": {
+        "local": "2026-09-26T07:00:00+08:00",
+        "pct": 99.91688979830455,
+        "level_m": 244.98
+      }
+    },
+    {
+      "utc": "2026-10-07T21:16:40Z",
+      "local": "2026-10-08T05:16:40+08:00",
+      "granule": "NISAR_L2_PR_GCOV_032_111_A_014_4005_DHDH_A_20261007T211640_20261007T211713_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6223,
+        "hh_lo": 5.5584,
+        "hh_hi": 5.6646,
+        "hv": 5.6952,
+        "hv_lo": 5.6682,
+        "hv_hi": 5.7366,
+        "primary": 5.6223,
+        "primary_lo": 5.5584,
+        "primary_hi": 5.6646
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.838126601510135,
+      "land_median_db": -5.619639105346571,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.323478406099282,
+        "HV": 4.3662901464908055
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46718
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46718
+        }
+      },
+      "official": {
+        "local": "2026-10-08T07:00:00+08:00",
+        "pct": 97.83581408944755,
+        "level_m": 244.48
+      }
+    },
+    {
+      "utc": "2026-10-19T21:16:40Z",
+      "local": "2026-10-20T05:16:40+08:00",
+      "granule": "NISAR_L2_PR_GCOV_033_111_A_014_4005_DHDH_A_20261019T211640_20261019T211713_P05023_N_F_J_001",
+      "area_km2": {
+        "hh": 5.6187,
+        "hh_lo": 5.5638,
+        "hh_hi": 5.6691,
+        "hv": 5.6898,
+        "hv_lo": 5.6484,
+        "hv_hi": 5.724,
+        "primary": 5.6187,
+        "primary_lo": 5.5638,
+        "primary_hi": 5.6691
+      },
+      "classification_channel": "HH",
+      "threshold_db": -7.952827040266025,
+      "land_median_db": -5.734339544102461,
+      "threshold_ratio": 0.6,
+      "reference_pixel_count": 16825,
+      "valid_fraction": 1.0,
+      "qa": [],
+      "separation": {
+        "HH": 3.4656558943852205,
+        "HV": 4.294804494088733
+      },
+      "separation_samples": {
+        "HH": {
+          "inside": 58975,
+          "ring": 46718
+        },
+        "HV": {
+          "inside": 58975,
+          "ring": 46718
+        }
+      },
+      "official": {
+        "local": "2026-10-20T07:00:00+08:00",
+        "pct": 92.2328208126279,
+        "level_m": 243.12
+      }
+    }
+  ],
+  "stats": {
+    "n": 21,
+    "pearson_area_vs_level": 0.5047809137016301,
+    "spearman_area_vs_level": 0.08352291633803542,
+    "pearson_ci95": [
+      -0.3570650237842472,
+      0.8281930138654794
+    ],
+    "spearman_ci95": [
+      -0.44941649370454734,
+      0.5537958962236733
+    ],
+    "bootstrap_repetitions": 2000,
+    "bootstrap_valid_replicates": 2000,
+    "bootstrap_seed": 20261114,
+    "leave_one_out_pearson_range": [
+      0.1379164229026213,
+      0.5988028835140049
+    ],
+    "classification_channel": "HH",
+    "grade": "B",
+    "publish_area": true,
+    "reason": "LOW_CONFIDENCE",
+    "method": "relative_power_v3",
+    "pearson_area_hh_vs_level": 0.5047809137016301,
+    "spearman_area_hh_vs_level": 0.08352291633803542,
+    "below_95": {
+      "n": 5,
+      "pearson_area_vs_level": 0.885773081081087,
+      "spearman_area_vs_level": 0.8999999999999998,
+      "pearson_ci95": [
+        -0.0617629116346225,
+        1.0
+      ],
+      "spearman_ci95": [
+        0.1111111111111111,
+        1.0
+      ],
+      "bootstrap_repetitions": 2000,
+      "bootstrap_valid_replicates": 1998,
+      "bootstrap_seed": 20261114,
+      "leave_one_out_pearson_range": [
+        0.6750078279130067,
+        0.9977838776613704
+      ]
+    },
+    "physical_checks": {
+      "passed": true,
+      "osm_area_km2": 5.883,
+      "full_storage_max_area_km2": 5.6574,
+      "full_storage_within_1_1_osm": true,
+      "lowest_observed_utc": "2026-03-17T21:16:47Z",
+      "full_reference_utc": "2026-08-20T21:16:40Z",
+      "lowest_area_smaller_than_full": true,
+      "matched_level_tolerance_m": 0.5,
+      "matched_level_pairs": [
+        {
+          "before_utc": "2025-11-05T21:16:41Z",
+          "after_utc": "2026-07-15T21:16:42Z",
+          "level_difference_m": 0.2300000000000182,
+          "area_difference_km2": 0.02970000000000006
+        },
+        {
+          "before_utc": "2025-11-05T21:16:41Z",
+          "after_utc": "2026-07-27T21:16:42Z",
+          "level_difference_m": 0.040000000000020464,
+          "area_difference_km2": 0.027900000000000702
+        },
+        {
+          "before_utc": "2025-11-05T21:16:41Z",
+          "after_utc": "2026-08-20T21:16:40Z",
+          "level_difference_m": 0.18000000000000682,
+          "area_difference_km2": 0.045900000000000496
+        },
+        {
+          "before_utc": "2025-11-05T21:16:41Z",
+          "after_utc": "2026-09-01T21:16:40Z",
+          "level_difference_m": 0.09000000000000341,
+          "area_difference_km2": 0.04500000000000082
+        },
+        {
+          "before_utc": "2025-11-05T21:16:41Z",
+          "after_utc": "2026-09-13T21:16:40Z",
+          "level_difference_m": 0.0,
+          "area_difference_km2": 0.011700000000000266
+        },
+        {
+          "before_utc": "2025-11-05T21:16:41Z",
+          "after_utc": "2026-09-25T21:16:40Z",
+          "level_difference_m": 0.04999999999998295,
+          "area_difference_km2": 0.01980000000000004
+        },
+        {
+          "before_utc": "2025-11-05T21:16:41Z",
+          "after_utc": "2026-10-07T21:16:40Z",
+          "level_difference_m": 0.45000000000001705,
+          "area_difference_km2": 0.013500000000000512
+        },
+        {
+          "before_utc": "2025-11-17T21:16:42Z",
+          "after_utc": "2026-07-15T21:16:42Z",
+          "level_difference_m": 0.18999999999999773,
+          "area_difference_km2": 0.03689999999999927
+        },
+        {
+          "before_utc": "2025-11-17T21:16:42Z",
+          "after_utc": "2026-07-27T21:16:42Z",
+          "level_difference_m": 0.0,
+          "area_difference_km2": 0.03509999999999991
+        },
+        {
+          "before_utc": "2025-11-17T21:16:42Z",
+          "after_utc": "2026-08-20T21:16:40Z",
+          "level_difference_m": 0.22000000000002728,
+          "area_difference_km2": 0.0530999999999997
+        },
+        {
+          "before_utc": "2025-11-17T21:16:42Z",
+          "after_utc": "2026-09-01T21:16:40Z",
+          "level_difference_m": 0.04999999999998295,
+          "area_difference_km2": 0.052200000000000024
+        },
+        {
+          "before_utc": "2025-11-17T21:16:42Z",
+          "after_utc": "2026-09-13T21:16:40Z",
+          "level_difference_m": 0.040000000000020464,
+          "area_difference_km2": 0.018899999999999473
+        },
+        {
+          "before_utc": "2025-11-17T21:16:42Z",
+          "after_utc": "2026-09-25T21:16:40Z",
+          "level_difference_m": 0.09000000000000341,
+          "area_difference_km2": 0.026999999999999247
+        },
+        {
+          "before_utc": "2025-11-17T21:16:42Z",
+          "after_utc": "2026-10-07T21:16:40Z",
+          "level_difference_m": 0.4099999999999966,
+          "area_difference_km2": 0.02069999999999972
+        },
+        {
+          "before_utc": "2025-11-29T21:16:42Z",
+          "after_utc": "2026-07-15T21:16:42Z",
+          "level_difference_m": 0.17000000000001592,
+          "area_difference_km2": 0.0035999999999996035
+        },
+        {
+          "before_utc": "2025-11-29T21:16:42Z",
+          "after_utc": "2026-07-27T21:16:42Z",
+          "level_difference_m": 0.01999999999998181,
+          "area_difference_km2": 0.0018000000000002458
+        },
+        {
+          "before_utc": "2025-11-29T21:16:42Z",
+          "after_utc": "2026-08-20T21:16:40Z",
+          "level_difference_m": 0.2400000000000091,
+          "area_difference_km2": 0.01980000000000004
+        },
+        {
+          "before_utc": "2025-11-29T21:16:42Z",
+          "after_utc": "2026-09-01T21:16:40Z",
+          "level_difference_m": 0.030000000000001137,
+          "area_difference_km2": 0.01890000000000036
+        },
+        {
+          "before_utc": "2025-11-29T21:16:42Z",
+          "after_utc": "2026-09-13T21:16:40Z",
+          "level_difference_m": 0.060000000000002274,
+          "area_difference_km2": -0.01440000000000019
+        },
+        {
+          "before_utc": "2025-11-29T21:16:42Z",
+          "after_utc": "2026-09-25T21:16:40Z",
+          "level_difference_m": 0.10999999999998522,
+          "area_difference_km2": -0.006300000000000416
+        },
+        {
+          "before_utc": "2025-11-29T21:16:42Z",
+          "after_utc": "2026-10-07T21:16:40Z",
+          "level_difference_m": 0.3900000000000148,
+          "area_difference_km2": -0.012599999999999945
+        },
+        {
+          "before_utc": "2025-12-11T21:16:43Z",
+          "after_utc": "2026-07-15T21:16:42Z",
+          "level_difference_m": 0.21000000000000796,
+          "area_difference_km2": 0.013499999999999623
+        },
+        {
+          "before_utc": "2025-12-11T21:16:43Z",
+          "after_utc": "2026-07-27T21:16:42Z",
+          "level_difference_m": 0.020000000000010232,
+          "area_difference_km2": 0.011700000000000266
+        },
+        {
+          "before_utc": "2025-12-11T21:16:43Z",
+          "after_utc": "2026-08-20T21:16:40Z",
+          "level_difference_m": 0.20000000000001705,
+          "area_difference_km2": 0.02970000000000006
+        },
+        {
+          "before_utc": "2025-12-11T21:16:43Z",
+          "after_utc": "2026-09-01T21:16:40Z",
+          "level_difference_m": 0.06999999999999318,
+          "area_difference_km2": 0.02880000000000038
+        },
+        {
+          "before_utc": "2025-12-11T21:16:43Z",
+          "after_utc": "2026-09-13T21:16:40Z",
+          "level_difference_m": 0.020000000000010232,
+          "area_difference_km2": -0.0045000000000001705
+        },
+        {
+          "before_utc": "2025-12-11T21:16:43Z",
+          "after_utc": "2026-09-25T21:16:40Z",
+          "level_difference_m": 0.06999999999999318,
+          "area_difference_km2": 0.0035999999999996035
+        },
+        {
+          "before_utc": "2025-12-11T21:16:43Z",
+          "after_utc": "2026-10-07T21:16:40Z",
+          "level_difference_m": 0.4300000000000068,
+          "area_difference_km2": -0.0026999999999999247
+        },
+        {
+          "before_utc": "2025-12-23T21:16:43Z",
+          "after_utc": "2026-06-21T21:16:44Z",
+          "level_difference_m": 0.3100000000000023,
+          "area_difference_km2": 0.01529999999999987
+        },
+        {
+          "before_utc": "2025-12-23T21:16:43Z",
+          "after_utc": "2026-07-03T21:16:43Z",
+          "level_difference_m": 0.28000000000000114,
+          "area_difference_km2": -0.046800000000000175
+        },
+        {
+          "before_utc": "2025-12-23T21:16:43Z",
+          "after_utc": "2026-07-15T21:16:42Z",
+          "level_difference_m": 0.1699999999999875,
+          "area_difference_km2": 0.017099999999999227
+        },
+        {
+          "before_utc": "2025-12-23T21:16:43Z",
+          "after_utc": "2026-07-27T21:16:42Z",
+          "level_difference_m": 0.3599999999999852,
+          "area_difference_km2": 0.01529999999999987
+        },
+        {
+          "before_utc": "2025-12-23T21:16:43Z",
+          "after_utc": "2026-09-01T21:16:40Z",
+          "level_difference_m": 0.3100000000000023,
+          "area_difference_km2": 0.032399999999999984
+        },
+        {
+          "before_utc": "2025-12-23T21:16:43Z",
+          "after_utc": "2026-09-13T21:16:40Z",
+          "level_difference_m": 0.4000000000000057,
+          "area_difference_km2": -0.000900000000000567
+        },
+        {
+          "before_utc": "2025-12-23T21:16:43Z",
+          "after_utc": "2026-09-25T21:16:40Z",
+          "level_difference_m": 0.44999999999998863,
+          "area_difference_km2": 0.007199999999999207
+        },
+        {
+          "before_utc": "2025-12-23T21:16:43Z",
+          "after_utc": "2026-10-07T21:16:40Z",
+          "level_difference_m": 0.05000000000001137,
+          "area_difference_km2": 0.0008999999999996788
+        },
+        {
+          "before_utc": "2026-01-16T21:16:44Z",
+          "after_utc": "2026-07-03T21:16:43Z",
+          "level_difference_m": 0.5,
+          "area_difference_km2": -0.06299999999999972
+        },
+        {
+          "before_utc": "2026-01-16T21:16:44Z",
+          "after_utc": "2026-07-15T21:16:42Z",
+          "level_difference_m": 0.05000000000001137,
+          "area_difference_km2": 0.0008999999999996788
+        },
+        {
+          "before_utc": "2026-01-16T21:16:44Z",
+          "after_utc": "2026-07-27T21:16:42Z",
+          "level_difference_m": 0.13999999999998636,
+          "area_difference_km2": -0.0008999999999996788
+        },
+        {
+          "before_utc": "2026-01-16T21:16:44Z",
+          "after_utc": "2026-08-20T21:16:40Z",
+          "level_difference_m": 0.36000000000001364,
+          "area_difference_km2": 0.017100000000000115
+        },
+        {
+          "before_utc": "2026-01-16T21:16:44Z",
+          "after_utc": "2026-09-01T21:16:40Z",
+          "level_difference_m": 0.09000000000000341,
+          "area_difference_km2": 0.016200000000000436
+        },
+        {
+          "before_utc": "2026-01-16T21:16:44Z",
+          "after_utc": "2026-09-13T21:16:40Z",
+          "level_difference_m": 0.18000000000000682,
+          "area_difference_km2": -0.017100000000000115
+        },
+        {
+          "before_utc": "2026-01-16T21:16:44Z",
+          "after_utc": "2026-09-25T21:16:40Z",
+          "level_difference_m": 0.22999999999998977,
+          "area_difference_km2": -0.009000000000000341
+        },
+        {
+          "before_utc": "2026-01-16T21:16:44Z",
+          "after_utc": "2026-10-07T21:16:40Z",
+          "level_difference_m": 0.27000000000001023,
+          "area_difference_km2": -0.01529999999999987
+        },
+        {
+          "before_utc": "2026-01-28T21:16:45Z",
+          "after_utc": "2026-06-21T21:16:44Z",
+          "level_difference_m": 0.03999999999999204,
+          "area_difference_km2": -0.02069999999999972
+        },
+        {
+          "before_utc": "2026-01-28T21:16:45Z",
+          "after_utc": "2026-07-03T21:16:43Z",
+          "level_difference_m": 0.06999999999999318,
+          "area_difference_km2": -0.08279999999999976
+        },
+        {
+          "before_utc": "2026-01-28T21:16:45Z",
+          "after_utc": "2026-10-07T21:16:40Z",
+          "level_difference_m": 0.29999999999998295,
+          "area_difference_km2": -0.03509999999999991
+        },
+        {
+          "before_utc": "2026-02-09T21:16:46Z",
+          "after_utc": "2026-10-19T21:16:40Z",
+          "level_difference_m": 0.29999999999998295,
+          "area_difference_km2": -0.045900000000000496
+        }
+      ]
+    }
+  }
+}

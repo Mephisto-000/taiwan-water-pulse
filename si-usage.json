@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "declaration_version": "1.0.0",
+  "declaration_version": "1.1.0",
   "tool": "OpenAI Codex",
   "description": "SI-generated and SI-assisted code, text and data-preparation workflows. SI means Super Intelligence in the supplied submission guidance.",
   "code": {
@@ -35,8 +35,13 @@
   },
   "graphics": {
     "status": "SI-generated SVG code",
-    "scope": ["custom pulse icon", "favicon"],
-    "visible_label": "SI-generated icon",
+    "scope": [
+      "custom pulse icon",
+      "favicon",
+      "coordinate locator",
+      "data-driven charts and scientific visualizations"
+    ],
+    "visible_label": "SI-generated icon; SI-generated coordinate locator; project SI disclosure",
     "favicon_mark": "SI",
     "institutional_branding_used": false
   },
@@ -47,5 +52,5 @@
     "screenshots": "Browser captures of the SI-assisted application, not generated satellite observations",
     "future_generated_media": "Visibly watermark SI-generated images/video; disclose SI-generated audio in descriptive text and metadata"
   },
-  "review": "Automated checks do not establish scientific accuracy or independent human review. Quantitative radar results remain withheld after failed held-out validation."
+  "review": "Automated checks do not establish scientific accuracy or independent human review. Experimental area results use image-only thresholds, reservoir-specific grades and physical checks. Earlier failed held-out results remain documented."
 }

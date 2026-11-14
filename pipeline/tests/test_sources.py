@@ -86,19 +86,24 @@ def test_official_dense_request_budget_and_missing_semantics() -> None:
     assert records[0]["level_m"] is None
 
 
-def test_exported_asset_integrity_and_honest_fallback() -> None:
+def test_exported_asset_integrity_and_honest_release_scope() -> None:
     output = ROOT / "web" / "public" / "data"
     index = json.loads((output / "index.json").read_text())
     provenance = json.loads((output / "provenance.json").read_text())
-    assert index["mode"] == "browse"
+    assert index["mode"] in {"browse", "mixed"}
     assert len(index["dates"]) == 21
     assert len(provenance["assets"]) == 42
     assert all("area_km2" not in record for record in index["dates"])
     for asset in provenance["assets"]:
         path = output / asset["path"]
         width, height, digest = png_info(path)
-        assert (width, height) == (2016, 1982)
+        assert (width, height) == (asset["width"], asset["height"])
         assert digest == asset["sha256"]
+        if index["mode"] == "mixed":
+            assert (width, height) == (384, 378)
+            original = ASSETS / asset["path"]
+            assert hashlib.sha256(original.read_bytes()).hexdigest() == asset["source_sha256"]
+            assert png_info(original)[:2] == (2016, 1982)
     assert (
         hashlib.sha256((ASSETS / "wra_seed.csv").read_bytes()).hexdigest()
         == (provenance["official"]["seed_sha256"])
