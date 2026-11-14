@@ -5,6 +5,8 @@ import feitsui from "../public/data/official/feitsui.json";
 import {
   datePosition,
   formatDate,
+  formatAcquisitionDate,
+  formatAcquisitionTime,
   decodeDb,
   localGaugeDate,
   nearestAcquisition,
@@ -136,4 +138,14 @@ it("formats display dates in Taiwan Traditional Chinese", () => {
   expect(formatDate("2026-03-18", true)).toBe("3月18日");
   expect(formatDate("2026-03-18", false, "en")).toBe("18 March 2026");
   expect(formatDate("2026-03-18", true, "en")).toBe("18 Mar");
+});
+
+it("formats an acquisition in Taiwan time without losing UTC midnight crossings", () => {
+  expect(formatAcquisitionDate("2026-03-17T21:16:41Z")).toBe("2026年3月18日");
+  expect(formatAcquisitionDate("2026-03-17T21:16:41Z", false, "en")).toBe(
+    "18 March 2026",
+  );
+  expect(formatAcquisitionTime("2026-03-17T21:16:41Z", "en")).toBe("05:16");
+  expect(formatAcquisitionDate("2025-12-31T21:16:41Z")).toBe("2026年1月01日");
+  expect(() => formatAcquisitionDate("invalid")).toThrow("timestamp");
 });

@@ -2,24 +2,42 @@
 
 [繁體中文](README.md) | **English**
 
-**Live site:** [taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app/?lang=en) · [繁體中文](https://taiwan-water-pulse.vercel.app/?lang=zh-TW) · [30-second tour](https://taiwan-water-pulse.vercel.app/?demo=1)
+**Live site:** [taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app/?lang=en) · [繁體中文](https://taiwan-water-pulse.vercel.app/?lang=zh-TW) · [30-second tour](https://taiwan-water-pulse.vercel.app/?demo=1&lang=en)
 
 Explore a year of reservoir retreat and recovery using NISAR L-band radar and Taiwan Water Resources Agency observations. The interface follows the browser language, with explicit `?lang=en` and `?lang=zh-TW` options. This is a historical archive, not live monitoring.
 
 ## What changed
 
-- Calibrated GCOV HH/HV reservoir imagery for four reservoirs and 21 acquisitions: fixed grids, north-up orientation, scale bars, OSM reference outlines and a fixed gamma-nought colour scale.
-- Accessible two-date comparison, chronological filmstrips and a timeline with a visible observation gap.
-- Separate radar-area and official-storage charts, scatterplots, sensitivity ranges, experimental grades and public validation reports.
-- Reservoir-specific publication: unsuccessful methods retain imagery while withholding area estimates and classification overlays.
-- Five chapters, an English auto-playing tour, CSV downloads, share previews, larger typography and improved contrast.
-- Canvas and SVG replace MapLibre and external tiles. No new dependency was added.
+The interface follows design direction 3: a workspace for reading imagery, dates and evidence together. The following describes this implementation; [deployment records](docs/deployment.md) identify the actual live version and release status.
 
-![Calibrated HH imagery comparison](web/public/social-preview.jpg)
+- Three desktop columns: reservoirs and dates on the left, imagery or charts in the centre, and **This day / Methods / Sources** on the right. Mobile uses a reservoir selector, an accessible details panel and a fixed bottom timeline.
+- Light and dark themes initially follow the system preference. System fonts, monospaced numbers, fine dividers and blue data marks require no font downloads or added packages.
+- Four reservoirs with 21 GCOV HH/HV acquisitions each. The timeline derives 30 twelve-day slots from the archive; nine unavailable products remain empty and cannot be selected.
+- Two-date comparison opens by default, with single-image, swipe, water-overlay and classified-reference-edge options. Mobile switches between reference and selected images using buttons. OSM geometry and classified water edges remain distinctly labelled.
+- Selected and reference images load first, followed by neighbours and the remaining HH frames. HV loads only when requested. Failed frames can be retried; loaded frames stay cached.
+- Charts fit the data range and explicitly identify nonzero axes. Complete correlations and intervals live in Methods. Grade C keeps imagery while withholding quantitative area and classification overlays.
+- The five-part tour follows the interface language, supports pause/previous/next and Esc to end, and pauses on image or date interaction. UI dates use Taiwan time; Sources also records UTC.
+
+![Calibrated HH data illustration, not a screenshot of the new workspace](web/public/social-preview.jpg)
 
 ## Scientific scope
 
 The archive uses `NISAR_L2_GCOV_PROVISIONAL_V1`, ascending Track 111, Frame 014, mode 4005 and CRID P05023. Display grids and classification scales are documented separately. Pixel spacing is not effective spatial resolution.
+
+Display spacing is 10 m for Baoshan II, Liyutan and Shimen, and 20 m for Feitsui. Classification uses a common native UTM 30 m grid: average linear power, use HH inside the unbuffered OSM polygon, and select values below 60% of the same-date surrounding-land median. The ratio is a chosen definition, not a measured physical water–land boundary. Fixed display ranges are HH −18 to −2 dB and HV −21 to −6 dB; the grayscale change does not alter quantization or classification.
+
+The revised effect-size and confidence-interval criteria give the following grades. Primary statistics keep all observations:
+
+| Reservoir | Grade | Interpretation |
+| --- | --- | --- |
+| Baoshan II | A | Radar area follows water level; the change exceeds method sensitivity |
+| Liyutan | A | Radar area follows water level; the change exceeds method sensitivity |
+| Shimen | C | The correlation interval crosses zero; area values are withheld in the UI |
+| Feitsui | B | Direction agrees, but the change is smaller than method sensitivity |
+
+QA is calculated separately for each polarization using land-median shifts and unusually low full-pool area. Flagged observations remain visible with †; polarization results also report sensitivity after excluding all flagged dates. Methods includes full-pool repeatability and broader threshold/Otsu diagnostics.
+
+Baoshan II and Liyutan also have a volume-closure check: trapezoidal integration of radar area against official water level, compared with the change in official effective storage volume. This uses official levels, linear interpolation of area between observations and a threshold-dependent estimate. It is a physical consistency check, not independent validation. The proposed dark exposed-bed explanation for HV remains a hypothesis without independent ground observations.
 
 See the [methods](docs/methods.md), [validation](docs/validation.md) and [gate evidence](docs/gates.md) for the actual thresholds, scale, correlations, bootstrap intervals, physical checks and per-reservoir decisions. Public copies of the [methods](https://taiwan-water-pulse.vercel.app/data/methods.md) and [report](https://taiwan-water-pulse.vercel.app/data/validation.json) require no repository access.
 

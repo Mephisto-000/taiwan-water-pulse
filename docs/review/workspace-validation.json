@@ -1,0 +1,45 @@
+{
+  "verified_at": "2026-11-14T17:26:26.683885+08:00",
+  "scope": "Local workspace UI before production publication",
+  "design": "Direction 3, refined neutral workspace with dark/light themes",
+  "viewports": {
+    "1440x900": {
+      "full_image_and_timeline_visible": true,
+      "horizontal_overflow": false
+    },
+    "1280x720": {
+      "image_stage_height_px": 361.171875,
+      "horizontal_overflow": false
+    },
+    "375x667": {
+      "method": "375px iframe viewport, checked visually and by UI actions",
+      "fixed_bottom_timeline": true,
+      "image_visible_in_first_screen": true
+    }
+  },
+  "verified_interactions": [
+    "single-click first timeline slot selects first observation",
+    "missing slot shows no-product notice without changing selection",
+    "mobile reservoir selection",
+    "C-grade area withheld",
+    "HH/HV selection with per-channel QA flags",
+    "language switch preserves URL reservoir/date/polarization/reference",
+    "Chinese tour advances and stops",
+    "reference comparison and native classification edge aligned with raster",
+    "dark and light themes",
+    "threshold trial changes estimate without changing published observations"
+  ],
+  "browser_errors_after_clean_reload": 0,
+  "tests": {
+    "frontend": 65,
+    "deployment_guard": 9,
+    "pipeline": 47,
+    "python_lint": "passed"
+  },
+  "screenshots": [
+    "workspace-desktop.jpg",
+    "workspace-dark.jpg",
+    "workspace-mobile.jpg"
+  ],
+  "performance_note": "See performance.json: compressed artifact-body totals, not CDN transfer-time measurement."
+}

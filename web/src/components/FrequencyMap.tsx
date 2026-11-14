@@ -17,6 +17,17 @@ export default function FrequencyMap({
   archive: NumericalArchive;
   lang: Language;
 }) {
+  const complete = archive.series.records.every(
+    (record) => archive.analysis?.frames[record.utc.slice(0, 10)] !== undefined,
+  );
+  if (hasRelativeAnalysis(archive) && canPublishArea(archive) && !complete)
+    return (
+      <p role="status">
+        {lang === "en"
+          ? "Loading all observations for the annual frequency map…"
+          : "正在載入全年觀測，完成後顯示水面出現頻率…"}
+      </p>
+    );
   return hasRelativeAnalysis(archive) && canPublishArea(archive) ? (
     <RelativeFrequencyMap archive={archive} lang={lang} />
   ) : null;

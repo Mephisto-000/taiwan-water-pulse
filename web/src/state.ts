@@ -74,7 +74,7 @@ export function explorerSearch(
   query.set("reservoir", state.reservoirKey);
   query.set("date", date.utc_date);
   query.set("pol", state.polarization);
-  query.set("lang", state.demo ? "en" : state.lang);
+  query.set("lang", state.lang);
   query.set("compareDate", compare.utc_date);
   if (state.demo) query.set("demo", "1");
   else query.delete("demo");

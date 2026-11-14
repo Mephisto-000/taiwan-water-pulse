@@ -56,6 +56,38 @@ export function formatDate(
     timeZone: "UTC",
   }).format(new Date(value.slice(0, 10) + "T12:00:00Z"));
 }
+/** Acquisition timestamps retain their instant and are displayed in Taiwan time. */
+export function formatAcquisitionDate(
+  value: Acquisition | string,
+  short = false,
+  lang: Language = "zh-TW",
+): string {
+  const timestamp = typeof value === "string" ? value : value.utc;
+  const date = new Date(timestamp);
+  if (!Number.isFinite(date.getTime()))
+    throw new Error("Invalid acquisition timestamp.");
+  return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "zh-TW", {
+    day: "2-digit",
+    month: short ? "short" : "long",
+    ...(short ? {} : { year: "numeric" }),
+    timeZone: "Asia/Taipei",
+  }).format(date);
+}
+export function formatAcquisitionTime(
+  value: Acquisition | string,
+  lang: Language = "zh-TW",
+): string {
+  const timestamp = typeof value === "string" ? value : value.utc;
+  const date = new Date(timestamp);
+  if (!Number.isFinite(date.getTime()))
+    throw new Error("Invalid acquisition timestamp.");
+  return new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "zh-TW", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+    timeZone: "Asia/Taipei",
+  }).format(date);
+}
 export function datePosition(date: string, start: string, end: string): number {
   const min = Date.parse(start),
     max = Date.parse(end),

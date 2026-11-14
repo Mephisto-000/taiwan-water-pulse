@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { ScientificStats } from "./science";
 import {
   dataUrl,
   decodeDb,
@@ -30,7 +31,8 @@ export interface PhysicalChecks {
     area_difference_km2: number;
   }[];
 }
-export interface NumericalValidation extends CorrelationSummary {
+export interface NumericalValidation
+  extends CorrelationSummary, ScientificStats {
   grade: ValidationGrade;
   publish_area: boolean;
   reason: string;
@@ -68,6 +70,7 @@ export interface NumericMeta {
   pixel_area_m2: number;
   classification_channel: Polarization;
   thresholds: Record<Polarization, number>;
+  display_ranges_db?: Record<Polarization, [number, number]>;
   validation: NumericalValidation;
   outline_pixel_rings: number[][][];
   overview: {
@@ -95,16 +98,25 @@ export interface AreaObservation {
   };
   valid_fraction: number;
   qa: string[];
+  qa_by_channel?: Record<Polarization, string[]>;
+  land_median_db_by_channel?: Record<Polarization, number>;
+  valid_fraction_by_channel?: Record<Polarization, number>;
   separation?: Record<Polarization, number | null>;
   separation_samples?: Record<Polarization, { inside: number; ring: number }>;
   threshold_db?: number;
   land_median_db?: number;
   threshold_ratio?: number;
-  official: { local: string; pct: number | null; level_m: number | null };
+  official: {
+    local: string;
+    pct: number | null;
+    level_m: number | null;
+    storage_volume_m3?: number | null;
+    effective_capacity_m3?: number | null;
+  };
 }
 export interface AreaSeries {
   records: AreaObservation[];
-  stats: {
+  stats: ScientificStats & {
     classification_channel: Polarization;
     spearman_area_vs_level: number | null;
     pearson_area_vs_level: number | null;
@@ -126,7 +138,7 @@ export interface NumericalArchive {
   meta: NumericMeta;
   mask: Uint8Array;
   series: AreaSeries;
-  frames: Record<string, Record<Polarization, Uint8Array>>;
+  frames: Record<string, Partial<Record<Polarization, Uint8Array>>>;
   analysis?: {
     mask: Uint8Array;
     frames: Record<string, Uint8Array>;
@@ -315,6 +327,45 @@ function validateAssessment(value: unknown, maxN: number): void {
     throw new Error(
       "Grade A requires the stated correlation and confidence bound.",
     );
+  if (value.review_version !== undefined) {
+    const effect = value.effect_size;
+    if (
+      typeof value.review_version !== "string" ||
+      !isObject(effect) ||
+      !finite(effect.n) ||
+      !Number.isInteger(effect.n) ||
+      effect.n < 0 ||
+      effect.n > maxN ||
+      !finite(effect.area_range_km2) ||
+      effect.area_range_km2 < 0 ||
+      !finite(effect.mean_sensitivity_width_km2) ||
+      effect.mean_sensitivity_width_km2 < 0 ||
+      !(
+        effect.range_to_sensitivity_ratio === null ||
+        (finite(effect.range_to_sensitivity_ratio) &&
+          effect.range_to_sensitivity_ratio >= 0)
+      ) ||
+      effect.minimum_ratio !== 2 ||
+      typeof effect.passes !== "boolean" ||
+      effect.passes !==
+        (effect.area_range_km2 > 0 &&
+          effect.area_range_km2 >= 2 * effect.mean_sensitivity_width_km2) ||
+      !(
+        effect.level_range_m === null ||
+        (finite(effect.level_range_m) && effect.level_range_m >= 0)
+      )
+    )
+      throw new Error("Invalid review effect-size evidence.");
+    if (value.grade === "A" && !effect.passes)
+      throw new Error(
+        "Grade A requires sufficient area change beyond sensitivity.",
+      );
+    if (
+      value.grade === "B" &&
+      (!Array.isArray(value.pearson_ci95) || Number(value.pearson_ci95[0]) <= 0)
+    )
+      throw new Error("Grade B requires a positive lower confidence bound.");
+  }
 }
 export function parseNumericMeta(value: unknown): NumericMeta {
   if (!isObject(value) || !isObject(value.grid) || !isObject(value.thresholds))
@@ -357,6 +408,24 @@ export function parseNumericMeta(value: unknown): NumericMeta {
     geographic[3] > 85
   )
     throw new Error("Invalid numerical grid bounds.");
+  if (value.display_ranges_db !== undefined) {
+    const ranges = value.display_ranges_db;
+    if (
+      !isObject(ranges) ||
+      !["HH", "HV"].every((pol) => {
+        const range = ranges[pol];
+        return (
+          Array.isArray(range) &&
+          range.length === 2 &&
+          range.every(finite) &&
+          range[0] >= -35 &&
+          range[1] <= 5 &&
+          range[0] < range[1]
+        );
+      })
+    )
+      throw new Error("Invalid display-only dB ranges.");
+  }
   validateAssessment(value.validation, 100_000);
   if (!pixelRings(value.outline_pixel_rings))
     throw new Error("Invalid OSM outline coordinates.");
@@ -633,8 +702,8 @@ const archiveCache = new Map<string, NumericalArchive>();
 const archiveIdentity = (key: string, dates: Acquisition[]) =>
   `${key}:${dates.map((date) => `${date.utc}:${date.granule}`).join("|")}`;
 
-/** Load and validate the entire fixed-grid archive before exposing it to a viewer. */
-export async function loadNumericalArchive(
+/** Validate metadata and masks before requesting any image pixels. */
+export async function loadNumericalMetadata(
   key: string,
   dates: Acquisition[],
   signal: AbortSignal,
@@ -652,7 +721,8 @@ export async function loadNumericalArchive(
     meta.classification_channel !== series.stats.classification_channel ||
     meta.validation?.grade !== series.stats.grade ||
     meta.validation?.publish_area !== series.stats.publish_area ||
-    meta.validation.method !== series.stats.method
+    meta.validation.method !== series.stats.method ||
+    meta.validation.review_version !== series.stats.review_version
   )
     throw new Error(
       "Classification or assessment differs between metadata and statistics.",
@@ -695,33 +765,82 @@ export async function loadNumericalArchive(
       );
     analysis = { mask: analysisMask, frames: {} };
   }
-  const frames: NumericalArchive["frames"] = {};
+  return { meta, mask, series, frames: {}, ...(analysis ? { analysis } : {}) };
+}
+
+/** Load one requested display channel and its independent HH analysis grid. */
+export async function loadNumericalFrame(
+  key: string,
+  archive: NumericalArchive,
+  date: string,
+  polarization: Polarization,
+  signal: AbortSignal,
+): Promise<NumericalArchive> {
+  if (
+    !/^[a-z0-9]+$/.test(key) ||
+    !/^\d{4}-\d{2}-\d{2}$/.test(date) ||
+    !archive.series.records.some(
+      (record) => record.utc.slice(0, 10) === date,
+    ) ||
+    !["HH", "HV"].includes(polarization)
+  )
+    throw new Error("Invalid numerical frame selection.");
+  if (signal.aborted) throw new DOMException("Aborted", "AbortError");
+  const base = `reservoirs/${key}/`;
+  const name = date.replaceAll("-", "");
+  const bytes = async (path: string, expectedSize: number) => {
+    const array = new Uint8Array(
+      await (await request(base + path, signal)).arrayBuffer(),
+    );
+    if (array.length !== expectedSize)
+      throw new Error(`Numerical asset has the wrong grid size: ${path}`);
+    return array;
+  };
+  const display = archive.frames[date]?.[polarization];
+  const analysis = archive.analysis?.frames[date];
+  const [displayPixels, analysisPixels] = await Promise.all([
+    display
+      ? Promise.resolve(display)
+      : bytes(
+          `${name}_${polarization}.bin`,
+          archive.meta.grid.width * archive.meta.grid.height,
+        ),
+    archive.meta.analysis && archive.analysis && !analysis
+      ? bytes(
+          `analysis/${name}_HH.bin`,
+          archive.meta.analysis.grid.width * archive.meta.analysis.grid.height,
+        )
+      : Promise.resolve(analysis),
+  ]);
+  if (signal.aborted) throw new DOMException("Aborted", "AbortError");
+  archive.frames[date] = {
+    ...archive.frames[date],
+    [polarization]: displayPixels,
+  };
+  if (archive.analysis && analysisPixels)
+    archive.analysis.frames[date] = analysisPixels;
+  return archive;
+}
+
+/** Complete loading is retained for offline parity checks and explicit full exports. */
+export async function loadNumericalArchive(
+  key: string,
+  dates: Acquisition[],
+  signal: AbortSignal,
+): Promise<NumericalArchive> {
+  const archive = await loadNumericalMetadata(key, dates, signal);
   let cursor = 0;
-  // Each observation has two display channels and optionally one analysis channel.
-  // Two workers bound concurrent channel requests to six.
   await Promise.all(
-    Array.from(
-      { length: Math.min(analysis ? 2 : 3, dates.length) },
-      async () => {
-        while (cursor < dates.length) {
-          const date = dates[cursor++];
-          if (signal.aborted) throw new DOMException("Aborted", "AbortError");
-          const name = date.utc_date.replaceAll("-", "");
-          const [HH, HV, analysisHH] = await Promise.all([
-            bytes(name + "_HH.bin"),
-            bytes(name + "_HV.bin"),
-            analysis
-              ? bytes(`analysis/${name}_HH.bin`, analysisSize)
-              : Promise.resolve(null),
-          ]);
-          frames[date.utc_date] = { HH, HV };
-          if (analysis && analysisHH)
-            analysis.frames[date.utc_date] = analysisHH;
-        }
-      },
-    ),
+    Array.from({ length: Math.min(2, dates.length) }, async () => {
+      while (cursor < dates.length) {
+        const date = dates[cursor++].utc_date;
+        // Sequence channels so their shared analysis file is requested only once.
+        await loadNumericalFrame(key, archive, date, "HH", signal);
+        await loadNumericalFrame(key, archive, date, "HV", signal);
+      }
+    }),
   );
-  return { meta, mask, series, frames, ...(analysis ? { analysis } : {}) };
+  return archive;
 }
 
 /** Prepare a tour stop before its clock starts; only completed valid archives are cached. */
@@ -739,12 +858,68 @@ export async function preloadNumericalArchive(
   archiveCache.set(identity, archive);
   return archive;
 }
+export interface ArchiveLoadOptions {
+  selectedDate: string;
+  referenceDate: string;
+  polarization: Polarization;
+}
+const progressiveCache = new Map<string, NumericalArchive>();
+const snapshotArchive = (archive: NumericalArchive): NumericalArchive => ({
+  ...archive,
+  frames: { ...archive.frames },
+  ...(archive.analysis
+    ? {
+        analysis: {
+          ...archive.analysis,
+          frames: { ...archive.analysis.frames },
+        },
+      }
+    : {}),
+});
+/** Yield optional image work to browser idle time and cancel cleanly on navigation. */
+export function waitForBackgroundIdle(
+  signal: AbortSignal,
+  minimumDelayMs = 0,
+): Promise<boolean> {
+  if (signal.aborted) return Promise.resolve(false);
+  return new Promise((resolve) => {
+    let timer: number | null = null;
+    let idle: number | null = null;
+    const finish = (ready: boolean) => {
+      if (timer !== null) window.clearTimeout(timer);
+      if (idle !== null && typeof window.cancelIdleCallback === "function")
+        window.cancelIdleCallback(idle);
+      signal.removeEventListener("abort", abort);
+      resolve(ready);
+    };
+    const abort = () => finish(false);
+    const schedule = () => {
+      timer = null;
+      if (signal.aborted) {
+        finish(false);
+        return;
+      }
+      if (typeof window.requestIdleCallback === "function")
+        idle = window.requestIdleCallback(() => finish(true), {
+          timeout: 2000,
+        });
+      else timer = window.setTimeout(() => finish(!signal.aborted), 50);
+    };
+    signal.addEventListener("abort", abort, { once: true });
+    if (minimumDelayMs > 0) timer = window.setTimeout(schedule, minimumDelayMs);
+    else schedule();
+  });
+}
 export function useNumericalArchive(
   enabled: boolean,
   key: string,
   dates: Acquisition[],
+  options?: ArchiveLoadOptions,
 ) {
   const identity = archiveIdentity(key, dates);
+  const selectedDate = options?.selectedDate ?? dates[0]?.utc_date;
+  const referenceDate = options?.referenceDate ?? dates[0]?.utc_date;
+  const polarization = options?.polarization ?? "HH";
   const [result, setResult] = useState<{
     identity: string;
     archive: NumericalArchive;
@@ -753,43 +928,145 @@ export function useNumericalArchive(
     identity: string;
     message: string;
   } | null>(null);
+  const [frameFailures, setFrameFailures] = useState<{
+    identity: string;
+    values: Record<string, string>;
+  }>({ identity: "", values: {} });
   const [retry, setRetry] = useState(0);
+  const [frameRetry, setFrameRetry] = useState(0);
   useEffect(() => {
     const controller = new AbortController();
     setFailure(null);
     if (!enabled) return () => controller.abort();
-    const cached = archiveCache.get(identity);
+    const cached = progressiveCache.get(identity) ?? archiveCache.get(identity);
     if (cached) {
-      setResult({ identity, archive: cached });
+      progressiveCache.set(identity, cached);
+      setResult({ identity, archive: snapshotArchive(cached) });
       return () => controller.abort();
     }
-    async function load() {
-      const archive = await preloadNumericalArchive(
-        key,
-        dates,
-        controller.signal,
-      );
-      if (!controller.signal.aborted) {
-        setResult({ identity, archive });
-      }
-    }
-    void load().catch((cause: unknown) => {
-      if (!controller.signal.aborted)
-        setFailure({
-          identity,
-          message:
-            cause instanceof Error
-              ? cause.message
-              : "Numerical data could not be loaded.",
-        });
-    });
+    void loadNumericalMetadata(key, dates, controller.signal)
+      .then((archive) => {
+        if (controller.signal.aborted) return;
+        progressiveCache.set(identity, archive);
+        setResult({ identity, archive: snapshotArchive(archive) });
+      })
+      .catch((cause: unknown) => {
+        if (!controller.signal.aborted)
+          setFailure({
+            identity,
+            message:
+              cause instanceof Error
+                ? cause.message
+                : "Numerical metadata could not be loaded.",
+          });
+      });
     return () => controller.abort();
   }, [enabled, identity, key, dates, retry]);
+  const readyIdentity = result?.identity;
+  useEffect(() => {
+    if (!enabled || readyIdentity !== identity) return;
+    const cachedBase = progressiveCache.get(identity);
+    if (!cachedBase) return;
+    const base: NumericalArchive = cachedBase;
+    const controller = new AbortController();
+    const publish = () => {
+      if (!controller.signal.aborted)
+        setResult({ identity, archive: snapshotArchive(base) });
+    };
+    const load = async (date: string, pol: Polarization) => {
+      if (controller.signal.aborted) return;
+      const errorKey = `${date}:${pol}`;
+      if (
+        base.frames[date]?.[pol] &&
+        (!base.analysis || base.analysis.frames[date])
+      )
+        return;
+      try {
+        await loadNumericalFrame(key, base, date, pol, controller.signal);
+        if (controller.signal.aborted) return;
+        setFrameFailures((previous) => {
+          const values =
+            previous.identity === identity ? { ...previous.values } : {};
+          delete values[errorKey];
+          return { identity, values };
+        });
+        publish();
+      } catch (cause) {
+        if (!controller.signal.aborted)
+          setFrameFailures((previous) => ({
+            identity,
+            values: {
+              ...(previous.identity === identity ? previous.values : {}),
+              [errorKey]:
+                cause instanceof Error
+                  ? cause.message
+                  : "Image could not be loaded.",
+            },
+          }));
+      }
+    };
+    async function prepare() {
+      const priority = [...new Set([selectedDate, referenceDate])];
+      await Promise.all(priority.map((date) => load(date, polarization)));
+      if (controller.signal.aborted) return;
+      // Allow the first pair to paint before neighboring images use the connection.
+      if (!(await waitForBackgroundIdle(controller.signal, 350))) return;
+      const selectedIndex = dates.findIndex(
+        (date) => date.utc_date === selectedDate,
+      );
+      const neighbors = [
+        dates[selectedIndex - 1],
+        dates[selectedIndex + 1],
+      ].filter((date) => date !== undefined);
+      await Promise.all(neighbors.map((date) => load(date.utc_date, "HH")));
+      if (!(await waitForBackgroundIdle(controller.signal, 1500))) return;
+      // Background work is bounded and cancellable; HV is never prefetched.
+      for (const date of dates) {
+        if (controller.signal.aborted) return;
+        if (
+          base.frames[date.utc_date]?.HH &&
+          (!base.analysis || base.analysis.frames[date.utc_date])
+        )
+          continue;
+        if (!(await waitForBackgroundIdle(controller.signal))) return;
+        await load(date.utc_date, "HH");
+      }
+    }
+    void prepare();
+    return () => controller.abort();
+  }, [
+    enabled,
+    identity,
+    readyIdentity,
+    key,
+    dates,
+    selectedDate,
+    referenceDate,
+    polarization,
+    frameRetry,
+  ]);
+  const archive =
+    enabled && result?.identity === identity ? result.archive : null;
   return {
-    archive: enabled && result?.identity === identity ? result.archive : null,
+    archive,
     error: enabled && failure?.identity === identity ? failure.message : "",
+    loading:
+      enabled &&
+      (!archive ||
+        !archive.frames[selectedDate]?.[polarization] ||
+        !archive.frames[referenceDate]?.[polarization]),
+    frameErrors:
+      frameFailures.identity === identity ? frameFailures.values : {},
+    analysisComplete:
+      !!archive?.analysis &&
+      dates.every((date) => !!archive.analysis?.frames[date.utc_date]),
+    retryFrame: (_date: string, _pol: Polarization) =>
+      setFrameRetry((value) => value + 1),
     retry: () => {
+      progressiveCache.delete(identity);
       archiveCache.delete(identity);
+      setResult(null);
+      setFrameFailures({ identity, values: {} });
       setRetry((value) => value + 1);
     },
   };

@@ -1,12 +1,11 @@
 export type Language = "en" | "zh-TW";
 
-/** The demo has English subtitles regardless of the visitor's browser locale. */
+/** Explicit language wins; the tour follows the same language as its interface. */
 export function resolveLanguage(
   requested: string | null | undefined,
   browserLanguage = "en",
-  demo = false,
+  _demo = false,
 ): Language {
-  if (demo) return "en";
   if (requested === "en") return "en";
   if (["zh", "zh-TW", "zh-Hant"].includes(requested ?? "")) return "zh-TW";
   return /^zh(?:-|$)/i.test(browserLanguage) ? "zh-TW" : "en";

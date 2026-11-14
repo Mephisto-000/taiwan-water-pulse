@@ -49,16 +49,16 @@ describe("bilingual shared state", () => {
     const gap = parseExplorerState("?date=2026-05-30", index);
     expect(index.dates[gap.dateIndex].utc_date).toBe("2026-06-21");
   });
-  it("forces English for demo links and preserves unrelated URL parameters", () => {
+  it("preserves the requested tour language and unrelated URL parameters", () => {
     const state = parseExplorerState("?demo=1&lang=zh-TW", index, "zh-TW");
     expect(state.demo).toBe(true);
-    expect(state.lang).toBe("en");
+    expect(state.lang).toBe("zh-TW");
     const query = new URLSearchParams(
       explorerSearch(state, index, "?source=classroom"),
     );
     expect(query.get("source")).toBe("classroom");
     expect(query.get("demo")).toBe("1");
-    expect(query.get("lang")).toBe("en");
+    expect(query.get("lang")).toBe("zh-TW");
     const stopped = new URLSearchParams(
       explorerSearch({ ...state, demo: false }, index, query.toString()),
     );

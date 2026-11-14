@@ -5,6 +5,9 @@ import {
   parseAreaSeries,
   canPublishArea,
   loadNumericalArchive,
+  loadNumericalMetadata,
+  loadNumericalFrame,
+  waitForBackgroundIdle,
   preloadNumericalArchive,
   relativeThresholdDb,
   estimateRelativeArea,
@@ -228,6 +231,55 @@ const relativeSeries = {
 };
 
 describe("graded publication contracts", () => {
+  it("enforces the reviewed signal-to-sensitivity and positive B confidence gates", () => {
+    const review = {
+      ...validation,
+      n: 3,
+      review_version: "2026-11-14-v2",
+      pearson_area_vs_level: 0.9,
+      pearson_ci95: [0.7, 0.99],
+      effect_size: {
+        n: 3,
+        area_range_km2: 0.1,
+        mean_sensitivity_width_km2: 0.1,
+        range_to_sensitivity_ratio: 1,
+        minimum_ratio: 2,
+        passes: false,
+        level_range_m: 10,
+      },
+    };
+    expect(() =>
+      parseNumericMeta({ ...meta, validation: { ...review, grade: "A" } }),
+    ).toThrow("sensitivity");
+    expect(() =>
+      parseNumericMeta({
+        ...meta,
+        validation: {
+          ...review,
+          grade: "B",
+          pearson_area_vs_level: 0.6,
+          pearson_ci95: [-0.1, 0.8],
+        },
+      }),
+    ).toThrow("positive");
+    expect(
+      parseNumericMeta({
+        ...meta,
+        validation: {
+          ...review,
+          grade: "B",
+          pearson_area_vs_level: 0.6,
+          pearson_ci95: [0.01, 0.8],
+        },
+      }).validation.grade,
+    ).toBe("B");
+    expect(() =>
+      parseNumericMeta({
+        ...meta,
+        display_ranges_db: { HH: [-2, -18], HV: [-21, -6] },
+      }),
+    ).toThrow("display-only");
+  });
   it("accepts a C-grade image archive without publishing water area", () => {
     const archive = {
       meta: parseNumericMeta(meta),
@@ -388,6 +440,94 @@ describe("validated binary archive loading", () => {
           : JSON.stringify(payload),
       );
     });
+  it("exposes validated metadata before fetching images and loads HV only on request", async () => {
+    const fetch = fixtureFetch();
+    vi.stubGlobal("fetch", fetch);
+    const archive = await loadNumericalMetadata(
+      "progressivetest",
+      [date],
+      new AbortController().signal,
+    );
+    expect(fetch).toHaveBeenCalledTimes(3);
+    expect(archive.frames).toEqual({});
+    await loadNumericalFrame(
+      "progressivetest",
+      archive,
+      date.utc_date,
+      "HH",
+      new AbortController().signal,
+    );
+    expect(fetch).toHaveBeenCalledTimes(4);
+    expect(archive.frames[date.utc_date]?.HH).toHaveLength(4);
+    expect(archive.frames[date.utc_date]?.HV).toBeUndefined();
+    expect(fetch.mock.calls.some(([path]) => path.endsWith("_HV.bin"))).toBe(
+      false,
+    );
+    await loadNumericalFrame(
+      "progressivetest",
+      archive,
+      date.utc_date,
+      "HH",
+      new AbortController().signal,
+    );
+    expect(fetch).toHaveBeenCalledTimes(4);
+    await loadNumericalFrame(
+      "progressivetest",
+      archive,
+      date.utc_date,
+      "HV",
+      new AbortController().signal,
+    );
+    expect(fetch).toHaveBeenCalledTimes(5);
+  });
+  it("retains a valid channel after another channel fails and permits a scoped retry", async () => {
+    vi.stubGlobal(
+      "fetch",
+      fixtureFetch({ "20260317_HV.bin": new Uint8Array([1]) }),
+    );
+    const archive = await loadNumericalMetadata(
+      "retrytest",
+      [date],
+      new AbortController().signal,
+    );
+    await loadNumericalFrame(
+      "retrytest",
+      archive,
+      date.utc_date,
+      "HH",
+      new AbortController().signal,
+    );
+    const hh = archive.frames[date.utc_date]?.HH;
+    await expect(
+      loadNumericalFrame(
+        "retrytest",
+        archive,
+        date.utc_date,
+        "HV",
+        new AbortController().signal,
+      ),
+    ).rejects.toThrow("grid size");
+    expect(archive.frames[date.utc_date]?.HH).toBe(hh);
+    expect(archive.frames[date.utc_date]?.HV).toBeUndefined();
+    vi.stubGlobal("fetch", fixtureFetch());
+    await loadNumericalFrame(
+      "retrytest",
+      archive,
+      date.utc_date,
+      "HV",
+      new AbortController().signal,
+    );
+    expect(archive.frames[date.utc_date]?.HV).toHaveLength(4);
+    await expect(
+      loadNumericalFrame(
+        "retrytest",
+        archive,
+        "2026-04-10",
+        "HH",
+        new AbortController().signal,
+      ),
+    ).rejects.toThrow("selection");
+  });
   it("loads calibrated C-grade HH/HV imagery after validating exact binary dimensions", async () => {
     const fetch = fixtureFetch();
     vi.stubGlobal("fetch", fetch);
@@ -562,5 +702,40 @@ describe("numerical asset boundary validation", () => {
         [],
       ),
     ).toThrow();
+  });
+});
+
+describe("cancellable background image scheduling", () => {
+  afterEach(() => vi.unstubAllGlobals());
+  it("waits for idle time before permitting optional image work", async () => {
+    let idleCallback: (() => void) | undefined;
+    const requestIdleCallback = vi.fn((callback: () => void) => {
+      idleCallback = callback;
+      return 7;
+    });
+    vi.stubGlobal("window", {
+      requestIdleCallback,
+      cancelIdleCallback: vi.fn(),
+      clearTimeout: vi.fn(),
+    });
+    const controller = new AbortController();
+    const ready = waitForBackgroundIdle(controller.signal);
+    expect(requestIdleCallback).toHaveBeenCalledOnce();
+    idleCallback!();
+    await expect(ready).resolves.toBe(true);
+  });
+  it("cancels the queued idle callback when changing reservoir or date", async () => {
+    const cancelIdleCallback = vi.fn();
+    vi.stubGlobal("window", {
+      requestIdleCallback: vi.fn(() => 12),
+      cancelIdleCallback,
+      clearTimeout: vi.fn(),
+    });
+    const controller = new AbortController();
+    const ready = waitForBackgroundIdle(controller.signal);
+    controller.abort();
+    await expect(ready).resolves.toBe(false);
+    expect(cancelIdleCallback).toHaveBeenCalledWith(12);
+    await expect(waitForBackgroundIdle(controller.signal)).resolves.toBe(false);
   });
 });

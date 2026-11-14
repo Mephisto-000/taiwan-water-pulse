@@ -198,3 +198,16 @@ uv run --project pipeline water-pulse read \
 `release --offline` replaces the public archive with the current calibrated release. The historical `all --offline` / `export --offline` commands instead produce the Browse fallback and are not the current release-reproduction command. Starting or building the frontend needs neither raw caches nor Earthdata credentials.
 
 The test suite checks real exported analysis grids against the browser's area calculations. Node filesystem integration tests are `.test.mjs` files, executed by the existing Vitest installation; no extra Node type package was added. Frontend and Python lock files remain the single locks for their ecosystems.
+
+
+## Workspace redesign and review evidence
+
+The direction-3 workspace adds no package, font file, external font service or second package manager. The manifests and lock files are unchanged by the redesign. React manages the desktop three-column workspace and mobile details panel; Canvas renders the reservoir imagery, SVG renders charts and the radar explanation, and native CSS supplies light/dark themes. `web/src/style.css` uses system sans-serif fonts plus a system monospace stack for numbers and identifiers. The reference design's suggested IBM Plex font downloads are not required by this implementation.
+
+The existing browser APIs support responsive charts (`ResizeObserver`), accessible controls, cached per-frame loading and optional theme persistence (`localStorage`, with an unavailable-storage fallback). Only selected/reference frames load first; neighbouring and remaining HH observations follow, while HV is requested on channel selection. No browser cache package, chart library, map library or animation dependency was introduced. Metadata remains available independently of full image loading.
+
+The scientific review uses the existing NumPy/SciPy/rasterio environment for effect-size grading, per-polarization QA, full-pool repeatability, threshold sensitivity and trapezoidal volume closure. It keeps the 30 m HH classification definition separate from 10 m/20 m display grids. These additions do not require new credentials or deployment environment variables. The frontend uses the generated reports to publish A/A/C/B grades and suppress C-grade area.
+
+Runtime and installation paths were rechecked using `node --version`, `npm --version`, `uv --version`, `npm --prefix web root` and the actual `pipeline/.venv/bin/python` interpreter. The results still match the versions and repository-relative paths in **Verified installation locations** above. No private local account path is recorded here.
+
+Existing restore, development, test and build commands remain valid. The workspace's rendered scientific tests use the installed React DOM server renderer and JSON fixtures; the existing Vitest installation runs them without an additional testing library or Node type package. These checks describe the implementation, not a completed GitHub push or Vercel deployment; release evidence is maintained separately in [deployment](deployment.md).
