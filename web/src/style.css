@@ -1942,59 +1942,23 @@ kbd {
     padding: 6px 8px;
   }
 }
-.event-notes {
-  margin-top: 32px;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
-}
-.event-notes > p {
-  color: var(--muted);
-  font-size: 13px;
-  margin: 8px 0 22px;
-}
-.event-notes ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.event-notes li {
-  display: grid;
-  grid-template-columns: 110px 1fr;
-  gap: 16px;
-  margin: 20px 0;
-}
-.event-notes time {
-  font: 12px var(--mono);
-  color: var(--muted);
-}
-.event-notes li p {
-  font-size: 13px;
-  color: var(--muted);
-  margin: 6px 0;
-}
-.event-notes li small {
-  color: var(--muted);
-}
 .event-sources {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 8px;
 }
-@media (max-width: 767px) {
-  .event-notes li {
-    grid-template-columns: 1fr;
-    gap: 6px;
-  }
-  .event-notes li p,
-  .event-notes > p {
-    font-size: 16px;
-  }
-  .event-notes time,
-  .event-sources {
-    font-size: 13px;
-  }
+.event-marker {
+  cursor: pointer;
+  outline: none;
+}
+.event-marker:hover .event-symbol {
+  fill: var(--data-soft);
+}
+.event-marker:focus-visible .event-symbol {
+  stroke: var(--ink);
+  stroke-width: 3;
 }
 @media (max-width: 767px) {
   .comparison {
@@ -2230,17 +2194,6 @@ kbd {
   align-items: center;
   gap: 4px 8px;
 }
-.compact-charts .event-notes {
-  margin-top: 12px;
-  padding-top: 8px;
-}
-.compact-charts .event-notes li p {
-  font-size: 16px;
-}
-.compact-charts .event-notes > p,
-.compact-charts .event-notes time,
-.compact-charts .event-notes li small,
-.compact-charts .event-sources,
 .compact-charts .chart-note {
   font-size: 14px;
 }
@@ -2248,7 +2201,8 @@ kbd {
   margin: 0 0 8px;
 }
 .prediction-dialog,
-.scatter-dialog {
+.scatter-dialog,
+.event-dialog {
   position: fixed;
   inset: 0;
   width: min(620px, calc(100vw - 32px));
@@ -2264,11 +2218,13 @@ kbd {
   box-shadow: 0 24px 80px #0004;
 }
 .prediction-dialog::backdrop,
-.scatter-dialog::backdrop {
+.scatter-dialog::backdrop,
+.event-dialog::backdrop {
   background: #0007;
 }
 .prediction-dialog-header,
-.scatter-dialog-header {
+.scatter-dialog-header,
+.event-dialog-header {
   display: flex;
   align-items: start;
   justify-content: space-between;
@@ -2276,28 +2232,41 @@ kbd {
   margin-bottom: 18px;
 }
 .prediction-dialog h2,
-.scatter-dialog h2 {
+.scatter-dialog h2,
+.event-dialog h2 {
   font-size: 20px;
 }
-.scatter-dialog {
+.scatter-dialog,
+.event-dialog {
   width: min(920px, calc(100vw - 24px));
   max-height: calc(100dvh - 24px);
   padding: clamp(12px, 3vw, 24px);
 }
-.scatter-dialog h2 {
+.scatter-dialog h2,
+.event-dialog h2 {
   margin: 0;
 }
-.scatter-dialog-header button {
+.scatter-dialog-header button,
+.event-dialog-header button {
   flex-shrink: 0;
   min-width: 44px;
   min-height: 44px;
   font-size: 24px;
   line-height: 1;
 }
-.prediction-dialog p {
+.prediction-dialog p,
+.event-dialog p {
   margin: 12px 0;
   line-height: 1.65;
   font-size: 16px;
+}
+.event-dialog .event-date {
+  font: 14px var(--mono);
+  color: var(--muted);
+}
+.event-dialog h3 {
+  font-size: 20px;
+  margin: 12px 0;
 }
 .prediction-dialog label {
   display: flex;

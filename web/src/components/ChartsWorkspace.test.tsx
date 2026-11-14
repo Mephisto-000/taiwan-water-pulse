@@ -56,6 +56,8 @@ describe("compact comparable charts", () => {
     const html = renderToStaticMarkup(<ChartsWorkspace {...workspaceProps} />);
     expect(html.match(/type="checkbox"/g)).toHaveLength(4);
     expect(html).toContain("面積與水位關係圖");
+    expect(html).toContain("氣象與水情事件");
+    expect(html).not.toContain("觀測之間，發生了什麼？");
     expect(html).not.toContain('checked=""');
     expect(html).toContain("雷達水面積（km²）");
     expect(html).toContain("官方蓄水率（%）");

@@ -6,6 +6,11 @@ import { niceAxis } from "../science";
 import { predictionSegments, type StoragePrediction } from "../prediction";
 import { rainIcon, rainLabel, type WeatherSeries } from "../weather";
 import WeatherPanel from "./WeatherPanel";
+import type { ContextEvent } from "../events";
+import EventTimeline, {
+  eventTimelineHeight,
+  layoutEventMarkers,
+} from "./EventTimeline";
 
 export interface AnalysisChartProps {
   archive?: NumericalArchive | null;
@@ -21,6 +26,8 @@ export interface AnalysisChartProps {
   weather?: WeatherSeries | null;
   weatherInspectionDate?: string;
   onInspectWeatherDate?: (date: string) => void;
+  events?: ContextEvent[];
+  onInspectEvent?: (event: ContextEvent) => void;
 }
 const ink = "var(--ink, #18181a)",
   muted = "var(--muted, #6b6b70)",
@@ -87,6 +94,8 @@ export default function AnalysisCharts({
   weather = null,
   weatherInspectionDate,
   onInspectWeatherDate,
+  events = [],
+  onInspectEvent,
 }: AnalysisChartProps) {
   const predictionClipId = useId();
   const pointRefs = useRef<(SVGGElement | null)[]>([]);
@@ -100,13 +109,15 @@ export default function AnalysisCharts({
     gaugeTop = publishArea ? areaTop + plotHeight + 44 : areaTop,
     levelTop = gaugeTop + plotHeight + 44,
     weatherTop = (showLevel ? levelTop : gaugeTop) + plotHeight + 44,
-    height = weather
+    baseHeight = weather
       ? weatherTop + plotHeight + 62
       : (showLevel ? levelTop : gaugeTop) + plotHeight + 42;
   const first = records[0]?.local_date ?? dates[0].local.slice(0, 10),
     last = records.at(-1)?.local_date ?? dates.at(-1)!.local.slice(0, 10);
   const x = (date: string) =>
     left + (datePosition(date, first, last) / 100) * (width - left - right);
+  const eventMarkers = layoutEventMarkers(events, first, last, x);
+  const height = baseHeight + eventTimelineHeight(eventMarkers);
   const axis = niceAxis(
     archive?.series.records.flatMap((record) => [
       record.area_km2.primary_lo,
@@ -520,7 +531,7 @@ export default function AnalysisCharts({
             <text
               key={date}
               x={x(date)}
-              y={height - 16}
+              y={baseHeight - 16}
               textAnchor={
                 i === 0 ? "start" : i === ticks.length - 1 ? "end" : "middle"
               }
@@ -530,6 +541,14 @@ export default function AnalysisCharts({
             </text>
           ))}
         </g>
+        <EventTimeline
+          markers={eventMarkers}
+          top={baseHeight + 8}
+          left={left}
+          right={width - right}
+          onSelect={onInspectEvent}
+          lang={lang}
+        />
       </svg>
       <p className="chart-selection" aria-live="polite">
         <strong>{dateLabel(selected.utc, lang)}</strong>

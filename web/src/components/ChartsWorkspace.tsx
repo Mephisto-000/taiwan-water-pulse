@@ -8,7 +8,8 @@ import AnalysisCharts, { ScatterPlot } from "./AnalysisCharts";
 import PredictionSettings from "./PredictionSettings";
 import WeatherContext from "./WeatherContext";
 import { useWeather } from "./useWeather";
-import EventNotes from "./EventNotes";
+import EventDialog from "./EventDialog";
+import { useEvents } from "./useEvents";
 
 export default function ChartsWorkspace({
   archive,
@@ -41,6 +42,15 @@ export default function ChartsWorkspace({
   const [scatterOpen, setScatterOpen] = useState(false);
   const scatterDialog = useRef<HTMLDialogElement>(null);
   const [showEvents, setShowEvents] = useState(false);
+  const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
+  const eventData = useEvents(showEvents);
+  const events =
+    eventData.events?.filter((event) =>
+      event.reservoirs.includes(reservoirKey),
+    ) ?? [];
+  const selectedEvent = showEvents
+    ? (events.find((event) => event.id === selectedEventId) ?? null)
+    : null;
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [sampleCount, setSampleCount] = useState(6);
   const weather = useWeather(reservoirKey, showWeather);
@@ -49,6 +59,9 @@ export default function ChartsWorkspace({
   useEffect(() => {
     setWeatherDate(selected.local.slice(0, 10));
   }, [selected.local]);
+  useEffect(() => {
+    setSelectedEventId(null);
+  }, [reservoirKey]);
   const inspectWeatherDate = (date: string) => {
     setWeatherDate(date);
     setWeatherDetailsOpen(true);
@@ -112,6 +125,17 @@ export default function ChartsWorkspace({
           <label>
             <input
               type="checkbox"
+              checked={showEvents}
+              onChange={(change) => {
+                setShowEvents(change.target.checked);
+                if (!change.target.checked) setSelectedEventId(null);
+              }}
+            />
+            {en ? "Weather & water events" : "氣象與水情事件"}
+          </label>
+          <label>
+            <input
+              type="checkbox"
               checked={showLevel}
               onChange={(event) => setShowLevel(event.target.checked)}
             />
@@ -127,15 +151,38 @@ export default function ChartsWorkspace({
           >
             {en ? "Area vs. water level ↗" : "面積與水位關係圖 ↗"}
           </button>
-          <label>
-            <input
-              type="checkbox"
-              checked={showEvents}
-              onChange={(event) => setShowEvents(event.target.checked)}
-            />
-            {en ? "Between observations" : "觀測之間，發生了什麼？"}
-          </label>
         </fieldset>
+        {showEvents && (
+          <p
+            className="compact-model-status"
+            role={eventData.error ? "alert" : "status"}
+          >
+            {eventData.error ? (
+              <>
+                {en ? "Event records could not load. " : "事件紀錄載入失敗。"}
+                <button type="button" onClick={eventData.retry}>
+                  {en ? "Retry" : "重試"}
+                </button>
+              </>
+            ) : eventData.events === null ? (
+              en ? (
+                "Loading event records…"
+              ) : (
+                "正在載入事件紀錄…"
+              )
+            ) : events.length ? (
+              en ? (
+                `${events.length} recorded events · select a timeline marker for details.`
+              ) : (
+                `已收錄 ${events.length} 筆事件 · 點選日期軸標記查看詳情。`
+              )
+            ) : en ? (
+              "No events recorded for this reservoir yet."
+            ) : (
+              "此水庫尚無已收錄事件。"
+            )}
+          </p>
+        )}
         {showPrediction && canPredict && (
           <p className="compact-model-status" role="status">
             {model
@@ -238,6 +285,8 @@ export default function ChartsWorkspace({
             weather={weather.series}
             weatherInspectionDate={weatherDetailsOpen ? weatherDate : undefined}
             onInspectWeatherDate={inspectWeatherDate}
+            events={events}
+            onInspectEvent={(event) => setSelectedEventId(event.id)}
           />
         ) : (
           <p role="status">
@@ -256,8 +305,12 @@ export default function ChartsWorkspace({
             lang={lang}
           />
         )}
-        {showEvents && <EventNotes reservoirKey={reservoirKey} lang={lang} />}
       </div>
+      <EventDialog
+        event={selectedEvent}
+        onClose={() => setSelectedEventId(null)}
+        lang={lang}
+      />
       <dialog
         ref={scatterDialog}
         id="area-level-dialog"
