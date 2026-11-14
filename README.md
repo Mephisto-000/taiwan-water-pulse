@@ -1,80 +1,77 @@
-# 台灣水庫的旱澇節奏｜Taiwan's Water Pulse
+# Taiwan's Water Pulse
 
-**繁體中文** | [English](README.en.md)
+**English** | [繁體中文](README.zh-TW.md)
 
-**公開網站：** [taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app) · [English](https://taiwan-water-pulse.vercel.app/?lang=en) · [繁體中文](https://taiwan-water-pulse.vercel.app/?lang=zh-TW) · [30 秒導覽](https://taiwan-water-pulse.vercel.app/?demo=1&lang=zh-TW)
+**Live site:** [taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app/?lang=en) · [繁體中文](https://taiwan-water-pulse.vercel.app/?lang=zh-TW) · [30-second tour](https://taiwan-water-pulse.vercel.app/?demo=1&lang=en)
 
-以 NISAR 首年的 L 波段雷達與水利署官方觀測，回顧四座水庫的退水與回補。介面依瀏覽器語言預設中文或英文，也能透過 `?lang=en`、`?lang=zh-TW` 切換。這是歷史觀測展示，不是即時監測。
+Explore a year of reservoir retreat and recovery using NISAR L-band radar and Taiwan Water Resources Agency observations. The interface follows the browser language, with explicit `?lang=en` and `?lang=zh-TW` options. This is a historical archive, not live monitoring.
 
-## 兩段式蓄水率估計（ADV-10）
+## Two-stage storage estimation (ADV-10)
 
-**功能版本 `e33cf7a` 已合併至 `main`、push，並於 2026-11-14 23:44:00（Asia/Taipei）部署至 Vercel，狀態為 READY；線上查核已通過。** 圖表分頁的「由 SAR 估計蓄水率」改採兩段式：面積仍在滿庫波動範圍內，只回報「偏高，分不出更細」；低於範圍才用退水期校正點做分段線性內插，低於最小校正面積時標示外插。原有「前 N 筆直線校正」保留作為對照，B、C 級水庫兩種方法都不提供估計。
+**Feature commit `e33cf7a` has been merged into `main`, pushed and deployed to Vercel with status READY at 23:44:00 on 14 November 2026 (Asia/Taipei). Production verification passed for all 337 public files and the chart interactions.** In Charts, **Estimate storage from SAR** now uses two stages: area within the full-pool variation range produces only **High; finer levels unresolved**. Area below that range receives a piecewise-linear estimate from drawdown calibration points, with extrapolation explicitly marked below the smallest calibrated area. The original **First N pairs: linear calibration** remains a comparison option. Neither method estimates storage for grade B or C reservoirs.
 
-| DEF-12 評估 | 寶山第二 | 鯉魚潭 |
+| DEF-12 evaluation | Baoshan II | Liyutan |
 | --- | ---: | ---: |
-| 判為偏高的日期／該類實際蓄水率下限 | 15 次／71.36% | 16 次／68.10% |
-| 高低類誤判 | 1 次 | 0 次 |
-| 低水位逐一留出筆數 | 5 | 5 |
-| 平均絕對誤差／最大絕對誤差（百分點） | 5.17／9.21 | 3.98／10.39 |
-| μ−2σ 最早偵測日（台灣日期）／官方蓄水率 | 2026-01-29／65.68% | 2026-01-29／63.91% |
+| High-class dates / observed storage lower bound | 15 / 71.36% | 16 / 68.10% |
+| High/low classification errors | 1 | 0 |
+| Low-water leave-one-out folds | 5 | 5 |
+| Mean / maximum absolute error (percentage points) | 5.17 / 9.21 | 3.98 / 10.39 |
+| First μ−2σ detection, Taiwan date / official storage | 2026-01-29 / 65.68% | 2026-01-29 / 63.91% |
 
-高低類誤判與低水位數值誤差分開計算。寶山第二的誤判日為 2026-07-04，官方蓄水率 100%，雷達面積卻低於滿庫範圍；該日 QA 旗標保留。高水位下限是本批觀測的描述，並非獨立驗證的分類界線。低水位圖上的誤差線為「±逐一留出最大絕對誤差」的描述性範圍，不是信賴區間或精度保證。
+Classification errors and low-water numerical errors are reported separately. Baoshan II's misclassified date is 4 July 2026: official storage was 100%, but radar area fell below the full-pool range; its QA flag remains. The high-class lower bound describes this archive and is not an independently validated classification boundary. Numerical error bars show the descriptive range **± maximum leave-one-out absolute error**, not a confidence interval or an accuracy guarantee.
 
-固定定義、完整結果與重建方式見[估計方法](docs/storage-prediction.md)、[資料檔](web/public/data/storage-estimation.json)及[決策紀錄](docs/decisions.md)。這次不修改發布中的分類、等級或水面積；只有一次退水事件，尚未經過第二次退水的檢驗。
+See the [estimation method](docs/storage-prediction.md), [data report](web/public/data/storage-estimation.json) and [decisions](docs/decisions.md) for definitions and reproduction. Published classification, grades and water areas are unchanged. The archive contains one drawdown; a second event has not tested these results.
 
-## 已發布工作區
+## Released workspace
 
-「方向 3：工具」工作區讓日期、影像與證據可以一起閱讀。ADV-10 的發布進度與查核範圍見[最新發版紀錄](docs/deployment.md#最新發版adv-10)；2026-11-14 17:34:36（Asia/Taipei）的先前紀錄仍保留為歷史證據。
+The interface follows design direction 3: a workspace for reading imagery, dates and evidence together. See the [latest release record](docs/deployment.md#最新發版adv-10) for ADV-10 progress and verification scope. The 14 November 2026, 17:34:36 (Asia/Taipei) record remains historical evidence for the earlier release.
 
-- 桌機三欄：左側選水庫與日期，中央看影像或圖表，右側以「這一天／方法／來源」分頁查數值與證據。手機改用水庫選單、可開啟的資料面板，以及固定於底部的時間軸。
-- 淺色／深色主題預設依系統設定；系統字型、等寬數值、細分隔線與藍色資料標記，不下載字型，也不新增套件。
-- 四庫各有 21 次 GCOV HH／HV 影像。時間軸由資料計算 30 個 12 日時段，9 個缺產品時段留白且不可選；不補造影像。
-- 預設兩日期比較，支援單張、滑桿對照、水體疊色與參考日分類邊界。手機以按鈕切換參考日與選取日；OSM 輪廓與分類水面邊界分別標示。
-- 優先載入選取日與參考日，再載鄰近日期及其餘 HH；HV 僅在切換時載入。載入失敗可重試，已載入的影格留在快取。
-- 圖表使用貼近資料的座標軸並註明不從 0 開始；完整相關係數與區間集中在方法分頁。C 級保留雷達影像，隱藏面積與分類疊色。
-- 五幕導覽跟隨介面語言，可暫停、前後切換或以 Esc 結束；操作日期或影像會暫停導覽。介面顯示台灣時間，來源分頁另列 UTC。
+- Three desktop columns: reservoirs and dates on the left, imagery or charts in the centre, and **This day / Methods / Sources** on the right. Mobile uses a reservoir selector, an accessible details panel and a fixed bottom timeline.
+- Light and dark themes initially follow the system preference. System fonts, monospaced numbers, fine dividers and blue data marks require no font downloads or added packages.
+- Four reservoirs with 21 GCOV HH/HV acquisitions each. The timeline derives 30 twelve-day slots from the archive; nine unavailable products remain empty and cannot be selected.
+- Two-date comparison opens by default, with single-image, swipe, water-overlay and classified-reference-edge options. Mobile switches between reference and selected images using buttons. OSM geometry and classified water edges remain distinctly labelled.
+- Selected and reference images load first, followed by neighbours and the remaining HH frames. HV loads only when requested. Failed frames can be retried; loaded frames stay cached.
+- Charts fit the data range and explicitly identify nonzero axes. Complete correlations and intervals live in Methods. Grade C keeps imagery while withholding quantitative area and classification overlays.
+- The five-part tour follows the interface language, supports pause/previous/next and Esc to end, and pauses on image or date interaction. UI dates use Taiwan time; Sources also records UTC.
 
-![正式網站工作區](docs/review/released-workspace.jpg)
+![Production observation workspace](docs/review/released-workspace.jpg)
 
-## 方法與驗證
+## Scientific scope
 
-原始資料使用 `NISAR_L2_GCOV_PROVISIONAL_V1`、升軌 Track 111、Frame 014、mode 4005、CRID P05023。影像格網與分類尺度分開記錄；像素間距不等於有效解析度，放大不會產生新的細節。
+The archive uses `NISAR_L2_GCOV_PROVISIONAL_V1`, ascending Track 111, Frame 014, mode 4005 and CRID P05023. Display grids and classification scales are documented separately. Pixel spacing is not effective spatial resolution.
 
-顯示與分類使用不同格網：寶山第二、鯉魚潭、石門的顯示間距為 10 m，翡翠為 20 m；四庫分類統一使用原生 UTM 30 m 的線性功率平均、HH、OSM 輪廓內無外擴，以及同日周邊陸地中位數的 60% 門檻。這個比值是選定的定義，不是已量測的物理水陸分界。顯示固定使用 HH −18 至 −2 dB、HV −21 至 −6 dB；調整灰階不更動量化或分類資料。
+Display spacing is 10 m for Baoshan II, Liyutan and Shimen, and 20 m for Feitsui. Classification uses a common native UTM 30 m grid: average linear power, use HH inside the unbuffered OSM polygon, and select values below 60% of the same-date surrounding-land median. The ratio is a chosen definition, not a measured physical water–land boundary. Fixed display ranges are HH −18 to −2 dB and HV −21 to −6 dB; the grayscale change does not alter quantization or classification.
 
-依新版效應大小與信賴區間條件重新評估，主要統計仍保留所有觀測：
+The revised effect-size and confidence-interval criteria give the following grades. Primary statistics keep all observations:
 
-| 水庫 | 等級 | 判讀 |
+| Reservoir | Grade | Interpretation |
 | --- | --- | --- |
-| 寶山第二 | A | 雷達面積跟得上水位，變化超過方法敏感度 |
-| 鯉魚潭 | A | 雷達面積跟得上水位，變化超過方法敏感度 |
-| 石門 | C | 相關區間跨過 0；介面不發布面積數字 |
-| 翡翠 | B | 方向一致，但變化量小於方法敏感度 |
+| Baoshan II | A | Radar area follows water level; the change exceeds method sensitivity |
+| Liyutan | A | Radar area follows water level; the change exceeds method sensitivity |
+| Shimen | C | The correlation interval crosses zero; area values are withheld in the UI |
+| Feitsui | B | Direction agrees, but the change is smaller than method sensitivity |
 
-各極化分開產生 QA 旗標：陸地中位數偏移，或滿庫面積異常偏低。旗標觀測以 † 標示並保留，極化比較另列排除全部旗標後的敏感度結果。方法分頁也呈現滿庫重複性，以及更寬的門檻與 Otsu 診斷。
+QA is calculated separately for each polarization using land-median shifts and unusually low full-pool area. Flagged observations remain visible with †; polarization results also report sensitivity after excluding all flagged dates. Methods includes full-pool repeatability and broader threshold/Otsu diagnostics.
 
-寶山第二與鯉魚潭另有水量閉合檢核：將雷達面積對官方水位做梯形積分，和官方有效蓄水量變化比較。它使用官方水位、假設觀測間面積線性變化，且結果受門檻影響，因此是物理合理性檢查，並非獨立驗證。HV 中裸露庫底仍偏暗的解釋維持為待地面資料確認的假說。
+Baoshan II and Liyutan also have a volume-closure check: trapezoidal integration of radar area against official water level, compared with the change in official effective storage volume. This uses official levels, linear interpolation of area between observations and a threshold-dependent estimate. It is a physical consistency check, not independent validation. The proposed dark exposed-bed explanation for HV remains a hypothesis without independent ground observations.
 
-門檻、分析尺度、相關係數、bootstrap 區間、物理檢查與逐庫發布決定，以[目前方法](docs/methods.md)、[驗證說明](docs/validation.md)和[關卡紀錄](docs/gates.md)為準。網站也提供免登入的[方法](https://taiwan-water-pulse.vercel.app/data/methods.md)與[驗證報告](https://taiwan-water-pulse.vercel.app/data/validation.json)。
+See the [methods](docs/methods.md), [validation](docs/validation.md) and [gate evidence](docs/gates.md) for the actual thresholds, scale, correlations, bootstrap intervals, physical checks and per-reservoir decisions. Public copies of the [methods](https://taiwan-water-pulse.vercel.app/data/methods.md) and [report](https://taiwan-water-pulse.vercel.app/data/validation.json) require no repository access.
 
-舊方法未通過的結果仍保留：[原校準設定](pipeline/assets/numeric-calibration.json)、[原獨立驗證](pipeline/assets/numeric-validation.json)。舊切分使用跨越缺口的 4 個校準日期，其餘 17 個日期驗證；並不是只把滿庫期間當成驗證集。新方法的探索性評估不會宣稱是新的獨立 held-out 驗證。
+The [original held-out report](pipeline/assets/numeric-validation.json) remains available. Its four calibration dates spanned both sides of the gap; the other 17 dates were held out. The new exploratory assessment is not claimed as a fresh independent held-out test.
 
-**水面積不等於蓄水量，相關性不代表因果。** 官方曲線是 88 個日期的取樣，並非完整每日資料。NISAR 約於台灣時間 05:16 取像，與同日 07:00 官方紀錄配對；缺值不補零、不內插。2026-03-18 至 2026-06-20（UTC）無此影幅的雷達產品。
+**Surface area is not storage volume. Correlation does not establish causation.** Official curves contain 88 sampled dates, not every day. Acquisitions near 05:16 Taiwan time are paired with the same day's 07:00 gauge observation. Missing data remain missing. This frame has no radar product from 18 March through 20 June 2026 UTC.
 
-## 本機啟動
+## Run locally
 
-Node.js `24.15.0`／npm `11.12.1`；Python pipeline 使用 `3.14.10`／uv `0.13.8`。依賴安裝於專案內，版本分別鎖在 `web/package-lock.json` 與 `pipeline/uv.lock`。
+Runtime: Node.js `24.15.0`, npm `11.12.1`; Python `3.14.10`, uv `0.13.8`. Run from the repository root:
 
 ```bash
-# 從儲存庫根目錄執行；網站資料已納入版本控制
 npm --prefix web ci
 npm --prefix web run dev -- --host 127.0.0.1
-
-# Python 環境僅供重建與測試
 uv sync --project pipeline --frozen
 ```
 
-開啟 Vite 顯示的網址。啟動網站不需要 Earthdata 帳號或 Vercel token，也不需要執行資料匯出。
+Published data are version-controlled. Running the website requires no Earthdata account or Vercel token. Python is needed only for pipeline work and its tests.
 
 ```bash
 uv run --project pipeline pytest pipeline/tests
@@ -87,21 +84,19 @@ npm --prefix web run check:deploy
 npm --prefix web run preview -- --host 127.0.0.1
 ```
 
-## 重建資料
+## Rebuild the archive
 
-校準原始 AOI 快取位於忽略的 `data/cache/`，不隨 GitHub 或 Vercel 發布。重建需先從來源取得快取；將 Earthdata 認證設於本機環境變數，或使用忽略的本機認證檔，勿寫入程式碼。
+Raw calibrated AOI windows live in ignored `data/cache/`; they are neither committed nor deployed. Obtain them with local Earthdata credentials, then rebuild offline from a clean source commit:
 
 ```bash
 uv run --project pipeline water-pulse read \
   --reservoirs baoshan2,liyutan,shimen,feitsui
-
-# 快取齊全後可離線重建；從乾淨 commit 執行，記錄真正的來源版本
 uv run --project pipeline water-pulse release --offline
 ```
 
-`release` 是目前網站的匯出入口。`all --offline`、`export --offline` 保留作為舊 Browse 備援流程，會取代展示清單；它們不是新版的重建指令。更新官方資料或來源目錄前，先檢視 `--dry-run` 與[來源說明](docs/data-sources.md)，避免不必要請求。
+`release` is the current export entry point. The older `all --offline` and `export --offline` commands still build the Browse fallback and replace the published manifest; they do not reproduce this release. Keep credentials in environment variables or ignored local files. Review [sources](docs/data-sources.md) before refreshing external services.
 
-ADV-10 報告只讀取已發布的面積、等級與官方配對資料，可離線重算，不需要 Earthdata 認證或原始影像快取：
+The ADV-10 report reads only the published areas, grades and paired official records. It can be reproduced offline without Earthdata credentials or raw imagery caches:
 
 ```bash
 uv run --project pipeline python pipeline/scripts/evaluate_storage.py
@@ -109,34 +104,29 @@ uv run --project pipeline python pipeline/scripts/evaluate_storage.py --check
 uv run --project pipeline pytest pipeline/tests/test_storage_estimation.py
 ```
 
-## 部署與隱私
+## Deployment and privacy
 
-GitHub repo 維持 private。公開介面不連到私有原始碼頁，而是使用同源的方法、驗證與 provenance。推送 GitHub 不會自動部署；目前在本機建置及安全檢查後，透過 Vercel plugin 上傳靜態 `web/dist`。
+The GitHub repository remains private. The public UI links to same-origin methods and reports. Git integration is not connected: pushing does not deploy. Checked `web/dist` artifacts are uploaded through the authenticated Vercel plugin.
 
-歷史發布紀錄的部署來源為 `5dbcfea5`，資料由乾淨來源 `ed5d561e` 產生（`code_dirty=false`）。當時 332 個公開檔案通過匿名 HTTP、SHA-256 與快取查核；65 個前端、9 個部署防護及 47 個 Python 測試通過。私人 email 的歷史已整理，該次查核的 15 個可達 commit 全部採用 GitHub noreply 身分；來源、產物與可達歷史的秘密掃描均無命中。這些數字僅屬該次歷史查核；ADV-10 以[最新發版紀錄](docs/deployment.md#最新發版adv-10)為準。
+The historical deployment record identifies source `5dbcfea5`. Data were generated from clean source `ed5d561e` (`code_dirty=false`). At that release, all 332 public files passed anonymous HTTP, SHA-256 and cache checks; 65 frontend, 9 deployment-guard and 47 Python tests passed. The private-email history has been repaired: all 15 reachable commits in that publication audit used GitHub noreply identities. Secret scans of source, artifacts and reachable history reported no findings. These counts belong only to that historical audit; refer to the [latest release record](docs/deployment.md#最新發版adv-10) for ADV-10.
 
-Vercel 不需要任何 Earthdata 認證或自訂環境變數。`.env`、`token.md`、私密金鑰、原始快取與本機設定不屬於部署產物。發布前掃描待提交內容和建置結果；只上傳通過 `check:deploy` 的檔案。正式網址、來源 commit、檔案雜湊與驗證結果見[部署紀錄](docs/deployment.md)。
+No Earthdata credentials or custom environment variables are needed on Vercel. Environment files, credentials, keys, local settings and raw caches stay outside the deployment. See [deployment evidence](docs/deployment.md) for the released commit, hashes and verification.
 
-## 依賴管理
+## Dependencies
 
 ```bash
-# 先確認相容性、安全性與變更範圍，再更新
 npm --prefix web outdated
 npm --prefix web update
 uv lock --project pipeline --upgrade
 uv sync --project pipeline --frozen
-
-# 移除指定套件，同步更新 manifest 與 lock file
 npm --prefix web uninstall PACKAGE_NAME
 uv remove --project pipeline PACKAGE_NAME
 ```
 
-安裝、還原、升級、移除、環境變數、實際查證的安裝位置與常見問題，見 [docs/dependency-management.md](docs/dependency-management.md)。更新套件後重新執行相關測試與建置，勿混用 package manager。
+Review compatibility and security before changes, commit manifest and lock together, and repeat relevant checks. [Dependency management](docs/dependency-management.md) records measured installation locations, restore/update/removal commands and environment variables.
 
-## SI 使用與授權
+## SI disclosure and licensing
 
-**SI-generated / SI-assisted：** OpenAI Codex 協助程式碼、測試、文案、翻譯、文件及資料整理。網站有可見揭露，[si-usage.json](si-usage.json) 提供可機讀範圍；SVG 圖示與定位示意另有標記。科學圖表由真實觀測計算，並非生成式雷達影像。瀏覽器截圖保留來源與 SI 輔助視覺化說明。
+OpenAI Codex assisted with code, tests, copy, translation, documentation and data preparation. Visible labels and [si-usage.json](si-usage.json) disclose the scope. Scientific visualizations use actual observations; they are not generative radar images. Screenshots show the rendered application. Automated tests do not replace scientific review.
 
-NASA／ASF 雷達、水利署觀測與 OSM 幾何是原始來源資料，不是 SI 生成。自動檢查不代表獨立科學審查。詳見 [SI 使用紀錄](docs/ai-usage.md)。
-
-程式碼採 [MIT](LICENSE)。NISAR 署名 NASA/JPL & ISRO、ASF DAAC；水庫邊界 © OpenStreetMap contributors（ODbL）；官方觀測來自經濟部水利署。未使用 NASA 品牌圖案，也不表示官方背書。
+Code: [MIT](LICENSE). NISAR: NASA/JPL & ISRO, ASF DAAC. Geometry: © OpenStreetMap contributors (ODbL). Official observations: Taiwan Water Resources Agency. Source observations are not SI-generated. No agency logo or institutional endorsement is implied.

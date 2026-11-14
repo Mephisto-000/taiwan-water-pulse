@@ -23,7 +23,7 @@ The fallback is a scoped initial release, not completion of the original numeric
 
 ## Language update
 
-The user requested Traditional Chinese and English README versions and a Traditional Chinese main interface. `README.md` is the Taiwan Traditional Chinese entry point; `README.en.md` retains the English version, with reciprocal links. UI copy, dates, accessible labels and error messages use Taiwan terminology, with English technical terms where useful. This supersedes the original brief's English UI/README assumption. Scientific results and publication gates are unchanged.
+The user requested Traditional Chinese and English README versions and a Traditional Chinese main interface. On 2026-11-15, the user changed the README preference to English first: `README.md` is the English entry point and `README.zh-TW.md` retains the Taiwan Traditional Chinese version, with reciprocal links. These replace the earlier Chinese `README.md` and English `README.en.md` arrangement. The interface language settings are unchanged: Chinese UI copy, dates, accessible labels and error messages use Taiwan terminology, with English technical terms where useful. Scientific results and publication gates are unchanged.
 
 ## Vercel deployment decisions
 
