@@ -46,21 +46,40 @@ def test_bootstrap_preserves_pairs_missingness_and_seed() -> None:
 
 def test_grades_fail_closed_for_physical_checks_and_uncertain_correlations() -> None:
     assert (
-        publication_grade({"pearson_area_vs_level": 0.9, "pearson_ci95": [0.6, 1]}, True)[0] == "A"
+        publication_grade({"pearson_area_vs_level": 0.9, "pearson_ci95": [0.6, 1]}, True, True)[0]
+        == "A"
     )
     assert (
-        publication_grade({"pearson_area_vs_level": 0.9, "pearson_ci95": [0.59, 1]}, True)[0] == "B"
-    )
-    assert (
-        publication_grade({"pearson_area_vs_level": 0.5, "pearson_ci95": [0.1, 0.8]}, True)[0]
+        publication_grade({"pearson_area_vs_level": 0.9, "pearson_ci95": [0.59, 1]}, True, True)[0]
         == "B"
     )
     assert (
-        publication_grade({"pearson_area_vs_level": 0.49, "pearson_ci95": [0.1, 0.8]}, True)[0]
+        publication_grade({"pearson_area_vs_level": 0.5, "pearson_ci95": [0.1, 0.8]}, True, True)[0]
+        == "B"
+    )
+    assert (
+        publication_grade({"pearson_area_vs_level": 0.49, "pearson_ci95": [0.1, 0.8]}, True, True)[
+            0
+        ]
         == "C"
     )
-    assert publication_grade({"pearson_area_vs_level": 1, "pearson_ci95": [1, 1]}, False)[0] == "C"
-    assert publication_grade({"pearson_area_vs_level": None}, True)[0] == "C"
+    assert (
+        publication_grade({"pearson_area_vs_level": 1, "pearson_ci95": [1, 1]}, False, True)[0]
+        == "C"
+    )
+    assert publication_grade({"pearson_area_vs_level": None}, True, True)[0] == "C"
+    assert (
+        publication_grade({"pearson_area_vs_level": 0.9, "pearson_ci95": [0.7, 1]}, True, False)[0]
+        == "B"
+    )
+    for lower in (0, -0.1):
+        assert (
+            publication_grade(
+                {"pearson_area_vs_level": 0.9, "pearson_ci95": [lower, 1]}, True, True
+            )[0]
+            == "C"
+        )
+    assert publication_grade({"pearson_area_vs_level": 0.9}, True, True)[0] == "C"
 
 
 def test_shoreline_contrast_uses_disjoint_spatial_groups_and_handles_nodata() -> None:
@@ -174,3 +193,38 @@ def test_published_calibrated_assets_and_grades_match_provenance() -> None:
                 date = record["utc"][:10]
                 assert (folder / f"analysis/{date.replace('-', '')}_HH.bin").stat().st_size == size
                 assert record["land_median_db"] == analysis["land_median_db_by_date"][date]
+
+
+def test_v2_review_retains_dates_and_suppresses_grade_c_csv_area() -> None:
+    import csv
+
+    from water_pulse.review import effect_size
+
+    output = Path(__file__).resolve().parents[2] / "web/public/data"
+    report = json.loads((output / "validation.json").read_text())
+    if report.get("review_version") != "2026-11-14-v2":
+        pytest.skip("Second review data have not been generated in this checkout.")
+    for key, entry in report["reservoirs"].items():
+        series = json.loads((output / "reservoirs" / key / "timeseries.json").read_text())
+        rows, stats = series["records"], series["stats"]
+        assert len(rows) == 21
+        assert stats["effect_size"] == effect_size(rows)
+        for channel in ("HH", "HV"):
+            result = stats["polarization_comparison"]["channels"][channel]
+            assert result["all"]["n"] == sum(r["official"]["level_m"] is not None for r in rows)
+            assert result["without_flagged"]["n"] == sum(
+                r["official"]["level_m"] is not None and not r["qa_by_channel"][channel]
+                for r in rows
+            )
+        assert all(r["qa"] == r["qa_by_channel"]["HH"] for r in rows)
+        if stats["grade"] == "C":
+            with (output / "reservoirs" / key / "timeseries.csv").open(newline="") as stream:
+                csv_rows = list(csv.DictReader(stream))
+            assert len(csv_rows) == len(rows)
+            assert all(
+                row["area_km2"] == row["area_low_km2"] == row["area_high_km2"] == ""
+                for row in csv_rows
+            )
+        else:
+            assert stats["pearson_ci95"][0] > 0
+        assert stats == entry["statistics"]

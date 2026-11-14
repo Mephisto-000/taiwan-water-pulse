@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "declaration_version": "1.1.0",
+  "declaration_version": "1.2.0",
   "tool": "OpenAI Codex",
   "description": "SI-generated and SI-assisted code, text and data-preparation workflows. SI means Super Intelligence in the supplied submission guidance.",
   "code": {
@@ -36,12 +36,13 @@
   "graphics": {
     "status": "SI-generated SVG code",
     "scope": [
-      "custom pulse icon",
+      "custom brand mark",
       "favicon",
       "coordinate locator",
-      "data-driven charts and scientific visualizations"
+      "data-driven charts and scientific visualizations",
+      "radar reflection schematic"
     ],
-    "visible_label": "SI-generated icon; SI-generated coordinate locator; project SI disclosure",
+    "visible_label": "SI-generated schematic; favicon SI mark; project SI usage disclosure",
     "favicon_mark": "SI",
     "institutional_branding_used": false
   },

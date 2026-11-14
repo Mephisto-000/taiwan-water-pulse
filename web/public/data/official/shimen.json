@@ -3,6 +3,22 @@
   "source_kind": "live",
   "retrieved_at": "2026-11-14T03:02:42.315314Z",
   "retrieved_at_precision": "timestamp",
+  "volume_fields": {
+    "storage_volume_m3": {
+      "source_field": "Capacity",
+      "source_unit": "10^4 m3",
+      "multiplier_to_m3": 10000,
+      "unit_evidence_url": "https://fhy.wra.gov.tw/fhyv2/js/205.29609f4b.js",
+      "unit_evidence_sha256": "84dfb83868757543f2dc42cd379f1adbb40354be200ad07214c2888000a5f928",
+      "unit_verified_at": "2026-11-14",
+      "unit_evidence": "Official reservoir table labels data-key Capacity as effective storage in ten-thousand cubic metres and displays formatValue(e.Capacity) directly. Its newer Daily API mapping assigns EffectiveStorage to Capacity. Historical measurements remain the original GetComparision cache, not a replacement with current Daily values."
+    },
+    "effective_capacity_m3": {
+      "source_field": "CAPACITY_E",
+      "status": "Unavailable in the historical response; values remain null.",
+      "policy": "Never infer effective capacity from storage rate or a news constant."
+    }
+  },
   "si_usage": {
     "tool": "OpenAI Codex",
     "declaration_version": "1.1.0",
@@ -24,529 +40,705 @@
       "local_date": "2025-11-06",
       "nisar_utc_date": "2025-11-05",
       "pct": 99.70852966968722,
-      "level_m": 244.93
+      "level_m": 244.93,
+      "storage_volume_m3": 204661728.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-11-11",
       "nisar_utc_date": null,
       "pct": 97.75289096755334,
-      "level_m": 244.46
+      "level_m": 244.46,
+      "storage_volume_m3": 200647584.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-11-16",
       "nisar_utc_date": null,
       "pct": 99.83354574685765,
-      "level_m": 244.96
+      "level_m": 244.96,
+      "storage_volume_m3": 204918336.00000003,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-11-18",
       "nisar_utc_date": "2025-11-17",
       "pct": 99.5422624963461,
-      "level_m": 244.89
+      "level_m": 244.89,
+      "storage_volume_m3": 204320448.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-11-21",
       "nisar_utc_date": null,
       "pct": 98.91802396959953,
-      "level_m": 244.74
+      "level_m": 244.74,
+      "storage_volume_m3": 203039136.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-11-26",
       "nisar_utc_date": null,
       "pct": 99.58393452206955,
-      "level_m": 244.9
+      "level_m": 244.9,
+      "storage_volume_m3": 204405984.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-11-30",
       "nisar_utc_date": "2025-11-29",
       "pct": 99.45891844489918,
-      "level_m": 244.87
+      "level_m": 244.87,
+      "storage_volume_m3": 204149376.00000006,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-12-01",
       "nisar_utc_date": null,
       "pct": 99.45891844489918,
-      "level_m": 244.87
+      "level_m": 244.87,
+      "storage_volume_m3": 204149376.00000006,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-12-06",
       "nisar_utc_date": null,
       "pct": 99.58393452206955,
-      "level_m": 244.9
+      "level_m": 244.9,
+      "storage_volume_m3": 204405984.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-12-11",
       "nisar_utc_date": null,
       "pct": 99.50059047062263,
-      "level_m": 244.88
+      "level_m": 244.88,
+      "storage_volume_m3": 204234912.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-12-12",
       "nisar_utc_date": "2025-12-11",
       "pct": 99.62560654779303,
-      "level_m": 244.91
+      "level_m": 244.91,
+      "storage_volume_m3": 204491519.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-12-16",
       "nisar_utc_date": null,
       "pct": 99.37599532300496,
-      "level_m": 244.85
+      "level_m": 244.85,
+      "storage_volume_m3": 203979167.99999994,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-12-21",
       "nisar_utc_date": null,
       "pct": 98.46005261619409,
-      "level_m": 244.63
+      "level_m": 244.63,
+      "storage_volume_m3": 202099104.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-12-24",
       "nisar_utc_date": "2025-12-23",
       "pct": 98.04417421806488,
-      "level_m": 244.53
+      "level_m": 244.53,
+      "storage_volume_m3": 201245471.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-12-26",
       "nisar_utc_date": null,
       "pct": 98.46005261619409,
-      "level_m": 244.63
+      "level_m": 244.63,
+      "storage_volume_m3": 202099104.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2025-12-31",
       "nisar_utc_date": null,
       "pct": 98.7517567962584,
-      "level_m": 244.7
+      "level_m": 244.7,
+      "storage_volume_m3": 202697856.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-01-05",
       "nisar_utc_date": null,
       "pct": 99.58393452206955,
-      "level_m": 244.9
+      "level_m": 244.9,
+      "storage_volume_m3": 204405984.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-01-10",
       "nisar_utc_date": null,
       "pct": 99.5422624963461,
-      "level_m": 244.89
+      "level_m": 244.89,
+      "storage_volume_m3": 204320448.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-01-15",
       "nisar_utc_date": null,
       "pct": 99.1676351943876,
-      "level_m": 244.8
+      "level_m": 244.8,
+      "storage_volume_m3": 203551488.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-01-17",
       "nisar_utc_date": "2026-01-16",
       "pct": 98.959695995323,
-      "level_m": 244.75
+      "level_m": 244.75,
+      "storage_volume_m3": 203124672.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-01-20",
       "nisar_utc_date": null,
       "pct": 98.62674071908799,
-      "level_m": 244.67
+      "level_m": 244.67,
+      "storage_volume_m3": 202441248.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-01-25",
       "nisar_utc_date": null,
       "pct": 97.83581408944755,
-      "level_m": 244.48
+      "level_m": 244.48,
+      "storage_volume_m3": 200817792.00000006,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-01-29",
       "nisar_utc_date": "2026-01-28",
       "pct": 96.58733703595439,
-      "level_m": 244.18
+      "level_m": 244.18,
+      "storage_volume_m3": 198255167.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-01-30",
       "nisar_utc_date": null,
       "pct": 96.12978661210173,
-      "level_m": 244.07
+      "level_m": 244.07,
+      "storage_volume_m3": 197316000.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-02-04",
       "nisar_utc_date": null,
       "pct": 95.46976907337037,
-      "level_m": 243.91
+      "level_m": 243.91,
+      "storage_volume_m3": 195961248.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-02-09",
       "nisar_utc_date": null,
       "pct": 94.03566208710903,
-      "level_m": 243.56
+      "level_m": 243.56,
+      "storage_volume_m3": 193017599.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-02-10",
       "nisar_utc_date": "2026-02-09",
       "pct": 93.46193510669394,
-      "level_m": 243.42
+      "level_m": 243.42,
+      "storage_volume_m3": 191839967.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-02-14",
       "nisar_utc_date": null,
       "pct": 90.089447529962,
-      "level_m": 242.59
+      "level_m": 242.59,
+      "storage_volume_m3": 184917599.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-02-19",
       "nisar_utc_date": null,
       "pct": 87.24017538731364,
-      "level_m": 241.88
+      "level_m": 241.88,
+      "storage_volume_m3": 179069184.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-02-22",
       "nisar_utc_date": "2026-02-21",
       "pct": 85.38934814381759,
-      "level_m": 241.41
+      "level_m": 241.41,
+      "storage_volume_m3": 175270176.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-02-24",
       "nisar_utc_date": null,
       "pct": 82.93111955568548,
-      "level_m": 240.78
+      "level_m": 240.78,
+      "storage_volume_m3": 170224416.00000003,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-03-01",
       "nisar_utc_date": null,
       "pct": 78.29415960245542,
-      "level_m": 239.56
+      "level_m": 239.56,
+      "storage_volume_m3": 160706592.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-03-06",
       "nisar_utc_date": "2026-03-05",
       "pct": 73.8971294942999,
-      "level_m": 238.37
+      "level_m": 238.37,
+      "storage_volume_m3": 151681248.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-03-11",
       "nisar_utc_date": null,
       "pct": 69.34182987430576,
-      "level_m": 237.1
+      "level_m": 237.1,
+      "storage_volume_m3": 142331040.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-03-16",
       "nisar_utc_date": null,
       "pct": 64.39338205203157,
-      "level_m": 235.66
+      "level_m": 235.66,
+      "storage_volume_m3": 132173856.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-03-18",
       "nisar_utc_date": "2026-03-17",
       "pct": 62.28662964045601,
-      "level_m": 235.03
+      "level_m": 235.03,
+      "storage_volume_m3": 127849536.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-03-21",
       "nisar_utc_date": null,
       "pct": 59.342648348436136,
-      "level_m": 234.12
+      "level_m": 234.12,
+      "storage_volume_m3": 121806720.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-03-26",
       "nisar_utc_date": null,
       "pct": 56.08128617363344,
-      "level_m": 233.08
+      "level_m": 233.08,
+      "storage_volume_m3": 115112448.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-03-31",
       "nisar_utc_date": null,
       "pct": 51.84968137971353,
-      "level_m": 231.67
+      "level_m": 231.67,
+      "storage_volume_m3": 106426656.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-04-05",
       "nisar_utc_date": null,
       "pct": 60.11842151417714,
-      "level_m": 234.36
+      "level_m": 234.36,
+      "storage_volume_m3": 123399072.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-04-10",
       "nisar_utc_date": null,
       "pct": 70.16053785442853,
-      "level_m": 237.33
+      "level_m": 237.33,
+      "storage_volume_m3": 144011520.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-04-15",
       "nisar_utc_date": null,
       "pct": 70.9434668225665,
-      "level_m": 237.55
+      "level_m": 237.55,
+      "storage_volume_m3": 145618560.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-04-20",
       "nisar_utc_date": null,
       "pct": 69.05686056708564,
-      "level_m": 237.02
+      "level_m": 237.02,
+      "storage_volume_m3": 141746111.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-04-25",
       "nisar_utc_date": null,
       "pct": 67.81090909090909,
-      "level_m": 236.66
+      "level_m": 236.66,
+      "storage_volume_m3": 139188672.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-04-30",
       "nisar_utc_date": null,
       "pct": 67.56929552762351,
-      "level_m": 236.59
+      "level_m": 236.59,
+      "storage_volume_m3": 138692736.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-05-05",
       "nisar_utc_date": null,
       "pct": 66.98167787196726,
-      "level_m": 236.42
+      "level_m": 236.42,
+      "storage_volume_m3": 137486592.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-05-10",
       "nisar_utc_date": null,
       "pct": 72.1889973691903,
-      "level_m": 237.9
+      "level_m": 237.9,
+      "storage_volume_m3": 148175136.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-05-15",
       "nisar_utc_date": null,
       "pct": 72.76398713826366,
-      "level_m": 238.06
+      "level_m": 238.06,
+      "storage_volume_m3": 149355360.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-05-20",
       "nisar_utc_date": null,
       "pct": 72.29591347559193,
-      "level_m": 237.93
+      "level_m": 237.93,
+      "storage_volume_m3": 148394592.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-05-25",
       "nisar_utc_date": null,
       "pct": 68.81314235603625,
-      "level_m": 236.95
+      "level_m": 236.95,
+      "storage_volume_m3": 141245856.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-05-30",
       "nisar_utc_date": null,
       "pct": 64.62741888336744,
-      "level_m": 235.73
+      "level_m": 235.73,
+      "storage_volume_m3": 132654240.00000001,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-06-01",
       "nisar_utc_date": null,
       "pct": 63.658018123355745,
-      "level_m": 235.44
+      "level_m": 235.44,
+      "storage_volume_m3": 130664448.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-06-04",
       "nisar_utc_date": null,
       "pct": 61.217047646886854,
-      "level_m": 234.7
+      "level_m": 234.7,
+      "storage_volume_m3": 125654111.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-06-09",
       "nisar_utc_date": null,
       "pct": 68.64014030985092,
-      "level_m": 236.9
+      "level_m": 236.9,
+      "storage_volume_m3": 140890752.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-06-14",
       "nisar_utc_date": null,
       "pct": 87.00403390821396,
-      "level_m": 241.82
+      "level_m": 241.82,
+      "storage_volume_m3": 178584479.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-06-19",
       "nisar_utc_date": null,
       "pct": 94.89604209295528,
-      "level_m": 243.77
+      "level_m": 243.77,
+      "storage_volume_m3": 194783616.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-06-22",
       "nisar_utc_date": "2026-06-21",
       "pct": 96.75402513884829,
-      "level_m": 244.22
+      "level_m": 244.22,
+      "storage_volume_m3": 198597311.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-06-24",
       "nisar_utc_date": null,
       "pct": 97.21157556270097,
-      "level_m": 244.33
+      "level_m": 244.33,
+      "storage_volume_m3": 199536480.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-06-29",
       "nisar_utc_date": null,
       "pct": 97.75289096755334,
-      "level_m": 244.46
+      "level_m": 244.46,
+      "storage_volume_m3": 200647584.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-07-04",
       "nisar_utc_date": "2026-07-03",
       "pct": 96.87862028646595,
-      "level_m": 244.25
+      "level_m": 244.25,
+      "storage_volume_m3": 198853056.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-07-09",
       "nisar_utc_date": null,
       "pct": 91.45915229465068,
-      "level_m": 242.93
+      "level_m": 242.93,
+      "storage_volume_m3": 187729055.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-07-14",
       "nisar_utc_date": null,
       "pct": 99.29265127155803,
-      "level_m": 244.83
+      "level_m": 244.83,
+      "storage_volume_m3": 203808096.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-07-16",
       "nisar_utc_date": "2026-07-15",
       "pct": 98.7517567962584,
-      "level_m": 244.7
+      "level_m": 244.7,
+      "storage_volume_m3": 202697856.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-07-19",
       "nisar_utc_date": null,
       "pct": 99.04304004676996,
-      "level_m": 244.77
+      "level_m": 244.77,
+      "storage_volume_m3": 203295744.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-07-24",
       "nisar_utc_date": null,
       "pct": 98.37712949429991,
-      "level_m": 244.61
+      "level_m": 244.61,
+      "storage_volume_m3": 201928896.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-07-28",
       "nisar_utc_date": "2026-07-27",
       "pct": 99.5422624963461,
-      "level_m": 244.89
+      "level_m": 244.89,
+      "storage_volume_m3": 204320448.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-07-29",
       "nisar_utc_date": null,
       "pct": 99.70852966968722,
-      "level_m": 244.93
+      "level_m": 244.93,
+      "storage_volume_m3": 204661728.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-08-03",
       "nisar_utc_date": null,
       "pct": 100.0,
-      "level_m": 245.03
+      "level_m": 245.03,
+      "storage_volume_m3": 205520544.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-08-08",
       "nisar_utc_date": null,
       "pct": 96.3793978368898,
-      "level_m": 244.13
+      "level_m": 244.13,
+      "storage_volume_m3": 197828351.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-08-13",
       "nisar_utc_date": null,
       "pct": 99.91688979830455,
-      "level_m": 244.98
+      "level_m": 244.98,
+      "storage_volume_m3": 205089407.99999994,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-08-18",
       "nisar_utc_date": null,
       "pct": 100.0,
-      "level_m": 245.06
+      "level_m": 245.06,
+      "storage_volume_m3": 205781472.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-08-21",
       "nisar_utc_date": "2026-08-20",
       "pct": 100.0,
-      "level_m": 245.11
+      "level_m": 245.11,
+      "storage_volume_m3": 206215200.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-08-23",
       "nisar_utc_date": null,
       "pct": 99.87521777258112,
-      "level_m": 244.97
+      "level_m": 244.97,
+      "storage_volume_m3": 205003872.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-08-28",
       "nisar_utc_date": null,
       "pct": 99.58393452206955,
-      "level_m": 244.9
+      "level_m": 244.9,
+      "storage_volume_m3": 204405984.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-09-02",
       "nisar_utc_date": "2026-09-01",
       "pct": 99.33432329728153,
-      "level_m": 244.84
+      "level_m": 244.84,
+      "storage_volume_m3": 203893632.00000006,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-09-07",
       "nisar_utc_date": null,
       "pct": 100.0,
-      "level_m": 245.1
+      "level_m": 245.1,
+      "storage_volume_m3": 206128800.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-09-12",
       "nisar_utc_date": null,
       "pct": 100.0,
-      "level_m": 245.09
+      "level_m": 245.09,
+      "storage_volume_m3": 206041529.99999997,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-09-14",
       "nisar_utc_date": "2026-09-13",
       "pct": 99.70852966968722,
-      "level_m": 244.93
+      "level_m": 244.93,
+      "storage_volume_m3": 204661728.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-09-17",
       "nisar_utc_date": null,
       "pct": 100.0,
-      "level_m": 245.03
+      "level_m": 245.03,
+      "storage_volume_m3": 205520544.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-09-22",
       "nisar_utc_date": null,
       "pct": 100.0,
-      "level_m": 245.02
+      "level_m": 245.02,
+      "storage_volume_m3": 205434144.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-09-26",
       "nisar_utc_date": "2026-09-25",
       "pct": 99.91688979830455,
-      "level_m": 244.98
+      "level_m": 244.98,
+      "storage_volume_m3": 205089407.99999994,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-09-27",
       "nisar_utc_date": null,
       "pct": 100.0,
-      "level_m": 245.04
+      "level_m": 245.04,
+      "storage_volume_m3": 205607807.99999994,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-10-02",
       "nisar_utc_date": null,
       "pct": 99.91688979830455,
-      "level_m": 244.98
+      "level_m": 244.98,
+      "storage_volume_m3": 205089407.99999994,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-10-07",
       "nisar_utc_date": null,
       "pct": 98.29378544285294,
-      "level_m": 244.59
+      "level_m": 244.59,
+      "storage_volume_m3": 201757823.99999994,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-10-08",
       "nisar_utc_date": "2026-10-07",
       "pct": 97.83581408944755,
-      "level_m": 244.48
+      "level_m": 244.48,
+      "storage_volume_m3": 200817792.00000006,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-10-12",
       "nisar_utc_date": null,
       "pct": 96.29605378544285,
-      "level_m": 244.11
+      "level_m": 244.11,
+      "storage_volume_m3": 197657280.0,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-10-17",
       "nisar_utc_date": null,
       "pct": 93.54401636948262,
-      "level_m": 243.44
+      "level_m": 243.44,
+      "storage_volume_m3": 192008448.00000003,
+      "effective_capacity_m3": null
     },
     {
       "local_date": "2026-10-20",
       "nisar_utc_date": "2026-10-19",
       "pct": 92.2328208126279,
-      "level_m": 243.12
+      "level_m": 243.12,
+      "storage_volume_m3": 189317088.00000003,
+      "effective_capacity_m3": null
     }
   ]
 }

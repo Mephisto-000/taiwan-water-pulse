@@ -18,6 +18,7 @@ from .relative import (
     relative_area,
 )
 from .release import _physical_checks, correlation_summary, publication_grade
+from .review import effect_size
 from .sources import write_json
 from .validation import correlations
 
@@ -167,13 +168,15 @@ def diagnose(root: Path) -> dict[str, Any]:
                     [r["official"]["level_m"] for r in osm_records],
                 )
                 physical = _physical_checks(osm_records, reservoir["osm_area_km2"])
-                grade, reason = publication_grade(stats, physical["passed"])
+                effect = effect_size(osm_records)
+                grade, reason = publication_grade(stats, physical["passed"], effect["passes"])
                 report["osm_scale_comparison"].append(
                     {
                         "reservoir": key,
                         "spacing_m": spacing,
                         "statistics": stats,
                         "physical_checks": physical,
+                        "effect_size": effect,
                         "grade": grade,
                         "reason": reason,
                     }

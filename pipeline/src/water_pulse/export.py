@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any
 
 from .models import COLLECTION, RESERVOIRS, WRA_URL, browse_url, data_url, observation_times
-from .official import load_seed, parse_live
+from .official import VOLUME_FIELDS, load_seed, parse_live
 from .sources import png_info, write_json
 
 
@@ -95,6 +95,7 @@ def export(
                 "source_kind": kind,
                 "retrieved_at": cache["retrieved_at"] if cache else "2026-11-14",
                 "retrieved_at_precision": "timestamp" if cache else "date",
+                "volume_fields": VOLUME_FIELDS,
                 "si_usage": si_usage,
                 "records": records,
             },

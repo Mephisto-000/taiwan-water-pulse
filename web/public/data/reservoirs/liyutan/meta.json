@@ -50,6 +50,16 @@
   },
   "pixel_area_m2": 100.0,
   "classification_channel": "HH",
+  "display_ranges_db": {
+    "HH": [
+      -18,
+      -2
+    ],
+    "HV": [
+      -21,
+      -6
+    ]
+  },
   "thresholds": {
     "HH": -8.124980716642812,
     "HV": -13.46345494504795
@@ -8467,6 +8477,864 @@
     "publish_area": true,
     "reason": "review_correlation_criteria_met",
     "method": "relative_power_v3",
+    "review_version": "2026-11-14-v2",
+    "effect_size": {
+      "n": 21,
+      "area_range_km2": 0.38339999999999996,
+      "mean_sensitivity_width_km2": 0.16139999999999996,
+      "range_to_sensitivity_ratio": 2.37546468401487,
+      "minimum_ratio": 2.0,
+      "passes": true,
+      "level_range_m": 23.180000000000007
+    },
+    "full_storage_repeatability": {
+      "n": 7,
+      "threshold_pct": 99.5,
+      "mean_km2": 3.783471428571428,
+      "std_km2": 0.027716612568005127,
+      "range_km2": 0.08460000000000001,
+      "std_ddof": 0,
+      "interpretation": "Observed full-pool repeatability; not isolated sensor error."
+    },
+    "polarization_comparison": {
+      "reference_utc": "2025-11-05T21:16:41Z",
+      "selected_utc": "2026-03-17T21:16:47Z",
+      "date_selection": "Lowest observed storage date, compared with the highest observed storage on or before that date; ties use the earliest acquisition.",
+      "channels": {
+        "HH": {
+          "change_pct": -7.705192629815749,
+          "all": {
+            "n": 21,
+            "pearson_area_vs_level": 0.9145569952539863,
+            "spearman_area_vs_level": 0.7825097529258777,
+            "pearson_ci95": [
+              0.7533357142673367,
+              0.9608512208124561
+            ],
+            "spearman_ci95": [
+              0.4217083706074128,
+              0.9516983918118441
+            ],
+            "bootstrap_repetitions": 2000,
+            "bootstrap_valid_replicates": 2000,
+            "bootstrap_seed": 20261114,
+            "leave_one_out_pearson_range": [
+              0.8723085402213193,
+              0.9262415126988204
+            ]
+          },
+          "without_flagged": {
+            "n": 21,
+            "pearson_area_vs_level": 0.9145569952539863,
+            "spearman_area_vs_level": 0.7825097529258777,
+            "pearson_ci95": [
+              0.7533357142673367,
+              0.9608512208124561
+            ],
+            "spearman_ci95": [
+              0.4217083706074128,
+              0.9516983918118441
+            ],
+            "bootstrap_repetitions": 2000,
+            "bootstrap_valid_replicates": 2000,
+            "bootstrap_seed": 20261114,
+            "leave_one_out_pearson_range": [
+              0.8723085402213193,
+              0.9262415126988204
+            ]
+          },
+          "flagged_dates": []
+        },
+        "HV": {
+          "change_pct": -2.5364020666979736,
+          "all": {
+            "n": 21,
+            "pearson_area_vs_level": 0.8408450318891514,
+            "spearman_area_vs_level": 0.7535760728218465,
+            "pearson_ci95": [
+              0.45843920340440336,
+              0.9316632379350845
+            ],
+            "spearman_ci95": [
+              0.39145180031649823,
+              0.9321081076587623
+            ],
+            "bootstrap_repetitions": 2000,
+            "bootstrap_valid_replicates": 2000,
+            "bootstrap_seed": 20261114,
+            "leave_one_out_pearson_range": [
+              0.7597204105295795,
+              0.8651776243697501
+            ]
+          },
+          "without_flagged": {
+            "n": 21,
+            "pearson_area_vs_level": 0.8408450318891514,
+            "spearman_area_vs_level": 0.7535760728218465,
+            "pearson_ci95": [
+              0.45843920340440336,
+              0.9316632379350845
+            ],
+            "spearman_ci95": [
+              0.39145180031649823,
+              0.9321081076587623
+            ],
+            "bootstrap_repetitions": 2000,
+            "bootstrap_valid_replicates": 2000,
+            "bootstrap_seed": 20261114,
+            "leave_one_out_pearson_range": [
+              0.7597204105295795,
+              0.8651776243697501
+            ]
+          },
+          "flagged_dates": []
+        }
+      },
+      "interpretation": "HH shows a larger decline in candidate-water extent for the core reservoirs. Dark exposed bed in HV is a hypothesis without independent land-cover truth. QA exclusions are sensitivity checks; publication grades retain all dates."
+    },
+    "volume_closure": {
+      "eligible": true,
+      "available": true,
+      "reason": "reported_not_independent_validation",
+      "start_utc": "2025-11-05T21:16:41Z",
+      "end_utc": "2026-03-17T21:16:47Z",
+      "n": 11,
+      "level_span_m": 20.939999999999998,
+      "radar_million_m3": 76.13873999999998,
+      "radar_low_million_m3": 73.821438,
+      "radar_high_million_m3": 77.77847249999999,
+      "official_million_m3": 66.7951,
+      "ratio": 1.1398851113330166,
+      "source": "https://fhy.wra.gov.tw/Disaster/api/ReservoirHistoryApi/GetComparision",
+      "retrieved_at": "2026-11-14T03:02:42.315314Z",
+      "volume_fields": {
+        "storage_volume_m3": {
+          "source_field": "Capacity",
+          "source_unit": "10^4 m3",
+          "multiplier_to_m3": 10000,
+          "unit_evidence_url": "https://fhy.wra.gov.tw/fhyv2/js/205.29609f4b.js",
+          "unit_evidence_sha256": "84dfb83868757543f2dc42cd379f1adbb40354be200ad07214c2888000a5f928",
+          "unit_verified_at": "2026-11-14",
+          "unit_evidence": "Official reservoir table labels data-key Capacity as effective storage in ten-thousand cubic metres and displays formatValue(e.Capacity) directly. Its newer Daily API mapping assigns EffectiveStorage to Capacity. Historical measurements remain the original GetComparision cache, not a replacement with current Daily values."
+        },
+        "effective_capacity_m3": {
+          "source_field": "CAPACITY_E",
+          "status": "Unavailable in the historical response; values remain null.",
+          "policy": "Never infer effective capacity from storage rate or a news constant."
+        }
+      },
+      "maximum_observation_gap_days": 36,
+      "notes": [
+        "Uses official water levels; this is not an independent validation.",
+        "The range varies the classification ratio from 0.5 to 0.7.",
+        "Surface area is linearly interpolated between successive observations.",
+        "A gap greater than 36 days ends the evaluated observation block.",
+        "Report only; closure is not a publication-grade criterion."
+      ]
+    },
+    "threshold_sensitivity": {
+      "analysis_grid_m": 30,
+      "channel": "HH",
+      "definitions": [
+        {
+          "id": "land_minus_2_db",
+          "offset_db": 2,
+          "statistics": {
+            "n": 21,
+            "pearson_area_vs_level": 0.9191895531678532,
+            "spearman_area_vs_level": 0.7546311740736117
+          },
+          "records": [
+            {
+              "utc": "2025-11-05T21:16:41Z",
+              "area_km2": 3.7863,
+              "threshold_db": -7.9064932204792475
+            },
+            {
+              "utc": "2025-11-17T21:16:42Z",
+              "area_km2": 3.7701,
+              "threshold_db": -7.848666469285435
+            },
+            {
+              "utc": "2025-11-29T21:16:42Z",
+              "area_km2": 3.7998,
+              "threshold_db": -7.897644150904975
+            },
+            {
+              "utc": "2025-12-11T21:16:43Z",
+              "area_km2": 3.8052,
+              "threshold_db": -8.20340030454383
+            },
+            {
+              "utc": "2025-12-23T21:16:43Z",
+              "area_km2": 3.7755,
+              "threshold_db": -8.22379826742668
+            },
+            {
+              "utc": "2026-01-16T21:16:44Z",
+              "area_km2": 3.7782,
+              "threshold_db": -8.223435639345036
+            },
+            {
+              "utc": "2026-01-28T21:16:45Z",
+              "area_km2": 3.717,
+              "threshold_db": -8.27716817891109
+            },
+            {
+              "utc": "2026-02-09T21:16:46Z",
+              "area_km2": 3.6981,
+              "threshold_db": -8.180098527395248
+            },
+            {
+              "utc": "2026-02-21T21:16:46Z",
+              "area_km2": 3.6315,
+              "threshold_db": -8.276218243565435
+            },
+            {
+              "utc": "2026-03-05T21:16:46Z",
+              "area_km2": 3.4965,
+              "threshold_db": -7.752637027320722
+            },
+            {
+              "utc": "2026-03-17T21:16:47Z",
+              "area_km2": 3.501,
+              "threshold_db": -8.25423359690144
+            },
+            {
+              "utc": "2026-06-21T21:16:44Z",
+              "area_km2": 3.8016,
+              "threshold_db": -8.282671737721035
+            },
+            {
+              "utc": "2026-07-03T21:16:43Z",
+              "area_km2": 3.7764,
+              "threshold_db": -8.125143535278282
+            },
+            {
+              "utc": "2026-07-15T21:16:42Z",
+              "area_km2": 3.8412,
+              "threshold_db": -7.938983847822436
+            },
+            {
+              "utc": "2026-07-27T21:16:42Z",
+              "area_km2": 3.8151,
+              "threshold_db": -8.013013326192238
+            },
+            {
+              "utc": "2026-08-20T21:16:40Z",
+              "area_km2": 3.8268,
+              "threshold_db": -7.765158035132653
+            },
+            {
+              "utc": "2026-09-01T21:16:40Z",
+              "area_km2": 3.8034,
+              "threshold_db": -7.481221972485408
+            },
+            {
+              "utc": "2026-09-13T21:16:40Z",
+              "area_km2": 3.8052,
+              "threshold_db": -8.048536432633973
+            },
+            {
+              "utc": "2026-09-25T21:16:40Z",
+              "area_km2": 3.7971,
+              "threshold_db": -8.172316078720666
+            },
+            {
+              "utc": "2026-10-07T21:16:40Z",
+              "area_km2": 3.7737,
+              "threshold_db": -8.216222163934843
+            },
+            {
+              "utc": "2026-10-19T21:16:40Z",
+              "area_km2": 3.7899,
+              "threshold_db": -8.22281123774366
+            }
+          ]
+        },
+        {
+          "id": "land_minus_3_db",
+          "offset_db": 3,
+          "statistics": {
+            "n": 21,
+            "pearson_area_vs_level": 0.9373033270552398,
+            "spearman_area_vs_level": 0.8461789065333559
+          },
+          "records": [
+            {
+              "utc": "2025-11-05T21:16:41Z",
+              "area_km2": 3.6846,
+              "threshold_db": -8.906493220479248
+            },
+            {
+              "utc": "2025-11-17T21:16:42Z",
+              "area_km2": 3.6729,
+              "threshold_db": -8.848666469285435
+            },
+            {
+              "utc": "2025-11-29T21:16:42Z",
+              "area_km2": 3.6855,
+              "threshold_db": -8.897644150904975
+            },
+            {
+              "utc": "2025-12-11T21:16:43Z",
+              "area_km2": 3.6918,
+              "threshold_db": -9.20340030454383
+            },
+            {
+              "utc": "2025-12-23T21:16:43Z",
+              "area_km2": 3.6504,
+              "threshold_db": -9.22379826742668
+            },
+            {
+              "utc": "2026-01-16T21:16:44Z",
+              "area_km2": 3.6378,
+              "threshold_db": -9.223435639345036
+            },
+            {
+              "utc": "2026-01-28T21:16:45Z",
+              "area_km2": 3.6099,
+              "threshold_db": -9.27716817891109
+            },
+            {
+              "utc": "2026-02-09T21:16:46Z",
+              "area_km2": 3.564,
+              "threshold_db": -9.180098527395248
+            },
+            {
+              "utc": "2026-02-21T21:16:46Z",
+              "area_km2": 3.4839,
+              "threshold_db": -9.276218243565435
+            },
+            {
+              "utc": "2026-03-05T21:16:46Z",
+              "area_km2": 3.3201,
+              "threshold_db": -8.752637027320722
+            },
+            {
+              "utc": "2026-03-17T21:16:47Z",
+              "area_km2": 3.3192,
+              "threshold_db": -9.25423359690144
+            },
+            {
+              "utc": "2026-06-21T21:16:44Z",
+              "area_km2": 3.6972,
+              "threshold_db": -9.282671737721035
+            },
+            {
+              "utc": "2026-07-03T21:16:43Z",
+              "area_km2": 3.6729,
+              "threshold_db": -9.125143535278282
+            },
+            {
+              "utc": "2026-07-15T21:16:42Z",
+              "area_km2": 3.7521,
+              "threshold_db": -8.938983847822435
+            },
+            {
+              "utc": "2026-07-27T21:16:42Z",
+              "area_km2": 3.7233,
+              "threshold_db": -9.013013326192238
+            },
+            {
+              "utc": "2026-08-20T21:16:40Z",
+              "area_km2": 3.7305,
+              "threshold_db": -8.765158035132654
+            },
+            {
+              "utc": "2026-09-01T21:16:40Z",
+              "area_km2": 3.6999,
+              "threshold_db": -8.481221972485407
+            },
+            {
+              "utc": "2026-09-13T21:16:40Z",
+              "area_km2": 3.6999,
+              "threshold_db": -9.048536432633973
+            },
+            {
+              "utc": "2026-09-25T21:16:40Z",
+              "area_km2": 3.7062,
+              "threshold_db": -9.172316078720666
+            },
+            {
+              "utc": "2026-10-07T21:16:40Z",
+              "area_km2": 3.6675,
+              "threshold_db": -9.216222163934843
+            },
+            {
+              "utc": "2026-10-19T21:16:40Z",
+              "area_km2": 3.6855,
+              "threshold_db": -9.22281123774366
+            }
+          ]
+        },
+        {
+          "id": "land_minus_4_db",
+          "offset_db": 4,
+          "statistics": {
+            "n": 21,
+            "pearson_area_vs_level": 0.9431517245299852,
+            "spearman_area_vs_level": 0.8609488497144295
+          },
+          "records": [
+            {
+              "utc": "2025-11-05T21:16:41Z",
+              "area_km2": 3.5856,
+              "threshold_db": -9.906493220479248
+            },
+            {
+              "utc": "2025-11-17T21:16:42Z",
+              "area_km2": 3.5028,
+              "threshold_db": -9.848666469285435
+            },
+            {
+              "utc": "2025-11-29T21:16:42Z",
+              "area_km2": 3.5721,
+              "threshold_db": -9.897644150904975
+            },
+            {
+              "utc": "2025-12-11T21:16:43Z",
+              "area_km2": 3.555,
+              "threshold_db": -10.20340030454383
+            },
+            {
+              "utc": "2025-12-23T21:16:43Z",
+              "area_km2": 3.5172,
+              "threshold_db": -10.22379826742668
+            },
+            {
+              "utc": "2026-01-16T21:16:44Z",
+              "area_km2": 3.5019,
+              "threshold_db": -10.223435639345036
+            },
+            {
+              "utc": "2026-01-28T21:16:45Z",
+              "area_km2": 3.4488,
+              "threshold_db": -10.27716817891109
+            },
+            {
+              "utc": "2026-02-09T21:16:46Z",
+              "area_km2": 3.4002,
+              "threshold_db": -10.180098527395248
+            },
+            {
+              "utc": "2026-02-21T21:16:46Z",
+              "area_km2": 3.3003,
+              "threshold_db": -10.276218243565435
+            },
+            {
+              "utc": "2026-03-05T21:16:46Z",
+              "area_km2": 3.1428,
+              "threshold_db": -9.752637027320722
+            },
+            {
+              "utc": "2026-03-17T21:16:47Z",
+              "area_km2": 3.1086,
+              "threshold_db": -10.25423359690144
+            },
+            {
+              "utc": "2026-06-21T21:16:44Z",
+              "area_km2": 3.5739,
+              "threshold_db": -10.282671737721035
+            },
+            {
+              "utc": "2026-07-03T21:16:43Z",
+              "area_km2": 3.4992,
+              "threshold_db": -10.125143535278282
+            },
+            {
+              "utc": "2026-07-15T21:16:42Z",
+              "area_km2": 3.6504,
+              "threshold_db": -9.938983847822435
+            },
+            {
+              "utc": "2026-07-27T21:16:42Z",
+              "area_km2": 3.6018,
+              "threshold_db": -10.013013326192238
+            },
+            {
+              "utc": "2026-08-20T21:16:40Z",
+              "area_km2": 3.6198,
+              "threshold_db": -9.765158035132654
+            },
+            {
+              "utc": "2026-09-01T21:16:40Z",
+              "area_km2": 3.6099,
+              "threshold_db": -9.481221972485407
+            },
+            {
+              "utc": "2026-09-13T21:16:40Z",
+              "area_km2": 3.5892,
+              "threshold_db": -10.048536432633973
+            },
+            {
+              "utc": "2026-09-25T21:16:40Z",
+              "area_km2": 3.5865,
+              "threshold_db": -10.172316078720666
+            },
+            {
+              "utc": "2026-10-07T21:16:40Z",
+              "area_km2": 3.5631,
+              "threshold_db": -10.216222163934843
+            },
+            {
+              "utc": "2026-10-19T21:16:40Z",
+              "area_km2": 3.5829,
+              "threshold_db": -10.22281123774366
+            }
+          ]
+        },
+        {
+          "id": "land_minus_5_db",
+          "offset_db": 5,
+          "statistics": {
+            "n": 21,
+            "pearson_area_vs_level": 0.9405769042172469,
+            "spearman_area_vs_level": 0.8742281904642616
+          },
+          "records": [
+            {
+              "utc": "2025-11-05T21:16:41Z",
+              "area_km2": 3.4128,
+              "threshold_db": -10.906493220479248
+            },
+            {
+              "utc": "2025-11-17T21:16:42Z",
+              "area_km2": 3.3048,
+              "threshold_db": -10.848666469285435
+            },
+            {
+              "utc": "2025-11-29T21:16:42Z",
+              "area_km2": 3.3957,
+              "threshold_db": -10.897644150904975
+            },
+            {
+              "utc": "2025-12-11T21:16:43Z",
+              "area_km2": 3.3759,
+              "threshold_db": -11.20340030454383
+            },
+            {
+              "utc": "2025-12-23T21:16:43Z",
+              "area_km2": 3.3255,
+              "threshold_db": -11.22379826742668
+            },
+            {
+              "utc": "2026-01-16T21:16:44Z",
+              "area_km2": 3.2436,
+              "threshold_db": -11.223435639345036
+            },
+            {
+              "utc": "2026-01-28T21:16:45Z",
+              "area_km2": 3.2436,
+              "threshold_db": -11.27716817891109
+            },
+            {
+              "utc": "2026-02-09T21:16:46Z",
+              "area_km2": 3.1896,
+              "threshold_db": -11.180098527395248
+            },
+            {
+              "utc": "2026-02-21T21:16:46Z",
+              "area_km2": 3.0753,
+              "threshold_db": -11.276218243565435
+            },
+            {
+              "utc": "2026-03-05T21:16:46Z",
+              "area_km2": 2.8755,
+              "threshold_db": -10.752637027320722
+            },
+            {
+              "utc": "2026-03-17T21:16:47Z",
+              "area_km2": 2.7855,
+              "threshold_db": -11.25423359690144
+            },
+            {
+              "utc": "2026-06-21T21:16:44Z",
+              "area_km2": 3.4182,
+              "threshold_db": -11.282671737721035
+            },
+            {
+              "utc": "2026-07-03T21:16:43Z",
+              "area_km2": 3.2598,
+              "threshold_db": -11.125143535278282
+            },
+            {
+              "utc": "2026-07-15T21:16:42Z",
+              "area_km2": 3.4965,
+              "threshold_db": -10.938983847822435
+            },
+            {
+              "utc": "2026-07-27T21:16:42Z",
+              "area_km2": 3.4749,
+              "threshold_db": -11.013013326192238
+            },
+            {
+              "utc": "2026-08-20T21:16:40Z",
+              "area_km2": 3.4722,
+              "threshold_db": -10.765158035132654
+            },
+            {
+              "utc": "2026-09-01T21:16:40Z",
+              "area_km2": 3.4632,
+              "threshold_db": -10.481221972485407
+            },
+            {
+              "utc": "2026-09-13T21:16:40Z",
+              "area_km2": 3.456,
+              "threshold_db": -11.048536432633973
+            },
+            {
+              "utc": "2026-09-25T21:16:40Z",
+              "area_km2": 3.4497,
+              "threshold_db": -11.172316078720666
+            },
+            {
+              "utc": "2026-10-07T21:16:40Z",
+              "area_km2": 3.4101,
+              "threshold_db": -11.216222163934843
+            },
+            {
+              "utc": "2026-10-19T21:16:40Z",
+              "area_km2": 3.3966,
+              "threshold_db": -11.22281123774366
+            }
+          ]
+        },
+        {
+          "id": "land_minus_6_db",
+          "offset_db": 6,
+          "statistics": {
+            "n": 21,
+            "pearson_area_vs_level": 0.8637136043415636,
+            "spearman_area_vs_level": 0.8102665778067121
+          },
+          "records": [
+            {
+              "utc": "2025-11-05T21:16:41Z",
+              "area_km2": 3.195,
+              "threshold_db": -11.906493220479248
+            },
+            {
+              "utc": "2025-11-17T21:16:42Z",
+              "area_km2": 3.042,
+              "threshold_db": -11.848666469285435
+            },
+            {
+              "utc": "2025-11-29T21:16:42Z",
+              "area_km2": 3.0942,
+              "threshold_db": -11.897644150904975
+            },
+            {
+              "utc": "2025-12-11T21:16:43Z",
+              "area_km2": 3.0933,
+              "threshold_db": -12.20340030454383
+            },
+            {
+              "utc": "2025-12-23T21:16:43Z",
+              "area_km2": 3.0321,
+              "threshold_db": -12.22379826742668
+            },
+            {
+              "utc": "2026-01-16T21:16:44Z",
+              "area_km2": 2.9844,
+              "threshold_db": -12.223435639345036
+            },
+            {
+              "utc": "2026-01-28T21:16:45Z",
+              "area_km2": 2.9502,
+              "threshold_db": -12.27716817891109
+            },
+            {
+              "utc": "2026-02-09T21:16:46Z",
+              "area_km2": 2.8116,
+              "threshold_db": -12.180098527395248
+            },
+            {
+              "utc": "2026-02-21T21:16:46Z",
+              "area_km2": 2.7432,
+              "threshold_db": -12.276218243565435
+            },
+            {
+              "utc": "2026-03-05T21:16:46Z",
+              "area_km2": 2.5551,
+              "threshold_db": -11.752637027320722
+            },
+            {
+              "utc": "2026-03-17T21:16:47Z",
+              "area_km2": 2.3742,
+              "threshold_db": -12.25423359690144
+            },
+            {
+              "utc": "2026-06-21T21:16:44Z",
+              "area_km2": 3.1887,
+              "threshold_db": -12.282671737721035
+            },
+            {
+              "utc": "2026-07-03T21:16:43Z",
+              "area_km2": 2.7126,
+              "threshold_db": -12.125143535278282
+            },
+            {
+              "utc": "2026-07-15T21:16:42Z",
+              "area_km2": 3.3237,
+              "threshold_db": -11.938983847822435
+            },
+            {
+              "utc": "2026-07-27T21:16:42Z",
+              "area_km2": 3.2391,
+              "threshold_db": -12.013013326192238
+            },
+            {
+              "utc": "2026-08-20T21:16:40Z",
+              "area_km2": 3.2832,
+              "threshold_db": -11.765158035132654
+            },
+            {
+              "utc": "2026-09-01T21:16:40Z",
+              "area_km2": 3.2724,
+              "threshold_db": -11.481221972485407
+            },
+            {
+              "utc": "2026-09-13T21:16:40Z",
+              "area_km2": 3.2445,
+              "threshold_db": -12.048536432633973
+            },
+            {
+              "utc": "2026-09-25T21:16:40Z",
+              "area_km2": 3.2004,
+              "threshold_db": -12.172316078720666
+            },
+            {
+              "utc": "2026-10-07T21:16:40Z",
+              "area_km2": 3.1293,
+              "threshold_db": -12.216222163934843
+            },
+            {
+              "utc": "2026-10-19T21:16:40Z",
+              "area_km2": 3.1851,
+              "threshold_db": -12.22281123774366
+            }
+          ]
+        },
+        {
+          "id": "per_date_polygon_otsu",
+          "offset_db": null,
+          "statistics": {
+            "n": 21,
+            "pearson_area_vs_level": 0.9404795063451679,
+            "spearman_area_vs_level": 0.8128047228071072
+          },
+          "records": [
+            {
+              "utc": "2025-11-05T21:16:41Z",
+              "area_km2": 3.4722,
+              "threshold_db": -10.702817421259844
+            },
+            {
+              "utc": "2025-11-17T21:16:42Z",
+              "area_km2": 3.3435,
+              "threshold_db": -10.657295767716537
+            },
+            {
+              "utc": "2025-11-29T21:16:42Z",
+              "area_km2": 3.3957,
+              "threshold_db": -10.837536909448819
+            },
+            {
+              "utc": "2025-12-11T21:16:43Z",
+              "area_km2": 3.3399,
+              "threshold_db": -11.292753444881889
+            },
+            {
+              "utc": "2025-12-23T21:16:43Z",
+              "area_km2": 3.4101,
+              "threshold_db": -10.834153543307087
+            },
+            {
+              "utc": "2026-01-16T21:16:44Z",
+              "area_km2": 3.2922,
+              "threshold_db": -11.117125984251969
+            },
+            {
+              "utc": "2026-01-28T21:16:45Z",
+              "area_km2": 3.3093,
+              "threshold_db": -10.97317913385827
+            },
+            {
+              "utc": "2026-02-09T21:16:46Z",
+              "area_km2": 3.3003,
+              "threshold_db": -10.691129429133857
+            },
+            {
+              "utc": "2026-02-21T21:16:46Z",
+              "area_km2": 3.2346,
+              "threshold_db": -10.660679133858267
+            },
+            {
+              "utc": "2026-03-05T21:16:46Z",
+              "area_km2": 3.1428,
+              "threshold_db": -9.709030511811022
+            },
+            {
+              "utc": "2026-03-17T21:16:47Z",
+              "area_km2": 3.1554,
+              "threshold_db": -10.062130905511811
+            },
+            {
+              "utc": "2026-06-21T21:16:44Z",
+              "area_km2": 3.4182,
+              "threshold_db": -11.296751968503937
+            },
+            {
+              "utc": "2026-07-03T21:16:43Z",
+              "area_km2": 3.5271,
+              "threshold_db": -10.05843996062992
+            },
+            {
+              "utc": "2026-07-15T21:16:42Z",
+              "area_km2": 3.4173,
+              "threshold_db": -11.437623031496063
+            },
+            {
+              "utc": "2026-07-27T21:16:42Z",
+              "area_km2": 3.4182,
+              "threshold_db": -11.294291338582678
+            },
+            {
+              "utc": "2026-08-20T21:16:40Z",
+              "area_km2": 3.4461,
+              "threshold_db": -10.986712598425196
+            },
+            {
+              "utc": "2026-09-01T21:16:40Z",
+              "area_km2": 3.4632,
+              "threshold_db": -10.537647637795276
+            },
+            {
+              "utc": "2026-09-13T21:16:40Z",
+              "area_km2": 3.4317,
+              "threshold_db": -11.138041338582676
+            },
+            {
+              "utc": "2026-09-25T21:16:40Z",
+              "area_km2": 3.4731,
+              "threshold_db": -11.00209153543307
+            },
+            {
+              "utc": "2026-10-07T21:16:40Z",
+              "area_km2": 3.4551,
+              "threshold_db": -10.829539862204722
+            },
+            {
+              "utc": "2026-10-19T21:16:40Z",
+              "area_km2": 3.4893,
+              "threshold_db": -10.834153543307085
+            }
+          ]
+        }
+      ],
+      "policy": "Unchanged 30 m native analysis grid and unbuffered OSM mask. Otsu uses each date's valid quantized dB samples inside that mask. Definitions are descriptive alternatives; none select the published ratio 0.6."
+    },
     "pearson_area_hh_vs_level": 0.9145569952539863,
     "spearman_area_hh_vs_level": 0.7825097529258777,
     "below_95": {
@@ -16841,6 +17709,20 @@
       "min_db": -35,
       "max_db": 5,
       "levels": 254
+    },
+    "display_ranges_db": {
+      "HH": [
+        -18,
+        -2
+      ],
+      "HV": [
+        -21,
+        -6
+      ]
+    },
+    "display_range_basis": {
+      "HH": "Fixed review range; display only.",
+      "HV": "Outward integer rounding of pooled 2nd/98th percentiles of all valid published display pixels across four reservoirs and 21 dates."
     },
     "analysis": "Separate native UTM 30 m linear-area-average grid; HH relative reference ratio 0.6",
     "sensitivity_ratios": [

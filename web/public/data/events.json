@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "verified_at": "2026-11-14",
+  "time_zone": "Asia/Taipei",
+  "si_usage": {
+    "tool": "OpenAI Codex",
+    "declaration_version": "1.2.0",
+    "declaration_data_path": "si-usage.json",
+    "code_status": "SI-generated and SI-assisted",
+    "status": "Prepared using SI-assisted code; source observations are not SI-generated",
+    "scope": [
+      "source retrieval",
+      "format conversion",
+      "sampling and export",
+      "validation diagnostics"
+    ],
+    "source_observations_si_generated": false,
+    "browse_images_si_generated": false,
+    "synthetic_arrays": "Unit-test fixtures only; not exported as observations"
+  },
+  "content_origin": "Source-backed event summaries with SI-assisted wording; no simulated radar observations.",
+  "interpretation": "Events are attributed context, not causal estimates from the radar series. Article publication dates and event dates are stored separately.",
+  "events": [
+    {
+      "id": "spring-front-202604",
+      "start_local_date": "2026-04-02",
+      "end_local_date": "2026-04-05",
+      "reservoirs": [
+        "baoshan2"
+      ],
+      "title": {
+        "zh-TW": "清明期間鋒面降雨",
+        "en": "Early-April frontal rainfall"
+      },
+      "summary": {
+        "zh-TW": "聯合報引述北水分署，4 月 2 日清晨至 5 日下午，寶山與寶二水庫集水區累積降雨約 281 mm。",
+        "en": "UDN reported the Northern Region Water Resources Branch’s account of about 281 mm of rainfall in the Baoshan and Baoshan II catchments from the morning of 2 April to the afternoon of 5 April."
+      },
+      "in_long_radar_gap": true,
+      "sources": [
+        {
+          "url": "https://udn.com/news/story/7266/9423659",
+          "label": "4 月降雨報導 / April rainfall report",
+          "publisher": "聯合報 / UDN",
+          "kind": "secondary",
+          "published_local_date": "2026-04-05"
+        }
+      ]
+    },
+    {
+      "id": "water-status-normal-20260526",
+      "start_local_date": "2026-05-26",
+      "end_local_date": "2026-05-26",
+      "reservoirs": [
+        "baoshan2",
+        "liyutan"
+      ],
+      "title": {
+        "zh-TW": "新竹與臺中水情恢復正常",
+        "en": "Normal water status restored in Hsinchu and Taichung"
+      },
+      "summary": {
+        "zh-TW": "水利署公告自 5 月 26 日起，新竹與臺中水情由提醒綠燈恢復正常；公告指出寶山與寶二水庫已滿庫。",
+        "en": "WRA announced normal water status in Hsinchu and Taichung from 26 May, replacing the green advisory. The announcement reported full storage at Baoshan and Baoshan II."
+      },
+      "in_long_radar_gap": true,
+      "sources": [
+        {
+          "url": "https://www.moea.gov.tw/MNS/Populace/news/News.aspx?kind=1&menu_id=40&news_id=122805",
+          "label": "水利署原始公告 / WRA announcement",
+          "publisher": "經濟部水利署 / WRA",
+          "kind": "primary",
+          "published_local_date": "2026-05-26"
+        },
+        {
+          "url": "https://udn.com/news/story/7241/9528637",
+          "label": "次日新聞報導 / Following-day news report",
+          "publisher": "經濟日報 / UDN",
+          "kind": "secondary",
+          "published_local_date": "2026-05-27"
+        }
+      ]
+    },
+    {
+      "id": "bavi-202607",
+      "start_local_date": "2026-07-10",
+      "end_local_date": "2026-07-11",
+      "reservoirs": [
+        "baoshan2",
+        "liyutan",
+        "shimen"
+      ],
+      "title": {
+        "zh-TW": "巴威颱風接近臺灣",
+        "en": "Typhoon Bavi approaches Taiwan"
+      },
+      "summary": {
+        "zh-TW": "氣象署資料記錄巴威於 7 月 11 日接近臺灣；同日 NOWnews 報導寶二與鯉魚潭蓄水率達 100%。此事件發生在長期雷達缺口之後。",
+        "en": "CWA records Bavi near Taiwan on 11 July. NOWnews reported 100% storage at Baoshan II and Liyutan that day. This event occurred after the long radar-product gap."
+      },
+      "in_long_radar_gap": false,
+      "sources": [
+        {
+          "url": "https://rdc28.cwa.gov.tw/TDB/public/typhoon_detail?typhoon_id=202609",
+          "label": "氣象署颱風資料庫 / CWA typhoon record",
+          "publisher": "中央氣象署 / CWA",
+          "kind": "primary",
+          "published_local_date": null
+        },
+        {
+          "url": "https://www.nownews.com/news/6855512",
+          "label": "7 月 11 日水庫報導 / 11 July reservoir report",
+          "publisher": "NOWnews",
+          "kind": "secondary",
+          "published_local_date": "2026-07-11"
+        }
+      ]
+    }
+  ],
+  "source_checks": [
+    {
+      "id": "S-01",
+      "url": "https://udn.com/news/story/7266/9423659",
+      "status": "verified",
+      "notes": "Article published 2026-04-05 18:30; describes rainfall from 2026-04-02 07:00 to 2026-04-05 16:00 Taiwan time."
+    },
+    {
+      "id": "S-02",
+      "url": "https://wantrich.chinatimes.com/news/20260405900023-420501",
+      "status": "unavailable_not_used",
+      "notes": "Direct page retrieval returned cache miss twice; no independently read article text. Its claims are not used as supporting evidence."
+    },
+    {
+      "id": "S-03",
+      "url": "https://udn.com/news/story/7241/9528637",
+      "status": "verified_primary_source_added",
+      "notes": "Article published 2026-05-27 13:01; effective event date is 2026-05-26. WRA’s original 2026-05-26 announcement is linked as the primary source."
+    },
+    {
+      "id": "S-04",
+      "url": "https://www.nownews.com/news/6855512",
+      "status": "verified_primary_source_added",
+      "notes": "Article published and updated 2026-07-11. CWA independently identifies BAVI 202609 and its near-Taiwan date 2026-07-11. This is not a year mismatch, but it is after the March–June radar gap."
+    }
+  ]
+}

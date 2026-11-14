@@ -1,11 +1,45 @@
 """Parse official source records with explicit null preservation."""
 
 import csv
+import math
 from decimal import ROUND_HALF_UP, Decimal
 from pathlib import Path
 from typing import Any
 
 from .models import RESERVOIRS
+
+VOLUME_FIELDS = {
+    "storage_volume_m3": {
+        "source_field": "Capacity",
+        "source_unit": "10^4 m3",
+        "multiplier_to_m3": 10_000,
+        "unit_evidence_url": "https://fhy.wra.gov.tw/fhyv2/js/205.29609f4b.js",
+        "unit_evidence_sha256": "84dfb83868757543f2dc42cd379f1adbb40354be200ad07214c2888000a5f928",
+        "unit_verified_at": "2026-11-14",
+        "unit_evidence": (
+            "Official reservoir table labels data-key Capacity as effective storage "
+            "in ten-thousand cubic metres and displays formatValue(e.Capacity) directly. "
+            "Its newer Daily API mapping assigns EffectiveStorage to Capacity. "
+            "Historical measurements remain the original GetComparision cache, "
+            "not a replacement with current Daily values."
+        ),
+    },
+    "effective_capacity_m3": {
+        "source_field": "CAPACITY_E",
+        "status": "Unavailable in the historical response; values remain null.",
+        "policy": "Never infer effective capacity from storage rate or a news constant.",
+    },
+}
+
+
+def storage_volume_m3(value: Any) -> float | None:
+    """Convert the documented Capacity field only; null/empty are not zero."""
+    if value is None or value == "":
+        return None
+    result = float(value)
+    if not math.isfinite(result) or result < 0:
+        raise ValueError("Official storage volume must be finite and nonnegative.")
+    return result * 10_000
 
 
 def load_seed(path: Path) -> dict[str, list[dict[str, Any]]]:
@@ -25,6 +59,8 @@ def load_seed(path: Path) -> dict[str, list[dict[str, Any]]]:
                     "nisar_utc_date": row["nisar_utc_date"] or None,
                     "pct": float(pct) if pct else None,
                     "level_m": float(level) if level else None,
+                    "storage_volume_m3": None,
+                    "effective_capacity_m3": None,
                 }
             )
         result[key] = records
@@ -43,11 +79,17 @@ def parse_live(
             local_date = str(row["DATE"])[:10].replace("/", "-")
             level, rate = row.get("WaterLine"), row.get("CapacityRate")
             missing = level is None or rate is None
+            if row.get("CAPACITY_E") not in (None, ""):
+                raise ValueError(
+                    "Verify the historical CAPACITY_E field before publishing capacity."
+                )
             records[local_date] = {
                 "local_date": local_date,
                 "nisar_utc_date": acquisition_dates.get(local_date),
                 "pct": None if missing else float(rate) * 100,
                 "level_m": None if missing else float(level),
+                "storage_volume_m3": storage_volume_m3(row.get("Capacity")),
+                "effective_capacity_m3": None,
             }
     return [records[local_date] for local_date in sorted(records)]
 

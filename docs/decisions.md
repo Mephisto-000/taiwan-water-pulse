@@ -64,3 +64,16 @@ Existing ASF browse filenames retain their `HH`/`HV` polarization suffixes. The 
 | RV-11 | Publish Shimen B with LOW_CONFIDENCE, not as a dependable association. | Its literal r-based grade is B, but its interval spans zero and rho is near zero. All results/uncertainty remain visible; the method is not adjusted to improve Shimen. |
 | RV-12 | Keep the exposed-bed explanation a hypothesis. | HH-selected transition pixels retain lower HV contrast, but selection bias and lack of independent ground truth prevent a causal or misclassification claim. Publish candidate/stable/reference comparisons. |
 | RV-13 | Use ratios 0.5/0.7 for sensitivity and per-date absolute dB cutoffs. | The final threshold is relative to same-date reference power, so the old fixed ±1.5 dB band is superseded. CSV, metadata, UI and cross-language checks must use the analysis grid and ratios consistently. |
+
+## 2026-11-14 第二次科學審閱
+
+| ID | 決定 | 查證與影響 |
+| --- | --- | --- |
+| RV-14 | 依 VAL-09/10 加入效應大小與正值信賴區間，取代 RV-11。 | 分類方法保持 HH、30 m、0.6、OSM 0 m buffer。全日期重算為寶山第二 A、鯉魚潭 A、石門 C、翡翠 B。石門不再發布 UI／CSV 面積；翡翠的方向一致，但變化小於方法敏感度。 |
+| RV-15 | 主統計保留所有日期，另報每個極化排除 QA 旗標的結果。 | 旗標採全日期陸地中位數偏差 >2 dB，或 ≥99.5% 蓄水日期面積低於滿庫中位數減 3 MAD，另保留 valid fraction 規則。寶山 HV 同時標出 2025-11-17 與 2026-07-03；排除後 r=0.89785、n=19，與文件僅排除單一天的 0.88 不同，不縮減旗標集合來配合預期。 |
+| RV-16 | 直接使用原始官方 Capacity 的日期間差值做水量閉合。 | WRA 官方前端 JavaScript 將 Capacity 標為有效蓄水量（萬立方公尺）；轉換為 m³ 的倍率為 10,000。歷史資料仍來自原有 GetComparision cache。CAPACITY_E 全為 null，維持 null，不從蓄水率或新聞容量推算。單位證據、日期與檔案 hash 見 methods.md 及 official JSON。 |
+| RV-17 | 水量閉合只報告，不影響等級。 | 純函式保留時間順序與帶符號水位差，第一個連續區塊遇 >36 天觀測間隔即結束；只對 ≥10 m 水位差且效應大小通過者顯示。寶山官方差 24.2772 百萬 m³，鯉魚潭 66.7951 百萬 m³，後者與附件新聞容量粗算 66.64 百萬 m³ 不同。 |
+| RV-18 | 擴大敏感度檢查，但不重選發布門檻。 | 同一 30 m HH 分析格網列出陸地中位數 −2 至 −6 dB 及逐日期 polygon Otsu 的面積與相關。更正 0.6 起源為預覽顯示值的粗估；它是選定定義，非校準功率的物理水陸分界。 |
+| RV-19 | 顯示與量化完全分離。 | HH 顯示 −18 至 −2 dB；HV 合併所有有效顯示像素的 2%/98% 分位為 −20.3543/−6.8110 dB，向外取整為 −21/−6 dB，所有日期共用。既有 −35 至 +5 dB byte encoding 與分類資料不變。 |
+| RV-20 | 滿庫重複性採 population SD（ddof=0）。 | 明示定義並保留 n；少於兩筆時 SD 與 range 為 null。這是滿庫觀測的變異，不稱為已分離的儀器誤差。翡翠全部 21 筆平均敏感度寬重算為 0.278229 km²，與附件的 0.275 不同，以流程結果為準。 |
+| RV-21 | 事件日期與報導日期分開紀錄，只採讀取核對過的來源。 | 2026-11-14 查核：S-01 是 2026-04-05 報導、事件為 4/2–4/5；S-03 是 5/27 報導、實施日期為 5/26，補上經濟部水利署 5/26 原始公告。S-04 的 2026 年巴威並非錯年，氣象署資料庫確認編號 202609、近臺日期 7/11；但附件聲稱所有事件都在雷達缺口中不正確，7/10–7/11 已在長期缺口之後。S-02 直接讀取兩次均無法取得全文，不作發布證據。完整來源與查核狀態保留於 pipeline/assets/review-events.json 及站內 events.json，事件僅作來源歸屬的背景，不推論雷達量到的因果。 |
