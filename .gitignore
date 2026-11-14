@@ -13,6 +13,7 @@ htmlcov/
 node_modules/
 dist/
 coverage/
+.vercel/
 .vite/
 *.tsbuildinfo
 
@@ -39,3 +40,9 @@ coverage/
 # Local Earthdata credential supplied by the user
 token.md
 **/token.md
+credentials.*
+**/credentials.*
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*

@@ -18,7 +18,7 @@ The initial presence-only environment check found no exported Earthdata credenti
 | G-D Temporal direction and validation | Failed; quantitative release stopped | Default HH failed the four-date ordering. R-01 alternatives passed the four calibration dates but failed the remaining 17-date validation: Spearman 0.421569 for Baoshan II and 0.436810 for Liyutan, both below 0.8. |
 | G-E Official source | Passed; discrepancy documented | Anonymous two-date probe returned HTTP 200, 16 records, 7,469 bytes in 0.349 s; all matched the seed at its precision. A subsequent 45-request refresh exported 88 sampled dates per station. All seed percentages match; one 0.01 m level discrepancy follows the actual response. |
 | G-F Reservoir boundaries | Passed | A single anonymous Nominatim lookup returned HTTP 200, 8 polygons, 272,641 bytes in 1.495 s. All reservoir bounding boxes are within the supplied frame. The four main polygon areas match the supplied reference within 0.014%. |
-| G-G Public host | Not verified | A Pages workflow is prepared; push and local build alone do not prove public anonymous access. |
+| G-G Public host | Partially passed | Vercel production is READY; anonymous interaction and all 54 public files verified. Owner push → Git deployment remains untested because private-repo integration is not connected. See deployment.md. |
 
 ## Authenticated HDF5 measurements
 
@@ -126,10 +126,10 @@ All matched files use Prettier code style!
 
 The production preview at `http://127.0.0.1:4173/taiwan-water-pulse/` was checked at 1280 px width, with no new console errors during the checked flow. HH/HV selection, chart-point selection, reservoir map/gauge synchronization, right-arrow stepping across the March–June radar gap, playback advancement/pause, synchronized tour entry and chapter-four selection were observed. Manual reservoir selection exited the tour; the final Feitsui gauge remained missing. UTC-product gap shading is shifted one day on the Taiwan gauge axis. Three representative screenshots are retained; see [validation](validation.md). This is local verification, not proof of an anonymous public deployment.
 
-The repository CI workflow runs on pushes to `main` and pull requests. Pages publication is a separate `workflow_dispatch` action: the team enables GitHub Actions in Settings → Pages and manually runs **Deploy GitHub Pages**. It does not automatically publish on every push.
+The repository CI workflow runs on pushes to `main` and pull requests. The Pages workflow was removed for the Vercel-only deployment. Git-trigger verification remains pending until Vercel has access to the private repository and an owner push is explicitly authorized.
 
 ## Acceptance boundary
 
 FR-04 (threshold processing) and the radar area, sensitivity interval and correlation portions of FR-05 are intentionally unavailable. FR-03 uses browse imagery without a calibrated dB legend. Browse images are not overlaid as geographic rasters. The fallback meets a reduced, explicit product scope and must not be reported as full M2 or full Must-feature completion.
 
-Before a numerical release, G-A through G-D must pass with real arrays, actual projection/mask metadata, reproducible parameters and measured timing. Before claiming a public deployment, open the returned Pages URL anonymously and verify the page and assets.
+Before a numerical release, G-A through G-D must pass with real arrays, actual projection/mask metadata, reproducible parameters and measured timing. Before claiming a public deployment, open the production Vercel domain anonymously and verify the page and assets.

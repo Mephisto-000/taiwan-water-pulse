@@ -44,7 +44,7 @@ Use the same base variable for both commands, then open the printed URL with `/t
 
 ## Publication and review still required
 
-- Pages must be enabled and its manually dispatched deployment must succeed before a public URL is claimed.
+- Current Vercel deployment verification is recorded in [deployment.md](deployment.md); historical Pages-base tests below are local evidence only.
 - The deployed page and assets must be opened anonymously; a local build or GitHub push is insufficient.
 - Review screenshot captions and the final competition requirements before submission.
 - Review the final tracked diff and generated output for secrets; local credentials and cache files stay ignored.

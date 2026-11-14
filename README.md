@@ -2,6 +2,8 @@
 
 **繁體中文** | [English](README.en.md)
 
+**線上展示（免登入）：** [https://taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)
+
 透過 NISAR 首年的 L 波段雷達（L-band radar）影像與水利署官方觀測，回顧台灣水庫的退水與回補。主要介面採用台灣慣用的繁體中文，必要技術名詞附上英文。
 
 初版依實作規格採用**預覽圖備援方案（Browse edition）**：提供四座水庫、21 個取像日期、HH／HV 預覽圖、每座水庫 88 個日期的官方取樣值，以及可追溯的資料來源。預覽圖僅供目視比較，不能當作校準後的像素值來量測水面積。
@@ -96,22 +98,20 @@ uv run --project pipeline water-pulse export --numeric --reservoirs baoshan2,liy
 
 官方觀測時間為台灣時間 07:00。NISAR 約於 UTC 21:16 取像，對應台灣隔日約 05:16，比官方觀測早約 1.7 小時。官方缺值保持留白；取樣值之間的連線僅協助閱讀，不代表新增觀測。
 
-## 發布到 GitHub Pages
+## 發布到 Vercel
 
-推送至 `main` 或建立 Pull Request 時會執行 CI。獨立的 **Deploy GitHub Pages** 工作流程（Workflow）僅接受手動觸發（`workflow_dispatch`）；推送不會自動部署。
+正式網站已部署至 **[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)**，於 2026-11-14 完成免登入存取、互動操作與 54 個公開檔案的驗證。
 
-請在儲存庫 **Settings → Pages** 選擇 **GitHub Actions**，再到 Actions 分頁執行部署工作流程。建置會設定 Vite 的儲存庫子路徑。部署前請確認觸發條件與環境設定；Git push 成功不代表 Pages 已啟用或可公開存取。
-
-部署成功後的預期網址：[mephisto-000.github.io/taiwan-water-pulse](https://mephisto-000.github.io/taiwan-water-pulse/)。
-
-在本機預覽 Pages 子路徑時，兩個指令須使用相同的 base path：
+本專案只使用 Vercel，GitHub repo 維持 private。目前採用本機建置、檢查後上傳靜態產物的方式發布；GitHub 自動部署尚未連結，push 不會自動更新網站。網站公開內容只有通過檢查的 `web/dist`；Earthdata 認證、本機快取、Python pipeline 與私訊不屬於網站產物。
 
 ```bash
-VITE_BASE_PATH=/taiwan-water-pulse/ npm --prefix web run build
-VITE_BASE_PATH=/taiwan-water-pulse/ npm --prefix web run preview
+npm --prefix web run test:deploy
+npm --prefix web test
+npm --prefix web run build
+npm --prefix web run check:deploy
 ```
 
-開啟 `http://127.0.0.1:4173/taiwan-water-pulse/`。一般根路徑建置與預覽則不設定此變數。其他主機與路徑的設定見[依賴管理文件](docs/dependency-management.md)。
+日後啟用 Git 自動部署時，來源建置設定使用 Root Directory `web`、Node.js `24.x`、`npm ci`；`web/vercel.json` 定義建置與快取。部署不需要帳號密碼或自訂環境變數。部署方式、安全檢查、更新與回復步驟見[部署紀錄](docs/deployment.md)。
 
 ## 專案結構
 

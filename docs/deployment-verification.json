@@ -1,0 +1,464 @@
+{
+  "verified_at": "2026-11-14T12:32:54.901197+08:00",
+  "production_url": "https://taiwan-water-pulse.vercel.app/",
+  "assets": [
+    {
+      "path": "assets/index-ChX-sCQn.css",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=31536000, immutable",
+      "content_type": "text/css; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "assets/index-DurfbbC6.js",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=31536000, immutable",
+      "content_type": "application/javascript; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "assets/maplibre-gl-DU2Xt96S.js",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=31536000, immutable",
+      "content_type": "application/javascript; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "assets/maplibre-gl-worker-Dlv-oLtU.js",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=31536000, immutable",
+      "content_type": "application/javascript; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20251105_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20251105_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20251117_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20251117_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20251129_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20251129_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20251211_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20251211_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20251223_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20251223_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260116_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260116_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260128_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260128_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260209_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260209_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260221_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260221_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260305_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260305_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260317_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260317_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260621_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260621_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260703_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260703_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260715_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260715_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260727_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260727_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260820_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260820_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260901_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260901_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260913_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260913_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260925_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20260925_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20261007_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20261007_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20261019_HH.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/browse/20261019_HV.png",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/png",
+      "redirected": false
+    },
+    {
+      "path": "data/index.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/official/baoshan2.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/official/feitsui.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/official/liyutan.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/official/shimen.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "data/provenance.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "favicon.svg",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "image/svg+xml",
+      "redirected": false
+    },
+    {
+      "path": "index.html",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "text/html; charset=utf-8",
+      "redirected": false
+    }
+  ],
+  "private_paths": [
+    {
+      "path": ".env",
+      "status": 404
+    },
+    {
+      "path": "token.md",
+      "status": 404
+    },
+    {
+      "path": ".netrc",
+      "status": 404
+    },
+    {
+      "path": ".git/config",
+      "status": 404
+    },
+    {
+      "path": "README.md",
+      "status": 404
+    },
+    {
+      "path": "pipeline/pyproject.toml",
+      "status": 404
+    }
+  ]
+}

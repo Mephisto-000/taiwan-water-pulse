@@ -20,10 +20,10 @@ jobs:
           cache-dependency-path: web/package-lock.json
       - run: npm ci --ignore-scripts
       - run: npm test
+      - run: npm run test:deploy
       - run: npm run format:check
       - run: npm run build
-        env:
-          VITE_BASE_PATH: /taiwan-water-pulse/
+      - run: npm run check:deploy
   pipeline:
     runs-on: ubuntu-latest
     steps:

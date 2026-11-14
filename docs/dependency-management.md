@@ -60,16 +60,16 @@ Measured outputs from `npm --prefix web root` and `pipeline/.venv/bin/python` in
 Node.js: v24.15.0
 npm: 11.12.1
 uv: 0.13.8
-Node modules: /Users/murphylinlin/GitHub/taiwan-water-pulse/web/node_modules
+Node modules: web/node_modules
 Python: 3.14.10 (Clang 23.1.3)
-Python executable: /Users/murphylinlin/GitHub/taiwan-water-pulse/pipeline/.venv/bin/python
-Python site-packages: /Users/murphylinlin/GitHub/taiwan-water-pulse/pipeline/.venv/lib/python3.14/site-packages
-NumPy module: /Users/murphylinlin/GitHub/taiwan-water-pulse/pipeline/.venv/lib/python3.14/site-packages/numpy/__init__.py
+Python executable: pipeline/.venv/bin/python
+Python site-packages: pipeline/.venv/lib/python3.14/site-packages
+NumPy module: pipeline/.venv/lib/python3.14/site-packages/numpy/__init__.py
 ```
 
-Additional installed modules (`aiohttp`, `earthaccess`, `fsspec`, `h5py`, `pyproj`, `rasterio`, `scipy`) were individually resolved with `importlib.util.find_spec`; each resolves to its package `__init__.py` under the measured pipeline site-packages directory above. Node `createRequire(...).resolve("prettier")` resolved `/Users/murphylinlin/GitHub/taiwan-water-pulse/web/node_modules/prettier/index.cjs`.
+Additional installed modules (`aiohttp`, `earthaccess`, `fsspec`, `h5py`, `pyproj`, `rasterio`, `scipy`) were individually resolved with `importlib.util.find_spec`; each resolves to its package `__init__.py` under the measured pipeline site-packages directory above. Node `createRequire(...).resolve("prettier")` resolved `web/node_modules/prettier/index.cjs`.
 
-These absolute paths document this checkout, not a required path on another machine. The local environment follows the repository location. `npm ls --depth=0` confirmed the frontend versions in the table; Python's `importlib.metadata.version` confirmed NumPy, pytest and Ruff. The build backend is intentionally absent from the application runtime environment.
+These measured paths are shown relative to the repository root to avoid publishing a local account name. The commands above print absolute locations in your own checkout. The local environment follows the repository location. `npm ls --depth=0` confirmed the frontend versions in the table; Python's `importlib.metadata.version` confirmed NumPy, pytest and Ruff. The build backend is intentionally absent from the application runtime environment.
 
 ## Install and restore
 
@@ -159,3 +159,17 @@ The pipeline reads exported environment variables and does not implicitly load `
 - **No WebGL map:** use the interface's fallback context; the image and official chart must remain readable. A locator failure does not justify georeferencing browse pixels.
 - **Stale generated files:** rebuild with `all --offline`, or refresh sources intentionally; confirm provenance before committing outputs.
 - **Security audit findings:** inspect dependency paths and advisories, apply a compatible fix and run verification. Do not use an unreviewed force upgrade merely to clear a report.
+
+## Vercel deployment (2026-11-14)
+
+`web/package.json` pins `engines.node` to `24.x`; `.nvmrc` pins local Node to `24.15.0`. npm remains `11.12.1`. No package was added or upgraded for deployment. `check:deploy` and its tests use Node built-ins. `npm ci` uses the existing `web/package-lock.json`; modules were rechecked at `web/node_modules` with `npm --prefix web root`. Python paths above were rechecked with the actual project interpreter.
+
+```bash
+npm --prefix web ci
+npm --prefix web run test:deploy
+npm --prefix web test
+npm --prefix web run build
+npm --prefix web run check:deploy
+```
+
+Vercel needs no Earthdata or application environment variables. The initial deployment uploads only checked `web/dist` files through the authenticated Vercel plugin. No Vercel CLI was installed, no token was created, and no CLI dependency was added to either lock file. See [deployment](deployment.md) for the exact delivery mode and Git integration status.

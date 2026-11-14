@@ -1,0 +1,18 @@
+# CLI uploads only the frontend. Git deployments still require a clean history.
+/*
+!/web
+/web/node_modules
+/web/dist
+/web/.vercel
+**/.env*
+**/.netrc
+**/.npmrc
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/token.md
+**/credentials.*
+**/id_rsa*
+**/id_ed25519*
+**/*.log

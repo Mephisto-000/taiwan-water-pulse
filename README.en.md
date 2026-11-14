@@ -2,6 +2,8 @@
 
 [繁體中文](README.md) | **English**
 
+**Live demo (no sign-in required):** [https://taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)
+
 Explore Taiwan's reservoirs through NISAR's first year and the official gauges.
 
 This first release is the **browse-image fallback** defined in the project brief: a historical, static experience with 21 NISAR acquisition dates, HH/HV browse images, four reservoir selections, 88 sampled official dates per reservoir, and traceable sources. Browse images support visual inspection. They are not calibrated raster values and cannot provide a water-area measurement.
@@ -98,20 +100,20 @@ Raw windows and processed candidate rasters remain in ignored `data/cache/`. The
 
 The official observation is at 07:00 in Taiwan. A NISAR acquisition around 21:16 UTC corresponds to about 05:16 the following Taiwan calendar day, approximately 1.7 hours before the gauge record. Missing gauge records remain missing. A line joining sampled official values is a visual guide, not a new observation.
 
-## Publish with GitHub Pages
+## Deploy to Vercel
 
-CI runs on pushes to `main` and pull requests. The separate **Deploy GitHub Pages** workflow builds the static frontend only when manually dispatched (`workflow_dispatch`); pushing does not automatically deploy. In repository **Settings → Pages**, choose **GitHub Actions** as the source, then run the Pages workflow from the Actions tab. The workflow uses the repository subpath for Vite's base path. Review the workflow's trigger and environment settings before enabling publication. A successful Git push alone does not establish that Pages is enabled or publicly reachable.
+The production site is live at **[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)**. Anonymous access, interactive controls and all 54 public files were verified on 2026-11-14.
 
-Expected project URL after successful deployment: [mephisto-000.github.io/taiwan-water-pulse](https://mephisto-000.github.io/taiwan-water-pulse/).
-
-To preview the GitHub Pages subpath locally, use the same base path for both commands:
+Vercel is the only deployment platform; the GitHub repository remains private. The current release was built and checked locally, then uploaded as static artifacts. Git integration is not connected, so pushing to GitHub does not automatically update the site. Only checked `web/dist` files are public. Local credentials, caches, Python tooling and private messages are excluded.
 
 ```bash
-VITE_BASE_PATH=/taiwan-water-pulse/ npm --prefix web run build
-VITE_BASE_PATH=/taiwan-water-pulse/ npm --prefix web run preview
+npm --prefix web run test:deploy
+npm --prefix web test
+npm --prefix web run build
+npm --prefix web run check:deploy
 ```
 
-Open `http://127.0.0.1:4173/taiwan-water-pulse/`. The normal build/preview commands above use the root path without this variable. For another host or path, configure both commands consistently as described in [dependency management](docs/dependency-management.md).
+When Git integration is enabled, source builds should use Root Directory `web`, Node.js `24.x`, `npm ci` and `web/vercel.json`. No application environment variables or Earthdata credentials are required. See the [deployment record](docs/deployment.md) for the delivery mode, security checks, update process and rollback procedure.
 
 ## Project structure
 

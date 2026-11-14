@@ -33,7 +33,7 @@ Codex assisted with application code, pipeline utilities, tests, documentation a
 ## Links and publication checklist
 
 - Source: https://github.com/Mephisto-000/taiwan-water-pulse
-- Project: confirm the actual successful GitHub Pages URL after deployment.
+- Project: [taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app), verified anonymously on 2026-11-14.
 - Demo: capture the sequence in `demo-script.md`, then add a public video or slide link.
 - Screenshots: three genuine local captures are linked and captioned in `screenshots.md`; review them against the final deployed version before submission.
 

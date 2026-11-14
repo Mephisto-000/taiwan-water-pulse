@@ -9,7 +9,7 @@ Recorded 2026-11-14 (Asia/Taipei).
 | D-03 | Activate the brief's fallback level 2. | Access/structure gates G-A and G-B passed; default HH direction and both R-01 held-out tests failed. Only real browse imagery and labelled official data are published. No simulated rasters, areas or correlations fill the numerical gap. |
 | D-04 | Defer threshold-based measurement, sensitivity intervals and numerical correlation. | Browse PNG values are display values, not calibrated power. Source access passed but scientific validation failed; those capabilities remain unreleased. |
 | D-05 | Use Vite, React, strict TypeScript, MapLibre and an SVG chart; npm for the frontend, Python/uv for the pipeline. | Keep the requested stack, using native SVG for the small chart instead of a separate chart dependency. NumPy supports tested pure numerical primitives; Earthdata/HDF5/geospatial dependencies were subsequently added to investigate numerical access and processing. Their installation does not imply validated radar output. |
-| D-06 | Prepare manual GitHub Pages publication; enable it through repository settings. | The explicit user request authorizes implementing and pushing the initial repository. The attachment is a product brief and does not by itself authorize unrelated account changes. Pages runs only on manual workflow dispatch; CI runs on main pushes and pull requests. A prepared workflow is distinct from a verified public deployment. |
+| D-06 | Use Vercel as the sole static host; superseded by DD-01 below. | The current user explicitly authorized Vercel deployment. Keep GitHub private and credentials local. |
 | D-07 | MIT for project code. | Adopt the brief's default. Third-party data and package licenses remain separate. |
 | D-08 | Publish the fresh cached WRA series; preserve and label the supplied seed separately. | A bounded 45-request refresh produced 88 sampled dates per station. One 0.01 m seed/live level discrepancy is documented and the actual response takes precedence. The seed remains a reproducible fallback. |
 | D-09 | Display full-frame browse imagery separately from the geographic locator. | Browse images are not treated as georeferenced analysis layers. Selecting a reservoir changes the context and gauge data without asserting a validated per-reservoir radar measurement. |
@@ -24,3 +24,18 @@ The fallback is a scoped initial release, not completion of the original numeric
 ## Language update
 
 The user requested Traditional Chinese and English README versions and a Traditional Chinese main interface. `README.md` is the Taiwan Traditional Chinese entry point; `README.en.md` retains the English version, with reciprocal links. UI copy, dates, accessible labels and error messages use Taiwan terminology, with English technical terms where useful. This supersedes the original brief's English UI/README assumption. Scientific results and publication gates are unchanged.
+
+## Vercel deployment decisions
+
+| ID | Decision | Reason and evidence |
+| --- | --- | --- |
+| DD-01 | Vercel only; no backup host or GitHub Pages workflow. | Current user request and supplied deployment guide. |
+| DD-02 | Existing owner: GitHub `Mephisto-000`; Vercel scope `mephisto-000s-projects`. | Existing Git origin and authenticated Vercel connector. |
+| DD-03 | Keep the GitHub repository private. | No visibility change is authorized or necessary. |
+| DD-04 | Project name `taiwan-water-pulse`. | Created in the existing Vercel scope; actual production domain is recorded in deployment.md. |
+| DD-05 | Intended production branch `main`; initial release uses checked static artifacts. | Vercel's Git integration cannot currently access the private repository. No Git push is needed for the artifact release. |
+| DD-07 | Standard Protection (`all_except_custom_domains`). | Production domain is public; individual deployment URLs remain protected. |
+
+The initial deployment uses the authenticated Vercel file-upload/deployment API instead of installing a CLI or creating a token. It uploads only the 54 checked frontend output files and a static deployment configuration. The source commit and artifact manifest identify the release. Source build settings remain documented for a later authorized Git integration. No commit author is rewritten and no identity restriction is bypassed.
+
+Existing ASF browse filenames retain their `HH`/`HV` polarization suffixes. The deploy checker compares references against actual directory entries, including case, even on macOS; this prevents case-related production 404s without renaming previously exported scientific assets. Empty manifests warn, while the current release verifies every browse, official-data and provenance asset.
