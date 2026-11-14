@@ -77,7 +77,7 @@ uv sync --project pipeline --frozen
 開啟 Vite 顯示的網址。啟動網站不需要 Earthdata 帳號或 Vercel token，也不需要執行資料匯出。
 
 ```bash
-uv run --project pipeline pytest pipeline/tests
+uv run --project pipeline pytest pipeline/tests pipeline/scripts/test_fetch_weather.py
 uv run --project pipeline ruff check pipeline
 npm --prefix web test
 npm --prefix web run test:deploy

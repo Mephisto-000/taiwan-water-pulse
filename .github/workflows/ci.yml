@@ -36,7 +36,7 @@ jobs:
           enable-cache: true
           cache-dependency-glob: pipeline/uv.lock
       - run: uv sync --project pipeline --locked --python 3.14
-      - run: uv run --project pipeline pytest pipeline/tests
+      - run: uv run --project pipeline pytest pipeline/tests pipeline/scripts/test_fetch_weather.py
       - run: uv run --project pipeline python pipeline/scripts/evaluate_storage.py --check
       - run: uv run --project pipeline ruff check pipeline
       - run: uv run --project pipeline water-pulse all --offline

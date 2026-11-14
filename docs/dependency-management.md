@@ -85,7 +85,7 @@ npm --prefix web ci
 ```bash
 # Published assets are already version-controlled; do not regenerate them to start the UI.
 npm --prefix web run dev -- --host 127.0.0.1
-uv run --project pipeline pytest pipeline/tests
+uv run --project pipeline pytest pipeline/tests pipeline/scripts/test_fetch_weather.py
 uv run --project pipeline ruff check pipeline
 npm --prefix web test
 npm --prefix web run format:check
@@ -237,4 +237,14 @@ npm --prefix web test
 npm --prefix web run build
 ```
 
-The report is `web/public/data/storage-estimation.json`; see [storage prediction](storage-prediction.md) for the fixed definitions, reproducibility and failure behavior. Existing installation, upgrade and removal commands above still apply. This addition has not been pushed or deployed.
+The report is `web/public/data/storage-estimation.json`; see [storage prediction](storage-prediction.md) for the fixed definitions, reproducibility and failure behavior. Existing installation, upgrade and removal commands above still apply. The ADV-10 release is recorded in [deployment](deployment.md).
+
+## CI weather lint repair (2026-11-15)
+
+The weather scripts now follow the existing Python 3.14 Ruff configuration, using
+`datetime.UTC`, sorted imports and the configured 100-character line limit.
+No package, runtime, manifest, lock file or environment variable changed.
+The CI pytest command explicitly includes the four existing weather tests in
+`pipeline/scripts/test_fetch_weather.py`, alongside `pipeline/tests` (65 tests
+in total at this repair). Run that command and
+`uv run --project pipeline ruff check pipeline` before pushing.

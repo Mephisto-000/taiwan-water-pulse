@@ -1,7 +1,10 @@
 """Tests use artificial rows, never exported as observations."""
+
 import unittest
 from datetime import date
-from fetch_weather import normalize, monthly_params, distance_km
+
+from fetch_weather import distance_km, monthly_params, normalize
+
 
 class WeatherTest(unittest.TestCase):
     def test_missing_is_not_dry(self):
@@ -26,8 +29,11 @@ class WeatherTest(unittest.TestCase):
         row = normalize({"Precipitation": {"Accumulation": 12.5}}, "2026-03-18")
         self.assertEqual(row["rainfall_mm"], 12.5)
         self.assertEqual(row["condition"], "rain")
-        self.assertEqual(monthly_params("X", "auto_C0", date(2024, 2, 1))["end"], "2024-02-29T00:00:00")
+        self.assertEqual(
+            monthly_params("X", "auto_C0", date(2024, 2, 1))["end"], "2024-02-29T00:00:00"
+        )
         self.assertEqual(distance_km(24, 121, 24, 121), 0)
+
 
 if __name__ == "__main__":
     unittest.main()
