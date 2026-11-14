@@ -34,7 +34,7 @@
 - 圖表使用貼近資料的座標軸並註明不從 0 開始；完整相關係數與區間集中在方法分頁。C 級保留雷達影像，隱藏面積與分類疊色。
 - 五幕導覽跟隨介面語言，可暫停、前後切換或以 Esc 結束；操作日期或影像會暫停導覽。介面顯示台灣時間，來源分頁另列 UTC。
 
-![正式網站工作區](docs/review/released-workspace.jpg)
+[![寶山第二水庫對照工作區（繁體中文）](docs/review/released-workspace.zh-TW.jpg)](https://taiwan-water-pulse.vercel.app/?reservoir=baoshan2&date=2026-03-17&pol=HH&lang=zh-TW&compareDate=2025-11-05)
 
 ## 方法與驗證
 

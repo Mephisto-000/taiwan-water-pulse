@@ -34,7 +34,7 @@ The interface follows design direction 3: a workspace for reading imagery, dates
 - Charts fit the data range and explicitly identify nonzero axes. Complete correlations and intervals live in Methods. Grade C keeps imagery while withholding quantitative area and classification overlays.
 - The five-part tour follows the interface language, supports pause/previous/next and Esc to end, and pauses on image or date interaction. UI dates use Taiwan time; Sources also records UTC.
 
-![Production observation workspace](docs/review/released-workspace.jpg)
+[![Baoshan II comparison workspace (English)](docs/review/released-workspace.en.jpg)](https://taiwan-water-pulse.vercel.app/?reservoir=baoshan2&date=2026-03-17&pol=HH&lang=en&compareDate=2025-11-05)
 
 ## Scientific scope
 
