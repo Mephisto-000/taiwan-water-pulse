@@ -124,6 +124,8 @@ function Explorer({ index }: { index: DataIndex }) {
   const [section, setSection] = useState<"image" | "charts">("image");
   const [inspectorTab, setInspectorTab] = useState<InspectorTab>("day"),
     [inspectorOpen, setInspectorOpen] = useState(false);
+  const [navigationOpen, setNavigationOpen] = useState(false);
+  const navigationDialog = useRef<HTMLDialogElement>(null);
   const [playing, setPlaying] = useState(false),
     [chapter, setChapter] = useState(0);
   const [tourPlaying, setTourPlaying] = useState(
@@ -204,9 +206,26 @@ function Explorer({ index }: { index: DataIndex }) {
     setState((s) => ({ ...s, reservoirKey: key }));
   };
   const openInspector = (tab: InspectorTab) => {
+    setNavigationOpen(false);
     setInspectorTab(tab);
     setInspectorOpen(true);
   };
+  useEffect(() => {
+    const dialog = navigationDialog.current;
+    if (!dialog) return;
+    if (!navigationOpen) {
+      if (dialog.open) dialog.close();
+      return;
+    }
+    if (!dialog.open) dialog.showModal();
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => {
+      if (desktop.matches) setNavigationOpen(false);
+    };
+    closeOnDesktop();
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, [navigationOpen]);
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
     try {
@@ -478,6 +497,7 @@ function Explorer({ index }: { index: DataIndex }) {
     ),
   ];
   const toggleTour = () => {
+    setNavigationOpen(false);
     if (demo) {
       setState((s) => ({ ...s, demo: false }));
       setTourPlaying(false);
@@ -486,68 +506,65 @@ function Explorer({ index }: { index: DataIndex }) {
       setTourPlaying(true);
     }
   };
+  const workspaceHeader = (
+    <header className="workspace-header">
+      <a className="brand" href={import.meta.env.BASE_URL}>
+        <span className="brand-symbol" aria-hidden="true">
+          <i />
+          <i />
+          <i />
+        </span>
+        <span>{t("Taiwan’s Water Pulse", "台灣水庫的旱澇節奏")}</span>
+      </a>
+      <nav
+        className="header-actions"
+        aria-label={t("Workspace navigation", "工作區導覽")}
+      >
+        <button
+          className="header-methods"
+          onClick={() => openInspector("methods")}
+        >
+          {t("Methods & data", "方法與資料")}
+        </button>
+        <button className="primary-button tour-start" onClick={toggleTour}>
+          {demo ? t("End tour", "結束導覽") : t("30-second tour", "30 秒導覽")}
+        </button>
+        <button
+          onClick={() =>
+            setState((s) => ({
+              ...s,
+              lang: s.lang === "en" ? "zh-TW" : "en",
+            }))
+          }
+          aria-label={t("Switch to Traditional Chinese", "切換英文")}
+        >
+          {lang === "en" ? "繁中" : "EN"}
+        </button>
+        <button
+          className="theme-toggle"
+          onClick={() => setTheme((v) => (v === "dark" ? "light" : "dark"))}
+          aria-label={
+            theme === "dark"
+              ? t("Light theme", "淺色主題")
+              : t("Dark theme", "深色主題")
+          }
+        >
+          {theme === "dark" ? "☼" : "◐"}
+        </button>
+      </nav>
+    </header>
+  );
   return (
     <div className="workspace-app">
       <a className="skip-link" href="#image-workspace">
         {t("Skip to imagery", "跳至影像")}
       </a>
-      <header className="workspace-header">
-        <a className="brand" href={import.meta.env.BASE_URL}>
-          <span className="brand-symbol" aria-hidden="true">
-            <i />
-            <i />
-            <i />
-          </span>
-          <span>{t("Taiwan’s Water Pulse", "台灣水庫的旱澇節奏")}</span>
-        </a>
-        <span className="header-context">
-          <span>/</span> {name} <span>/</span>{" "}
-          <time>{formatAcquisitionDate(acquisition, true, lang)}</time>
-        </span>
-        <nav
-          className="header-actions"
-          aria-label={t("Workspace navigation", "工作區導覽")}
-        >
-          <button
-            className="header-methods"
-            onClick={() => openInspector("methods")}
-          >
-            {t("Methods & data", "方法與資料")}
-          </button>
-          <button
-            onClick={() =>
-              setState((s) => ({
-                ...s,
-                lang: s.lang === "en" ? "zh-TW" : "en",
-              }))
-            }
-            aria-label={t("Switch to Traditional Chinese", "切換英文")}
-          >
-            {lang === "en" ? "繁中" : "EN"}
-          </button>
-          <button
-            className="theme-toggle"
-            onClick={() => setTheme((v) => (v === "dark" ? "light" : "dark"))}
-            aria-label={
-              theme === "dark"
-                ? t("Light theme", "淺色主題")
-                : t("Dark theme", "深色主題")
-            }
-          >
-            {theme === "dark" ? "☼" : "◐"}
-          </button>
-          <button className="primary-button tour-start" onClick={toggleTour}>
-            {demo
-              ? t("End tour", "結束導覽")
-              : t("30-second tour", "30 秒導覽")}
-          </button>
-        </nav>
-      </header>
       <div className="workspace-shell">
         <aside
           className="archive-sidebar"
           aria-label={t("Reservoir and acquisition archive", "水庫與觀測清單")}
         >
+          {workspaceHeader}
           <div className="sidebar-heading">
             <span>{t("Reservoirs", "水庫")}</span>
             <span className="key-hints">
@@ -699,6 +716,17 @@ function Explorer({ index }: { index: DataIndex }) {
         </aside>
         <main className="workspace-main" id="image-workspace">
           <div className="mobile-reservoir">
+            <button
+              type="button"
+              className="navigation-toggle"
+              aria-label={t("Open workspace menu", "開啟工作區選單")}
+              aria-haspopup="dialog"
+              aria-controls="workspace-navigation-dialog"
+              aria-expanded={navigationOpen}
+              onClick={() => setNavigationOpen(true)}
+            >
+              ☰
+            </button>
             <label htmlFor="reservoir-select">{t("Reservoir", "水庫")}</label>
             <select
               id="reservoir-select"
@@ -847,7 +875,7 @@ function Explorer({ index }: { index: DataIndex }) {
                     <span className="context-label">
                       {t("OBSERVATION", "觀測影像")}
                     </span>
-                    <h1>{name}</h1>
+                    <h1>{t("Radar observations", "雷達觀測")}</h1>
                     <p>
                       {t(
                         "The dark shape is calm water, which reflects radar energy away.",
@@ -1107,6 +1135,41 @@ function Explorer({ index }: { index: DataIndex }) {
           />
         )}
       </div>
+      <dialog
+        id="workspace-navigation-dialog"
+        ref={navigationDialog}
+        className="navigation-dialog"
+        aria-label={t("Workspace menu", "工作區選單")}
+        onCancel={() => setNavigationOpen(false)}
+        onClose={(event) => {
+          if (!event.currentTarget.open) setNavigationOpen(false);
+        }}
+        onKeyDown={(event) => {
+          // Closing the menu must not also stop an active tour.
+          if (event.key === "Escape") event.stopPropagation();
+        }}
+        onClick={(event) => {
+          const rect = event.currentTarget.getBoundingClientRect();
+          if (
+            event.target === event.currentTarget &&
+            (event.clientX < rect.left ||
+              event.clientX > rect.right ||
+              event.clientY < rect.top ||
+              event.clientY > rect.bottom)
+          )
+            setNavigationOpen(false);
+        }}
+      >
+        <button
+          type="button"
+          className="navigation-close"
+          autoFocus
+          onClick={() => setNavigationOpen(false)}
+        >
+          {t("Close menu", "關閉選單")}
+        </button>
+        {workspaceHeader}
+      </dialog>
       <p className="sr-only" aria-live="polite">
         {name}，{formatAcquisitionDate(acquisition, false, lang)}，
         {t("storage", "蓄水率")} {pct == null ? "—" : pct.toFixed(1)}%。
