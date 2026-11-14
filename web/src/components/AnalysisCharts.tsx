@@ -4,6 +4,7 @@ import type { Language } from "../i18n";
 import { canPublishArea, type NumericalArchive } from "../numerical";
 import { niceAxis } from "../science";
 import { relativeChange, signed } from "../workspace";
+import { fitStoragePrediction, predictionSegments } from "../prediction";
 
 export interface AnalysisChartProps {
   archive?: NumericalArchive | null;
@@ -76,6 +77,8 @@ export default function AnalysisCharts({
   lang,
   showArea = false,
 }: AnalysisChartProps) {
+  const [predictionEnabled, setPredictionEnabled] = useState(false);
+  const [sampleCount, setSampleCount] = useState(6);
   const pointRefs = useRef<(SVGGElement | null)[]>([]);
   const { ref, width } = useChartWidth();
   const en = lang === "en",
@@ -99,7 +102,22 @@ export default function AnalysisCharts({
   const areaY = (area: number) =>
     areaTop +
     (1 - (area - axis.minimum) / (axis.maximum - axis.minimum)) * plotHeight;
-  const gaugeY = (pct: number) => gaugeTop + (1 - pct / 100) * plotHeight;
+  const pairCount =
+    archive?.series.records.filter((r) => r.official.pct != null).length ?? 0;
+  const calibrationCount = Math.min(sampleCount, Math.max(3, pairCount - 3));
+  const prediction =
+    predictionEnabled && publishArea && archive
+      ? fitStoragePrediction(archive.series.records, calibrationCount)
+      : null;
+  const gaugeAxis = niceAxis([
+    0,
+    100,
+    ...(prediction?.points.map((p) => p.predicted) ?? []),
+  ]);
+  const gaugeY = (pct: number) =>
+    gaugeTop +
+    (1 - (pct - gaugeAxis.minimum) / (gaugeAxis.maximum - gaugeAxis.minimum)) *
+      plotHeight;
   const selectedIndex = Math.max(
     0,
     dates.findIndex((date) => date.utc_date === selected.utc_date),
@@ -138,6 +156,93 @@ export default function AnalysisCharts({
   const ticks = tickDates(first, last, width < 500 ? 3 : 5);
   return (
     <div className="analysis-charts" ref={ref}>
+      <fieldset className="prediction-controls">
+        <legend>Align Prediction Mode</legend>
+        <label>
+          <input
+            type="checkbox"
+            checked={predictionEnabled}
+            disabled={!publishArea || pairCount < 6}
+            onChange={(event) => setPredictionEnabled(event.target.checked)}
+          />{" "}
+          {en ? "Estimate storage from SAR" : "由 SAR 估計蓄水率"}
+        </label>
+        {predictionEnabled && publishArea && (
+          <>
+            <label>
+              {en ? "First calibration pairs" : "前幾個有效配對用於校正"}{" "}
+              <input
+                type="number"
+                min={3}
+                max={pairCount - 3}
+                value={calibrationCount}
+                onChange={(event) => {
+                  const n = Number(event.target.value);
+                  if (Number.isInteger(n) && n >= 3 && n <= pairCount - 3)
+                    setSampleCount(n);
+                }}
+              />
+            </label>
+            <p>
+              {en
+                ? "HH area → storage by linear calibration. Orange squares and dashed lines are estimates on SAR dates, not future forecasts. The shaded dates are calibration; later dates are evaluation. Existing area-method choices used this archive, so this is exploratory evaluation, not independent validation."
+                : "以 HH 水面積線性校正蓄水率。橘色方點與虛線是 SAR 觀測日的估計，不是未來預報。陰影內為校正期，之後才用於檢驗。既有面積方法曾使用此資料集選擇參數，因此這是探索性檢驗，並非獨立驗證。"}
+            </p>
+            {prediction ? (
+              <>
+                <p>
+                  {en ? "Calibration" : "校正"}:{" "}
+                  {dateLabel(prediction.training[0].utc, lang)} –{" "}
+                  {dateLabel(prediction.training.at(-1)!.utc, lang)} (
+                  {calibrationCount}) · {en ? "Later evaluation" : "後續檢驗"}:
+                  n={prediction.evaluation.n}, MAE=
+                  {prediction.evaluation.mae?.toFixed(1)} {en ? "pp" : "百分點"}
+                  , RMSE={prediction.evaluation.rmse?.toFixed(1)}{" "}
+                  {en ? "pp" : "百分點"}
+                </p>
+                <p>
+                  {en ? "Outside calibration area range" : "面積超出校正範圍"}:{" "}
+                  {
+                    prediction.points.filter(
+                      (p) => !p.training && p.extrapolated,
+                    ).length
+                  }{" "}
+                  ·{" "}
+                  {en
+                    ? "Estimates outside 0–100% (not clipped)"
+                    : "預估超出 0–100%（保留原值）"}
+                  :{" "}
+                  {
+                    prediction.points.filter(
+                      (p) => p.predicted < 0 || p.predicted > 100,
+                    ).length
+                  }
+                </p>
+                {(prediction.storageSpan < 10 || prediction.slope <= 0) && (
+                  <p role="status">
+                    {en
+                      ? "Weak calibration: the first samples cover less than 10 percentage points of storage or yield a non-positive slope. Dry-period estimates may be unreliable. Try a longer initial period; evaluation changes with it."
+                      : "校正限制：前幾點蓄水率變幅不足 10 個百分點，或斜率非正值，枯水期估計可能不可靠。可增加前段樣本，但檢驗期間也會跟著改變。"}
+                  </p>
+                )}
+              </>
+            ) : (
+              <p role="status">
+                {en
+                  ? "Insufficient area variation or paired samples to fit this model."
+                  : "面積變化或有效配對不足，無法校正。"}
+              </p>
+            )}
+          </>
+        )}
+        {!publishArea && (
+          <p>
+            {en
+              ? "Unavailable: this reservoir does not publish quantitative SAR area."
+              : "此水庫未通過定量水面積發布條件，停用蓄水率預估。"}
+          </p>
+        )}
+      </fieldset>
       <svg
         viewBox={`0 0 ${width} ${height}`}
         style={{ display: "block", width: "100%" }}
@@ -196,7 +301,20 @@ export default function AnalysisCharts({
             />
           </g>
         ))}
-        {[0, 50, 100].map((tick) => (
+        {prediction && (
+          <rect
+            x={x(first)}
+            y={gaugeTop}
+            width={Math.max(
+              0,
+              x(prediction.training.at(-1)!.local.slice(0, 10)) - x(first),
+            )}
+            height={plotHeight}
+            fill="var(--prediction, #bf5814)"
+            opacity="0.09"
+          />
+        )}
+        {gaugeAxis.ticks.map((tick) => (
           <g key={tick}>
             <line
               x1={left}
@@ -238,6 +356,40 @@ export default function AnalysisCharts({
         {paths.map((path, i) => (
           <path key={i} d={path} fill="none" stroke={ink} strokeWidth="1.8" />
         ))}
+        {prediction && (
+          <g>
+            {predictionSegments(prediction.points).map((segment, i) => (
+              <path
+                key={i}
+                d={segment
+                  .map(
+                    (p, j) =>
+                      `${j ? "L" : "M"}${x(p.local.slice(0, 10))},${gaugeY(p.predicted)}`,
+                  )
+                  .join(" ")}
+                fill="none"
+                stroke="var(--prediction, #bf5814)"
+                strokeWidth="2"
+                strokeDasharray="5 4"
+              />
+            ))}
+            {prediction.points.map((p) => (
+              <rect
+                key={p.utc}
+                x={x(p.local.slice(0, 10)) - 3}
+                y={gaugeY(p.predicted) - 3}
+                width="6"
+                height="6"
+                fill={
+                  p.training ? "var(--bg, #fff)" : "var(--prediction, #bf5814)"
+                }
+                stroke="var(--prediction, #bf5814)"
+              >
+                <title>{`${dateLabel(p.utc, lang)}: ${p.predicted.toFixed(1)}% · ${p.training ? (en ? "Calibration" : "校正") : en ? "Evaluation" : "檢驗"}${p.extrapolated ? (en ? " · Extrapolation" : " · 外插") : ""}`}</title>
+              </rect>
+            ))}
+          </g>
+        )}
         {dates.map((date, i) => {
           const observation = observations.get(date.utc_date),
             gauge = gauges.get(date.utc_date),

@@ -2104,3 +2104,41 @@ kbd {
     width: min(100cqw, calc(100cqh * var(--radar-aspect, 1)));
   }
 }
+
+.prediction-controls {
+  margin: 0 0 1.5rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  min-width: 0;
+}
+.prediction-controls legend {
+  font-weight: 650;
+}
+.prediction-controls label {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0.25rem 1rem 0.25rem 0;
+}
+.prediction-controls input[type="number"] {
+  width: 4.5rem;
+  background: var(--bg);
+  color: var(--ink);
+  padding: 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.prediction-controls p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+.prediction-controls [role="status"] {
+  color: var(--ink);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --prediction: #f4a261;
+  }
+}

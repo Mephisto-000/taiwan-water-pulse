@@ -1018,6 +1018,7 @@ function Explorer({ index }: { index: DataIndex }) {
                 ) : (
                   official && (
                     <AnalysisCharts
+                      key={reservoirKey}
                       archive={archive}
                       records={official.records}
                       dates={index.dates}
