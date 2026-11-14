@@ -300,9 +300,13 @@ function Explorer({ index }: { index: DataIndex }) {
       });
     return () => controller.abort();
   }, [reservoirKey, gaugeRetry]);
+  const playbackFrameReady =
+    !!archive?.frames[acquisition.utc_date]?.[polarization] &&
+    (view === "single" ||
+      !!archive?.frames[reference.utc_date]?.[polarization]);
   useEffect(() => {
-    if (!playing) return;
-    const id = window.setInterval(
+    if (!playing || !playbackFrameReady) return;
+    const id = window.setTimeout(
       () =>
         setState((s) => ({
           ...s,
@@ -310,8 +314,17 @@ function Explorer({ index }: { index: DataIndex }) {
         })),
       1500,
     );
-    return () => window.clearInterval(id);
-  }, [playing, index.dates.length]);
+    return () => window.clearTimeout(id);
+  }, [
+    playing,
+    playbackFrameReady,
+    acquisition.utc_date,
+    reference.utc_date,
+    polarization,
+    reservoirKey,
+    view,
+    index.dates.length,
+  ]);
   const mainSummary = summaries.find((s) => s.key === "baoshan2");
   const lowDate = mainSummary
     ? lowestObservation(mainSummary.series)?.utc.slice(0, 10)
