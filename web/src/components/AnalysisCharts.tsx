@@ -4,6 +4,10 @@ import type { Language } from "../i18n";
 import { canPublishArea, type NumericalArchive } from "../numerical";
 import { niceAxis } from "../science";
 import { predictionSegments, type StoragePrediction } from "../prediction";
+import type { ReservoirEstimation } from "../storageEstimationTypes";
+import TwoStagePredictionLayer, {
+  canRenderTwoStage,
+} from "./TwoStagePredictionLayer";
 import { rainIcon, rainLabel, type WeatherSeries } from "../weather";
 import WeatherPanel from "./WeatherPanel";
 import type { ContextEvent } from "../events";
@@ -22,6 +26,7 @@ export interface AnalysisChartProps {
   lang: Language;
   showArea?: boolean;
   prediction?: StoragePrediction | null;
+  twoStage?: ReservoirEstimation | null;
   showLevel?: boolean;
   weather?: WeatherSeries | null;
   weatherInspectionDate?: string;
@@ -89,7 +94,8 @@ export default function AnalysisCharts({
   gap,
   lang,
   showArea = false,
-  prediction = null,
+  prediction: suppliedPrediction = null,
+  twoStage = null,
   showLevel = false,
   weather = null,
   weatherInspectionDate,
@@ -102,6 +108,10 @@ export default function AnalysisCharts({
   const { ref, width } = useChartWidth();
   const en = lang === "en",
     publishArea = Boolean(showArea && archive && canPublishArea(archive));
+  const canEstimate = publishArea && archive?.meta.validation.grade === "A";
+  const activeTwoStage =
+    canEstimate && twoStage && canRenderTwoStage(twoStage) ? twoStage : null;
+  const prediction = canEstimate && !twoStage ? suppliedPrediction : null;
   const left = 54,
     right = 18,
     areaTop = 46,
@@ -255,6 +265,16 @@ export default function AnalysisCharts({
             height={plotHeight}
             fill="var(--prediction, #bf5814)"
             opacity="0.09"
+          />
+        )}
+        {activeTwoStage && (
+          <TwoStagePredictionLayer
+            report={activeTwoStage}
+            x={x}
+            y={gaugeY}
+            left={left}
+            right={width - right}
+            lang={lang}
           />
         )}
         {[0, 50, 100].map((tick) => (
@@ -550,6 +570,13 @@ export default function AnalysisCharts({
           lang={lang}
         />
       </svg>
+      {activeTwoStage && (
+        <p className="chart-note">
+          {en
+            ? "Pale date bands: High; finer levels unresolved. Their bounds describe this archive, not independent predictive confidence. Hollow orange squares: calibration points; filled squares: historical application. Bars: ± largest leave-one-out absolute error, not a confidence interval; E marks extrapolation."
+            : "淡色日期短帶：偏高，分不出更細；上下限描述本年度資料，不代表獨立預測信心。空心橘方點是校正點，實心方點是歷史套用估計。誤差線：±逐一留出最大絕對誤差，非信賴區間；「外」表示外插。"}
+        </p>
+      )}
       <p className="chart-selection" aria-live="polite">
         <strong>{dateLabel(selected.utc, lang)}</strong>
         <span>

@@ -10,6 +10,8 @@ import {
 import Comparison from "./components/Comparison";
 import AcquisitionTimeline from "./components/AcquisitionTimeline";
 import ChartsWorkspace from "./components/ChartsWorkspace";
+import { useStorageEstimation } from "./components/useStorageEstimation";
+import { matchingEstimation } from "./storageEstimation";
 import WorkspaceInspector, {
   type InspectorTab,
 } from "./components/WorkspaceInspector";
@@ -158,6 +160,12 @@ function Explorer({ index }: { index: DataIndex }) {
   });
   const archive = numerical.archive,
     publishArea = canPublishArea(archive);
+  const estimationData = useStorageEstimation();
+  const storageEstimation = matchingEstimation(
+    estimationData.report,
+    reservoirKey,
+    archive,
+  );
   const official = gauge?.key === reservoirKey ? gauge.series : null;
   const activeSummary = summaries.find((s) => s.key === reservoirKey);
   const records = archive?.series ?? activeSummary?.series;
@@ -993,6 +1001,10 @@ function Explorer({ index }: { index: DataIndex }) {
             ) : (
               <ChartsWorkspace
                 key={reservoirKey}
+                estimationReport={estimationData.report}
+                estimationError={estimationData.error}
+                onRetryEstimation={estimationData.retry}
+                onMethods={() => openInspector("methods")}
                 archive={archive}
                 official={official}
                 gaugeError={gaugeError}
@@ -1114,6 +1126,7 @@ function Explorer({ index }: { index: DataIndex }) {
             </div>
           )}
           <WorkspaceInspector
+            storageEstimation={storageEstimation}
             polarization={polarization}
             reservoirKey={reservoirKey}
             index={index}

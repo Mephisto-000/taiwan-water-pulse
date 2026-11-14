@@ -20,9 +20,12 @@ import {
 import PolarizationSeparation from "./PolarizationSeparation";
 import ThresholdExperiment from "./ThresholdExperiment";
 import FrequencyMap from "./FrequencyMap";
+import StorageEstimateDetail from "./StorageEstimateDetail";
+import type { ReservoirEstimation } from "../storageEstimationTypes";
 
 export type InspectorTab = "day" | "methods" | "sources";
 export interface WorkspaceInspectorProps {
+  storageEstimation?: ReservoirEstimation | null;
   index: DataIndex;
   reservoirKey: string;
   archive: NumericalArchive | null;
@@ -147,6 +150,7 @@ function RadarExplanation({ en }: { en: boolean }) {
 }
 
 export default function WorkspaceInspector({
+  storageEstimation = null,
   index,
   reservoirKey,
   archive,
@@ -176,6 +180,10 @@ export default function WorkspaceInspector({
   const pct = gauge?.pct ?? current?.official.pct;
   const level = gauge?.level_m ?? current?.official.level_m;
   const publish = canPublishArea(archive);
+  const storagePoint =
+    archive?.meta.validation.grade === "A" && storageEstimation?.eligible
+      ? storageEstimation.points.find((point) => point.utc === acquisition.utc)
+      : null;
   const referenceLabel =
     reference?.official.pct != null && reference.official.pct >= 99.5
       ? en
@@ -314,6 +322,9 @@ export default function WorkspaceInspector({
                   {value(current.area_km2.primary_hi)} km²
                 </p>
               ) : null}
+              {storagePoint && (
+                <StorageEstimateDetail point={storagePoint} lang={lang} />
+              )}
               <dl className="inspector-metrics official-metrics">
                 <Metric label={en ? "Official storage" : "官方蓄水率"}>
                   <strong>

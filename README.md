@@ -6,9 +6,25 @@
 
 以 NISAR 首年的 L 波段雷達與水利署官方觀測，回顧四座水庫的退水與回補。介面依瀏覽器語言預設中文或英文，也能透過 `?lang=en`、`?lang=zh-TW` 切換。這是歷史觀測展示，不是即時監測。
 
-## 這次改進
+## 本機新增：兩段式蓄水率估計（ADV-10）
 
-本次採用「方向 3：工具」工作區，讓日期、影像與證據可以一起閱讀。此版本已於 2026-11-14 17:34:36（Asia/Taipei）部署至 Vercel production，狀態為 READY；來源版本與查核範圍見[部署紀錄](docs/deployment.md)。
+**本項功能尚未 push 或部署。** 圖表分頁的「由 SAR 估計蓄水率」改採兩段式：面積仍在滿庫波動範圍內，只回報「偏高，分不出更細」；低於範圍才用退水期校正點做分段線性內插，低於最小校正面積時標示外插。原有「前 N 筆直線校正」保留作為對照，B、C 級水庫兩種方法都不提供估計。
+
+| DEF-12 評估 | 寶山第二 | 鯉魚潭 |
+| --- | ---: | ---: |
+| 判為偏高的日期／該類實際蓄水率下限 | 15 次／71.36% | 16 次／68.10% |
+| 高低類誤判 | 1 次 | 0 次 |
+| 低水位逐一留出筆數 | 5 | 5 |
+| 平均絕對誤差／最大絕對誤差（百分點） | 5.17／9.21 | 3.98／10.39 |
+| μ−2σ 最早偵測日（台灣日期）／官方蓄水率 | 2026-01-29／65.68% | 2026-01-29／63.91% |
+
+高低類誤判與低水位數值誤差分開計算。寶山第二的誤判日為 2026-07-04，官方蓄水率 100%，雷達面積卻低於滿庫範圍；該日 QA 旗標保留。高水位下限是本批觀測的描述，並非獨立驗證的分類界線。低水位圖上的誤差線為「±逐一留出最大絕對誤差」的描述性範圍，不是信賴區間或精度保證。
+
+固定定義、完整結果與重建方式見[估計方法](docs/storage-prediction.md)、[資料檔](web/public/data/storage-estimation.json)及[決策紀錄](docs/decisions.md)。這次不修改發布中的分類、等級或水面積；只有一次退水事件，尚未經過第二次退水的檢驗。
+
+## 已發布工作區
+
+「方向 3：工具」工作區讓日期、影像與證據可以一起閱讀。2026-11-14 17:34:36（Asia/Taipei）的既有發布紀錄與查核範圍保留於[部署紀錄](docs/deployment.md)；該紀錄不是上述 ADV-10 功能的上線證明。
 
 - 桌機三欄：左側選水庫與日期，中央看影像或圖表，右側以「這一天／方法／來源」分頁查數值與證據。手機改用水庫選單、可開啟的資料面板，以及固定於底部的時間軸。
 - 淺色／深色主題預設依系統設定；系統字型、等寬數值、細分隔線與藍色資料標記，不下載字型，也不新增套件。
@@ -85,11 +101,19 @@ uv run --project pipeline water-pulse release --offline
 
 `release` 是目前網站的匯出入口。`all --offline`、`export --offline` 保留作為舊 Browse 備援流程，會取代展示清單；它們不是新版的重建指令。更新官方資料或來源目錄前，先檢視 `--dry-run` 與[來源說明](docs/data-sources.md)，避免不必要請求。
 
+ADV-10 報告只讀取已發布的面積、等級與官方配對資料，可離線重算，不需要 Earthdata 認證或原始影像快取：
+
+```bash
+uv run --project pipeline python pipeline/scripts/evaluate_storage.py
+uv run --project pipeline python pipeline/scripts/evaluate_storage.py --check
+uv run --project pipeline pytest pipeline/tests/test_storage_estimation.py
+```
+
 ## 部署與隱私
 
 GitHub repo 維持 private。公開介面不連到私有原始碼頁，而是使用同源的方法、驗證與 provenance。推送 GitHub 不會自動部署；目前在本機建置及安全檢查後，透過 Vercel plugin 上傳靜態 `web/dist`。
 
-本次部署來源為 `5dbcfea5`，資料由乾淨來源 `ed5d561e` 產生（`code_dirty=false`）。332 個公開檔案已全部通過匿名 HTTP、SHA-256 與快取查核；65 個前端、9 個部署防護及 47 個 Python 測試通過。私人 email 的歷史已整理，發布時查核的 15 個可達 commit 全部採用 GitHub noreply 身分；來源、產物與可達歷史的秘密掃描均無命中。
+既有文件記錄的部署來源為 `5dbcfea5`，資料由乾淨來源 `ed5d561e` 產生（`code_dirty=false`）。當時 332 個公開檔案通過匿名 HTTP、SHA-256 與快取查核；65 個前端、9 個部署防護及 47 個 Python 測試通過。私人 email 的歷史已整理，該次查核的 15 個可達 commit 全部採用 GitHub noreply 身分；來源、產物與可達歷史的秘密掃描均無命中。這些歷史數字不代表本機 ADV-10 變更已發布。
 
 Vercel 不需要任何 Earthdata 認證或自訂環境變數。`.env`、`token.md`、私密金鑰、原始快取與本機設定不屬於部署產物。發布前掃描待提交內容和建置結果；只上傳通過 `check:deploy` 的檔案。正式網址、來源 commit、檔案雜湊與驗證結果見[部署紀錄](docs/deployment.md)。
 

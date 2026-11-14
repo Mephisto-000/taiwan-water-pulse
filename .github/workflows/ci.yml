@@ -28,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          fetch-depth: 0 # The evaluation verifies published inputs against their source commit.
       - uses: astral-sh/setup-uv@94527f2e458b27549849d47d273a16bec83a01e9 # v7
         with:
           version: '0.13.8'
@@ -35,5 +37,6 @@ jobs:
           cache-dependency-glob: pipeline/uv.lock
       - run: uv sync --project pipeline --locked --python 3.14
       - run: uv run --project pipeline pytest pipeline/tests
+      - run: uv run --project pipeline python pipeline/scripts/evaluate_storage.py --check
       - run: uv run --project pipeline ruff check pipeline
       - run: uv run --project pipeline water-pulse all --offline

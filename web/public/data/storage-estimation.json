@@ -1,0 +1,2592 @@
+{
+  "schema_version": 1,
+  "method": "two_stage_storage_v1",
+  "evaluation_status": "complete",
+  "gate": {
+    "passed": true,
+    "checks": [
+      {
+        "name": "baoshan2: A-grade evaluation available",
+        "passed": true
+      },
+      {
+        "name": "baoshan2: published area and storage preserved",
+        "passed": true
+      },
+      {
+        "name": "baoshan2: categorical estimates contain no number",
+        "passed": true
+      },
+      {
+        "name": "baoshan2: every numeric fold excludes its target",
+        "passed": true
+      },
+      {
+        "name": "baoshan2: finite and separated DEF-12 results",
+        "passed": true
+      },
+      {
+        "name": "baoshan2: all C1 sample counts reported",
+        "passed": true
+      },
+      {
+        "name": "liyutan: A-grade evaluation available",
+        "passed": true
+      },
+      {
+        "name": "liyutan: published area and storage preserved",
+        "passed": true
+      },
+      {
+        "name": "liyutan: categorical estimates contain no number",
+        "passed": true
+      },
+      {
+        "name": "liyutan: every numeric fold excludes its target",
+        "passed": true
+      },
+      {
+        "name": "liyutan: finite and separated DEF-12 results",
+        "passed": true
+      },
+      {
+        "name": "liyutan: all C1 sample counts reported",
+        "passed": true
+      },
+      {
+        "name": "shimen: B/C estimates absent",
+        "passed": true
+      },
+      {
+        "name": "feitsui: B/C estimates absent",
+        "passed": true
+      }
+    ]
+  },
+  "source": {
+    "commit": "b037f2bfd4985ee9651b57a46f9a8dc68fff3010",
+    "files": [
+      {
+        "path": "web/public/data/index.json",
+        "sha256": "8dc21b847775e9cb3be2d7235e46f8d9d1e7174e44263d2d42054ab3c000d99b"
+      },
+      {
+        "path": "web/public/data/reservoirs/baoshan2/meta.json",
+        "sha256": "dc2101903a1df1dd1386e83e393c12bd57dcbf1dfcfe48441c7ae72b9294d0f5"
+      },
+      {
+        "path": "web/public/data/reservoirs/baoshan2/timeseries.json",
+        "sha256": "72694fe126d4853e3e9dd183e94dc270de46b8e62e97cea18732bafccbfcb76d"
+      },
+      {
+        "path": "web/public/data/reservoirs/liyutan/meta.json",
+        "sha256": "b9a2d12249a726b17d2204988fe3b20b5f11008978001667f4faa0f2399842e8"
+      },
+      {
+        "path": "web/public/data/reservoirs/liyutan/timeseries.json",
+        "sha256": "74c25a0451f9fb458bb19668d2defc3e497af703908ee29767482ee701684a5e"
+      },
+      {
+        "path": "web/public/data/reservoirs/shimen/meta.json",
+        "sha256": "c34689829fa4b6882eb40b62a71f8a069cd74b9d068931c063be1371c30205d7"
+      },
+      {
+        "path": "web/public/data/reservoirs/shimen/timeseries.json",
+        "sha256": "55fce36752a695e5d80d812d9aaea2902c23b95b1a875ee97271831e2a6124fe"
+      },
+      {
+        "path": "web/public/data/reservoirs/feitsui/meta.json",
+        "sha256": "05f748160cdd8efe0d43e50be50f6aeb62a0f264cc6db854aeab6a5db5790d20"
+      },
+      {
+        "path": "web/public/data/reservoirs/feitsui/timeseries.json",
+        "sha256": "598a49be9c795e2005ab7a9e7fc4c52fe5e41c54f4d0ad230ddd0710c2ecf474"
+      }
+    ],
+    "code_files": [
+      {
+        "path": "pipeline/src/water_pulse/storage_estimation.py",
+        "sha256": "5c99b3fe0dc4227c4a2435b990813c669a3365850aecf88d9b0ec0f36b1b48a1"
+      },
+      {
+        "path": "pipeline/scripts/evaluate_storage.py",
+        "sha256": "9c15ccafc6c2ff9d830294c21e7240320214e83d8f807b6a497272a3353a7154"
+      }
+    ],
+    "advice_document": "06-storage-estimation-advice.md",
+    "advice_sha256": "a43fec5a1b6083693d51973dccc6c8b32ce75a2a32304d20e805f37e442ec50f",
+    "reproduction": "uv run --project pipeline python pipeline/scripts/evaluate_storage.py"
+  },
+  "definitions": {
+    "DEF-06": {
+      "full_pool_pct_min": 99.5,
+      "minimum_full_pool_dates": 3,
+      "std_ddof": 1,
+      "lower_boundary": "mean(all full-pool areas) - 2 * sample SD",
+      "quality_flags": "Retained; no flag-based exclusion or parameter selection."
+    },
+    "DEF-07": {
+      "drawdown": "All UTC acquisitions before index.gap.start, fixed before evaluation.",
+      "first_detection": "First drawdown acquisition with area strictly below the boundary.",
+      "sigma_multipliers": [
+        2,
+        3
+      ],
+      "display_dates": "Taiwan-local dates; UTC timestamps retained."
+    },
+    "DEF-11": {
+      "high_rule": "area >= mean - 2 * sample SD; no numerical storage estimate",
+      "high_lower_pct": "Minimum actual storage among all observations classified high.",
+      "calibration": "Last in-band drawdown observation plus all out-of-band drawdown observations with official storage. Points are sorted by area, not by storage.",
+      "numeric_rule": "Piecewise linear interpolation. Below the minimum area, extrapolate the lowest two area points. Clamp storage to [0,100], preserve raw values and flags.",
+      "duplicate_calibration_areas": "Reject ambiguous calibration; do not average or fit away.",
+      "range": "Estimate +/- reservoir-specific maximum DEF-12 low-water leave-one-out absolute error, clipped to [0,100]. Descriptive error envelope, not a confidence interval or future guarantee. The area threshold-sensitivity bars are a separate quantity.",
+      "grade_gate": "Only published grade A is eligible; B and C have no estimates."
+    },
+    "DEF-12": {
+      "high": "Report count and minimum actual storage. Compare predicted high/numeric with actual storage >= that descriptive minimum, reporting both confusion directions. The reference minimum comes from the high group itself: false-high count is therefore zero by construction for observed pairs, not independent accuracy.",
+      "numeric": "Leave each out-of-band drawdown observation out of the interpolation calibration, keeping the fixed full-pool boundary and in-band anchor. Score the clamped estimate; report each absolute error, MAE and maximum absolute error separately from categorical results. Later out-of-band observations are not low-water folds.",
+      "units": "storage percentage points",
+      "gate": "Completeness and finite-result checks only. DEF-12 provides no numerical accuracy acceptance threshold. No threshold was invented or tuned.",
+      "limitations": [
+        "Full-year official observations define the band and descriptive lower bound.",
+        "Classifier choices used this archive; this remains exploratory calibration.",
+        "Only one drawdown; adjacent leave-one-out observations are correlated.",
+        "No second drawdown or independent future event has been evaluated."
+      ]
+    },
+    "DEF-05": {
+      "calibration_mean": "For each numeric fold, mean storage of its remaining calibration.",
+      "archive_mean": "Descriptive all-date mean; in-sample, not a forecast baseline.",
+      "previous_official": "Previous chronological acquisition's official storage only when Taiwan calendar dates are exactly 12 days apart. Missing previous readings and all longer gaps are excluded, with reasons retained. Report all eligible and numeric-fold cohorts."
+    },
+    "DEF-04-C1": {
+      "counts": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "method": "First N valid pairs, ordinary least squares with intercept; no clipping.",
+      "evaluation": "All later valid pairs. Every N is reported, no best N is selected."
+    }
+  },
+  "reservoirs": {
+    "baoshan2": {
+      "reservoir": "baoshan2",
+      "grade": "A",
+      "eligible": true,
+      "reason": null,
+      "full_pool": {
+        "n": 8,
+        "mean_area_km2": 1.321425,
+        "sample_sd_area_km2": 0.01598970651030579,
+        "lower_2sigma_km2": 1.2894455869793884,
+        "lower_3sigma_km2": 1.2734558804690828,
+        "utc_dates": [
+          "2025-11-05T21:16:41Z",
+          "2026-06-21T21:16:44Z",
+          "2026-07-03T21:16:43Z",
+          "2026-07-27T21:16:42Z",
+          "2026-08-20T21:16:40Z",
+          "2026-09-01T21:16:40Z",
+          "2026-09-13T21:16:40Z",
+          "2026-09-25T21:16:40Z"
+        ]
+      },
+      "drawdown": {
+        "start_utc": "2025-11-05T21:16:41Z",
+        "end_utc": "2026-03-17T21:16:47Z",
+        "rule": "UTC acquisition date < index.gap.start",
+        "gap_start": "2026-03-18"
+      },
+      "calibration": [
+        {
+          "utc": "2026-01-16T21:16:44Z",
+          "local": "2026-01-17T05:16:44+08:00",
+          "area_km2": 1.3023,
+          "storage_pct": 71.36233719354513,
+          "anchor": true
+        },
+        {
+          "utc": "2026-01-28T21:16:45Z",
+          "local": "2026-01-29T05:16:45+08:00",
+          "area_km2": 1.2834,
+          "storage_pct": 65.67912704377208,
+          "anchor": false
+        },
+        {
+          "utc": "2026-02-09T21:16:46Z",
+          "local": "2026-02-10T05:16:46+08:00",
+          "area_km2": 1.2708,
+          "storage_pct": 58.04963636686411,
+          "anchor": false
+        },
+        {
+          "utc": "2026-02-21T21:16:46Z",
+          "local": "2026-02-22T05:16:46+08:00",
+          "area_km2": 1.2384,
+          "storage_pct": 48.41054743208138,
+          "anchor": false
+        },
+        {
+          "utc": "2026-03-05T21:16:46Z",
+          "local": "2026-03-06T05:16:46+08:00",
+          "area_km2": 1.17,
+          "storage_pct": 38.684757263477074,
+          "anchor": false
+        },
+        {
+          "utc": "2026-03-17T21:16:47Z",
+          "local": "2026-03-18T05:16:47+08:00",
+          "area_km2": 1.161,
+          "storage_pct": 28.190063569277505,
+          "anchor": false
+        }
+      ],
+      "points": [
+        {
+          "utc": "2025-11-05T21:16:41Z",
+          "local": "2025-11-06T05:16:41+08:00",
+          "area_km2": 1.3122,
+          "actual_pct": 100.0,
+          "qa": [
+            "full_storage_area_below_median_minus_3_mad"
+          ],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2025-11-17T21:16:42Z",
+          "local": "2025-11-18T05:16:42+08:00",
+          "area_km2": 1.305,
+          "actual_pct": 99.16680967400244,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2025-11-29T21:16:42Z",
+          "local": "2025-11-30T05:16:42+08:00",
+          "area_km2": 1.3122,
+          "actual_pct": 94.90055565746883,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2025-12-11T21:16:43Z",
+          "local": "2025-12-12T05:16:43+08:00",
+          "area_km2": 1.3077,
+          "actual_pct": 86.93583606033528,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2025-12-23T21:16:43Z",
+          "local": "2025-12-24T05:16:43+08:00",
+          "area_km2": 1.3149,
+          "actual_pct": 81.14788536531962,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-01-16T21:16:44Z",
+          "local": "2026-01-17T05:16:44+08:00",
+          "area_km2": 1.3023,
+          "actual_pct": 71.36233719354513,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": true
+        },
+        {
+          "utc": "2026-01-28T21:16:45Z",
+          "local": "2026-01-29T05:16:45+08:00",
+          "area_km2": 1.2834,
+          "actual_pct": 65.67912704377208,
+          "qa": [],
+          "kind": "numeric",
+          "estimate_pct": 65.67912704377208,
+          "raw_estimate_pct": 65.67912704377208,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": null,
+          "range_pct": [
+            56.46414258228359,
+            74.89411150526058
+          ],
+          "calibration": true
+        },
+        {
+          "utc": "2026-02-09T21:16:46Z",
+          "local": "2026-02-10T05:16:46+08:00",
+          "area_km2": 1.2708,
+          "actual_pct": 58.04963636686411,
+          "qa": [],
+          "kind": "numeric",
+          "estimate_pct": 58.04963636686411,
+          "raw_estimate_pct": 58.04963636686411,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": null,
+          "range_pct": [
+            48.834651905375615,
+            67.2646208283526
+          ],
+          "calibration": true
+        },
+        {
+          "utc": "2026-02-21T21:16:46Z",
+          "local": "2026-02-22T05:16:46+08:00",
+          "area_km2": 1.2384,
+          "actual_pct": 48.41054743208138,
+          "qa": [],
+          "kind": "numeric",
+          "estimate_pct": 48.41054743208138,
+          "raw_estimate_pct": 48.41054743208138,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": null,
+          "range_pct": [
+            39.19556297059289,
+            57.62553189356987
+          ],
+          "calibration": true
+        },
+        {
+          "utc": "2026-03-05T21:16:46Z",
+          "local": "2026-03-06T05:16:46+08:00",
+          "area_km2": 1.17,
+          "actual_pct": 38.684757263477074,
+          "qa": [],
+          "kind": "numeric",
+          "estimate_pct": 38.684757263477074,
+          "raw_estimate_pct": 38.684757263477074,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": null,
+          "range_pct": [
+            29.469772801988583,
+            47.899741724965565
+          ],
+          "calibration": true
+        },
+        {
+          "utc": "2026-03-17T21:16:47Z",
+          "local": "2026-03-18T05:16:47+08:00",
+          "area_km2": 1.161,
+          "actual_pct": 28.190063569277505,
+          "qa": [],
+          "kind": "numeric",
+          "estimate_pct": 28.190063569277505,
+          "raw_estimate_pct": 28.190063569277505,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": null,
+          "range_pct": [
+            18.975079107789014,
+            37.405048030766
+          ],
+          "calibration": true
+        },
+        {
+          "utc": "2026-06-21T21:16:44Z",
+          "local": "2026-06-22T05:16:44+08:00",
+          "area_km2": 1.3293,
+          "actual_pct": 100.0,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-07-03T21:16:43Z",
+          "local": "2026-07-04T05:16:43+08:00",
+          "area_km2": 1.2852,
+          "actual_pct": 100.0,
+          "qa": [
+            "full_storage_area_below_median_minus_3_mad"
+          ],
+          "kind": "numeric",
+          "estimate_pct": 66.22038515327422,
+          "raw_estimate_pct": 66.22038515327422,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": null,
+          "range_pct": [
+            57.00540069178573,
+            75.43536961476272
+          ],
+          "calibration": false
+        },
+        {
+          "utc": "2026-07-15T21:16:42Z",
+          "local": "2026-07-16T05:16:42+08:00",
+          "area_km2": 1.323,
+          "actual_pct": 96.32533520898659,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-07-27T21:16:42Z",
+          "local": "2026-07-28T05:16:42+08:00",
+          "area_km2": 1.3302,
+          "actual_pct": 100.0,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-08-20T21:16:40Z",
+          "local": "2026-08-21T05:16:40+08:00",
+          "area_km2": 1.3338,
+          "actual_pct": 100.0,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-09-01T21:16:40Z",
+          "local": "2026-09-02T05:16:40+08:00",
+          "area_km2": 1.3293,
+          "actual_pct": 100.0,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-09-13T21:16:40Z",
+          "local": "2026-09-14T05:16:40+08:00",
+          "area_km2": 1.3248,
+          "actual_pct": 100.0,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-09-25T21:16:40Z",
+          "local": "2026-09-26T05:16:40+08:00",
+          "area_km2": 1.3266,
+          "actual_pct": 100.0,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-10-07T21:16:40Z",
+          "local": "2026-10-08T05:16:40+08:00",
+          "area_km2": 1.3104,
+          "actual_pct": 99.00050536245718,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-10-19T21:16:40Z",
+          "local": "2026-10-20T05:16:40+08:00",
+          "area_km2": 1.3185,
+          "actual_pct": 93.54170422406175,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 71.36233719354513,
+          "range_pct": null,
+          "calibration": false
+        }
+      ],
+      "evaluation": {
+        "high": {
+          "n": 15,
+          "actual_min_pct": 71.36233719354513,
+          "correct_count": 15,
+          "false_high_count": 0,
+          "false_low_count": 1,
+          "misclassified": [
+            {
+              "utc": "2026-07-03T21:16:43Z",
+              "local": "2026-07-04T05:16:43+08:00",
+              "actual_pct": 100.0,
+              "kind": "numeric",
+              "qa": [
+                "full_storage_area_below_median_minus_3_mad"
+              ]
+            }
+          ]
+        },
+        "numeric": {
+          "n": 5,
+          "mae_pp": 5.174364268487553,
+          "max_abs_error_pp": 9.214984461488491,
+          "folds": [
+            {
+              "utc": "2026-01-28T21:16:45Z",
+              "local": "2026-01-29T05:16:45+08:00",
+              "actual_pct": 65.67912704377208,
+              "predicted_pct": 63.37471669753657,
+              "raw_predicted_pct": 63.37471669753657,
+              "abs_error_pp": 2.304410346235514,
+              "extrapolated": false,
+              "clamped": false,
+              "calibration_utc": [
+                "2026-01-16T21:16:44Z",
+                "2026-02-09T21:16:46Z",
+                "2026-02-21T21:16:46Z",
+                "2026-03-05T21:16:46Z",
+                "2026-03-17T21:16:47Z"
+              ]
+            },
+            {
+              "utc": "2026-02-09T21:16:46Z",
+              "local": "2026-02-10T05:16:46+08:00",
+              "actual_pct": 58.04963636686411,
+              "predicted_pct": 60.84392475249864,
+              "raw_predicted_pct": 60.84392475249864,
+              "abs_error_pp": 2.7942883856345304,
+              "extrapolated": false,
+              "clamped": false,
+              "calibration_utc": [
+                "2026-01-16T21:16:44Z",
+                "2026-01-28T21:16:45Z",
+                "2026-02-21T21:16:46Z",
+                "2026-03-05T21:16:46Z",
+                "2026-03-17T21:16:47Z"
+              ]
+            },
+            {
+              "utc": "2026-02-21T21:16:46Z",
+              "local": "2026-02-22T05:16:46+08:00",
+              "actual_pct": 48.41054743208138,
+              "predicted_pct": 51.82521094077542,
+              "raw_predicted_pct": 51.82521094077542,
+              "abs_error_pp": 3.4146635086940407,
+              "extrapolated": false,
+              "clamped": false,
+              "calibration_utc": [
+                "2026-01-16T21:16:44Z",
+                "2026-01-28T21:16:45Z",
+                "2026-02-09T21:16:46Z",
+                "2026-03-05T21:16:46Z",
+                "2026-03-17T21:16:47Z"
+              ]
+            },
+            {
+              "utc": "2026-03-05T21:16:46Z",
+              "local": "2026-03-06T05:16:46+08:00",
+              "actual_pct": 38.684757263477074,
+              "predicted_pct": 30.541282623091885,
+              "raw_predicted_pct": 30.541282623091885,
+              "abs_error_pp": 8.14347464038519,
+              "extrapolated": false,
+              "clamped": false,
+              "calibration_utc": [
+                "2026-01-16T21:16:44Z",
+                "2026-01-28T21:16:45Z",
+                "2026-02-09T21:16:46Z",
+                "2026-02-21T21:16:46Z",
+                "2026-03-17T21:16:47Z"
+              ]
+            },
+            {
+              "utc": "2026-03-17T21:16:47Z",
+              "local": "2026-03-18T05:16:47+08:00",
+              "actual_pct": 28.190063569277505,
+              "predicted_pct": 37.405048030766,
+              "raw_predicted_pct": 37.405048030766,
+              "abs_error_pp": 9.214984461488491,
+              "extrapolated": true,
+              "clamped": false,
+              "calibration_utc": [
+                "2026-01-16T21:16:44Z",
+                "2026-01-28T21:16:45Z",
+                "2026-02-09T21:16:46Z",
+                "2026-02-21T21:16:46Z",
+                "2026-03-05T21:16:46Z"
+              ]
+            }
+          ]
+        },
+        "baselines": {
+          "calibration_mean": {
+            "n": 5,
+            "mae_pp": 14.441473589752746,
+            "max_abs_error_pp": 28.247217490670444,
+            "rmse_pp": 16.71250274213892,
+            "cohort": "Same low-water leave-one-out folds; remaining calibration mean."
+          },
+          "archive_mean": {
+            "n": 21,
+            "mae_pp": 18.629271038686927,
+            "max_abs_error_pp": 55.68589359365816,
+            "rmse_pp": 22.344567479362322,
+            "mean_pct": 83.87595716293566,
+            "cohort": "All paired archive dates; descriptive in-sample mean."
+          },
+          "previous_official": {
+            "n": 17,
+            "mae_pp": 4.460706683347829,
+            "max_abs_error_pp": 10.494693694199569,
+            "rmse_pp": 5.748584041721129,
+            "cohort": "All consecutive acquisitions exactly 12 Taiwan calendar days apart.",
+            "points": [
+              {
+                "utc": "2025-11-17T21:16:42Z",
+                "local": "2025-11-18T05:16:42+08:00",
+                "previous_utc": "2025-11-05T21:16:41Z",
+                "actual_pct": 99.16680967400244,
+                "predicted_pct": 100.0,
+                "abs_error_pp": 0.8331903259975633
+              },
+              {
+                "utc": "2025-11-29T21:16:42Z",
+                "local": "2025-11-30T05:16:42+08:00",
+                "previous_utc": "2025-11-17T21:16:42Z",
+                "actual_pct": 94.90055565746883,
+                "predicted_pct": 99.16680967400244,
+                "abs_error_pp": 4.266254016533608
+              },
+              {
+                "utc": "2025-12-11T21:16:43Z",
+                "local": "2025-12-12T05:16:43+08:00",
+                "previous_utc": "2025-11-29T21:16:42Z",
+                "actual_pct": 86.93583606033528,
+                "predicted_pct": 94.90055565746883,
+                "abs_error_pp": 7.964719597133552
+              },
+              {
+                "utc": "2025-12-23T21:16:43Z",
+                "local": "2025-12-24T05:16:43+08:00",
+                "previous_utc": "2025-12-11T21:16:43Z",
+                "actual_pct": 81.14788536531962,
+                "predicted_pct": 86.93583606033528,
+                "abs_error_pp": 5.7879506950156525
+              },
+              {
+                "utc": "2026-01-28T21:16:45Z",
+                "local": "2026-01-29T05:16:45+08:00",
+                "previous_utc": "2026-01-16T21:16:44Z",
+                "actual_pct": 65.67912704377208,
+                "predicted_pct": 71.36233719354513,
+                "abs_error_pp": 5.683210149773046
+              },
+              {
+                "utc": "2026-02-09T21:16:46Z",
+                "local": "2026-02-10T05:16:46+08:00",
+                "previous_utc": "2026-01-28T21:16:45Z",
+                "actual_pct": 58.04963636686411,
+                "predicted_pct": 65.67912704377208,
+                "abs_error_pp": 7.629490676907977
+              },
+              {
+                "utc": "2026-02-21T21:16:46Z",
+                "local": "2026-02-22T05:16:46+08:00",
+                "previous_utc": "2026-02-09T21:16:46Z",
+                "actual_pct": 48.41054743208138,
+                "predicted_pct": 58.04963636686411,
+                "abs_error_pp": 9.639088934782727
+              },
+              {
+                "utc": "2026-03-05T21:16:46Z",
+                "local": "2026-03-06T05:16:46+08:00",
+                "previous_utc": "2026-02-21T21:16:46Z",
+                "actual_pct": 38.684757263477074,
+                "predicted_pct": 48.41054743208138,
+                "abs_error_pp": 9.725790168604306
+              },
+              {
+                "utc": "2026-03-17T21:16:47Z",
+                "local": "2026-03-18T05:16:47+08:00",
+                "previous_utc": "2026-03-05T21:16:46Z",
+                "actual_pct": 28.190063569277505,
+                "predicted_pct": 38.684757263477074,
+                "abs_error_pp": 10.494693694199569
+              },
+              {
+                "utc": "2026-07-03T21:16:43Z",
+                "local": "2026-07-04T05:16:43+08:00",
+                "previous_utc": "2026-06-21T21:16:44Z",
+                "actual_pct": 100.0,
+                "predicted_pct": 100.0,
+                "abs_error_pp": 0.0
+              },
+              {
+                "utc": "2026-07-15T21:16:42Z",
+                "local": "2026-07-16T05:16:42+08:00",
+                "previous_utc": "2026-07-03T21:16:43Z",
+                "actual_pct": 96.32533520898659,
+                "predicted_pct": 100.0,
+                "abs_error_pp": 3.674664791013413
+              },
+              {
+                "utc": "2026-07-27T21:16:42Z",
+                "local": "2026-07-28T05:16:42+08:00",
+                "previous_utc": "2026-07-15T21:16:42Z",
+                "actual_pct": 100.0,
+                "predicted_pct": 96.32533520898659,
+                "abs_error_pp": 3.674664791013413
+              },
+              {
+                "utc": "2026-09-01T21:16:40Z",
+                "local": "2026-09-02T05:16:40+08:00",
+                "previous_utc": "2026-08-20T21:16:40Z",
+                "actual_pct": 100.0,
+                "predicted_pct": 100.0,
+                "abs_error_pp": 0.0
+              },
+              {
+                "utc": "2026-09-13T21:16:40Z",
+                "local": "2026-09-14T05:16:40+08:00",
+                "previous_utc": "2026-09-01T21:16:40Z",
+                "actual_pct": 100.0,
+                "predicted_pct": 100.0,
+                "abs_error_pp": 0.0
+              },
+              {
+                "utc": "2026-09-25T21:16:40Z",
+                "local": "2026-09-26T05:16:40+08:00",
+                "previous_utc": "2026-09-13T21:16:40Z",
+                "actual_pct": 100.0,
+                "predicted_pct": 100.0,
+                "abs_error_pp": 0.0
+              },
+              {
+                "utc": "2026-10-07T21:16:40Z",
+                "local": "2026-10-08T05:16:40+08:00",
+                "previous_utc": "2026-09-25T21:16:40Z",
+                "actual_pct": 99.00050536245718,
+                "predicted_pct": 100.0,
+                "abs_error_pp": 0.9994946375428242
+              },
+              {
+                "utc": "2026-10-19T21:16:40Z",
+                "local": "2026-10-20T05:16:40+08:00",
+                "previous_utc": "2026-10-07T21:16:40Z",
+                "actual_pct": 93.54170422406175,
+                "predicted_pct": 99.00050536245718,
+                "abs_error_pp": 5.45880113839543
+              }
+            ],
+            "excluded": [
+              {
+                "utc": "2025-11-05T21:16:41Z",
+                "reason": "no_previous_acquisition",
+                "days": null
+              },
+              {
+                "utc": "2026-01-16T21:16:44Z",
+                "reason": "not_12_days",
+                "days": 24
+              },
+              {
+                "utc": "2026-06-21T21:16:44Z",
+                "reason": "not_12_days",
+                "days": 96
+              },
+              {
+                "utc": "2026-08-20T21:16:40Z",
+                "reason": "not_12_days",
+                "days": 24
+              }
+            ]
+          },
+          "previous_official_low_water": {
+            "n": 5,
+            "mae_pp": 8.634454724853525,
+            "max_abs_error_pp": 10.494693694199569,
+            "rmse_pp": 8.810784655488435,
+            "cohort": "Numeric DEF-12 fold dates having an exactly 12-day predecessor.",
+            "points": [
+              {
+                "utc": "2026-01-28T21:16:45Z",
+                "local": "2026-01-29T05:16:45+08:00",
+                "previous_utc": "2026-01-16T21:16:44Z",
+                "actual_pct": 65.67912704377208,
+                "predicted_pct": 71.36233719354513,
+                "abs_error_pp": 5.683210149773046
+              },
+              {
+                "utc": "2026-02-09T21:16:46Z",
+                "local": "2026-02-10T05:16:46+08:00",
+                "previous_utc": "2026-01-28T21:16:45Z",
+                "actual_pct": 58.04963636686411,
+                "predicted_pct": 65.67912704377208,
+                "abs_error_pp": 7.629490676907977
+              },
+              {
+                "utc": "2026-02-21T21:16:46Z",
+                "local": "2026-02-22T05:16:46+08:00",
+                "previous_utc": "2026-02-09T21:16:46Z",
+                "actual_pct": 48.41054743208138,
+                "predicted_pct": 58.04963636686411,
+                "abs_error_pp": 9.639088934782727
+              },
+              {
+                "utc": "2026-03-05T21:16:46Z",
+                "local": "2026-03-06T05:16:46+08:00",
+                "previous_utc": "2026-02-21T21:16:46Z",
+                "actual_pct": 38.684757263477074,
+                "predicted_pct": 48.41054743208138,
+                "abs_error_pp": 9.725790168604306
+              },
+              {
+                "utc": "2026-03-17T21:16:47Z",
+                "local": "2026-03-18T05:16:47+08:00",
+                "previous_utc": "2026-03-05T21:16:46Z",
+                "actual_pct": 28.190063569277505,
+                "predicted_pct": 38.684757263477074,
+                "abs_error_pp": 10.494693694199569
+              }
+            ]
+          }
+        },
+        "linear_comparison": [
+          {
+            "n": 3,
+            "evaluation_n": 18,
+            "available": true,
+            "slope": -238.40720073166668,
+            "intercept": 410.2882066288274,
+            "mae_pp": 25.35585084745848,
+            "rmse_pp": 40.49069452493553,
+            "calibration_mean_mae_pp": 18.15101032531764,
+            "extrapolated_n": 16,
+            "outside_0_100_n": 6,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z"
+            ],
+            "evaluation_utc": [
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 4,
+            "evaluation_n": 17,
+            "available": true,
+            "slope": 243.5352781859612,
+            "intercept": -223.60385099897272,
+            "mae_pp": 11.504548037131904,
+            "rmse_pp": 16.34560962710764,
+            "calibration_mean_mae_pp": 18.52994010382903,
+            "extrapolated_n": 16,
+            "outside_0_100_n": 4,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z"
+            ],
+            "evaluation_utc": [
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 5,
+            "evaluation_n": 16,
+            "available": true,
+            "slope": -858.516069565309,
+            "intercept": 1217.429674909806,
+            "mae_pp": 50.22432415908946,
+            "rmse_pp": 75.19463953272165,
+            "calibration_mean_mae_pp": 19.298137907549208,
+            "extrapolated_n": 15,
+            "outside_0_100_n": 6,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z"
+            ],
+            "evaluation_utc": [
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 6,
+            "evaluation_n": 15,
+            "available": true,
+            "slope": 746.4014746133328,
+            "intercept": -888.1579463508048,
+            "mae_pp": 12.547916550239782,
+            "rmse_pp": 20.91650659737292,
+            "calibration_mean_mae_pp": 20.350592877409376,
+            "extrapolated_n": 14,
+            "outside_0_100_n": 8,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z"
+            ],
+            "evaluation_utc": [
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 7,
+            "evaluation_n": 14,
+            "available": true,
+            "slope": 878.4398374091855,
+            "intercept": -1061.1038787570674,
+            "mae_pp": 18.102561718354405,
+            "rmse_pp": 29.167122000775272,
+            "calibration_mean_mae_pp": 21.567066073265078,
+            "extrapolated_n": 12,
+            "outside_0_100_n": 9,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z"
+            ],
+            "evaluation_utc": [
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 8,
+            "evaluation_n": 13,
+            "available": true,
+            "slope": 828.8525801875772,
+            "intercept": -996.2337366901363,
+            "mae_pp": 17.271233249896042,
+            "rmse_pp": 27.326815746750288,
+            "calibration_mean_mae_pp": 22.961174045348113,
+            "extrapolated_n": 11,
+            "outside_0_100_n": 9,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z"
+            ],
+            "evaluation_utc": [
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 9,
+            "evaluation_n": 12,
+            "available": true,
+            "slope": 634.6746830020004,
+            "intercept": -742.9266478514011,
+            "mae_pp": 10.088015155769657,
+            "rmse_pp": 17.240263468571232,
+            "calibration_mean_mae_pp": 24.562154049237478,
+            "extrapolated_n": 10,
+            "outside_0_100_n": 6,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z"
+            ],
+            "evaluation_utc": [
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 10,
+            "evaluation_n": 11,
+            "available": true,
+            "slope": 406.1251419102942,
+            "intercept": -446.09278392931833,
+            "mae_pp": 7.927916321667786,
+            "rmse_pp": 9.772630908244931,
+            "calibration_mean_mae_pp": 26.433976215913514,
+            "extrapolated_n": 9,
+            "outside_0_100_n": 0,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z"
+            ],
+            "evaluation_utc": [
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 11,
+            "evaluation_n": 10,
+            "available": true,
+            "slope": 396.7168029564038,
+            "intercept": -433.88547676528844,
+            "mae_pp": 8.665695691104371,
+            "rmse_pp": 10.331463816849089,
+            "calibration_mean_mae_pp": 28.656976695355684,
+            "extrapolated_n": 8,
+            "outside_0_100_n": 0,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z"
+            ],
+            "evaluation_utc": [
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 12,
+            "evaluation_n": 9,
+            "available": true,
+            "slope": 406.60345606039306,
+            "intercept": -445.95273891512545,
+            "mae_pp": 7.917916757028465,
+            "rmse_pp": 9.94096195328502,
+            "calibration_mean_mae_pp": 26.052430897321997,
+            "extrapolated_n": 2,
+            "outside_0_100_n": 0,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z"
+            ],
+            "evaluation_utc": [
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          }
+        ]
+      },
+      "first_detection": {
+        "two_sigma": {
+          "utc": "2026-01-28T21:16:45Z",
+          "local": "2026-01-29T05:16:45+08:00",
+          "storage_pct": 65.67912704377208,
+          "area_km2": 1.2834
+        },
+        "three_sigma": {
+          "utc": "2026-02-09T21:16:46Z",
+          "local": "2026-02-10T05:16:46+08:00",
+          "storage_pct": 58.04963636686411,
+          "area_km2": 1.2708
+        }
+      },
+      "reference_comparison": {
+        "reference": {
+          "high_n": 15,
+          "high_min_pct": 71,
+          "numeric_n": 5,
+          "numeric_mae_pp": 5.2,
+          "numeric_max_abs_error_pp": 9.2,
+          "fold_abs_error_pp": [
+            2.3,
+            2.8,
+            3.4,
+            8.1,
+            9.2
+          ],
+          "misclassified_n": 1,
+          "first_detection_2sigma_date": "2026-01-29",
+          "first_detection_2sigma_pct": 66,
+          "first_detection_3sigma_date": "2026-02-10",
+          "first_detection_3sigma_pct": 58,
+          "previous_official_mae_pp": 4.5,
+          "archive_mean_mae_pp": 18.6
+        },
+        "recomputed": {
+          "high_n": 15,
+          "high_min_pct": 71.36233719354513,
+          "numeric_n": 5,
+          "numeric_mae_pp": 5.174364268487553,
+          "numeric_max_abs_error_pp": 9.214984461488491,
+          "fold_abs_error_pp": [
+            2.304410346235514,
+            2.7942883856345304,
+            3.4146635086940407,
+            8.14347464038519,
+            9.214984461488491
+          ],
+          "misclassified_n": 1,
+          "first_detection_2sigma_date": "2026-01-29",
+          "first_detection_2sigma_pct": 65.67912704377208,
+          "first_detection_3sigma_date": "2026-02-10",
+          "first_detection_3sigma_pct": 58.04963636686411,
+          "previous_official_mae_pp": 4.460706683347829,
+          "archive_mean_mae_pp": 18.629271038686927
+        },
+        "comparison_precision": "1 decimal pp; integer storage pct; exact counts and local dates",
+        "differences": [],
+        "previous_official_cohort_note": "Strict 12-calendar-day pairs only (n=17). The advice's Liyutan 4.3 pp can be reproduced by including two 24-day intervals (n=19), excluded by this baseline."
+      }
+    },
+    "liyutan": {
+      "reservoir": "liyutan",
+      "grade": "A",
+      "eligible": true,
+      "reason": null,
+      "full_pool": {
+        "n": 7,
+        "mean_area_km2": 3.7834714285714286,
+        "sample_sd_area_km2": 0.029937363181912268,
+        "lower_2sigma_km2": 3.723596702207604,
+        "lower_3sigma_km2": 3.6936593390256918,
+        "utc_dates": [
+          "2026-07-03T21:16:43Z",
+          "2026-07-15T21:16:42Z",
+          "2026-07-27T21:16:42Z",
+          "2026-08-20T21:16:40Z",
+          "2026-09-01T21:16:40Z",
+          "2026-09-25T21:16:40Z",
+          "2026-10-07T21:16:40Z"
+        ]
+      },
+      "drawdown": {
+        "start_utc": "2025-11-05T21:16:41Z",
+        "end_utc": "2026-03-17T21:16:47Z",
+        "rule": "UTC acquisition date < index.gap.start",
+        "gap_start": "2026-03-18"
+      },
+      "calibration": [
+        {
+          "utc": "2026-01-16T21:16:44Z",
+          "local": "2026-01-17T05:16:44+08:00",
+          "area_km2": 3.7413,
+          "storage_pct": 68.09808060012,
+          "anchor": true
+        },
+        {
+          "utc": "2026-01-28T21:16:45Z",
+          "local": "2026-01-29T05:16:45+08:00",
+          "area_km2": 3.7053,
+          "storage_pct": 63.90880800390182,
+          "anchor": false
+        },
+        {
+          "utc": "2026-02-09T21:16:46Z",
+          "local": "2026-02-10T05:16:46+08:00",
+          "area_km2": 3.6648,
+          "storage_pct": 59.226111089530264,
+          "anchor": false
+        },
+        {
+          "utc": "2026-02-21T21:16:46Z",
+          "local": "2026-02-22T05:16:46+08:00",
+          "area_km2": 3.6036,
+          "storage_pct": 51.14028840634132,
+          "anchor": false
+        },
+        {
+          "utc": "2026-03-05T21:16:46Z",
+          "local": "2026-03-06T05:16:46+08:00",
+          "area_km2": 3.4488,
+          "storage_pct": 41.91422047849037,
+          "anchor": false
+        },
+        {
+          "utc": "2026-03-17T21:16:47Z",
+          "local": "2026-03-18T05:16:47+08:00",
+          "area_km2": 3.4713,
+          "storage_pct": 34.37508362575371,
+          "anchor": false
+        }
+      ],
+      "points": [
+        {
+          "utc": "2025-11-05T21:16:41Z",
+          "local": "2025-11-06T05:16:41+08:00",
+          "area_km2": 3.7611,
+          "actual_pct": 92.03485737223063,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2025-11-17T21:16:42Z",
+          "local": "2025-11-18T05:16:42+08:00",
+          "area_km2": 3.7575,
+          "actual_pct": 88.26313086189556,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2025-11-29T21:16:42Z",
+          "local": "2025-11-30T05:16:42+08:00",
+          "area_km2": 3.7656,
+          "actual_pct": 84.2127525497762,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2025-12-11T21:16:43Z",
+          "local": "2025-12-12T05:16:43+08:00",
+          "area_km2": 3.7773,
+          "actual_pct": 80.02909097187153,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2025-12-23T21:16:43Z",
+          "local": "2025-12-24T05:16:43+08:00",
+          "area_km2": 3.7476,
+          "actual_pct": 75.76687513757786,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-01-16T21:16:44Z",
+          "local": "2026-01-17T05:16:44+08:00",
+          "area_km2": 3.7413,
+          "actual_pct": 68.09808060012,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": true
+        },
+        {
+          "utc": "2026-01-28T21:16:45Z",
+          "local": "2026-01-29T05:16:45+08:00",
+          "area_km2": 3.7053,
+          "actual_pct": 63.90880800390182,
+          "qa": [],
+          "kind": "numeric",
+          "estimate_pct": 63.90880800390182,
+          "raw_estimate_pct": 63.90880800390182,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": null,
+          "range_pct": [
+            53.51844584834414,
+            74.29917015945949
+          ],
+          "calibration": true
+        },
+        {
+          "utc": "2026-02-09T21:16:46Z",
+          "local": "2026-02-10T05:16:46+08:00",
+          "area_km2": 3.6648,
+          "actual_pct": 59.226111089530264,
+          "qa": [],
+          "kind": "numeric",
+          "estimate_pct": 59.226111089530264,
+          "raw_estimate_pct": 59.226111089530264,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": null,
+          "range_pct": [
+            48.835748933972596,
+            69.61647324508793
+          ],
+          "calibration": true
+        },
+        {
+          "utc": "2026-02-21T21:16:46Z",
+          "local": "2026-02-22T05:16:46+08:00",
+          "area_km2": 3.6036,
+          "actual_pct": 51.14028840634132,
+          "qa": [],
+          "kind": "numeric",
+          "estimate_pct": 51.14028840634132,
+          "raw_estimate_pct": 51.14028840634132,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": null,
+          "range_pct": [
+            40.749926250783645,
+            61.530650561898995
+          ],
+          "calibration": true
+        },
+        {
+          "utc": "2026-03-05T21:16:46Z",
+          "local": "2026-03-06T05:16:46+08:00",
+          "area_km2": 3.4488,
+          "actual_pct": 41.91422047849037,
+          "qa": [],
+          "kind": "numeric",
+          "estimate_pct": 41.91422047849037,
+          "raw_estimate_pct": 41.91422047849037,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": null,
+          "range_pct": [
+            31.5238583229327,
+            52.304582634048046
+          ],
+          "calibration": true
+        },
+        {
+          "utc": "2026-03-17T21:16:47Z",
+          "local": "2026-03-18T05:16:47+08:00",
+          "area_km2": 3.4713,
+          "actual_pct": 34.37508362575371,
+          "qa": [],
+          "kind": "numeric",
+          "estimate_pct": 34.37508362575371,
+          "raw_estimate_pct": 34.37508362575371,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": null,
+          "range_pct": [
+            23.98472147019604,
+            44.765445781311385
+          ],
+          "calibration": true
+        },
+        {
+          "utc": "2026-06-21T21:16:44Z",
+          "local": "2026-06-22T05:16:44+08:00",
+          "area_km2": 3.7854,
+          "actual_pct": 82.47155499367888,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-07-03T21:16:43Z",
+          "local": "2026-07-04T05:16:43+08:00",
+          "area_km2": 3.7611,
+          "actual_pct": 100.0,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-07-15T21:16:42Z",
+          "local": "2026-07-16T05:16:42+08:00",
+          "area_km2": 3.8322,
+          "actual_pct": 100.0,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-07-27T21:16:42Z",
+          "local": "2026-07-28T05:16:42+08:00",
+          "area_km2": 3.7746,
+          "actual_pct": 100.0,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-08-20T21:16:40Z",
+          "local": "2026-08-21T05:16:40+08:00",
+          "area_km2": 3.8151,
+          "actual_pct": 100.0,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-09-01T21:16:40Z",
+          "local": "2026-09-02T05:16:40+08:00",
+          "area_km2": 3.7818,
+          "actual_pct": 100.0,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-09-13T21:16:40Z",
+          "local": "2026-09-14T05:16:40+08:00",
+          "area_km2": 3.771,
+          "actual_pct": 97.83800633843063,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-09-25T21:16:40Z",
+          "local": "2026-09-26T05:16:40+08:00",
+          "area_km2": 3.7719,
+          "actual_pct": 99.85063124534575,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-10-07T21:16:40Z",
+          "local": "2026-10-08T05:16:40+08:00",
+          "area_km2": 3.7476,
+          "actual_pct": 99.85063124534575,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        },
+        {
+          "utc": "2026-10-19T21:16:40Z",
+          "local": "2026-10-20T05:16:40+08:00",
+          "area_km2": 3.7521,
+          "actual_pct": 97.02812462116619,
+          "qa": [],
+          "kind": "high",
+          "estimate_pct": null,
+          "raw_estimate_pct": null,
+          "extrapolated": false,
+          "clamped": false,
+          "high_lower_pct": 68.09808060012,
+          "range_pct": null,
+          "calibration": false
+        }
+      ],
+      "evaluation": {
+        "high": {
+          "n": 16,
+          "actual_min_pct": 68.09808060012,
+          "correct_count": 16,
+          "false_high_count": 0,
+          "false_low_count": 0,
+          "misclassified": []
+        },
+        "numeric": {
+          "n": 5,
+          "mae_pp": 3.9825599966742056,
+          "max_abs_error_pp": 10.390362155557671,
+          "folds": [
+            {
+              "utc": "2026-01-28T21:16:45Z",
+              "local": "2026-01-29T05:16:45+08:00",
+              "actual_pct": 63.90880800390182,
+              "predicted_pct": 63.92303612454835,
+              "raw_predicted_pct": 63.92303612454835,
+              "abs_error_pp": 0.014228120646528453,
+              "extrapolated": false,
+              "clamped": false,
+              "calibration_utc": [
+                "2026-01-16T21:16:44Z",
+                "2026-02-09T21:16:46Z",
+                "2026-02-21T21:16:46Z",
+                "2026-03-05T21:16:46Z",
+                "2026-03-17T21:16:47Z"
+              ]
+            },
+            {
+              "utc": "2026-02-09T21:16:46Z",
+              "local": "2026-02-10T05:16:46+08:00",
+              "actual_pct": 59.226111089530264,
+              "predicted_pct": 58.82399931460783,
+              "raw_predicted_pct": 58.82399931460783,
+              "abs_error_pp": 0.40211177492243166,
+              "extrapolated": false,
+              "clamped": false,
+              "calibration_utc": [
+                "2026-01-16T21:16:44Z",
+                "2026-01-28T21:16:45Z",
+                "2026-02-21T21:16:46Z",
+                "2026-03-05T21:16:46Z",
+                "2026-03-17T21:16:47Z"
+              ]
+            },
+            {
+              "utc": "2026-02-21T21:16:46Z",
+              "local": "2026-02-22T05:16:46+08:00",
+              "actual_pct": 51.14028840634132,
+              "predicted_pct": 51.36625124052188,
+              "raw_predicted_pct": 51.36625124052188,
+              "abs_error_pp": 0.22596283418056373,
+              "extrapolated": false,
+              "clamped": false,
+              "calibration_utc": [
+                "2026-01-16T21:16:44Z",
+                "2026-01-28T21:16:45Z",
+                "2026-02-09T21:16:46Z",
+                "2026-03-05T21:16:46Z",
+                "2026-03-17T21:16:47Z"
+              ]
+            },
+            {
+              "utc": "2026-03-05T21:16:46Z",
+              "local": "2026-03-06T05:16:46+08:00",
+              "actual_pct": 41.91422047849037,
+              "predicted_pct": 31.5238583229327,
+              "raw_predicted_pct": 31.5238583229327,
+              "abs_error_pp": 10.390362155557671,
+              "extrapolated": true,
+              "clamped": false,
+              "calibration_utc": [
+                "2026-01-16T21:16:44Z",
+                "2026-01-28T21:16:45Z",
+                "2026-02-09T21:16:46Z",
+                "2026-02-21T21:16:46Z",
+                "2026-03-17T21:16:47Z"
+              ]
+            },
+            {
+              "utc": "2026-03-17T21:16:47Z",
+              "local": "2026-03-18T05:16:47+08:00",
+              "actual_pct": 34.37508362575371,
+              "predicted_pct": 43.25521872381754,
+              "raw_predicted_pct": 43.25521872381754,
+              "abs_error_pp": 8.880135098063832,
+              "extrapolated": false,
+              "clamped": false,
+              "calibration_utc": [
+                "2026-01-16T21:16:44Z",
+                "2026-01-28T21:16:45Z",
+                "2026-02-09T21:16:46Z",
+                "2026-02-21T21:16:46Z",
+                "2026-03-05T21:16:46Z"
+              ]
+            }
+          ]
+        },
+        "baselines": {
+          "calibration_mean": {
+            "n": 5,
+            "mae_pp": 11.715782068048703,
+            "max_abs_error_pp": 22.482418089923044,
+            "rmse_pp": 13.515392323568262,
+            "cohort": "Same low-water leave-one-out folds; remaining calibration mean."
+          },
+          "archive_mean": {
+            "n": 21,
+            "mae_pp": 17.07227326869083,
+            "max_abs_error_pp": 47.339594828601356,
+            "rmse_pp": 20.45503360186243,
+            "mean_pct": 81.71467845435507,
+            "cohort": "All paired archive dates; descriptive in-sample mean."
+          },
+          "previous_official": {
+            "n": 17,
+            "mae_pp": 4.383326435764955,
+            "max_abs_error_pp": 17.52844500632112,
+            "rmse_pp": 6.121590982085831,
+            "cohort": "All consecutive acquisitions exactly 12 Taiwan calendar days apart.",
+            "points": [
+              {
+                "utc": "2025-11-17T21:16:42Z",
+                "local": "2025-11-18T05:16:42+08:00",
+                "previous_utc": "2025-11-05T21:16:41Z",
+                "actual_pct": 88.26313086189556,
+                "predicted_pct": 92.03485737223063,
+                "abs_error_pp": 3.7717265103350712
+              },
+              {
+                "utc": "2025-11-29T21:16:42Z",
+                "local": "2025-11-30T05:16:42+08:00",
+                "previous_utc": "2025-11-17T21:16:42Z",
+                "actual_pct": 84.2127525497762,
+                "predicted_pct": 88.26313086189556,
+                "abs_error_pp": 4.0503783121193635
+              },
+              {
+                "utc": "2025-12-11T21:16:43Z",
+                "local": "2025-12-12T05:16:43+08:00",
+                "previous_utc": "2025-11-29T21:16:42Z",
+                "actual_pct": 80.02909097187153,
+                "predicted_pct": 84.2127525497762,
+                "abs_error_pp": 4.183661577904672
+              },
+              {
+                "utc": "2025-12-23T21:16:43Z",
+                "local": "2025-12-24T05:16:43+08:00",
+                "previous_utc": "2025-12-11T21:16:43Z",
+                "actual_pct": 75.76687513757786,
+                "predicted_pct": 80.02909097187153,
+                "abs_error_pp": 4.26221583429367
+              },
+              {
+                "utc": "2026-01-28T21:16:45Z",
+                "local": "2026-01-29T05:16:45+08:00",
+                "previous_utc": "2026-01-16T21:16:44Z",
+                "actual_pct": 63.90880800390182,
+                "predicted_pct": 68.09808060012,
+                "abs_error_pp": 4.189272596218181
+              },
+              {
+                "utc": "2026-02-09T21:16:46Z",
+                "local": "2026-02-10T05:16:46+08:00",
+                "previous_utc": "2026-01-28T21:16:45Z",
+                "actual_pct": 59.226111089530264,
+                "predicted_pct": 63.90880800390182,
+                "abs_error_pp": 4.682696914371554
+              },
+              {
+                "utc": "2026-02-21T21:16:46Z",
+                "local": "2026-02-22T05:16:46+08:00",
+                "previous_utc": "2026-02-09T21:16:46Z",
+                "actual_pct": 51.14028840634132,
+                "predicted_pct": 59.226111089530264,
+                "abs_error_pp": 8.085822683188944
+              },
+              {
+                "utc": "2026-03-05T21:16:46Z",
+                "local": "2026-03-06T05:16:46+08:00",
+                "previous_utc": "2026-02-21T21:16:46Z",
+                "actual_pct": 41.91422047849037,
+                "predicted_pct": 51.14028840634132,
+                "abs_error_pp": 9.226067927850949
+              },
+              {
+                "utc": "2026-03-17T21:16:47Z",
+                "local": "2026-03-18T05:16:47+08:00",
+                "previous_utc": "2026-03-05T21:16:46Z",
+                "actual_pct": 34.37508362575371,
+                "predicted_pct": 41.91422047849037,
+                "abs_error_pp": 7.539136852736661
+              },
+              {
+                "utc": "2026-07-03T21:16:43Z",
+                "local": "2026-07-04T05:16:43+08:00",
+                "previous_utc": "2026-06-21T21:16:44Z",
+                "actual_pct": 100.0,
+                "predicted_pct": 82.47155499367888,
+                "abs_error_pp": 17.52844500632112
+              },
+              {
+                "utc": "2026-07-15T21:16:42Z",
+                "local": "2026-07-16T05:16:42+08:00",
+                "previous_utc": "2026-07-03T21:16:43Z",
+                "actual_pct": 100.0,
+                "predicted_pct": 100.0,
+                "abs_error_pp": 0.0
+              },
+              {
+                "utc": "2026-07-27T21:16:42Z",
+                "local": "2026-07-28T05:16:42+08:00",
+                "previous_utc": "2026-07-15T21:16:42Z",
+                "actual_pct": 100.0,
+                "predicted_pct": 100.0,
+                "abs_error_pp": 0.0
+              },
+              {
+                "utc": "2026-09-01T21:16:40Z",
+                "local": "2026-09-02T05:16:40+08:00",
+                "previous_utc": "2026-08-20T21:16:40Z",
+                "actual_pct": 100.0,
+                "predicted_pct": 100.0,
+                "abs_error_pp": 0.0
+              },
+              {
+                "utc": "2026-09-13T21:16:40Z",
+                "local": "2026-09-14T05:16:40+08:00",
+                "previous_utc": "2026-09-01T21:16:40Z",
+                "actual_pct": 97.83800633843063,
+                "predicted_pct": 100.0,
+                "abs_error_pp": 2.161993661569369
+              },
+              {
+                "utc": "2026-09-25T21:16:40Z",
+                "local": "2026-09-26T05:16:40+08:00",
+                "previous_utc": "2026-09-13T21:16:40Z",
+                "actual_pct": 99.85063124534575,
+                "predicted_pct": 97.83800633843063,
+                "abs_error_pp": 2.0126249069151214
+              },
+              {
+                "utc": "2026-10-07T21:16:40Z",
+                "local": "2026-10-08T05:16:40+08:00",
+                "previous_utc": "2026-09-25T21:16:40Z",
+                "actual_pct": 99.85063124534575,
+                "predicted_pct": 99.85063124534575,
+                "abs_error_pp": 0.0
+              },
+              {
+                "utc": "2026-10-19T21:16:40Z",
+                "local": "2026-10-20T05:16:40+08:00",
+                "previous_utc": "2026-10-07T21:16:40Z",
+                "actual_pct": 97.02812462116619,
+                "predicted_pct": 99.85063124534575,
+                "abs_error_pp": 2.8225066241795673
+              }
+            ],
+            "excluded": [
+              {
+                "utc": "2025-11-05T21:16:41Z",
+                "reason": "no_previous_acquisition",
+                "days": null
+              },
+              {
+                "utc": "2026-01-16T21:16:44Z",
+                "reason": "not_12_days",
+                "days": 24
+              },
+              {
+                "utc": "2026-06-21T21:16:44Z",
+                "reason": "not_12_days",
+                "days": 96
+              },
+              {
+                "utc": "2026-08-20T21:16:40Z",
+                "reason": "not_12_days",
+                "days": 24
+              }
+            ]
+          },
+          "previous_official_low_water": {
+            "n": 5,
+            "mae_pp": 6.744599394873258,
+            "max_abs_error_pp": 9.226067927850949,
+            "rmse_pp": 7.0259105834742055,
+            "cohort": "Numeric DEF-12 fold dates having an exactly 12-day predecessor.",
+            "points": [
+              {
+                "utc": "2026-01-28T21:16:45Z",
+                "local": "2026-01-29T05:16:45+08:00",
+                "previous_utc": "2026-01-16T21:16:44Z",
+                "actual_pct": 63.90880800390182,
+                "predicted_pct": 68.09808060012,
+                "abs_error_pp": 4.189272596218181
+              },
+              {
+                "utc": "2026-02-09T21:16:46Z",
+                "local": "2026-02-10T05:16:46+08:00",
+                "previous_utc": "2026-01-28T21:16:45Z",
+                "actual_pct": 59.226111089530264,
+                "predicted_pct": 63.90880800390182,
+                "abs_error_pp": 4.682696914371554
+              },
+              {
+                "utc": "2026-02-21T21:16:46Z",
+                "local": "2026-02-22T05:16:46+08:00",
+                "previous_utc": "2026-02-09T21:16:46Z",
+                "actual_pct": 51.14028840634132,
+                "predicted_pct": 59.226111089530264,
+                "abs_error_pp": 8.085822683188944
+              },
+              {
+                "utc": "2026-03-05T21:16:46Z",
+                "local": "2026-03-06T05:16:46+08:00",
+                "previous_utc": "2026-02-21T21:16:46Z",
+                "actual_pct": 41.91422047849037,
+                "predicted_pct": 51.14028840634132,
+                "abs_error_pp": 9.226067927850949
+              },
+              {
+                "utc": "2026-03-17T21:16:47Z",
+                "local": "2026-03-18T05:16:47+08:00",
+                "previous_utc": "2026-03-05T21:16:46Z",
+                "actual_pct": 34.37508362575371,
+                "predicted_pct": 41.91422047849037,
+                "abs_error_pp": 7.539136852736661
+              }
+            ]
+          }
+        },
+        "linear_comparison": [
+          {
+            "n": 3,
+            "evaluation_n": 18,
+            "available": true,
+            "slope": -550.7925581056933,
+            "intercept": 2159.921374986722,
+            "mae_pp": 52.15847373374077,
+            "rmse_pp": 83.59977077936477,
+            "calibration_mean_mae_pp": 18.757626674612364,
+            "extrapolated_n": 17,
+            "outside_0_100_n": 5,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z"
+            ],
+            "evaluation_utc": [
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 4,
+            "evaluation_n": 17,
+            "available": true,
+            "slope": -517.7608898794458,
+            "intercept": 2035.6988686687616,
+            "mae_pp": 52.998664387581044,
+            "rmse_pp": 82.22287363556362,
+            "calibration_mean_mae_pp": 19.501847833879452,
+            "extrapolated_n": 13,
+            "outside_0_100_n": 5,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z"
+            ],
+            "evaluation_utc": [
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 5,
+            "evaluation_n": 16,
+            "available": true,
+            "slope": 67.76184241580921,
+            "intercept": -170.84651265796907,
+            "mae_pp": 15.828881683006127,
+            "rmse_pp": 16.758173835141474,
+            "calibration_mean_mae_pp": 20.331910218445703,
+            "extrapolated_n": 10,
+            "outside_0_100_n": 0,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z"
+            ],
+            "evaluation_utc": [
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 6,
+            "evaluation_n": 15,
+            "available": true,
+            "slope": 369.3772756090336,
+            "intercept": -1306.8667547334132,
+            "mae_pp": 20.070380296142236,
+            "rmse_pp": 28.10250846678295,
+            "calibration_mean_mae_pp": 21.29802981747044,
+            "extrapolated_n": 9,
+            "outside_0_100_n": 4,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z"
+            ],
+            "evaluation_utc": [
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 7,
+            "evaluation_n": 14,
+            "available": true,
+            "slope": 339.596676173602,
+            "intercept": -1194.8621221591238,
+            "mae_pp": 19.284689680481193,
+            "rmse_pp": 25.71989650284131,
+            "calibration_mean_mae_pp": 22.640827968599176,
+            "extrapolated_n": 8,
+            "outside_0_100_n": 4,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z"
+            ],
+            "evaluation_utc": [
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 8,
+            "evaluation_n": 13,
+            "available": true,
+            "slope": 265.74640914072626,
+            "intercept": -917.4657160135246,
+            "mae_pp": 15.806168490908359,
+            "rmse_pp": 19.039762557138175,
+            "calibration_mean_mae_pp": 24.19323943614161,
+            "extrapolated_n": 7,
+            "outside_0_100_n": 2,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z"
+            ],
+            "evaluation_utc": [
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 9,
+            "evaluation_n": 12,
+            "available": true,
+            "slope": 215.1281174520263,
+            "intercept": -727.6996141422477,
+            "mae_pp": 14.589269397368744,
+            "rmse_pp": 16.058216291410652,
+            "calibration_mean_mae_pp": 25.975063325106913,
+            "extrapolated_n": 6,
+            "outside_0_100_n": 0,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z"
+            ],
+            "evaluation_utc": [
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 10,
+            "evaluation_n": 11,
+            "available": true,
+            "slope": 142.6326552859301,
+            "intercept": -456.8948685149429,
+            "mae_pp": 14.587405698011446,
+            "rmse_pp": 16.04202525747103,
+            "calibration_mean_mae_pp": 28.048097353968327,
+            "extrapolated_n": 4,
+            "outside_0_100_n": 0,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z"
+            ],
+            "evaluation_utc": [
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 11,
+            "evaluation_n": 10,
+            "available": true,
+            "slope": 148.23131779404824,
+            "intercept": -477.8297967298688,
+            "mae_pp": 15.488732592383423,
+            "rmse_pp": 16.604787951052906,
+            "calibration_mean_mae_pp": 30.524867653715877,
+            "extrapolated_n": 4,
+            "outside_0_100_n": 0,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z"
+            ],
+            "evaluation_utc": [
+              "2026-06-21T21:16:44Z",
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          },
+          {
+            "n": 12,
+            "evaluation_n": 9,
+            "available": true,
+            "slope": 147.69872461285595,
+            "intercept": -475.9345546704671,
+            "mae_pp": 17.236530898361632,
+            "rmse_pp": 17.612763679784848,
+            "calibration_mean_mae_pp": 30.942972542434696,
+            "extrapolated_n": 2,
+            "outside_0_100_n": 0,
+            "calibration_utc": [
+              "2025-11-05T21:16:41Z",
+              "2025-11-17T21:16:42Z",
+              "2025-11-29T21:16:42Z",
+              "2025-12-11T21:16:43Z",
+              "2025-12-23T21:16:43Z",
+              "2026-01-16T21:16:44Z",
+              "2026-01-28T21:16:45Z",
+              "2026-02-09T21:16:46Z",
+              "2026-02-21T21:16:46Z",
+              "2026-03-05T21:16:46Z",
+              "2026-03-17T21:16:47Z",
+              "2026-06-21T21:16:44Z"
+            ],
+            "evaluation_utc": [
+              "2026-07-03T21:16:43Z",
+              "2026-07-15T21:16:42Z",
+              "2026-07-27T21:16:42Z",
+              "2026-08-20T21:16:40Z",
+              "2026-09-01T21:16:40Z",
+              "2026-09-13T21:16:40Z",
+              "2026-09-25T21:16:40Z",
+              "2026-10-07T21:16:40Z",
+              "2026-10-19T21:16:40Z"
+            ]
+          }
+        ]
+      },
+      "first_detection": {
+        "two_sigma": {
+          "utc": "2026-01-28T21:16:45Z",
+          "local": "2026-01-29T05:16:45+08:00",
+          "storage_pct": 63.90880800390182,
+          "area_km2": 3.7053
+        },
+        "three_sigma": {
+          "utc": "2026-02-09T21:16:46Z",
+          "local": "2026-02-10T05:16:46+08:00",
+          "storage_pct": 59.226111089530264,
+          "area_km2": 3.6648
+        }
+      },
+      "reference_comparison": {
+        "reference": {
+          "high_n": 16,
+          "high_min_pct": 68,
+          "numeric_n": 5,
+          "numeric_mae_pp": 4.0,
+          "numeric_max_abs_error_pp": 10.4,
+          "fold_abs_error_pp": [
+            0.0,
+            0.4,
+            0.2,
+            10.4,
+            8.9
+          ],
+          "misclassified_n": 0,
+          "first_detection_2sigma_date": "2026-01-29",
+          "first_detection_2sigma_pct": 64,
+          "first_detection_3sigma_date": "2026-02-10",
+          "first_detection_3sigma_pct": 59,
+          "previous_official_mae_pp": 4.3,
+          "archive_mean_mae_pp": 17.1
+        },
+        "recomputed": {
+          "high_n": 16,
+          "high_min_pct": 68.09808060012,
+          "numeric_n": 5,
+          "numeric_mae_pp": 3.9825599966742056,
+          "numeric_max_abs_error_pp": 10.390362155557671,
+          "fold_abs_error_pp": [
+            0.014228120646528453,
+            0.40211177492243166,
+            0.22596283418056373,
+            10.390362155557671,
+            8.880135098063832
+          ],
+          "misclassified_n": 0,
+          "first_detection_2sigma_date": "2026-01-29",
+          "first_detection_2sigma_pct": 63.90880800390182,
+          "first_detection_3sigma_date": "2026-02-10",
+          "first_detection_3sigma_pct": 59.226111089530264,
+          "previous_official_mae_pp": 4.383326435764955,
+          "archive_mean_mae_pp": 17.07227326869083
+        },
+        "comparison_precision": "1 decimal pp; integer storage pct; exact counts and local dates",
+        "differences": [
+          {
+            "metric": "previous_official_mae_pp",
+            "reference": 4.3,
+            "recomputed": 4.383326435764955
+          }
+        ],
+        "previous_official_cohort_note": "Strict 12-calendar-day pairs only (n=17). The advice's Liyutan 4.3 pp can be reproduced by including two 24-day intervals (n=19), excluded by this baseline."
+      }
+    },
+    "shimen": {
+      "reservoir": "shimen",
+      "grade": "C",
+      "eligible": false,
+      "reason": "grade_not_a",
+      "full_pool": null,
+      "drawdown": {
+        "start_utc": "2025-11-05T21:16:41Z",
+        "end_utc": "2026-03-17T21:16:47Z",
+        "rule": "UTC acquisition date < index.gap.start",
+        "gap_start": "2026-03-18"
+      },
+      "calibration": [],
+      "points": [],
+      "evaluation": null,
+      "first_detection": {
+        "two_sigma": null,
+        "three_sigma": null
+      },
+      "reference_comparison": {}
+    },
+    "feitsui": {
+      "reservoir": "feitsui",
+      "grade": "B",
+      "eligible": false,
+      "reason": "grade_not_a",
+      "full_pool": null,
+      "drawdown": {
+        "start_utc": "2025-11-05T21:16:41Z",
+        "end_utc": "2026-03-17T21:16:47Z",
+        "rule": "UTC acquisition date < index.gap.start",
+        "gap_start": "2026-03-18"
+      },
+      "calibration": [],
+      "points": [],
+      "evaluation": null,
+      "first_detection": {
+        "two_sigma": null,
+        "three_sigma": null
+      },
+      "reference_comparison": {}
+    }
+  }
+}

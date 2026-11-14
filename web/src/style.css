@@ -2328,3 +2328,46 @@ kbd {
     padding: 18px;
   }
 }
+.storage-explanation {
+  margin: 10px 0;
+  line-height: 1.7;
+}
+.storage-explanation summary {
+  font-weight: 600;
+}
+.storage-explanation ol {
+  padding-left: 22px;
+}
+.storage-estimate-detail {
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  line-height: 1.6;
+}
+.storage-estimate-detail h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+}
+.storage-estimate-detail p {
+  font-size: 14px;
+  margin: 6px 0;
+}
+.estimation-table-scroll {
+  overflow-x: auto;
+}
+.estimation-table-scroll table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.estimation-table-scroll th,
+.estimation-table-scroll td {
+  text-align: left;
+  padding: 7px 9px;
+  border-bottom: 1px solid var(--line);
+}
+.two-stage-evaluation h3 {
+  margin-top: 20px;
+  font-size: 17px;
+}

@@ -211,3 +211,30 @@ The scientific review uses the existing NumPy/SciPy/rasterio environment for eff
 Runtime and installation paths were rechecked using `node --version`, `npm --version`, `uv --version`, `npm --prefix web root` and the actual `pipeline/.venv/bin/python` interpreter. The results still match the versions and repository-relative paths in **Verified installation locations** above. No private local account path is recorded here.
 
 Existing restore, development, test and build commands remain valid. The workspace's rendered scientific tests use the installed React DOM server renderer and JSON fixtures; the existing Vitest installation runs them without an additional testing library or Node type package. These checks describe the implementation, not a completed GitHub push or Vercel deployment; release evidence is maintained separately in [deployment](deployment.md).
+
+## ADV-10 local evaluation and UI
+
+Two-stage storage estimation adds no package and changes neither manifest nor lock file. Python uses the existing `pipeline/.venv` and `pipeline/uv.lock`; the browser uses the existing local npm dependencies and `web/package-lock.json`. The offline evaluator reads already-published JSON, so it needs no Earthdata credentials, raw imagery cache, new environment variable or network request. The generated report is separate from classification exports.
+
+Installation locations were rechecked with `npm --prefix web root` and `pipeline/.venv/bin/python` using `sys.executable`, `sys.prefix` and `sysconfig.get_paths()["purelib"]`. The actual repository-relative paths remain:
+
+| Item | Verified location |
+| --- | --- |
+| Node dependencies | `web/node_modules` |
+| Python interpreter | `pipeline/.venv/bin/python` |
+| Python environment | `pipeline/.venv` |
+| Python packages | `pipeline/.venv/lib/python3.14/site-packages` |
+
+Measured versions remain Node `24.15.0`, npm `11.12.1`, Python `3.14.10` and uv `0.13.8`. From the repository root:
+
+```bash
+uv sync --project pipeline --frozen
+npm --prefix web ci
+uv run --project pipeline python pipeline/scripts/evaluate_storage.py
+uv run --project pipeline python pipeline/scripts/evaluate_storage.py --check
+uv run --project pipeline pytest pipeline/tests/test_storage_estimation.py
+npm --prefix web test
+npm --prefix web run build
+```
+
+The report is `web/public/data/storage-estimation.json`; see [storage prediction](storage-prediction.md) for the fixed definitions, reproducibility and failure behavior. Existing installation, upgrade and removal commands above still apply. This addition has not been pushed or deployed.

@@ -10,6 +10,13 @@ import WeatherContext from "./WeatherContext";
 import { useWeather } from "./useWeather";
 import EventDialog from "./EventDialog";
 import { useEvents } from "./useEvents";
+import { matchingEstimation } from "../storageEstimation";
+import type {
+  EstimationMethod,
+  StorageEstimationReport,
+} from "../storageEstimationTypes";
+import StorageExplanation from "./StorageExplanation";
+import StorageEstimateDetail from "./StorageEstimateDetail";
 
 export default function ChartsWorkspace({
   archive,
@@ -23,6 +30,10 @@ export default function ChartsWorkspace({
   gap,
   lang,
   onReturnToImage,
+  estimationReport = null,
+  estimationError = false,
+  onRetryEstimation = () => {},
+  onMethods = () => {},
 }: {
   archive: NumericalArchive | null;
   official: OfficialSeries | null;
@@ -35,6 +46,10 @@ export default function ChartsWorkspace({
   gap: { start: string; end: string };
   lang: Language;
   onReturnToImage: () => void;
+  estimationReport?: StorageEstimationReport | null;
+  estimationError?: boolean;
+  onRetryEstimation?: () => void;
+  onMethods?: () => void;
 }) {
   const [showPrediction, setShowPrediction] = useState(false);
   const [showWeather, setShowWeather] = useState(false);
@@ -53,6 +68,7 @@ export default function ChartsWorkspace({
     : null;
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [sampleCount, setSampleCount] = useState(6);
+  const [method, setMethod] = useState<EstimationMethod>("two-stage");
   const weather = useWeather(reservoirKey, showWeather);
   const [weatherDate, setWeatherDate] = useState(selected.local.slice(0, 10));
   const [weatherDetailsOpen, setWeatherDetailsOpen] = useState(false);
@@ -80,7 +96,20 @@ export default function ChartsWorkspace({
   const pairCount =
     archive?.series.records.filter((r) => r.official.pct != null).length ?? 0;
   const calibrationCount = Math.min(sampleCount, Math.max(3, pairCount - 3));
-  const canPredict = publishArea && pairCount >= 6;
+  const estimation = matchingEstimation(
+    estimationReport,
+    reservoirKey,
+    archive,
+  );
+  const canPredict = Boolean(
+    publishArea &&
+    archive?.meta.validation.grade === "A" &&
+    estimation?.eligible &&
+    pairCount >= 6,
+  );
+  const selectedEstimate = canPredict
+    ? estimation?.points.find((p) => p.utc === selected.utc)
+    : null;
   const model =
     canPredict && archive
       ? fitStoragePrediction(archive.series.records, calibrationCount)
@@ -108,7 +137,6 @@ export default function ChartsWorkspace({
           <button
             type="button"
             className="text-button chart-method-button"
-            disabled={!canPredict}
             onClick={() => setSettingsOpen(true)}
             aria-haspopup="dialog"
           >
@@ -183,7 +211,43 @@ export default function ChartsWorkspace({
             )}
           </p>
         )}
-        {showPrediction && canPredict && (
+        {archive?.meta.validation.grade === "A" && !estimation && (
+          <p
+            className="compact-model-status"
+            role={estimationError || estimationReport ? "alert" : "status"}
+          >
+            {estimationError || estimationReport
+              ? en
+                ? "Storage evaluation is unavailable or does not match this archive. Estimates are disabled."
+                : "估計評估無法載入或與目前觀測資料不一致，已停用估計。"
+              : en
+                ? "Loading storage evaluation…"
+                : "正在載入估計評估…"}
+            {(estimationError || estimationReport) && (
+              <button type="button" onClick={onRetryEstimation}>
+                {en ? "Retry" : "重試"}
+              </button>
+            )}
+          </p>
+        )}
+        {showPrediction &&
+          canPredict &&
+          method === "two-stage" &&
+          estimation?.evaluation && (
+            <div className="compact-model-status" role="status">
+              <p>
+                {en
+                  ? `High-water ${estimation.evaluation.high.correct_count}/${estimation.evaluation.high.n} match the descriptive bound; ${estimation.evaluation.numeric.n} low-water dates: mean error ${estimation.evaluation.numeric.mae_pp.toFixed(1)} pp; ${estimation.evaluation.high.false_high_count + estimation.evaluation.high.false_low_count} misclassification(s).`
+                  : `高水位 ${estimation.evaluation.high.correct_count}/${estimation.evaluation.high.n} 次符合描述性下限；低水位 ${estimation.evaluation.numeric.n} 次平均差 ${estimation.evaluation.numeric.mae_pp.toFixed(1)} 個百分點；${estimation.evaluation.high.false_high_count + estimation.evaluation.high.false_low_count} 次誤判。`}
+              </p>
+              <p>
+                {en
+                  ? `Largest low-water error ${estimation.evaluation.numeric.max_abs_error_pp.toFixed(1)} pp. Exploratory, not independent validation.`
+                  : `低水位最大誤差 ${estimation.evaluation.numeric.max_abs_error_pp.toFixed(1)} 個百分點；探索性檢驗，非獨立驗證。`}
+              </p>
+            </div>
+          )}
+        {showPrediction && canPredict && method === "linear" && (
           <p className="compact-model-status" role="status">
             {model
               ? `${en ? "Calibration" : "校正"} n=${calibrationCount} · MAE ${model.evaluation.mae?.toFixed(1)} ${en ? "pp" : "百分點"}`
@@ -223,6 +287,20 @@ export default function ChartsWorkspace({
               : "此水庫不提供定量 SAR 面積與預估。"}
           </p>
         )}
+        {archive?.meta.validation.grade === "B" && (
+          <p className="compact-model-status">
+            {en
+              ? "Grade B: storage estimation is disabled; see the method for the reason."
+              : "B 級不做蓄水率估計；原因請看估計方法。"}
+          </p>
+        )}
+        <StorageExplanation
+          report={estimation ? estimationReport : null}
+          lang={lang}
+          onMethods={onMethods}
+          onEstimate={() => setShowPrediction(true)}
+          canEstimate={canPredict}
+        />
         <div className="chart-key">
           <span>
             {en
@@ -239,7 +317,7 @@ export default function ChartsWorkspace({
                 : "☂ 有雨 · ○ 未測得雨 · ? 缺值；鄰近測站，非集水區平均"}
             </span>
           )}
-          {showPrediction && (
+          {showPrediction && canPredict && method === "linear" && (
             <span>
               {en
                 ? "Orange dashed: estimate · ▲/▼ outside 0–100%"
@@ -251,9 +329,20 @@ export default function ChartsWorkspace({
           <summary>{en ? "How to read" : "圖表怎麼看"}</summary>
           <p>
             {en
-              ? "Taiwan dates. Grey shading marks the SAR gap; orange shading marks calibration. Area bars are threshold sensitivity, not confidence intervals. † marks a quality flag. Missing observations remain empty."
-              : "橫軸是台灣日期。灰色陰影是 SAR 缺口，橘色陰影是校正期。面積線段是門檻敏感度，不是信賴區間；† 為品質旗標，缺值保留空白。"}
+              ? "Taiwan dates. Grey shading marks the SAR gap. Area bars are threshold sensitivity, not confidence intervals. † marks a quality flag. Missing observations remain empty."
+              : "橫軸是台灣日期。灰色陰影是 SAR 缺口。面積線段是門檻敏感度，不是信賴區間；† 為品質旗標，缺值保留空白。"}
           </p>
+          {showPrediction && canPredict && (
+            <p>
+              {method === "two-stage"
+                ? en
+                  ? "Pale orange date bands mean high water, with finer levels unresolved. They do not identify a calibration period."
+                  : "淡橘色日期短帶表示水位偏高、分不出更細，並非校正期間。"
+                : en
+                  ? "In the linear comparison, orange shading marks the first-N calibration period."
+                  : "直線對照的橘色陰影表示前 N 筆校正期間。"}
+            </p>
+          )}
           {archive && (
             <p>{gradeDescription(archive.meta.validation.grade, lang)}</p>
           )}
@@ -281,7 +370,14 @@ export default function ChartsWorkspace({
             lang={lang}
             showArea={publishArea}
             showLevel={showLevel}
-            prediction={showPrediction ? model : null}
+            prediction={
+              showPrediction && canPredict && method === "linear" ? model : null
+            }
+            twoStage={
+              showPrediction && canPredict && method === "two-stage"
+                ? estimation
+                : null
+            }
             weather={weather.series}
             weatherInspectionDate={weatherDetailsOpen ? weatherDate : undefined}
             onInspectWeatherDate={inspectWeatherDate}
@@ -293,6 +389,12 @@ export default function ChartsWorkspace({
             {en ? "Loading official observations…" : "正在載入官方觀測…"}
           </p>
         )}
+        {showPrediction &&
+          canPredict &&
+          method === "two-stage" &&
+          selectedEstimate && (
+            <StorageEstimateDetail point={selectedEstimate} lang={lang} />
+          )}
         {showWeather && official && (
           <WeatherContext
             series={weather.series}
@@ -365,6 +467,10 @@ export default function ChartsWorkspace({
         calibrationCount={calibrationCount}
         onSampleCountChange={setSampleCount}
         prediction={model}
+        method={method}
+        onMethodChange={setMethod}
+        estimation={estimation}
+        grade={archive?.meta.validation.grade ?? "unavailable"}
       />
     </section>
   );
