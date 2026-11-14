@@ -3,8 +3,7 @@ import { datePosition, type Acquisition, type OfficialRecord } from "../domain";
 import type { Language } from "../i18n";
 import { canPublishArea, type NumericalArchive } from "../numerical";
 import { niceAxis } from "../science";
-import { relativeChange, signed } from "../workspace";
-import { fitStoragePrediction, predictionSegments } from "../prediction";
+import { predictionSegments, type StoragePrediction } from "../prediction";
 
 export interface AnalysisChartProps {
   archive?: NumericalArchive | null;
@@ -15,6 +14,8 @@ export interface AnalysisChartProps {
   gap: { start: string; end: string };
   lang: Language;
   showArea?: boolean;
+  prediction?: StoragePrediction | null;
+  showLevel?: boolean;
 }
 const ink = "var(--ink, #18181a)",
   muted = "var(--muted, #6b6b70)",
@@ -76,19 +77,20 @@ export default function AnalysisCharts({
   gap,
   lang,
   showArea = false,
+  prediction = null,
+  showLevel = false,
 }: AnalysisChartProps) {
-  const [predictionEnabled, setPredictionEnabled] = useState(false);
-  const [sampleCount, setSampleCount] = useState(6);
   const pointRefs = useRef<(SVGGElement | null)[]>([]);
   const { ref, width } = useChartWidth();
   const en = lang === "en",
     publishArea = Boolean(showArea && archive && canPublishArea(archive));
   const left = 54,
     right = 18,
-    areaTop = 46,
-    plotHeight = 150,
-    gaugeTop = publishArea ? 268 : 46,
-    height = gaugeTop + plotHeight + 48;
+    areaTop = 32,
+    plotHeight = 112,
+    gaugeTop = publishArea ? areaTop + plotHeight + 40 : areaTop,
+    levelTop = gaugeTop + plotHeight + 40,
+    height = (showLevel ? levelTop : gaugeTop) + plotHeight + 38;
   const first = records[0]?.local_date ?? dates[0].local.slice(0, 10),
     last = records.at(-1)?.local_date ?? dates.at(-1)!.local.slice(0, 10);
   const x = (date: string) =>
@@ -102,13 +104,6 @@ export default function AnalysisCharts({
   const areaY = (area: number) =>
     areaTop +
     (1 - (area - axis.minimum) / (axis.maximum - axis.minimum)) * plotHeight;
-  const pairCount =
-    archive?.series.records.filter((r) => r.official.pct != null).length ?? 0;
-  const calibrationCount = Math.min(sampleCount, Math.max(3, pairCount - 3));
-  const prediction =
-    predictionEnabled && publishArea && archive
-      ? fitStoragePrediction(archive.series.records, calibrationCount)
-      : null;
   const gaugeAxis = niceAxis([
     0,
     100,
@@ -130,6 +125,24 @@ export default function AnalysisCharts({
       .filter((record) => record.nisar_utc_date)
       .map((record) => [record.nisar_utc_date, record]),
   );
+  const levelAxis = niceAxis(
+    records.flatMap((r) => (r.level_m == null ? [] : [r.level_m])),
+  );
+  const levelY = (level: number) =>
+    levelTop +
+    (1 -
+      (level - levelAxis.minimum) / (levelAxis.maximum - levelAxis.minimum)) *
+      plotHeight;
+  const levelPaths: string[] = [];
+  let levelSegment = "";
+  for (const record of records) {
+    if (record.level_m == null) {
+      if (levelSegment) levelPaths.push(levelSegment);
+      levelSegment = "";
+    } else
+      levelSegment += `${levelSegment ? "L" : "M"}${x(record.local_date)},${levelY(record.level_m)} `;
+  }
+  if (levelSegment) levelPaths.push(levelSegment);
   const paths: string[] = [];
   let segment = "";
   for (const record of records) {
@@ -147,102 +160,9 @@ export default function AnalysisCharts({
     gapWidth = Math.max(0, x(after?.local.slice(0, 10) ?? gap.end) - gapX);
   const selectedRecord = observations.get(selected.utc_date),
     selectedGauge = gauges.get(selected.utc_date);
-  const minimumRecord = archive?.series.records.reduce(
-    (best, record) =>
-      record.area_km2.primary < best.area_km2.primary ? record : best,
-    archive.series.records[0],
-  );
-  const reference = archive?.series.records[0];
   const ticks = tickDates(first, last, width < 500 ? 3 : 5);
   return (
     <div className="analysis-charts" ref={ref}>
-      <fieldset className="prediction-controls">
-        <legend>Align Prediction Mode</legend>
-        <label>
-          <input
-            type="checkbox"
-            checked={predictionEnabled}
-            disabled={!publishArea || pairCount < 6}
-            onChange={(event) => setPredictionEnabled(event.target.checked)}
-          />{" "}
-          {en ? "Estimate storage from SAR" : "由 SAR 估計蓄水率"}
-        </label>
-        {predictionEnabled && publishArea && (
-          <>
-            <label>
-              {en ? "First calibration pairs" : "前幾個有效配對用於校正"}{" "}
-              <input
-                type="number"
-                min={3}
-                max={pairCount - 3}
-                value={calibrationCount}
-                onChange={(event) => {
-                  const n = Number(event.target.value);
-                  if (Number.isInteger(n) && n >= 3 && n <= pairCount - 3)
-                    setSampleCount(n);
-                }}
-              />
-            </label>
-            <p>
-              {en
-                ? "HH area → storage by linear calibration. Orange squares and dashed lines are estimates on SAR dates, not future forecasts. The shaded dates are calibration; later dates are evaluation. Existing area-method choices used this archive, so this is exploratory evaluation, not independent validation."
-                : "以 HH 水面積線性校正蓄水率。橘色方點與虛線是 SAR 觀測日的估計，不是未來預報。陰影內為校正期，之後才用於檢驗。既有面積方法曾使用此資料集選擇參數，因此這是探索性檢驗，並非獨立驗證。"}
-            </p>
-            {prediction ? (
-              <>
-                <p>
-                  {en ? "Calibration" : "校正"}:{" "}
-                  {dateLabel(prediction.training[0].utc, lang)} –{" "}
-                  {dateLabel(prediction.training.at(-1)!.utc, lang)} (
-                  {calibrationCount}) · {en ? "Later evaluation" : "後續檢驗"}:
-                  n={prediction.evaluation.n}, MAE=
-                  {prediction.evaluation.mae?.toFixed(1)} {en ? "pp" : "百分點"}
-                  , RMSE={prediction.evaluation.rmse?.toFixed(1)}{" "}
-                  {en ? "pp" : "百分點"}
-                </p>
-                <p>
-                  {en ? "Outside calibration area range" : "面積超出校正範圍"}:{" "}
-                  {
-                    prediction.points.filter(
-                      (p) => !p.training && p.extrapolated,
-                    ).length
-                  }{" "}
-                  ·{" "}
-                  {en
-                    ? "Estimates outside 0–100% (not clipped)"
-                    : "預估超出 0–100%（保留原值）"}
-                  :{" "}
-                  {
-                    prediction.points.filter(
-                      (p) => p.predicted < 0 || p.predicted > 100,
-                    ).length
-                  }
-                </p>
-                {(prediction.storageSpan < 10 || prediction.slope <= 0) && (
-                  <p role="status">
-                    {en
-                      ? "Weak calibration: the first samples cover less than 10 percentage points of storage or yield a non-positive slope. Dry-period estimates may be unreliable. Try a longer initial period; evaluation changes with it."
-                      : "校正限制：前幾點蓄水率變幅不足 10 個百分點，或斜率非正值，枯水期估計可能不可靠。可增加前段樣本，但檢驗期間也會跟著改變。"}
-                  </p>
-                )}
-              </>
-            ) : (
-              <p role="status">
-                {en
-                  ? "Insufficient area variation or paired samples to fit this model."
-                  : "面積變化或有效配對不足，無法校正。"}
-              </p>
-            )}
-          </>
-        )}
-        {!publishArea && (
-          <p>
-            {en
-              ? "Unavailable: this reservoir does not publish quantitative SAR area."
-              : "此水庫未通過定量水面積發布條件，停用蓄水率預估。"}
-          </p>
-        )}
-      </fieldset>
       <svg
         viewBox={`0 0 ${width} ${height}`}
         style={{ display: "block", width: "100%" }}
@@ -266,7 +186,11 @@ export default function AnalysisCharts({
             </text>
           </>
         )}
-        {[...(publishArea ? [areaTop] : []), gaugeTop].map((top) => (
+        {[
+          ...(publishArea ? [areaTop] : []),
+          gaugeTop,
+          ...(showLevel ? [levelTop] : []),
+        ].map((top) => (
           <g key={top}>
             <rect
               x={gapX}
@@ -480,25 +404,59 @@ export default function AnalysisCharts({
             </g>
           );
         })}
-        {publishArea && minimumRecord && reference && (
-          <text
-            x={Math.min(
-              width - right - 8,
-              Math.max(left + 8, x(minimumRecord.local.slice(0, 10))),
-            )}
-            y={areaTop + plotHeight + 20}
-            textAnchor="middle"
-            style={{ ...chartText, fill: data }}
+        {showLevel && (
+          <g
+            aria-label={
+              en ? "Official water level time series" : "官方水位時間序列"
+            }
           >
-            {minimumRecord.area_km2.primary.toFixed(3)} km² (
-            {signed(
-              relativeChange(
-                minimumRecord.area_km2.primary,
-                reference.area_km2.primary,
-              ),
+            <text x={left} y={levelTop - 18} style={chartTitle}>
+              {en ? "Official water level (m)" : "官方水位（m）"}
+            </text>
+            {levelAxis.ticks.map((tick) => (
+              <g key={tick}>
+                <line
+                  x1={left}
+                  x2={width - right}
+                  y1={levelY(tick)}
+                  y2={levelY(tick)}
+                  stroke={line}
+                />
+                <text
+                  x={left - 10}
+                  y={levelY(tick) + 4}
+                  textAnchor="end"
+                  style={chartText}
+                >
+                  {tick.toFixed(levelAxis.decimals)}
+                </text>
+              </g>
+            ))}
+            {levelPaths.map((path, i) => (
+              <path
+                key={i}
+                d={path}
+                fill="none"
+                stroke={ink}
+                strokeWidth="1.8"
+              />
+            ))}
+            {selectedGauge?.level_m != null && (
+              <circle
+                cx={x(selected.local.slice(0, 10))}
+                cy={levelY(selectedGauge.level_m)}
+                r="5"
+                fill={data}
+              >
+                <title>{`${dateLabel(selected.utc, lang)}: ${selectedGauge.level_m.toFixed(2)} m`}</title>
+              </circle>
             )}
-            %)
-          </text>
+            {!levelPaths.length && (
+              <text x={left} y={levelTop + 30} style={chartText}>
+                {en ? "No water-level observations" : "尚無水位觀測"}
+              </text>
+            )}
+          </g>
         )}
         {ticks.map((date, i) => (
           <text
@@ -523,16 +481,10 @@ export default function AnalysisCharts({
           <span>{selectedRecord.area_km2.primary.toFixed(2)} km²</span>
         )}
       </p>
-      <p className="chart-note">
-        {en
-          ? "Taiwan local dates. Shading marks the radar gap; official observations continue. Missing gauge values stay empty."
-          : "橫軸為台灣日期。陰影標示雷達缺口，官方觀測仍持續；水位站缺值保留空白。"}
-      </p>
-      {publishArea && (
-        <p className="chart-note">
-          {en
-            ? "Bars show threshold sensitivity, not confidence intervals. † marks a quality flag."
-            : "線段表示門檻敏感度，並非信賴區間。† 表示品質旗標。"}
+      {showLevel && (
+        <p className="chart-selection">
+          {en ? "Official level" : "官方水位"}:{" "}
+          {selectedGauge?.level_m?.toFixed(2) ?? "—"} m
         </p>
       )}
     </div>

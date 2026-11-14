@@ -1,6 +1,6 @@
 # Real Weather: historical CWA observations
 
-Charts now includes a daily rainfall bar chart on the same date range and horizontal scale as the SAR/official-storage timeline. Icons mark the Taiwan-local acquisition dates. Select a calendar date to inspect values between SAR observations, including the long radar gap. Context events remain available below the scientific scatter plot.
+In Charts, select **Real weather** to show a daily rainfall bar chart on the same date range and horizontal scale as the SAR/official-storage timeline. Icons mark the Taiwan-local acquisition dates. Select a calendar date to inspect values between SAR observations, including the long radar gap. Context events are opt-in through **Between observations**. Station provenance and detailed interpretation remain available in the weather disclosure.
 
 ## Sources and coverage
 

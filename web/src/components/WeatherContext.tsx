@@ -215,9 +215,7 @@ export default function WeatherContext({
       className="weather-context"
       aria-label={en ? "Real Weather" : "真實天氣觀測"}
     >
-      <h2>
-        {en ? "Real Weather · CWA observations" : "Real Weather · 氣象署觀測"}
-      </h2>
+      <h2>{en ? "CWA station rainfall" : "氣象署測站雨量"}</h2>
       {error ? (
         <div role="alert">
           <p>
@@ -235,15 +233,6 @@ export default function WeatherContext({
         </p>
       ) : (
         <>
-          <p>
-            {en ? series.station.name : series.station.name_zh} (
-            {series.station.id}) ·{" "}
-            {series.station.distance_to_reservoir_center_km.toFixed(1)} km{" "}
-            {en ? "from reservoir map centre" : "距水庫圖幅中心"} ·{" "}
-            <a href={series.source} target="_blank" rel="noreferrer">
-              CWA CODiS ↗
-            </a>
-          </p>
           <WeatherPlot
             series={series}
             dates={dates}
@@ -253,11 +242,6 @@ export default function WeatherContext({
             onDateChange={setSelectedDate}
             lang={lang}
           />
-          <p className="chart-note">
-            {en
-              ? "Icons mark SAR dates: ☂ rain/trace · ○ no measurable rain, sky unknown · ☀ measured sunshine with no rain · ? missing. Bars cover every calendar day, including the SAR gap."
-              : "圖示對應 SAR 日期：☂ 有雨／雨跡 · ○ 未測得雨、晴陰未知 · ☀ 有日照且無雨 · ? 缺值。長條涵蓋每日，包括 SAR 缺口。"}
-          </p>
           <label>
             {en ? "Inspect a local date" : "查看台灣日期"}{" "}
             <input
@@ -292,6 +276,20 @@ export default function WeatherContext({
             <summary>
               {en ? "Coverage and interpretation" : "資料範圍與判讀方式"}
             </summary>
+            <p>
+              {en ? series.station.name : series.station.name_zh} (
+              {series.station.id}) ·{" "}
+              {series.station.distance_to_reservoir_center_km.toFixed(1)} km{" "}
+              {en ? "from reservoir map centre" : "距水庫圖幅中心"} ·{" "}
+              <a href={series.source} target="_blank" rel="noreferrer">
+                CWA CODiS ↗
+              </a>
+            </p>
+            <p className="chart-note">
+              {en
+                ? "Icons mark SAR dates: ☂ rain/trace · ○ no measurable rain, sky unknown · ☀ measured sunshine with no rain · ? missing. Bars cover every calendar day, including the SAR gap."
+                : "圖示對應 SAR 日期：☂ 有雨／雨跡 · ○ 未測得雨、晴陰未知 · ☀ 有日照且無雨 · ? 缺值。長條涵蓋每日，包括 SAR 缺口。"}
+            </p>
             <p>
               {series.period.start} – {series.period.end} ·{" "}
               {en ? "Missing days" : "缺值日數"}:{" "}

@@ -1,4 +1,3 @@
-import WeatherContext from "./components/WeatherContext";
 // SI-assisted interface and copy. Source observations are not SI-generated.
 import {
   useEffect,
@@ -8,11 +7,9 @@ import {
   type KeyboardEvent,
   type CSSProperties,
 } from "react";
-import EventNotes from "./components/EventNotes";
 import Comparison from "./components/Comparison";
 import AcquisitionTimeline from "./components/AcquisitionTimeline";
-import AnalysisCharts, { ScatterPlot } from "./components/AnalysisCharts";
-import { RadarCanvas } from "./components/RadarViewer";
+import ChartsWorkspace from "./components/ChartsWorkspace";
 import WorkspaceInspector, {
   type InspectorTab,
 } from "./components/WorkspaceInspector";
@@ -966,94 +963,23 @@ function Explorer({ index }: { index: DataIndex }) {
                 </div>
               </div>
             ) : (
-              <section className="charts-workspace">
-                <div className="charts-heading">
-                  <div>
-                    <span className="context-label">
-                      {t("OBSERVATION SERIES", "觀測序列")}
-                    </span>
-                    <h1>
-                      {t(
-                        "Radar area & official storage",
-                        "雷達面積與官方蓄水率",
-                      )}
-                    </h1>
-                    <p>{gradeDescription(grade, lang)}</p>
-                  </div>
-                  {archive && (
-                    <button
-                      className="chart-thumbnail"
-                      onClick={() => {
-                        setSection("image");
-                        imageRef.current?.focus();
-                      }}
-                      aria-label={t(
-                        "Return to selected radar image",
-                        "回到選取日雷達影像",
-                      )}
-                    >
-                      <RadarCanvas
-                        archive={archive}
-                        date={acquisition.utc_date}
-                        polarization="HH"
-                        label={selectedLabel}
-                      />
-                      <span>
-                        {formatAcquisitionDate(acquisition, true, lang)}
-                      </span>
-                    </button>
-                  )}
-                </div>
-                {gaugeError ? (
-                  <div role="alert">
-                    <p>
-                      {t(
-                        "Official records could not load.",
-                        "官方紀錄載入失敗。",
-                      )}
-                    </p>
-                    <button onClick={() => setGaugeRetry((n) => n + 1)}>
-                      {t("Retry", "重試")}
-                    </button>
-                  </div>
-                ) : (
-                  official && (
-                    <AnalysisCharts
-                      key={reservoirKey}
-                      archive={archive}
-                      records={official.records}
-                      dates={index.dates}
-                      selected={acquisition}
-                      onSelect={selectDate}
-                      gap={index.gap}
-                      lang={lang}
-                      showArea={publishArea}
-                    />
-                  )
-                )}
-                {official && (
-                  <WeatherContext
-                    key={reservoirKey}
-                    reservoirKey={reservoirKey}
-                    dates={index.dates}
-                    selected={acquisition}
-                    records={official.records}
-                    lang={lang}
-                  />
-                )}
-                {archive && publishArea && (
-                  <ScatterPlot
-                    archive={archive}
-                    dates={index.dates}
-                    selected={acquisition}
-                    onSelect={selectDate}
-                    gap={index.gap}
-                    lang={lang}
-                    showArea={publishArea}
-                  />
-                )}
-                <EventNotes reservoirKey={reservoirKey} lang={lang} />
-              </section>
+              <ChartsWorkspace
+                key={reservoirKey}
+                archive={archive}
+                official={official}
+                gaugeError={gaugeError}
+                onRetry={() => setGaugeRetry((n) => n + 1)}
+                reservoirKey={reservoirKey}
+                dates={index.dates}
+                selected={acquisition}
+                onSelect={selectDate}
+                gap={index.gap}
+                lang={lang}
+                onReturnToImage={() => {
+                  setSection("image");
+                  imageRef.current?.focus();
+                }}
+              />
             )}
           </div>
           {demo && (
