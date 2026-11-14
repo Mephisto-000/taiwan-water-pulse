@@ -52,9 +52,10 @@ const workspaceProps = {
 };
 
 describe("compact comparable charts", () => {
-  it("starts with four unchecked options and only the two primary chart panels", () => {
+  it("starts with four unchecked options and separate relationship and prediction dialogs", () => {
     const html = renderToStaticMarkup(<ChartsWorkspace {...workspaceProps} />);
     expect(html.match(/type="checkbox"/g)).toHaveLength(4);
+    expect(html).toContain("面積與水位關係圖");
     expect(html).not.toContain('checked=""');
     expect(html).toContain("雷達水面積（km²）");
     expect(html).toContain("官方蓄水率（%）");
@@ -70,9 +71,11 @@ describe("compact comparable charts", () => {
     expect(plot).not.toContain("HH 水面積線性校正");
     expect(html).toContain('viewBox="0 0 640 356"');
     expect(html).toContain("<dialog");
+    expect(html).toContain('aria-controls="area-level-dialog"');
+    expect(html).toContain('id="area-level-dialog" class="scatter-dialog"');
     expect(html).not.toMatch(/<dialog[^>]* open/);
   });
-  it("keeps C-grade prediction disabled while leaving the other controls usable", () => {
+  it("disables C-grade prediction and scatter while keeping the other controls usable", () => {
     const html = renderToStaticMarkup(
       <ChartsWorkspace
         {...workspaceProps}
@@ -80,6 +83,9 @@ describe("compact comparable charts", () => {
       />,
     );
     expect(html.match(/type="checkbox" disabled=""/g)).toHaveLength(1);
+    expect(html).toContain(
+      'disabled="" aria-haspopup="dialog" aria-controls="area-level-dialog"',
+    );
     expect(html).not.toContain("雷達水面積（km²）");
     expect(html).toContain("此水庫不提供定量 SAR 面積與預估");
   });

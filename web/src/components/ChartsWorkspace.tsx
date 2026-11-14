@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Acquisition, OfficialSeries } from "../domain";
 import type { Language } from "../i18n";
 import { canPublishArea, type NumericalArchive } from "../numerical";
@@ -38,6 +38,8 @@ export default function ChartsWorkspace({
   const [showPrediction, setShowPrediction] = useState(false);
   const [showWeather, setShowWeather] = useState(false);
   const [showLevel, setShowLevel] = useState(false);
+  const [scatterOpen, setScatterOpen] = useState(false);
+  const scatterDialog = useRef<HTMLDialogElement>(null);
   const [showEvents, setShowEvents] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [sampleCount, setSampleCount] = useState(6);
@@ -53,6 +55,15 @@ export default function ChartsWorkspace({
   };
   const en = lang === "en";
   const publishArea = Boolean(archive && canPublishArea(archive));
+  useEffect(() => {
+    const dialog = scatterDialog.current;
+    if (scatterOpen && publishArea && dialog && !dialog.open)
+      dialog.showModal();
+    else if ((!scatterOpen || !publishArea) && dialog?.open) dialog.close();
+    return () => {
+      if (dialog?.open) dialog.close();
+    };
+  }, [scatterOpen, publishArea]);
   const pairCount =
     archive?.series.records.filter((r) => r.official.pct != null).length ?? 0;
   const calibrationCount = Math.min(sampleCount, Math.max(3, pairCount - 3));
@@ -115,6 +126,16 @@ export default function ChartsWorkspace({
             {en ? "Between observations" : "觀測之間，發生了什麼？"}
           </label>
         </fieldset>
+        <button
+          type="button"
+          className="text-button"
+          disabled={!publishArea}
+          aria-haspopup="dialog"
+          aria-controls="area-level-dialog"
+          onClick={() => setScatterOpen(true)}
+        >
+          {en ? "Area vs. water level ↗" : "面積與水位關係圖 ↗"}
+        </button>
         {showPrediction && canPredict && (
           <p className="compact-model-status" role="status">
             {model
@@ -235,26 +256,54 @@ export default function ChartsWorkspace({
             lang={lang}
           />
         )}
-        {showLevel && publishArea && archive && (
-          <details className="optional-scatter">
-            <summary>
-              {en
-                ? "Area vs. water level scatter plot"
-                : "展開面積與水位散點圖"}
-            </summary>
-            <ScatterPlot
-              archive={archive}
-              dates={dates}
-              selected={selected}
-              onSelect={onSelect}
-              gap={gap}
-              lang={lang}
-              showArea
-            />
-          </details>
-        )}
         {showEvents && <EventNotes reservoirKey={reservoirKey} lang={lang} />}
       </div>
+      <dialog
+        ref={scatterDialog}
+        id="area-level-dialog"
+        className="scatter-dialog"
+        aria-labelledby="area-level-title"
+        onCancel={() => setScatterOpen(false)}
+        onClose={() => setScatterOpen(false)}
+        onClick={(event) => {
+          const rect = event.currentTarget.getBoundingClientRect();
+          if (
+            event.target === event.currentTarget &&
+            (event.clientX < rect.left ||
+              event.clientX > rect.right ||
+              event.clientY < rect.top ||
+              event.clientY > rect.bottom)
+          )
+            setScatterOpen(false);
+        }}
+      >
+        <div className="scatter-dialog-header">
+          <h2 id="area-level-title">
+            {en
+              ? "Does SAR area grow as water level rises?"
+              : "水位較高時，SAR 面積也較大嗎？"}
+          </h2>
+          <button
+            type="button"
+            aria-label={en ? "Close relationship chart" : "關閉關係圖"}
+            onClick={() => setScatterOpen(false)}
+            autoFocus
+          >
+            ×
+          </button>
+        </div>
+        {scatterOpen && publishArea && archive && (
+          <ScatterPlot
+            archive={archive}
+            dates={dates}
+            selected={selected}
+            onSelect={onSelect}
+            gap={gap}
+            lang={lang}
+            showArea
+          />
+        )}
+      </dialog>
       <PredictionSettings
         open={settingsOpen}
         onClose={() => setSettingsOpen(false)}

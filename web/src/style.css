@@ -2190,8 +2190,7 @@ kbd {
   display: grid;
   gap: 3px;
 }
-.chart-reading-notes summary,
-.optional-scatter summary {
+.chart-reading-notes summary {
   cursor: pointer;
 }
 .chart-reading-notes p {
@@ -2245,11 +2244,11 @@ kbd {
 .compact-charts .chart-note {
   font-size: 14px;
 }
-.optional-scatter {
-  font-size: 16px;
-  margin-top: 10px;
+.scatter-plot > .chart-note {
+  margin: 0 0 8px;
 }
-.prediction-dialog {
+.prediction-dialog,
+.scatter-dialog {
   position: fixed;
   inset: 0;
   width: min(620px, calc(100vw - 32px));
@@ -2264,18 +2263,36 @@ kbd {
   overflow: auto;
   box-shadow: 0 24px 80px #0004;
 }
-.prediction-dialog::backdrop {
+.prediction-dialog::backdrop,
+.scatter-dialog::backdrop {
   background: #0007;
 }
-.prediction-dialog-header {
+.prediction-dialog-header,
+.scatter-dialog-header {
   display: flex;
   align-items: start;
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 18px;
 }
-.prediction-dialog h2 {
+.prediction-dialog h2,
+.scatter-dialog h2 {
   font-size: 20px;
+}
+.scatter-dialog {
+  width: min(920px, calc(100vw - 24px));
+  max-height: calc(100dvh - 24px);
+  padding: clamp(12px, 3vw, 24px);
+}
+.scatter-dialog h2 {
+  margin: 0;
+}
+.scatter-dialog-header button {
+  flex-shrink: 0;
+  min-width: 44px;
+  min-height: 44px;
+  font-size: 24px;
+  line-height: 1;
 }
 .prediction-dialog p {
   margin: 12px 0;

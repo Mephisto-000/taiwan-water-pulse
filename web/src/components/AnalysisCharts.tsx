@@ -629,6 +629,11 @@ export function ScatterPlot({
   };
   return (
     <div className="scatter-plot" ref={ref}>
+      <p className="chart-note">
+        {en
+          ? "Each point is one observation. The horizontal axis is official water level, not date; the vertical axis is SAR area. This checks their relationship; it does not estimate water level."
+          : "每個點是一次觀測。橫軸是官方水位，不是日期；縱軸是 SAR 面積。用來檢查兩者關聯，並未估算水位。"}
+      </p>
       <svg
         viewBox={`0 0 ${width} ${height}`}
         style={{ display: "block", width: "100%" }}
@@ -758,6 +763,9 @@ export function ScatterPlot({
         </text>
       </svg>
       <p className="chart-note">
+        {en
+          ? "Vertical bars show how area changes with the classification threshold, not confidence intervals."
+          : "直立線表示調整分類門檻後的面積範圍，不是信賴區間。"}{" "}
         ● {en ? "Before gap" : "缺口前"}　□ {en ? "After gap" : "缺口後"}　
         {en
           ? "Select a point to inspect its image."
