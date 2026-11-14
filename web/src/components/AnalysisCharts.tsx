@@ -22,8 +22,8 @@ const ink = "var(--ink, #18181a)",
   data = "var(--data, #2f6fed)",
   line = "var(--line, #e5e5e5)",
   bg = "var(--bg, #ffffff)";
-const chartText = { fontSize: 12, fill: muted };
-const chartTitle = { fontSize: 13, fontWeight: 600, fill: ink };
+const chartText = { fontSize: 14, fill: muted };
+const chartTitle = { fontSize: 16, fontWeight: 600, fill: ink };
 const dateLabel = (value: string, lang: Language) =>
   new Intl.DateTimeFormat(lang === "en" ? "en-GB" : "zh-TW", {
     month: "short",
@@ -87,11 +87,11 @@ export default function AnalysisCharts({
     publishArea = Boolean(showArea && archive && canPublishArea(archive));
   const left = 54,
     right = 18,
-    areaTop = 32,
+    areaTop = 46,
     plotHeight = 112,
-    gaugeTop = publishArea ? areaTop + plotHeight + 40 : areaTop,
-    levelTop = gaugeTop + plotHeight + 40,
-    height = (showLevel ? levelTop : gaugeTop) + plotHeight + 38;
+    gaugeTop = publishArea ? areaTop + plotHeight + 44 : areaTop,
+    levelTop = gaugeTop + plotHeight + 44,
+    height = (showLevel ? levelTop : gaugeTop) + plotHeight + 42;
   const first = records[0]?.local_date ?? dates[0].local.slice(0, 10),
     last = records.at(-1)?.local_date ?? dates.at(-1)!.local.slice(0, 10);
   const x = (date: string) =>
@@ -175,7 +175,7 @@ export default function AnalysisCharts({
             <text x={left} y={areaTop - 25} style={chartTitle}>
               {en ? "Radar water area (km²)" : "雷達水面積（km²）"}
             </text>
-            <text x={left} y={areaTop - 10} style={chartText}>
+            <text x={left} y={areaTop - 8} style={chartText}>
               {en ? "Axis does not start at zero" : "座標軸不從 0 開始"}
             </text>
           </>
@@ -555,11 +555,11 @@ export function ScatterPlot({
     (record) => record.official.level_m != null,
   );
   if (!showArea || !canPublishArea(archive) || !eligible.length) return null;
-  const height = 300,
+  const height = 320,
     left = 54,
     right = 18,
-    top = 46,
-    bottom = 62;
+    top = 58,
+    bottom = 64;
   const xAxis = niceAxis(eligible.map((record) => record.official.level_m!)),
     yAxis = niceAxis(
       eligible.flatMap((record) => [
@@ -597,10 +597,10 @@ export function ScatterPlot({
             : "雷達面積對官方水位。圓形為缺口前，方形為缺口後。"
         }
       >
-        <text x={left} y="19" style={chartTitle}>
+        <text x={left} y="22" style={chartTitle}>
           {en ? "Radar water area (km²)" : "雷達水面積（km²）"}
         </text>
-        <text x={left} y="35" style={chartText}>
+        <text x={left} y="42" style={chartText}>
           {en ? "Neither axis starts at zero" : "兩軸皆不從 0 開始"}
         </text>
         {yAxis.ticks.map((tick) => (
@@ -622,12 +622,18 @@ export function ScatterPlot({
             </text>
           </g>
         ))}
-        {xAxis.ticks.map((tick) => (
+        {xAxis.ticks.map((tick, i) => (
           <text
             key={tick}
             x={x(tick)}
             y={height - bottom + 22}
-            textAnchor="middle"
+            textAnchor={
+              i === 0
+                ? "start"
+                : i === xAxis.ticks.length - 1
+                  ? "end"
+                  : "middle"
+            }
             style={chartText}
           >
             {tick.toFixed(xAxis.decimals)}

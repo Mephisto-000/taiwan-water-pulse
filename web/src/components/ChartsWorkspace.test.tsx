@@ -66,7 +66,7 @@ describe("compact comparable charts", () => {
     );
     expect(plot).not.toContain("前幾個有效配對用於校正");
     expect(plot).not.toContain("HH 水面積線性校正");
-    expect(html).toContain('viewBox="0 0 640 334"');
+    expect(html).toContain('viewBox="0 0 640 356"');
     expect(html).toContain("<dialog");
     expect(html).not.toMatch(/<dialog[^>]* open/);
   });
@@ -91,7 +91,7 @@ describe("compact comparable charts", () => {
     const panel = html.slice(html.indexOf('aria-label="官方水位時間序列"'));
     expect(panel.match(/<path /g)).toHaveLength(2);
     expect(panel).toContain("官方水位（m）");
-    expect(html).toContain('viewBox="0 0 640 486"');
+    expect(html).toContain('viewBox="0 0 640 512"');
     expect(html).not.toMatch(/NaN|Infinity/);
     const missing = renderToStaticMarkup(
       <AnalysisCharts

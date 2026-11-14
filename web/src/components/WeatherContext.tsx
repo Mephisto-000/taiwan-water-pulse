@@ -46,8 +46,8 @@ export function WeatherPlot({
   const en = lang === "en",
     left = 54,
     right = 18,
-    top = 36,
-    bottom = 151;
+    top = 42,
+    bottom = 157;
   const x = (day: string) =>
     left + (datePosition(day, first, last) / 100) * (width - left - right);
   const records = series.records.filter(
@@ -58,10 +58,20 @@ export function WeatherPlot({
   const days = Math.max(1, (Date.parse(last) - Date.parse(first)) / 86400000);
   const barWidth = Math.max(0.65, ((width - left - right) / (days + 1)) * 0.8);
   const byDate = new Map(records.map((r) => [r.local_date, r]));
+  // Keep every acquisition's weather symbol readable on narrow charts.
+  const iconSpacing = Math.min(
+    ...dates
+      .slice(1)
+      .map((date, i) =>
+        Math.abs(x(date.local.slice(0, 10)) - x(dates[i].local.slice(0, 10))),
+      ),
+  );
+  const iconRows = Math.max(1, Math.ceil(20 / Math.max(1, iconSpacing)));
+  const extraIconHeight = (iconRows - 1) * 20;
   return (
     <div ref={ref} className="weather-plot">
       <svg
-        viewBox={`0 0 ${width} 230`}
+        viewBox={`0 0 ${width} ${242 + extraIconHeight}`}
         role="img"
         aria-label={
           en
@@ -69,7 +79,7 @@ export function WeatherPlot({
             : "中央氣象署逐日雨量（毫米），與 SAR 共用日期範圍。可用日期欄位查看每日數值。"
         }
       >
-        <text x={left} y={18} fill="var(--ink)" fontSize="13">
+        <text x={left} y={22} fill="var(--ink)" fontSize="16">
           {en ? "Station rainfall (mm/day)" : "測站日雨量（mm／日）"}
         </text>
         {[0, maximum / 2, maximum].map((tick) => (
@@ -86,7 +96,7 @@ export function WeatherPlot({
               y={y(tick) + 4}
               textAnchor="end"
               fill="var(--muted)"
-              fontSize="11"
+              fontSize="14"
             >
               {tick.toFixed(0)}
             </text>
@@ -125,16 +135,16 @@ export function WeatherPlot({
           stroke="var(--prediction, #bf5814)"
           strokeDasharray="3 3"
         />
-        {dates.map((d) => {
+        {dates.map((d, i) => {
           const day = d.local.slice(0, 10),
             row = byDate.get(day);
           return (
             <text
               key={day}
               x={x(day)}
-              y={177}
+              y={187 + (i % iconRows) * 20}
               textAnchor="middle"
-              fontSize="12"
+              fontSize="14"
               fill="var(--ink)"
             >
               <title>{`${day}: ${rainLabel(row, en)}`}</title>
@@ -152,10 +162,10 @@ export function WeatherPlot({
             <text
               key={f}
               x={x(day)}
-              y={206}
-              textAnchor="middle"
+              y={218 + extraIconHeight}
+              textAnchor={f === 0 ? "start" : f === 1 ? "end" : "middle"}
               fill="var(--muted)"
-              fontSize="11"
+              fontSize="14"
             >
               {formatDate(day, true, lang)}
             </text>
