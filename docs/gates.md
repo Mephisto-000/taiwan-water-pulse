@@ -18,7 +18,7 @@ The initial presence-only environment check found no exported Earthdata credenti
 | G-D Temporal direction and validation | Failed; quantitative release stopped | Default HH failed the four-date ordering. R-01 alternatives passed the four calibration dates but failed the remaining 17-date validation: Spearman 0.421569 for Baoshan II and 0.436810 for Liyutan, both below 0.8. |
 | G-E Official source | Passed; discrepancy documented | Anonymous two-date probe returned HTTP 200, 16 records, 7,469 bytes in 0.349 s; all matched the seed at its precision. A subsequent 45-request refresh exported 88 sampled dates per station. All seed percentages match; one 0.01 m level discrepancy follows the actual response. |
 | G-F Reservoir boundaries | Passed | A single anonymous Nominatim lookup returned HTTP 200, 8 polygons, 272,641 bytes in 1.495 s. All reservoir bounding boxes are within the supplied frame. The four main polygon areas match the supplied reference within 0.014%. |
-| G-G Public host | Partially passed | Vercel production is READY; anonymous interaction and all 54 public files verified. Owner push → Git deployment remains untested because private-repo integration is not connected. See deployment.md. |
+| G-G Public host | Partially passed | The SI disclosure release is READY; anonymous interaction and all 55 public files verified. Owner push → Git deployment remains untested because private-repo integration is not connected. See deployment.md. |
 
 ## Authenticated HDF5 measurements
 

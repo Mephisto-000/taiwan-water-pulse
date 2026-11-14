@@ -1,8 +1,8 @@
 # Vercel 部署與安全查核
 
-Production：[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)。狀態 **READY**，2026-11-14（Asia/Taipei）完成。只對外提供此 production 網域。
+Production：[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)。含 SI 標記的版本狀態 **READY**，於 2026-11-14 12:59:45（Asia/Taipei）重新上線。只對外提供此 production 網域。
 
-## 本次部署
+## 目前 production 部署
 
 | 項目 | 實際值 |
 | --- | --- |
@@ -12,13 +12,13 @@ Production：[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.a
 | Deployment | 以 production 網域、來源 SHA 與 artifact manifest 追蹤；內部 deployment ID 不納入 repository 文件 |
 | Target | `production` |
 | 前端 | Vite / React，純靜態產物 |
-| 來源 commit | `44019e1752645fd4198e132721bbe07031d2c103` |
-| 初次部署時的來源狀態 | 部署設定當時尚未 commit；本次提交保存 README、設定與安全檢查，應用 UI 原始碼未修改 |
+| 來源 commit | `2a879bbca54dc55f0a257a1a12dd0284b1289bad` |
+| 發布時的來源狀態 | `main` 已推送 GitHub，工作目錄乾淨；僅發布此版本的靜態產物 |
 | Node / npm | 本機 `24.15.0` / `11.12.1`；Vercel 專案 Node `24.x` |
 | Root Directory | `web` |
 | 發布方式 | 本機建置及檢查後，透過已連結的 Vercel plugin 上傳靜態檔案並建立 production deployment |
-| 上傳範圍 | 54 個 `web/dist` 檔案（54,308,733 bytes），另加一份不含秘密的靜態部署設定 |
-| 處理耗時 | Vercel `buildingAt` 到 `ready` 約 2.715 秒，靜態輸出步驟 138 ms；本機 Vite 建置 174 ms，不包含 TypeScript 檢查 |
+| 發布範圍 | 55 個 `web/dist` 檔案（54,316,881 bytes），另加一份不含秘密的靜態部署設定；11 個更新檔案重新上傳，其餘 44 個沿用已驗證的內容雜湊 |
+| 處理耗時 | Vercel `buildingAt` 到 `ready` 約 2.805 秒，靜態輸出步驟 189 ms；本機 Vite 建置 187 ms，不包含 TypeScript 檢查 |
 | Deployment Protection | Standard Protection：`all_except_custom_domains`；production 未暫時鎖定 |
 | 自訂 Environment Variables | 0 筆；未上傳 Earthdata 認證 |
 | 方案／費用 | 未升級、未啟用 trial 或付費附加功能。連接器未回傳 billing plan，現有帳號是否標為 Hobby 尚未獨立確認 |
@@ -29,7 +29,7 @@ Production：[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.a
 
 ## GitHub 與認證資料查核
 
-2026-11-14 查核範圍為本專案可取得的所有 branch/tag 歷史、目前可提交檔案與公開產物。遠端 `main` / HEAD 與本機來源 commit 一致；遠端當時只有 `main`，完整歷史共 3 個 commit、129 個不同 blob，非 shallow clone。GitHub connector 無此 private repo 權限，因此以本機 Git 的既有認證唯讀取得遠端 refs。匿名開啟 repo 回傳 404，與 private 狀態一致。
+初次部署時的查核範圍為本專案可取得的所有 branch/tag 歷史、目前可提交檔案與公開產物；當時遠端只有 `main`，完整歷史共 3 個 commit、129 個不同 blob，非 shallow clone。GitHub connector 無此 private repo 權限，因此以本機 Git 的既有認證唯讀取得遠端 refs。匿名開啟 repo 回傳 404，與 private 狀態一致。本次 SI 版本已完成提交前掃描；重新部署前另檢查全部 55 個公開產物，Gitleaks 與已知認證、私人姓名、email、本機路徑的比對均無命中。
 
 - Gitleaks `8.30.1`：完整 Git 歷史、目前可提交檔案與 `web/dist` 均為 0 findings；報告啟用完整遮蔽。
 - 本機 `token.md` 存在，`git check-ignore` 確認已忽略，且不在任一歷史 tree。認證檔解析出的 2 個值另在記憶體內與歷史 blob、公開產物做 exact-value comparison，0 matches；值未寫入報告、環境變數或部署設定。
@@ -56,14 +56,15 @@ gitleaks dir web/dist --redact=100 --no-banner
 
 | 檢查 | 結果 |
 | --- | --- |
-| 本機測試 | 15 個前端測試、5 個部署防護測試通過；TypeScript、Prettier、正式建置通過 |
+| 來源版本測試 | 提交前 23 個 Python、15 個前端、5 個部署防護測試與格式檢查通過；本次重新執行 TypeScript、正式建置、部署檢查及秘密掃描通過 |
 | DV-01 匿名公開可達 | 通過；未登入 Vercel 的瀏覽器可操作 production 網域 |
-| DV-02 資料載入 | 通過；線上 54 個檔案皆 HTTP 200，SHA-256 全部與本機相符 |
+| DV-02 資料載入 | 通過；線上 55 個檔案皆 HTTP 200，SHA-256 全部與本機相符 |
 | 互動 | 寶山第二切換鯉魚潭、HH 切換 HV、2026-03-17 切換 2026-06-21；2016 px 雷達圖與官方 82.5% 蓄水率正常顯示，所檢查流程無 console error / warning |
 | DV-03 版本識別 | 通過；deployment metadata 來源 SHA 正確，公開位元組以 manifest 全量比對 |
 | DV-05 快取 | `/assets/`：`public, max-age=31536000, immutable`；`/data/`：`public, max-age=0, must-revalidate` |
 | DV-06 手機行動網路 | 尚未測試；目前只驗證此工作環境與匿名瀏覽器 |
 | DV-07 秘密檢查 | 通過；check:deploy 與 Gitleaks 均無 findings |
+| SI 標記 | 首頁與方法區可見揭露、`SI-generated icon`、HTML meta、`/data/si-usage.json` 及資料來源排除標記均已在線上驗證 |
 | 私人路徑 | `.env`、`token.md`、`.netrc`、`.git/config`、`README.md`、`pipeline/pyproject.toml` 均為 404 |
 | Runtime logs | 本 deployment 最近 15 分鐘 error/fatal 無紀錄；純靜態站沒有 application server runtime |
 
@@ -73,7 +74,7 @@ gitleaks dir web/dist --redact=100 --no-banner
 
 ### SI 標記更新（2026-11-14）
 
-本次 repository 更新加入首頁 SI 提示、圖示可見標記、HTML metadata、`si-usage.json`，以及 index、provenance 和官方資料 JSON 的 SI 使用欄位。本機匯出、測試與建置已驗證；原始預覽圖與觀測值未變動。這次 GitHub push 不會自動更新 production，須另行發布最新產物。上方部署 manifest 與 HTTP 驗證結果仍記錄第一次上線的版本。
+本次更新已透過 artifact API 重新發布，首頁 SI 提示、圖示可見標記、HTML metadata、`si-usage.json`，以及 index、provenance 和官方資料 JSON 的 SI 使用欄位均已上線。原始預覽圖與觀測值未變動。本頁的 manifest 與 HTTP 驗證結果已更新為此版本；第一次部署的紀錄可從 Git 歷史取得。GitHub push 仍不會自動更新 production。
 
 匯入 private repo 時 Vercel 回傳 `repo_not_found`。現在站台已透過 artifact API 上線，**GitHub push 不會自動更新此站台**。
 
@@ -83,6 +84,6 @@ gitleaks dir web/dist --redact=100 --no-banner
 
 ## 回復
 
-這是第一個 production deployment，沒有前一版可供 Instant Rollback。後續發布前保留 manifest、來源 SHA 與已驗證產物；需要時恢復上一個成功的 production deployment，或重新發布已驗證產物。Git integration 啟用後，可由 owner 透過 `git revert` 加上授權的 push 發布修正版。
+本次為第二個 production deployment；上一個成功版本為初次上線的 Browse 版本，來源 SHA `44019e1752645fd4198e132721bbe07031d2c103`。需要時可在 Vercel 後台恢復上一個成功版本，或重新發布已驗證產物。保留 manifest、來源 SHA 與 Git 歷史以追蹤版本。Git integration 啟用後，可由 owner 透過 `git revert` 加上授權的 push 發布修正版；使用平台 rollback 後，後續發版須確認 production 網域已重新指向選定部署。
 
 平台來源：[Node.js 版本](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions)、[Hobby](https://vercel.com/docs/plans/hobby)、[檔案排除](https://vercel.com/docs/deployments/vercel-ignore)、[Standard Protection](https://vercel.com/docs/deployment-protection/methods-to-protect-deployments/vercel-authentication)。

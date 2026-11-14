@@ -102,7 +102,7 @@ The official observation is at 07:00 in Taiwan. A NISAR acquisition around 21:16
 
 ## Deploy to Vercel
 
-The production site is live at **[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)**. Anonymous access, interactive controls and all 54 public files were verified on 2026-11-14.
+The production site is live at **[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)**. The SI disclosure release went live on 2026-11-14 at 12:59 (Asia/Taipei). Anonymous access, interactive controls and all 55 public files were verified.
 
 Vercel is the only deployment platform; the GitHub repository remains private. The current release was built and checked locally, then uploaded as static artifacts. Git integration is not connected, so pushing to GitHub does not automatically update the site. Only checked `web/dist` files are public. Local credentials, caches, Python tooling and private messages are excluded.
 
@@ -160,7 +160,7 @@ Commit `web/package-lock.json` and `pipeline/uv.lock` alongside manifest changes
 
 **SI-generated / SI-assisted:** OpenAI Codex assisted with frontend and Python code, tests, interface copy, translations, documentation and data-preparation workflows. A visible in-app notice, HTML metadata, exported-data metadata and [si-usage.json](si-usage.json) disclose this use. See the [SI usage record](docs/ai-usage.md) for scope and review limits.
 
-These labels are included in the project source. Vercel Git integration is not connected; the production site needs a new artifact deployment to display this update.
+These labels were published to production on 2026-11-14 and can be viewed on the live site. Vercel Git integration is not connected; subsequent updates still require a checked static-artifact deployment.
 
 NASA/ASF browse images, WRA observations and OpenStreetMap data are source records, not SI-generated observations. Data labels describe the preparation code and workflow. Custom SVG icons carry visible SI labels and metadata. Existing screenshots are browser captures; no generated radar images, audio or video are included. Future SI-generated images/video require a visible `SI-generated` watermark; SI-generated audio requires descriptive and metadata disclosure.
 

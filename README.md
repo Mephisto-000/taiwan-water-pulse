@@ -100,7 +100,7 @@ uv run --project pipeline water-pulse export --numeric --reservoirs baoshan2,liy
 
 ## 發布到 Vercel
 
-正式網站已部署至 **[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)**，於 2026-11-14 完成免登入存取、互動操作與 54 個公開檔案的驗證。
+正式網站已部署至 **[taiwan-water-pulse.vercel.app](https://taiwan-water-pulse.vercel.app)**，含 SI 標記的版本於 2026-11-14 12:59（Asia/Taipei）重新上線，已完成免登入存取、互動操作與 55 個公開檔案的驗證。
 
 本專案只使用 Vercel，GitHub repo 維持 private。目前採用本機建置、檢查後上傳靜態產物的方式發布；GitHub 自動部署尚未連結，push 不會自動更新網站。網站公開內容只有通過檢查的 `web/dist`；Earthdata 認證、本機快取、Python pipeline 與私訊不屬於網站產物。
 
@@ -160,7 +160,7 @@ uv remove --project pipeline PACKAGE_NAME
 
 **SI-generated / SI-assisted：** OpenAI Codex 協助產生前端與 Python 程式碼、測試、介面文案、翻譯、文件及資料整理流程。網站提供可見揭露，HTML、匯出資料與 [si-usage.json](si-usage.json) 提供可機讀 metadata；完整範圍見 [SI 使用紀錄](docs/ai-usage.md)。
 
-這些標記已加入本專案；目前 Vercel 尚未連動 GitHub 自動部署，production 網站須重新發布本次產物才會顯示更新。
+這些標記已於 2026-11-14 發布至 production，網站可直接查看。Vercel 尚未連動 GitHub 自動部署，後續更新仍採檢查後發布靜態產物的方式。
 
 NASA／ASF 雷達預覽圖、水利署觀測與 OpenStreetMap 資料來自原始來源，並非 SI 生成；匯出資料的 SI 標記指整理程式與流程。自訂 SVG 圖示以 SI 協助產生，已加上可見標示及 metadata。現有截圖是瀏覽器實際畫面，目前沒有生成式雷達圖片、音訊或影片。後續若加入 SI 生成影像或影片，須有可見的 `SI-generated` 浮水印；SI 音訊須在說明與 metadata 揭露。
 

@@ -1,21 +1,22 @@
 {
-  "verified_at": "2026-11-14T12:32:54.901197+08:00",
+  "verified_at": "2026-11-14T13:00:49.806580+08:00",
   "production_url": "https://taiwan-water-pulse.vercel.app/",
+  "source_commit": "2a879bbca54dc55f0a257a1a12dd0284b1289bad",
   "assets": [
     {
-      "path": "assets/index-ChX-sCQn.css",
-      "status": 200,
-      "sha256_matches": true,
-      "cache_control": "public, max-age=31536000, immutable",
-      "content_type": "text/css; charset=utf-8",
-      "redirected": false
-    },
-    {
-      "path": "assets/index-DurfbbC6.js",
+      "path": "assets/index-B4IhABPV.js",
       "status": 200,
       "sha256_matches": true,
       "cache_control": "public, max-age=31536000, immutable",
       "content_type": "application/javascript; charset=utf-8",
+      "redirected": false
+    },
+    {
+      "path": "assets/index-dypmAjzK.css",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=31536000, immutable",
+      "content_type": "text/css; charset=utf-8",
       "redirected": false
     },
     {
@@ -419,6 +420,14 @@
       "redirected": false
     },
     {
+      "path": "data/si-usage.json",
+      "status": 200,
+      "sha256_matches": true,
+      "cache_control": "public, max-age=0, must-revalidate",
+      "content_type": "application/json; charset=utf-8",
+      "redirected": false
+    },
+    {
       "path": "favicon.svg",
       "status": 200,
       "sha256_matches": true,
@@ -460,5 +469,13 @@
       "path": "pipeline/pyproject.toml",
       "status": 404
     }
-  ]
+  ],
+  "si_checks": {
+    "declaration_version": "1.0.0",
+    "tool": "OpenAI Codex",
+    "source_observations_si_generated": false,
+    "browse_images_si_generated": false,
+    "html_si_meta_present": true,
+    "html_declaration_link_present": true
+  }
 }
