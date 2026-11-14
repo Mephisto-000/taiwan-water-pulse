@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "calibration_utc_dates": [
+    "2025-11-05",
+    "2026-01-16",
+    "2026-03-17",
+    "2026-06-21"
+  ],
+  "validation_utc_dates": [
+    "2025-11-17",
+    "2025-11-29",
+    "2025-12-11",
+    "2025-12-23",
+    "2026-01-28",
+    "2026-02-09",
+    "2026-02-21",
+    "2026-03-05",
+    "2026-07-03",
+    "2026-07-15",
+    "2026-07-27",
+    "2026-08-20",
+    "2026-09-01",
+    "2026-09-13",
+    "2026-09-25",
+    "2026-10-07",
+    "2026-10-19"
+  ],
+  "policy": "Frozen on four calibration dates; no fitting on held-out observations.",
+  "required_heldout_spearman": 0.8,
+  "reservoirs": {
+    "baoshan2": {
+      "classification_channel": "HV",
+      "analysis_buffer_m": 0,
+      "thresholds": {
+        "HH": -14.0,
+        "HV": -15.858759842519685
+      }
+    },
+    "liyutan": {
+      "classification_channel": "HH",
+      "analysis_buffer_m": 150,
+      "thresholds": {
+        "HH": -14.0,
+        "HV": -14.911417322834646
+      }
+    }
+  }
+}

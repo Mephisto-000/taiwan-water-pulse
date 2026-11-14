@@ -1,0 +1,536 @@
+{
+  "source": "https://fhy.wra.gov.tw/Disaster/api/ReservoirHistoryApi/GetComparision",
+  "source_kind": "live",
+  "retrieved_at": "2026-11-14T03:02:42.315314Z",
+  "retrieved_at_precision": "timestamp",
+  "records": [
+    {
+      "local_date": "2025-11-06",
+      "nisar_utc_date": "2025-11-05",
+      "pct": 100.0,
+      "level_m": 151.373
+    },
+    {
+      "local_date": "2025-11-11",
+      "nisar_utc_date": null,
+      "pct": 99.12509098225328,
+      "level_m": 151.137
+    },
+    {
+      "local_date": "2025-11-16",
+      "nisar_utc_date": null,
+      "pct": 99.28752759055321,
+      "level_m": 151.172
+    },
+    {
+      "local_date": "2025-11-18",
+      "nisar_utc_date": "2025-11-17",
+      "pct": 99.16680967400244,
+      "level_m": 151.146
+    },
+    {
+      "local_date": "2025-11-21",
+      "nisar_utc_date": null,
+      "pct": 98.63778115735342,
+      "level_m": 151.032
+    },
+    {
+      "local_date": "2025-11-26",
+      "nisar_utc_date": null,
+      "pct": 97.15011036221291,
+      "level_m": 150.71
+    },
+    {
+      "local_date": "2025-11-30",
+      "nisar_utc_date": "2025-11-29",
+      "pct": 94.90055565746883,
+      "level_m": 150.219
+    },
+    {
+      "local_date": "2025-12-01",
+      "nisar_utc_date": null,
+      "pct": 94.31767748196627,
+      "level_m": 150.091
+    },
+    {
+      "local_date": "2025-12-06",
+      "nisar_utc_date": null,
+      "pct": 91.1719105977312,
+      "level_m": 149.394
+    },
+    {
+      "local_date": "2025-12-11",
+      "nisar_utc_date": null,
+      "pct": 87.53262046642088,
+      "level_m": 148.574
+    },
+    {
+      "local_date": "2025-12-12",
+      "nisar_utc_date": "2025-12-11",
+      "pct": 86.93583606033528,
+      "level_m": 148.438
+    },
+    {
+      "local_date": "2025-12-16",
+      "nisar_utc_date": null,
+      "pct": 84.6481131907994,
+      "level_m": 147.912
+    },
+    {
+      "local_date": "2025-12-21",
+      "nisar_utc_date": null,
+      "pct": 82.3529933901023,
+      "level_m": 147.377
+    },
+    {
+      "local_date": "2025-12-24",
+      "nisar_utc_date": "2025-12-23",
+      "pct": 81.14788536531962,
+      "level_m": 147.093
+    },
+    {
+      "local_date": "2025-12-26",
+      "nisar_utc_date": null,
+      "pct": 80.13687281420682,
+      "level_m": 146.853
+    },
+    {
+      "local_date": "2025-12-31",
+      "nisar_utc_date": null,
+      "pct": 77.90299960352448,
+      "level_m": 146.317
+    },
+    {
+      "local_date": "2026-01-05",
+      "nisar_utc_date": null,
+      "pct": 76.25851386776652,
+      "level_m": 145.917
+    },
+    {
+      "local_date": "2026-01-10",
+      "nisar_utc_date": null,
+      "pct": 74.41253572717751,
+      "level_m": 145.462
+    },
+    {
+      "local_date": "2026-01-15",
+      "nisar_utc_date": null,
+      "pct": 72.35766825059619,
+      "level_m": 144.948
+    },
+    {
+      "local_date": "2026-01-17",
+      "nisar_utc_date": "2026-01-16",
+      "pct": 71.36233719354513,
+      "level_m": 144.696
+    },
+    {
+      "local_date": "2026-01-20",
+      "nisar_utc_date": null,
+      "pct": 69.96165430886035,
+      "level_m": 144.338
+    },
+    {
+      "local_date": "2026-01-25",
+      "nisar_utc_date": null,
+      "pct": 67.69079644237199,
+      "level_m": 143.749
+    },
+    {
+      "local_date": "2026-01-29",
+      "nisar_utc_date": "2026-01-28",
+      "pct": 65.67912704377208,
+      "level_m": 143.218
+    },
+    {
+      "local_date": "2026-01-30",
+      "nisar_utc_date": null,
+      "pct": 65.10571694015586,
+      "level_m": 143.065
+    },
+    {
+      "local_date": "2026-02-04",
+      "nisar_utc_date": null,
+      "pct": 62.076821568267746,
+      "level_m": 142.244
+    },
+    {
+      "local_date": "2026-02-09",
+      "nisar_utc_date": null,
+      "pct": 58.95058258229825,
+      "level_m": 141.373
+    },
+    {
+      "local_date": "2026-02-10",
+      "nisar_utc_date": "2026-02-09",
+      "pct": 58.04963636686411,
+      "level_m": 141.117
+    },
+    {
+      "local_date": "2026-02-14",
+      "nisar_utc_date": null,
+      "pct": 54.65059855966956,
+      "level_m": 140.13
+    },
+    {
+      "local_date": "2026-02-19",
+      "nisar_utc_date": null,
+      "pct": 50.824609885850556,
+      "level_m": 138.974
+    },
+    {
+      "local_date": "2026-02-22",
+      "nisar_utc_date": "2026-02-21",
+      "pct": 48.41054743208138,
+      "level_m": 138.215
+    },
+    {
+      "local_date": "2026-02-24",
+      "nisar_utc_date": null,
+      "pct": 46.77049985502015,
+      "level_m": 137.686
+    },
+    {
+      "local_date": "2026-03-01",
+      "nisar_utc_date": null,
+      "pct": 42.23943541260924,
+      "level_m": 136.184
+    },
+    {
+      "local_date": "2026-03-06",
+      "nisar_utc_date": "2026-03-05",
+      "pct": 38.684757263477074,
+      "level_m": 134.927
+    },
+    {
+      "local_date": "2026-03-11",
+      "nisar_utc_date": null,
+      "pct": 34.32888752286691,
+      "level_m": 133.298
+    },
+    {
+      "local_date": "2026-03-16",
+      "nisar_utc_date": null,
+      "pct": 29.909478058107812,
+      "level_m": 131.531
+    },
+    {
+      "local_date": "2026-03-18",
+      "nisar_utc_date": "2026-03-17",
+      "pct": 28.190063569277505,
+      "level_m": 130.808
+    },
+    {
+      "local_date": "2026-03-21",
+      "nisar_utc_date": null,
+      "pct": 26.468284811641663,
+      "level_m": 130.061
+    },
+    {
+      "local_date": "2026-03-26",
+      "nisar_utc_date": null,
+      "pct": 24.25000960484202,
+      "level_m": 129.06
+    },
+    {
+      "local_date": "2026-03-31",
+      "nisar_utc_date": null,
+      "pct": 22.43040922537688,
+      "level_m": 128.204
+    },
+    {
+      "local_date": "2026-04-05",
+      "nisar_utc_date": null,
+      "pct": 26.010207730567924,
+      "level_m": 129.858
+    },
+    {
+      "local_date": "2026-04-10",
+      "nisar_utc_date": null,
+      "pct": 45.883364709150605,
+      "level_m": 137.413
+    },
+    {
+      "local_date": "2026-04-15",
+      "nisar_utc_date": null,
+      "pct": 58.1574662131211,
+      "level_m": 141.167
+    },
+    {
+      "local_date": "2026-04-20",
+      "nisar_utc_date": null,
+      "pct": 64.46385771830329,
+      "level_m": 142.913
+    },
+    {
+      "local_date": "2026-04-25",
+      "nisar_utc_date": null,
+      "pct": 67.85658345425584,
+      "level_m": 143.813
+    },
+    {
+      "local_date": "2026-04-30",
+      "nisar_utc_date": null,
+      "pct": 71.36604496248201,
+      "level_m": 144.718
+    },
+    {
+      "local_date": "2026-05-05",
+      "nisar_utc_date": null,
+      "pct": 76.94365060835592,
+      "level_m": 146.106
+    },
+    {
+      "local_date": "2026-05-10",
+      "nisar_utc_date": null,
+      "pct": 90.58341288112751,
+      "level_m": 149.286
+    },
+    {
+      "local_date": "2026-05-15",
+      "nisar_utc_date": null,
+      "pct": 97.66380688652396,
+      "level_m": 150.846
+    },
+    {
+      "local_date": "2026-05-20",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.448
+    },
+    {
+      "local_date": "2026-05-25",
+      "nisar_utc_date": null,
+      "pct": 99.94414414946908,
+      "level_m": 151.376
+    },
+    {
+      "local_date": "2026-05-30",
+      "nisar_utc_date": null,
+      "pct": 99.55788173336367,
+      "level_m": 151.255
+    },
+    {
+      "local_date": "2026-06-01",
+      "nisar_utc_date": null,
+      "pct": 98.94967358313804,
+      "level_m": 151.124
+    },
+    {
+      "local_date": "2026-06-04",
+      "nisar_utc_date": null,
+      "pct": 97.90821317429685,
+      "level_m": 150.899
+    },
+    {
+      "local_date": "2026-06-09",
+      "nisar_utc_date": null,
+      "pct": 99.93971114545869,
+      "level_m": 151.374
+    },
+    {
+      "local_date": "2026-06-14",
+      "nisar_utc_date": null,
+      "pct": 99.93025407023651,
+      "level_m": 151.37
+    },
+    {
+      "local_date": "2026-06-19",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.429
+    },
+    {
+      "local_date": "2026-06-22",
+      "nisar_utc_date": "2026-06-21",
+      "pct": 100.0,
+      "level_m": 151.434
+    },
+    {
+      "local_date": "2026-06-24",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.432
+    },
+    {
+      "local_date": "2026-06-29",
+      "nisar_utc_date": null,
+      "pct": 99.99793126479514,
+      "level_m": 151.399
+    },
+    {
+      "local_date": "2026-07-04",
+      "nisar_utc_date": "2026-07-03",
+      "pct": 100.0,
+      "level_m": 151.437
+    },
+    {
+      "local_date": "2026-07-09",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.438
+    },
+    {
+      "local_date": "2026-07-14",
+      "nisar_utc_date": null,
+      "pct": 98.19015222935771,
+      "level_m": 150.96
+    },
+    {
+      "local_date": "2026-07-16",
+      "nisar_utc_date": "2026-07-15",
+      "pct": 96.32533520898659,
+      "level_m": 150.555
+    },
+    {
+      "local_date": "2026-07-19",
+      "nisar_utc_date": null,
+      "pct": 95.00902855150116,
+      "level_m": 150.267
+    },
+    {
+      "local_date": "2026-07-24",
+      "nisar_utc_date": null,
+      "pct": 99.96069403110786,
+      "level_m": 151.382
+    },
+    {
+      "local_date": "2026-07-28",
+      "nisar_utc_date": "2026-07-27",
+      "pct": 100.0,
+      "level_m": 151.416
+    },
+    {
+      "local_date": "2026-07-29",
+      "nisar_utc_date": null,
+      "pct": 99.99793126479514,
+      "level_m": 151.399
+    },
+    {
+      "local_date": "2026-08-03",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.417
+    },
+    {
+      "local_date": "2026-08-08",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.408
+    },
+    {
+      "local_date": "2026-08-13",
+      "nisar_utc_date": null,
+      "pct": 99.78366940429292,
+      "level_m": 151.307
+    },
+    {
+      "local_date": "2026-08-18",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.418
+    },
+    {
+      "local_date": "2026-08-21",
+      "nisar_utc_date": "2026-08-20",
+      "pct": 100.0,
+      "level_m": 151.411
+    },
+    {
+      "local_date": "2026-08-23",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.433
+    },
+    {
+      "local_date": "2026-08-28",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.425
+    },
+    {
+      "local_date": "2026-09-02",
+      "nisar_utc_date": "2026-09-01",
+      "pct": 100.0,
+      "level_m": 151.44
+    },
+    {
+      "local_date": "2026-09-07",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.425
+    },
+    {
+      "local_date": "2026-09-12",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.42
+    },
+    {
+      "local_date": "2026-09-14",
+      "nisar_utc_date": "2026-09-13",
+      "pct": 100.0,
+      "level_m": 151.433
+    },
+    {
+      "local_date": "2026-09-17",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.429
+    },
+    {
+      "local_date": "2026-09-22",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.432
+    },
+    {
+      "local_date": "2026-09-26",
+      "nisar_utc_date": "2026-09-25",
+      "pct": 100.0,
+      "level_m": 151.435
+    },
+    {
+      "local_date": "2026-09-27",
+      "nisar_utc_date": null,
+      "pct": 100.0,
+      "level_m": 151.431
+    },
+    {
+      "local_date": "2026-10-02",
+      "nisar_utc_date": null,
+      "pct": 99.86050814047303,
+      "level_m": 151.34
+    },
+    {
+      "local_date": "2026-10-07",
+      "nisar_utc_date": null,
+      "pct": 99.96512703511826,
+      "level_m": 151.385
+    },
+    {
+      "local_date": "2026-10-08",
+      "nisar_utc_date": "2026-10-07",
+      "pct": 99.00050536245718,
+      "level_m": 151.135
+    },
+    {
+      "local_date": "2026-10-12",
+      "nisar_utc_date": null,
+      "pct": null,
+      "level_m": null
+    },
+    {
+      "local_date": "2026-10-17",
+      "nisar_utc_date": null,
+      "pct": 95.11837598375747,
+      "level_m": 150.291
+    },
+    {
+      "local_date": "2026-10-20",
+      "nisar_utc_date": "2026-10-19",
+      "pct": 93.54170422406175,
+      "level_m": 149.944
+    }
+  ]
+}

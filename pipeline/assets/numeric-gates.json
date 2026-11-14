@@ -1,0 +1,667 @@
+{
+  "schema_version": 1,
+  "code_version": "3f2c9e9d4b3752d756472c436d765878368c6c71",
+  "code_dirty": true,
+  "scientific_status": "failed held-out validation; browse publication retained",
+  "ga": {
+    "passed": true,
+    "granule": "NISAR_L2_PR_GCOV_015_111_A_014_4005_DHDH_A_20260317T211647_20260317T211719_P05023_N_F_J_001",
+    "elapsed_seconds": 91.279,
+    "range_bytes": 79691776,
+    "range_blocks": 76,
+    "reservoirs": [
+      "baoshan2",
+      "liyutan",
+      "shimen",
+      "feitsui"
+    ]
+  },
+  "gb": {
+    "passed": true,
+    "epsg": 32651,
+    "coordinates": {
+      "x_first": 182165.0,
+      "x_last": 524875.0,
+      "y_first": 2907355.0,
+      "y_last": 2570405.0
+    },
+    "datasets": {
+      "HHHH": {
+        "shape": [
+          33696,
+          34272
+        ],
+        "dtype": "float32",
+        "attributes": {
+          "_FillValue": "nan",
+          "description": "b'Covariance between HH and HH'",
+          "units": "b'1'"
+        }
+      },
+      "HVHV": {
+        "shape": [
+          33696,
+          34272
+        ],
+        "dtype": "float32",
+        "attributes": {
+          "_FillValue": "nan",
+          "description": "b'Covariance between HV and HV'",
+          "units": "b'1'"
+        }
+      },
+      "mask": {
+        "shape": [
+          33696,
+          34272
+        ],
+        "dtype": "uint8",
+        "attributes": {
+          "_FillValue": "255",
+          "description": "b'Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255'"
+        }
+      },
+      "numberOfLooks": {
+        "shape": [
+          33696,
+          34272
+        ],
+        "dtype": "float32",
+        "attributes": {
+          "_FillValue": "nan",
+          "description": "b'Number of averaged radar-grid pixels for covariance estimation'",
+          "units": "b'1'"
+        }
+      },
+      "projection": {
+        "shape": [],
+        "dtype": "uint32",
+        "attributes": {
+          "description": "b'Product map grid projection: EPSG code, with additional projection information as HDF5 Attributes'",
+          "epsg_code": "32651"
+        }
+      },
+      "xCoordinates": {
+        "shape": [
+          34272
+        ],
+        "dtype": "float64",
+        "attributes": {
+          "description": "b'X coordinates in specified projection'",
+          "units": "b'meters'"
+        }
+      },
+      "yCoordinates": {
+        "shape": [
+          33696
+        ],
+        "dtype": "float64",
+        "attributes": {
+          "description": "b'Y coordinates in specified projection'",
+          "units": "b'meters'"
+        }
+      }
+    },
+    "mask_policy": "0 invalid/partially focused;255 outside;1–254 valid subswath"
+  },
+  "gc": {
+    "passed": false,
+    "status": "spatial_and_histogram_review_required",
+    "threshold_group_separation_check": true,
+    "threshold_db": -14.0,
+    "low_group_pixels": 6726,
+    "high_group_pixels": 127447,
+    "low_median_db": -14.370078740157481,
+    "high_median_db": -7.440944881889763,
+    "median_separation_db": 6.929133858267718,
+    "histogram_edges_db": [
+      -35.0,
+      -34.0,
+      -33.0,
+      -32.0,
+      -31.0,
+      -30.0,
+      -29.0,
+      -28.0,
+      -27.0,
+      -26.0,
+      -25.0,
+      -24.0,
+      -23.0,
+      -22.0,
+      -21.0,
+      -20.0,
+      -19.0,
+      -18.0,
+      -17.0,
+      -16.0,
+      -15.0,
+      -14.0,
+      -13.0,
+      -12.0,
+      -11.0,
+      -10.0,
+      -9.0,
+      -8.0,
+      -7.0,
+      -6.0,
+      -5.0,
+      -4.0,
+      -3.0,
+      -2.0,
+      -1.0,
+      0.0,
+      1.0,
+      2.0,
+      3.0,
+      4.0,
+      5.0
+    ],
+    "histogram_counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      22,
+      665,
+      6039,
+      13035,
+      15602,
+      8004,
+      5888,
+      6640,
+      7790,
+      11827,
+      18916,
+      15630,
+      10625,
+      6083,
+      2699,
+      1547,
+      1109,
+      546,
+      368,
+      307,
+      157,
+      674
+    ],
+    "interpretation": "Threshold-separated backscatter groups; not independent water truth."
+  },
+  "gd": {
+    "passed": false,
+    "threshold_db": -14.0,
+    "area_km2": {
+      "2025-11-05": 0.135,
+      "2026-01-16": 0.1475,
+      "2026-03-17": 0.1895,
+      "2026-06-21": 0.2006
+    }
+  },
+  "validation_artifact": "pipeline/assets/numeric-validation.json",
+  "calibration_artifact": "pipeline/assets/numeric-calibration.json",
+  "read_metrics": [
+    {
+      "granule": "NISAR_L2_PR_GCOV_004_111_A_014_4005_DHDH_A_20251105T211641_20251105T211714_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:13:14.935860Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_004_111_A_014_4005_DHDH_A_20251105T211641_20251105T211714_P05023_N_F_J_001/NISAR_L2_PR_GCOV_004_111_A_014_4005_DHDH_A_20251105T211641_20251105T211714_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ],
+        "shimen": [
+          402,
+          1006
+        ],
+        "feitsui": [
+          731,
+          1243
+        ]
+      },
+      "range_bytes": 84934656,
+      "range_requests": 81,
+      "status": "passed",
+      "elapsed_seconds": 243.986
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_005_111_A_014_4005_DHDH_A_20251117T211642_20251117T211714_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:21:02.719422Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_005_111_A_014_4005_DHDH_A_20251117T211642_20251117T211714_P05023_N_F_J_001/NISAR_L2_PR_GCOV_005_111_A_014_4005_DHDH_A_20251117T211642_20251117T211714_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 25165824,
+      "range_requests": 24,
+      "status": "passed",
+      "elapsed_seconds": 27.78
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_006_111_A_014_4005_DHDH_A_20251129T211642_20251129T211715_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:21:02.721033Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_006_111_A_014_4005_DHDH_A_20251129T211642_20251129T211715_P05023_N_F_J_001/NISAR_L2_PR_GCOV_006_111_A_014_4005_DHDH_A_20251129T211642_20251129T211715_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 23068672,
+      "range_requests": 22,
+      "status": "passed",
+      "elapsed_seconds": 24.839
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_007_111_A_014_4005_DHDH_A_20251211T211643_20251211T211715_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:21:02.724249Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_007_111_A_014_4005_DHDH_A_20251211T211643_20251211T211715_P05023_N_F_J_001/NISAR_L2_PR_GCOV_007_111_A_014_4005_DHDH_A_20251211T211643_20251211T211715_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 25165824,
+      "range_requests": 24,
+      "status": "passed",
+      "elapsed_seconds": 25.889
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_008_111_A_014_4005_DHDH_A_20251223T211643_20251223T211716_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:21:02.768096Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_008_111_A_014_4005_DHDH_A_20251223T211643_20251223T211716_P05023_N_F_J_001/NISAR_L2_PR_GCOV_008_111_A_014_4005_DHDH_A_20251223T211643_20251223T211716_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 22020096,
+      "range_requests": 21,
+      "status": "passed",
+      "elapsed_seconds": 23.627
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_010_111_A_014_4005_DHDH_A_20260116T211644_20260116T211717_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:13:14.936060Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_010_111_A_014_4005_DHDH_A_20260116T211644_20260116T211717_P05023_N_F_J_001/NISAR_L2_PR_GCOV_010_111_A_014_4005_DHDH_A_20260116T211644_20260116T211717_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ],
+        "shimen": [
+          402,
+          1006
+        ],
+        "feitsui": [
+          731,
+          1243
+        ]
+      },
+      "range_bytes": 82837504,
+      "range_requests": 79,
+      "status": "passed",
+      "elapsed_seconds": 243.986
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_011_111_A_014_4005_DHDH_A_20260128T211645_20260128T211718_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:21:26.395132Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_011_111_A_014_4005_DHDH_A_20260128T211645_20260128T211718_P05023_N_F_J_001/NISAR_L2_PR_GCOV_011_111_A_014_4005_DHDH_A_20260128T211645_20260128T211718_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 25165824,
+      "range_requests": 24,
+      "status": "passed",
+      "elapsed_seconds": 23.261
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_012_111_A_014_4005_DHDH_A_20260209T211646_20260209T211718_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:21:27.560635Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_012_111_A_014_4005_DHDH_A_20260209T211646_20260209T211718_P05023_N_F_J_001/NISAR_L2_PR_GCOV_012_111_A_014_4005_DHDH_A_20260209T211646_20260209T211718_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 23068672,
+      "range_requests": 22,
+      "status": "passed",
+      "elapsed_seconds": 23.373
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_013_111_A_014_4005_DHDH_A_20260221T211646_20260221T211719_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:21:28.613215Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_013_111_A_014_4005_DHDH_A_20260221T211646_20260221T211719_P05023_N_F_J_001/NISAR_L2_PR_GCOV_013_111_A_014_4005_DHDH_A_20260221T211646_20260221T211719_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 23068672,
+      "range_requests": 22,
+      "status": "passed",
+      "elapsed_seconds": 21.202
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_014_111_A_014_4005_DHDH_A_20260305T211646_20260305T211719_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:21:30.499457Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_014_111_A_014_4005_DHDH_A_20260305T211646_20260305T211719_P05023_N_F_J_001/NISAR_L2_PR_GCOV_014_111_A_014_4005_DHDH_A_20260305T211646_20260305T211719_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 23068672,
+      "range_requests": 22,
+      "status": "passed",
+      "elapsed_seconds": 21.262
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_015_111_A_014_4005_DHDH_A_20260317T211647_20260317T211719_P05023_N_F_J_001",
+      "cached": true
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_023_111_A_014_4005_DHDH_A_20260621T211644_20260621T211716_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:13:14.937803Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_023_111_A_014_4005_DHDH_A_20260621T211644_20260621T211716_P05023_N_F_J_001/NISAR_L2_PR_GCOV_023_111_A_014_4005_DHDH_A_20260621T211644_20260621T211716_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ],
+        "shimen": [
+          402,
+          1006
+        ],
+        "feitsui": [
+          731,
+          1243
+        ]
+      },
+      "range_bytes": 83886080,
+      "range_requests": 80,
+      "status": "passed",
+      "elapsed_seconds": 229.438
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_024_111_A_014_4005_DHDH_A_20260703T211643_20260703T211715_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:21:49.656075Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_024_111_A_014_4005_DHDH_A_20260703T211643_20260703T211715_P05023_N_F_J_001/NISAR_L2_PR_GCOV_024_111_A_014_4005_DHDH_A_20260703T211643_20260703T211715_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 22020096,
+      "range_requests": 21,
+      "status": "passed",
+      "elapsed_seconds": 19.321
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_025_111_A_014_4005_DHDH_A_20260715T211642_20260715T211714_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:21:49.815643Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_025_111_A_014_4005_DHDH_A_20260715T211642_20260715T211714_P05023_N_F_J_001/NISAR_L2_PR_GCOV_025_111_A_014_4005_DHDH_A_20260715T211642_20260715T211714_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 23068672,
+      "range_requests": 22,
+      "status": "passed",
+      "elapsed_seconds": 21.576
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_026_111_A_014_4005_DHDH_A_20260727T211642_20260727T211713_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:21:50.933494Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_026_111_A_014_4005_DHDH_A_20260727T211642_20260727T211713_P05023_N_F_J_001/NISAR_L2_PR_GCOV_026_111_A_014_4005_DHDH_A_20260727T211642_20260727T211713_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 24117248,
+      "range_requests": 23,
+      "status": "passed",
+      "elapsed_seconds": 22.996
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_028_111_A_014_4005_DHDH_A_20260820T211640_20260820T211713_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:21:51.761215Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_028_111_A_014_4005_DHDH_A_20260820T211640_20260820T211713_P05023_N_F_J_001/NISAR_L2_PR_GCOV_028_111_A_014_4005_DHDH_A_20260820T211640_20260820T211713_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 22020096,
+      "range_requests": 21,
+      "status": "passed",
+      "elapsed_seconds": 21.295
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_029_111_A_014_4005_DHDH_A_20260901T211640_20260901T211712_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:22:08.977614Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_029_111_A_014_4005_DHDH_A_20260901T211640_20260901T211712_P05023_N_F_J_001/NISAR_L2_PR_GCOV_029_111_A_014_4005_DHDH_A_20260901T211640_20260901T211712_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 22020096,
+      "range_requests": 21,
+      "status": "passed",
+      "elapsed_seconds": 18.839
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_030_111_A_014_4005_DHDH_A_20260913T211640_20260913T211712_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:22:11.391406Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_030_111_A_014_4005_DHDH_A_20260913T211640_20260913T211712_P05023_N_F_J_001/NISAR_L2_PR_GCOV_030_111_A_014_4005_DHDH_A_20260913T211640_20260913T211712_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 25165824,
+      "range_requests": 24,
+      "status": "passed",
+      "elapsed_seconds": 21.17
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_031_111_A_014_4005_DHDH_A_20260925T211640_20260925T211712_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:22:13.056224Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_031_111_A_014_4005_DHDH_A_20260925T211640_20260925T211712_P05023_N_F_J_001/NISAR_L2_PR_GCOV_031_111_A_014_4005_DHDH_A_20260925T211640_20260925T211712_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 23068672,
+      "range_requests": 22,
+      "status": "passed",
+      "elapsed_seconds": 21.094
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_032_111_A_014_4005_DHDH_A_20261007T211640_20261007T211713_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:22:13.930168Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_032_111_A_014_4005_DHDH_A_20261007T211640_20261007T211713_P05023_N_F_J_001/NISAR_L2_PR_GCOV_032_111_A_014_4005_DHDH_A_20261007T211640_20261007T211713_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 24117248,
+      "range_requests": 23,
+      "status": "passed",
+      "elapsed_seconds": 22.826
+    },
+    {
+      "granule": "NISAR_L2_PR_GCOV_033_111_A_014_4005_DHDH_A_20261019T211640_20261019T211713_P05023_N_F_J_001",
+      "accessed_at": "2026-11-14T03:22:27.816390Z",
+      "source_url": "https://nisar.asf.earthdatacloud.nasa.gov/NISAR/NISAR_L2_GCOV_PROVISIONAL_V1/NISAR_L2_PR_GCOV_033_111_A_014_4005_DHDH_A_20261019T211640_20261019T211713_P05023_N_F_J_001/NISAR_L2_PR_GCOV_033_111_A_014_4005_DHDH_A_20261019T211640_20261019T211713_P05023_N_F_J_001.h5",
+      "epsg": 32651,
+      "mask_description": "Mask indicating the subswath number associated with valid GCOV samples. A GCOV sample is only considered valid if it is generated from fully-focused radar samples. If at least one radar sample in the averaging set is partially focused or invalid, the corresponding mask pixel will contain the value 0. GCOV pixels outside of the radar acquisition extent are filled with the value 255",
+      "windows": {
+        "baoshan2": [
+          367,
+          388
+        ],
+        "liyutan": [
+          365,
+          739
+        ]
+      },
+      "range_bytes": 22020096,
+      "range_requests": 21,
+      "status": "passed",
+      "elapsed_seconds": 19.221
+    }
+  ],
+  "diagnostic_warning": "Threshold-derived areas in this report are experiments, not validated water areas."
+}

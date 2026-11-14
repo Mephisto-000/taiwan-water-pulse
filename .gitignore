@@ -1,0 +1,41 @@
+# Python isolation, builds and caches
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Node dependencies and build outputs
+node_modules/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Local working data and secrets
+/data/cache/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.netrc
+.npmrc
+
+# Editor / OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+*.log
+
+# Locks and public data are intentionally tracked
+
+# Local Earthdata credential supplied by the user
+token.md
+**/token.md
