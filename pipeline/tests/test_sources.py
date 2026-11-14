@@ -1,10 +1,12 @@
 import hashlib
 import json
+import shutil
 from datetime import date
 from pathlib import Path
 
 import pytest
 
+from water_pulse.export import export
 from water_pulse.geometry import validate_geometry
 from water_pulse.models import browse_url, observation_times, official_date
 from water_pulse.official import load_seed, parse_live
@@ -108,3 +110,32 @@ def test_real_osm_boundaries_match_reference_and_fit_frame() -> None:
     result = validate_geometry(collection)
     assert len(result) == 8
     assert all(row["relative_error"] < 0.01 and row["bbox_inside_frame"] for row in result)
+
+
+def test_si_disclosure_survives_export_without_changing_source_data(tmp_path: Path) -> None:
+    assets = tmp_path / "pipeline/assets"
+    assets.mkdir(parents=True)
+    shutil.copyfile(ROOT / "si-usage.json", tmp_path / "si-usage.json")
+    shutil.copyfile(ASSETS / "wra_seed.csv", assets / "wra_seed.csv")
+    names = json.loads((ASSETS / "granules_seed.json").read_text())[:1]
+    relative = "browse/20251105_HH.png"
+    original = ROOT / "web/public/data" / relative
+    target = tmp_path / "web/public/data" / relative
+    target.parent.mkdir(parents=True)
+    shutil.copyfile(original, target)
+    digest = hashlib.sha256(target.read_bytes()).hexdigest()
+
+    for _ in range(2):
+        index = export(tmp_path, names, ["baoshan2"], generated_at="2026-11-14")
+        output = tmp_path / "web/public/data"
+        provenance = json.loads((output / "provenance.json").read_text())
+        official = json.loads((output / "official/baoshan2.json").read_text())
+        declaration = json.loads((output / "si-usage.json").read_text())
+        assert declaration == json.loads((ROOT / "si-usage.json").read_text())
+        for document in (index, provenance, official):
+            assert document["si_usage"]["tool"] == "OpenAI Codex"
+            assert document["si_usage"]["source_observations_si_generated"] is False
+            assert document["si_usage"]["browse_images_si_generated"] is False
+        assert provenance["assets"][0]["si_generated"] is False
+        assert hashlib.sha256(target.read_bytes()).hexdigest() == digest
+        assert official["records"] == load_seed(assets / "wra_seed.csv")["baoshan2"]

@@ -1,1 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#164c50"/><path d="M6 17h6l3-8 4 15 3-7h4" fill="none" stroke="#d4eeee" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-labelledby="title">
+  <title id="title">SI-generated project favicon</title>
+  <metadata>SI-generated SVG code by OpenAI Codex. No institutional branding.</metadata>
+  <rect width="32" height="32" rx="9" fill="#164c50"/>
+  <text x="16" y="22" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="700" fill="#d4eeee">SI</text>
+</svg>

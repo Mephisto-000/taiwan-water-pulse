@@ -162,6 +162,8 @@ The pipeline reads exported environment variables and does not implicitly load `
 
 ## Vercel deployment (2026-11-14)
 
+The SI disclosure update adds no dependencies. `si-usage.json` is repository metadata; the existing Python export copies it into `web/public/data/` and labels generated JSON. Rebuild with `uv run --project pipeline water-pulse export --offline`, then run the existing Python/frontend tests and build commands below. Runtime, package-manager versions and measured installation locations remain as recorded above.
+
 `web/package.json` pins `engines.node` to `24.x`; `.nvmrc` pins local Node to `24.15.0`. npm remains `11.12.1`. No package was added or upgraded for deployment. `check:deploy` and its tests use Node built-ins. `npm ci` uses the existing `web/package-lock.json`; modules were rechecked at `web/node_modules` with `npm --prefix web root`. Python paths above were rechecked with the actual project interpreter.
 
 ```bash

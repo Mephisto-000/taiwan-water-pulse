@@ -1,8 +1,24 @@
 {
   "schema_version": 1,
   "mode": "browse",
-  "code_version": "3f2c9e9d4b3752d756472c436d765878368c6c71",
+  "code_version": "e0e5d80f48657c51ee564485a5feb183aee58b3c",
   "code_dirty": true,
+  "si_usage": {
+    "tool": "OpenAI Codex",
+    "declaration_version": "1.0.0",
+    "declaration_data_path": "si-usage.json",
+    "code_status": "SI-generated and SI-assisted",
+    "status": "Prepared using SI-assisted code; source observations are not SI-generated",
+    "scope": [
+      "source retrieval",
+      "format conversion",
+      "sampling and export",
+      "validation diagnostics"
+    ],
+    "source_observations_si_generated": false,
+    "browse_images_si_generated": false,
+    "synthetic_arrays": "Unit-test fixtures only; not exported as observations"
+  },
   "scientific_evidence": {
     "access_and_structure": "pipeline/assets/numeric-gates.json",
     "frozen_calibration": "pipeline/assets/numeric-calibration.json",
@@ -26,6 +42,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -41,6 +58,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -56,6 +74,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -71,6 +90,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -86,6 +106,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -101,6 +122,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -116,6 +138,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -131,6 +154,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -146,6 +170,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -161,6 +186,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -176,6 +202,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -191,6 +218,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -206,6 +234,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -221,6 +250,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -236,6 +266,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -251,6 +282,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -266,6 +298,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -281,6 +314,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -296,6 +330,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -311,6 +346,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -326,6 +362,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -341,6 +378,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -356,6 +394,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -371,6 +410,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -386,6 +426,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -401,6 +442,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -416,6 +458,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -431,6 +474,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -446,6 +490,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -461,6 +506,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -476,6 +522,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -491,6 +538,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -506,6 +554,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -521,6 +570,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -536,6 +586,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -551,6 +602,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -566,6 +618,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -581,6 +634,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -596,6 +650,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -611,6 +666,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -626,6 +682,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     },
     {
@@ -641,6 +698,7 @@
       "width": 2016,
       "height": 1982,
       "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+      "si_generated": false,
       "http_status": "200"
     }
   ],

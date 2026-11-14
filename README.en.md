@@ -156,6 +156,12 @@ uv remove --project pipeline PACKAGE_NAME
 
 Commit `web/package-lock.json` and `pipeline/uv.lock` alongside manifest changes. Use `npm install --save-dev` / `uv add --dev` for development-only tools. See [dependency management](docs/dependency-management.md) for exact versions, measured installation locations, environment variables and troubleshooting.
 
-## License and AI assistance
+## SI usage disclosure and license
 
-Project code is licensed under [MIT](LICENSE). Third-party data and libraries retain their own terms; the MIT license does not relicense them. [AI usage](docs/ai-usage.md) records generated code and text and the limits of review.
+**SI-generated / SI-assisted:** OpenAI Codex assisted with frontend and Python code, tests, interface copy, translations, documentation and data-preparation workflows. A visible in-app notice, HTML metadata, exported-data metadata and [si-usage.json](si-usage.json) disclose this use. See the [SI usage record](docs/ai-usage.md) for scope and review limits.
+
+These labels are included in the project source. Vercel Git integration is not connected; the production site needs a new artifact deployment to display this update.
+
+NASA/ASF browse images, WRA observations and OpenStreetMap data are source records, not SI-generated observations. Data labels describe the preparation code and workflow. Custom SVG icons carry visible SI labels and metadata. Existing screenshots are browser captures; no generated radar images, audio or video are included. Future SI-generated images/video require a visible `SI-generated` watermark; SI-generated audio requires descriptive and metadata disclosure.
+
+Project code uses the [MIT license](LICENSE); third-party data and libraries retain their own terms. Custom graphics do not use NASA branding. Mission and agency names identify data sources, without implying endorsement. Automated checks do not establish independent scientific review.

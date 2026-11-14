@@ -71,6 +71,10 @@ gitleaks dir web/dist --redact=100 --no-banner
 
 ## 更新與 Git integration
 
+### SI 標記更新（2026-11-14）
+
+本次 repository 更新加入首頁 SI 提示、圖示可見標記、HTML metadata、`si-usage.json`，以及 index、provenance 和官方資料 JSON 的 SI 使用欄位。本機匯出、測試與建置已驗證；原始預覽圖與觀測值未變動。這次 GitHub push 不會自動更新 production，須另行發布最新產物。上方部署 manifest 與 HTTP 驗證結果仍記錄第一次上線的版本。
+
 匯入 private repo 時 Vercel 回傳 `repo_not_found`。現在站台已透過 artifact API 上線，**GitHub push 不會自動更新此站台**。
 
 若日後要完成附件 §5 步驟 8，owner 需在 GitHub 的 Vercel App 權限中只授權此 repository，再將專案連結至 `Mephisto-000/taiwan-water-pulse`，保留 production branch `main`、Root Directory `web`、Vite、Node `24.x`。經明確授權提交與推送本機設定後，確認 `web/vercel.json` 生效，Environment Variables 維持空白。

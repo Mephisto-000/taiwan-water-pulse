@@ -1,4 +1,4 @@
-"""Export transparent browse-only manifests; never substitute preview bytes for GCOV."""
+"""SI-assisted export code; scope and source-data exclusions: /si-usage.json."""
 
 import hashlib
 import json
@@ -14,6 +14,14 @@ from .sources import png_info, write_json
 def export(
     root: Path, names: list[str], reservoir_keys: list[str], *, generated_at: str
 ) -> dict[str, Any]:
+    declaration = json.loads((root / "si-usage.json").read_text())
+    si_usage = {
+        "tool": declaration["tool"],
+        "declaration_version": declaration["declaration_version"],
+        "declaration_data_path": "si-usage.json",
+        "code_status": declaration["code"]["status"],
+        **declaration["data"],
+    }
     assets = root / "pipeline" / "assets"
     output = root / "web" / "public" / "data"
     source_path = assets / "source-checks.json"
@@ -50,6 +58,7 @@ def export(
                     "width": width,
                     "height": height,
                     "processing": "ASF browse PNG copied byte-for-byte; no quantitative processing",
+                    "si_generated": False,
                     "http_status": original.get("http_status"),
                 }
             )
@@ -86,6 +95,7 @@ def export(
                 "source_kind": kind,
                 "retrieved_at": cache["retrieved_at"] if cache else "2026-11-14",
                 "retrieved_at_precision": "timestamp" if cache else "date",
+                "si_usage": si_usage,
                 "records": records,
             },
         )
@@ -96,6 +106,7 @@ def export(
         "fallback_level": 2,
         "collection": COLLECTION,
         "generated_at": generated_at,
+        "si_usage": si_usage,
         "reservoirs": [item for item in RESERVOIRS if item["key"] in reservoir_keys],
         "dates": date_records,
         "gap": {"start": "2026-03-18", "end": "2026-06-20"},
@@ -136,6 +147,7 @@ def export(
         "mode": "browse",
         "code_version": sha,
         "code_dirty": dirty,
+        "si_usage": si_usage,
         "scientific_evidence": {
             "access_and_structure": "pipeline/assets/numeric-gates.json",
             "frozen_calibration": "pipeline/assets/numeric-calibration.json",
@@ -171,4 +183,5 @@ def export(
         ],
     }
     write_json(output / "provenance.json", provenance)
+    write_json(output / "si-usage.json", declaration)
     return index

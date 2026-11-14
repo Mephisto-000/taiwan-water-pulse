@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "declaration_version": "1.0.0",
+  "tool": "OpenAI Codex",
+  "description": "SI-generated and SI-assisted code, text and data-preparation workflows. SI means Super Intelligence in the supplied submission guidance.",
+  "code": {
+    "status": "SI-generated and SI-assisted",
+    "scope": [
+      "React/TypeScript interface",
+      "Python pipeline",
+      "tests",
+      "build and deployment configuration"
+    ]
+  },
+  "text": {
+    "status": "SI-generated and SI-assisted",
+    "scope": [
+      "interface copy",
+      "documentation",
+      "translations",
+      "submission drafts"
+    ]
+  },
+  "data": {
+    "status": "Prepared using SI-assisted code; source observations are not SI-generated",
+    "scope": [
+      "source retrieval",
+      "format conversion",
+      "sampling and export",
+      "validation diagnostics"
+    ],
+    "source_observations_si_generated": false,
+    "browse_images_si_generated": false,
+    "synthetic_arrays": "Unit-test fixtures only; not exported as observations"
+  },
+  "graphics": {
+    "status": "SI-generated SVG code",
+    "scope": [
+      "custom pulse icon",
+      "favicon"
+    ],
+    "visible_label": "SI-generated icon",
+    "favicon_mark": "SI",
+    "institutional_branding_used": false
+  },
+  "media": {
+    "si_generated_raster_images": false,
+    "audio_included": false,
+    "video_included": false,
+    "screenshots": "Browser captures of the SI-assisted application, not generated satellite observations",
+    "future_generated_media": "Visibly watermark SI-generated images/video; disclose SI-generated audio in descriptive text and metadata"
+  },
+  "review": "Automated checks do not establish scientific accuracy or independent human review. Quantitative radar results remain withheld after failed held-out validation."
+}

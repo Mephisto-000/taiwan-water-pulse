@@ -156,6 +156,12 @@ uv remove --project pipeline PACKAGE_NAME
 
 依賴變更時，請一併提交 `web/package-lock.json`、`pipeline/uv.lock` 與對應設定檔。開發用套件使用 `npm install --save-dev` 或 `uv add --dev`。實際版本、查證過的安裝位置、環境變數與常見問題見[依賴管理文件](docs/dependency-management.md)。
 
-## 授權與 AI 協作
+## SI 使用揭露與授權
 
-程式碼採用 [MIT 授權](LICENSE)。第三方資料與套件各自保留原有授權；MIT 不會重新授權這些內容。[AI 使用紀錄](docs/ai-usage.md)說明程式碼、文案的產生方式與審閱範圍。
+**SI-generated / SI-assisted：** OpenAI Codex 協助產生前端與 Python 程式碼、測試、介面文案、翻譯、文件及資料整理流程。網站提供可見揭露，HTML、匯出資料與 [si-usage.json](si-usage.json) 提供可機讀 metadata；完整範圍見 [SI 使用紀錄](docs/ai-usage.md)。
+
+這些標記已加入本專案；目前 Vercel 尚未連動 GitHub 自動部署，production 網站須重新發布本次產物才會顯示更新。
+
+NASA／ASF 雷達預覽圖、水利署觀測與 OpenStreetMap 資料來自原始來源，並非 SI 生成；匯出資料的 SI 標記指整理程式與流程。自訂 SVG 圖示以 SI 協助產生，已加上可見標示及 metadata。現有截圖是瀏覽器實際畫面，目前沒有生成式雷達圖片、音訊或影片。後續若加入 SI 生成影像或影片，須有可見的 `SI-generated` 浮水印；SI 音訊須在說明與 metadata 揭露。
+
+程式碼採用 [MIT 授權](LICENSE)。第三方資料與套件保留原有授權。自訂圖示不使用 NASA 品牌標誌；任務名稱與機構署名僅用於資料來源說明，不代表官方背書。自動測試不代表獨立科學審查。

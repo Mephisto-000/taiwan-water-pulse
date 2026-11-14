@@ -26,9 +26,9 @@ NISAR mission (NASA/JPL and ISRO), ASF DAAC distribution, collection `NISAR_L2_G
 - 經濟部水利署 防災資訊服務網 supplies official storage percentages and water levels; the published cache contains 88 sampled dates per station and was retrieved on 14 November 2026. The separate 25-date seed is retained as a fallback.
 - © OpenStreetMap contributors provide map context under ODbL. Mapped water boundaries are not validation ground truth.
 
-## Use of AI
+## Use of Super Intelligence (SI)
 
-Codex assisted with application code, pipeline utilities, tests, documentation and this draft. No AI-generated observation imagery or fabricated measurements are included. Automated checks do not replace independent scientific review. Details are in `docs/ai-usage.md`.
+**SI-generated / SI-assisted:** OpenAI Codex assisted with application code, pipeline utilities, tests, UI text, documentation, translations and this draft. Data preparation runs through SI-assisted code; NASA/ASF browse imagery and WRA observations remain source records, not SI-generated measurements. The app displays an SI disclosure; HTML and exported JSON provide SI metadata, with a machine-readable declaration in `si-usage.json`. Custom SVG icons are visibly identified as SI-generated and contain metadata. There is no generated radar imagery, audio or video in the current repository. Automated checks do not replace independent scientific review. Details: [SI usage](../ai-usage.md).
 
 ## Links and publication checklist
 

@@ -1,5 +1,7 @@
 # 30-second demo storyboard
 
+**SI-assisted text:** This storyboard and narration draft were prepared with OpenAI Codex. No audio/video file is included. A human-read narration is not SI-generated audio. If using an SI voice, disclose “SI-generated narration” in the description and audio/video metadata. Any SI-generated visual footage must carry a visible “SI-generated” watermark and must not use NASA branding. Keep the application's visible SI disclosure in the recording.
+
 | Time | Screen / action | English narration |
 | --- | --- | --- |
 | 0–5 s | Baoshan II, 6 November 2025 official date. Show full-frame radar browse and gauge. | “Taiwan's Water Pulse follows reservoirs through NISAR's first year.” |

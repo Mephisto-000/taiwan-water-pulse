@@ -1227,6 +1227,27 @@ h1 {
   color: #8b9e8d;
   white-space: nowrap;
 }
+.si-disclosure {
+  margin: 20px 0;
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #edf3ed;
+  color: #315347;
+  font-size: 12px;
+  line-height: 1.7;
+}
+.si-disclosure p {
+  margin: 4px 0;
+}
+.si-disclosure a {
+  text-decoration: underline;
+}
+.brand .si-icon-label {
+  font-size: 10px;
+  letter-spacing: 0;
+  color: #315347;
+}
 footer {
   border-top: 1px solid var(--border);
   padding: 22px 48px;

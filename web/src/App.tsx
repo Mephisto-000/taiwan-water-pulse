@@ -1,3 +1,4 @@
+// SI-generated and SI-assisted code and copy. Scope: /si-usage.json.
 import { useEffect, useRef, useState } from "react";
 import GaugeChart from "./components/GaugeChart";
 import Locator from "./components/Locator";
@@ -56,6 +57,9 @@ const chapters = [
 function PulseIcon() {
   return (
     <svg viewBox="0 0 34 34" fill="none" aria-hidden="true">
+      <metadata>
+        SI-generated project icon; OpenAI Codex; no agency branding.
+      </metadata>
       <path
         d="M3 19h8l4-12 6 22 4-10h6"
         stroke="currentColor"
@@ -296,7 +300,8 @@ function Explorer({ index }: { index: DataIndex }) {
           </span>
           <span>
             台灣水庫的旱澇節奏
-            <small>Taiwan’s Water Pulse · NISAR</small>
+            <small>Taiwan’s Water Pulse</small>
+            <small className="si-icon-label">SI-generated icon</small>
           </span>
         </a>
         <nav aria-label="主要導覽">
@@ -328,6 +333,16 @@ function Explorer({ index }: { index: DataIndex }) {
         </a>
       </header>
       <main id="explorer">
+        <aside className="si-disclosure" aria-label="SI 使用揭露">
+          <strong>SI-assisted project · SI 使用揭露</strong>
+          <p>
+            OpenAI Codex 協助產生程式碼、介面文案、文件與資料整理流程。
+            雷達預覽圖與官方觀測來自原始資料來源，並非 SI 生成。
+          </p>
+          <a href={dataUrl("si-usage.json")} target="_blank" rel="noreferrer">
+            查看使用範圍與 metadata ↗
+          </a>
+        </aside>
         <section className="intro">
           <div>
             <div className="eyebrow">
@@ -952,6 +967,11 @@ function Explorer({ index }: { index: DataIndex }) {
               <div>
                 <h3>判讀前，請先了解</h3>
                 <ul>
+                  <li>
+                    SI 使用：OpenAI Codex 協助產生程式碼、文案與資料整理流程；
+                    原始影像與官方觀測並非 SI 生成。自訂圖示已標記為
+                    SI-generated。 自動檢查不代表獨立科學審查。
+                  </li>
                   <li>
                     採用升軌（Ascending）Track 111、Frame 014、40+5
                     MHz、HH/HV；此資料不含 VV 或 VH 量測。

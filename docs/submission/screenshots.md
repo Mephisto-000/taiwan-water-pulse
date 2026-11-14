@@ -1,5 +1,7 @@
 # Representative screenshot checklist
 
+SI disclosure: these JPGs are real browser captures of an SI-assisted application, not SI-generated radar observations. They predate the new SI notice and remain historical evidence. For submission, capture the updated interface with its visible SI disclosure and icon label; label any separately generated image “SI-generated” on the image itself. Source ASF imagery remains unmodified.
+
 Captured from the local initial-release application:
 
 - [Dry winter — Baoshan II, HH](01-dry-winter.jpg): 17 March 2026 UTC acquisition / 18 March Taiwan gauge date, 28.2% official storage. The browse notice, unavailable numerical area, observation gap, official curve and attribution are visible.
