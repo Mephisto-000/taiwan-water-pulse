@@ -113,6 +113,58 @@ describe("compact comparable charts", () => {
     expect(html).not.toContain("<fieldset");
     expect(html).not.toMatch(/NaN|Infinity/);
   });
+  it("keeps official curves, ticks and point coordinates stable with prediction on or off", () => {
+    const model = fitStoragePrediction(archive.series.records, 6)!;
+    const extremes = {
+      ...model,
+      points: model.points.map((p, i) => ({
+        ...p,
+        predicted:
+          i === 0 ? 145 : i === model.points.length - 1 ? -25 : p.predicted,
+      })),
+    };
+    const render = (prediction: typeof model | null) =>
+      renderToStaticMarkup(
+        <AnalysisCharts {...chartProps} prediction={prediction} showLevel />,
+      );
+    const off = render(null);
+    const officialPaths = (html: string) =>
+      html.match(/<path[^>]*stroke="var\(--ink, #18181a\)"[^>]*>/g);
+    const ticks = (html: string) =>
+      html.match(/<text x="44"[^>]*>[^<]*<\/text>/g);
+    const points = (html: string) => html.match(/<circle[^>]*>/g);
+    for (const prediction of [
+      model,
+      extremes,
+      fitStoragePrediction(archive.series.records, 10)!,
+    ]) {
+      const on = render(prediction);
+      expect(officialPaths(on)).toEqual(officialPaths(off));
+      expect(ticks(on)).toEqual(ticks(off));
+      expect(points(on)).toEqual(points(off));
+    }
+  });
+  it("marks overflow without changing raw predictions or leaking lines into adjacent panels", () => {
+    const model = fitStoragePrediction(archive.series.records, 6)!;
+    const prediction = {
+      ...model,
+      points: model.points
+        .slice(0, 3)
+        .map((p, i) => ({ ...p, predicted: [145, 50, -25][i] })),
+    };
+    const before = JSON.stringify(prediction);
+    const html = renderToStaticMarkup(
+      <AnalysisCharts {...chartProps} prediction={prediction} />,
+    );
+    expect(html).toContain("<clipPath");
+    expect(html).toContain('clip-path="url(#');
+    expect(html.match(/class="prediction-overflow"/g)).toHaveLength(2);
+    expect(html).toContain("145.0%");
+    expect(html).toContain("-25.0%");
+    expect(html).toContain("超過 100%");
+    expect(html).toContain("低於 0%");
+    expect(JSON.stringify(prediction)).toBe(before);
+  });
   it("keeps the sample bounds, metrics and calibration limitations in the dialog", () => {
     const html = renderToStaticMarkup(
       <PredictionSettings

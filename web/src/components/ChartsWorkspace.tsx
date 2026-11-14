@@ -163,8 +163,8 @@ export default function ChartsWorkspace({
           {showPrediction && (
             <span>
               {en
-                ? "Orange dashed: estimate, not forecast"
-                : "橘色虛線：當日估計，非未來預報"}
+                ? "Orange dashed: estimate · ▲/▼ outside 0–100%"
+                : "橘色虛線：當日估計 · ▲/▼ 超出 0–100%"}
             </span>
           )}
         </div>

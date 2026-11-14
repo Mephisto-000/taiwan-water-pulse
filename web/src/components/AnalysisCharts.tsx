@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import { datePosition, type Acquisition, type OfficialRecord } from "../domain";
 import type { Language } from "../i18n";
 import { canPublishArea, type NumericalArchive } from "../numerical";
@@ -80,6 +80,7 @@ export default function AnalysisCharts({
   prediction = null,
   showLevel = false,
 }: AnalysisChartProps) {
+  const predictionClipId = useId();
   const pointRefs = useRef<(SVGGElement | null)[]>([]);
   const { ref, width } = useChartWidth();
   const en = lang === "en",
@@ -104,15 +105,8 @@ export default function AnalysisCharts({
   const areaY = (area: number) =>
     areaTop +
     (1 - (area - axis.minimum) / (axis.maximum - axis.minimum)) * plotHeight;
-  const gaugeAxis = niceAxis([
-    0,
-    100,
-    ...(prediction?.points.map((p) => p.predicted) ?? []),
-  ]);
-  const gaugeY = (pct: number) =>
-    gaugeTop +
-    (1 - (pct - gaugeAxis.minimum) / (gaugeAxis.maximum - gaugeAxis.minimum)) *
-      plotHeight;
+  // A visibility toggle must not rescale the reference observations.
+  const gaugeY = (pct: number) => gaugeTop + (1 - pct / 100) * plotHeight;
   const selectedIndex = Math.max(
     0,
     dates.findIndex((date) => date.utc_date === selected.utc_date),
@@ -238,7 +232,7 @@ export default function AnalysisCharts({
             opacity="0.09"
           />
         )}
-        {gaugeAxis.ticks.map((tick) => (
+        {[0, 50, 100].map((tick) => (
           <g key={tick}>
             <line
               x1={left}
@@ -282,36 +276,70 @@ export default function AnalysisCharts({
         ))}
         {prediction && (
           <g>
-            {predictionSegments(prediction.points).map((segment, i) => (
-              <path
-                key={i}
-                d={segment
-                  .map(
-                    (p, j) =>
-                      `${j ? "L" : "M"}${x(p.local.slice(0, 10))},${gaugeY(p.predicted)}`,
-                  )
-                  .join(" ")}
-                fill="none"
-                stroke="var(--prediction, #bf5814)"
-                strokeWidth="2"
-                strokeDasharray="5 4"
-              />
-            ))}
-            {prediction.points.map((p) => (
-              <rect
-                key={p.utc}
-                x={x(p.local.slice(0, 10)) - 3}
-                y={gaugeY(p.predicted) - 3}
-                width="6"
-                height="6"
-                fill={
-                  p.training ? "var(--bg, #fff)" : "var(--prediction, #bf5814)"
-                }
-                stroke="var(--prediction, #bf5814)"
-              >
-                <title>{`${dateLabel(p.utc, lang)}: ${p.predicted.toFixed(1)}% · ${p.training ? (en ? "Calibration" : "校正") : en ? "Evaluation" : "檢驗"}${p.extrapolated ? (en ? " · Extrapolation" : " · 外插") : ""}`}</title>
-              </rect>
-            ))}
+            <defs>
+              <clipPath id={predictionClipId}>
+                <rect
+                  x={left}
+                  y={gaugeTop}
+                  width={width - left - right}
+                  height={plotHeight}
+                />
+              </clipPath>
+            </defs>
+            <g clipPath={`url(#${predictionClipId})`}>
+              {predictionSegments(prediction.points).map((segment, i) => (
+                <path
+                  key={i}
+                  d={segment
+                    .map(
+                      (p, j) =>
+                        `${j ? "L" : "M"}${x(p.local.slice(0, 10))},${gaugeY(p.predicted)}`,
+                    )
+                    .join(" ")}
+                  fill="none"
+                  stroke="var(--prediction, #bf5814)"
+                  strokeWidth="2"
+                  strokeDasharray="5 4"
+                />
+              ))}
+            </g>
+            {prediction.points.map((p) => {
+              const px = x(p.local.slice(0, 10));
+              const above = p.predicted > 100,
+                below = p.predicted < 0;
+              const label = `${dateLabel(p.utc, lang)}: ${p.predicted.toFixed(1)}% · ${p.training ? (en ? "Calibration" : "校正") : en ? "Evaluation" : "檢驗"}${p.extrapolated ? (en ? " · Extrapolation" : " · 外插") : ""}${above ? (en ? " · Above 100%" : " · 超過 100%") : below ? (en ? " · Below 0%" : " · 低於 0%") : ""}`;
+              const color = "var(--prediction, #bf5814)";
+              if (above || below) {
+                const edgeY = above ? gaugeY(100) : gaugeY(0);
+                const direction = above ? 1 : -1;
+                return (
+                  <polygon
+                    key={p.utc}
+                    className="prediction-overflow"
+                    points={`${px},${edgeY} ${px - 4},${edgeY + direction * 7} ${px + 4},${edgeY + direction * 7}`}
+                    fill={p.training ? "var(--bg, #fff)" : color}
+                    stroke={color}
+                    role="img"
+                    aria-label={label}
+                  >
+                    <title>{label}</title>
+                  </polygon>
+                );
+              }
+              return (
+                <rect
+                  key={p.utc}
+                  x={px - 3}
+                  y={gaugeY(p.predicted) - 3}
+                  width="6"
+                  height="6"
+                  fill={p.training ? "var(--bg, #fff)" : color}
+                  stroke={color}
+                >
+                  <title>{label}</title>
+                </rect>
+              );
+            })}
           </g>
         )}
         {dates.map((date, i) => {

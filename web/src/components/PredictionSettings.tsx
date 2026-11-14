@@ -83,6 +83,11 @@ export default function PredictionSettings({
           ? "HH area → storage by linear calibration. Orange squares and dashed lines are estimates on SAR dates, not future forecasts. The shaded dates are calibration; later dates are evaluation. Existing area-method choices used this archive, so this is exploratory evaluation, not independent validation."
           : "以 HH 水面積線性校正蓄水率。橘色方點與虛線是 SAR 觀測日的估計，不是未來預報。陰影內為校正期，之後才用於檢驗。既有面積方法曾使用此資料集選擇參數，因此這是探索性檢驗，並非獨立驗證。"}
       </p>
+      <p>
+        {en
+          ? "The storage axis stays at 0–100%. Lines are clipped to that panel; boundary triangles mark out-of-range predictions. Hover a triangle for its original value. Model values and error metrics are never clamped."
+          : "蓄水率軸固定為 0–100%。線條只畫在此範圍內，超界預估以邊界三角形標示；移到標記上可看原始數值。模型數值與誤差計算不截斷。"}
+      </p>
       {prediction ? (
         <>
           <p>
@@ -102,7 +107,7 @@ export default function PredictionSettings({
             }{" "}
             ·{" "}
             {en
-              ? "Estimates outside 0–100% (not clipped)"
+              ? "Estimates outside 0–100% (raw values retained)"
               : "預估超出 0–100%（保留原值）"}
             :{" "}
             {
