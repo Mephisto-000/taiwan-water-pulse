@@ -117,6 +117,16 @@ export default function ChartsWorkspace({
             />
             {en ? "Official water level" : "官方水位"}
           </label>
+          <button
+            type="button"
+            className="text-button chart-method-button"
+            disabled={!publishArea}
+            aria-haspopup="dialog"
+            aria-controls="area-level-dialog"
+            onClick={() => setScatterOpen(true)}
+          >
+            {en ? "Area vs. water level ↗" : "面積與水位關係圖 ↗"}
+          </button>
           <label>
             <input
               type="checkbox"
@@ -126,16 +136,6 @@ export default function ChartsWorkspace({
             {en ? "Between observations" : "觀測之間，發生了什麼？"}
           </label>
         </fieldset>
-        <button
-          type="button"
-          className="text-button"
-          disabled={!publishArea}
-          aria-haspopup="dialog"
-          aria-controls="area-level-dialog"
-          onClick={() => setScatterOpen(true)}
-        >
-          {en ? "Area vs. water level ↗" : "面積與水位關係圖 ↗"}
-        </button>
         {showPrediction && canPredict && (
           <p className="compact-model-status" role="status">
             {model
