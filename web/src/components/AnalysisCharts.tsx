@@ -4,6 +4,8 @@ import type { Language } from "../i18n";
 import { canPublishArea, type NumericalArchive } from "../numerical";
 import { niceAxis } from "../science";
 import { predictionSegments, type StoragePrediction } from "../prediction";
+import { rainIcon, rainLabel, type WeatherSeries } from "../weather";
+import WeatherPanel from "./WeatherPanel";
 
 export interface AnalysisChartProps {
   archive?: NumericalArchive | null;
@@ -16,6 +18,9 @@ export interface AnalysisChartProps {
   showArea?: boolean;
   prediction?: StoragePrediction | null;
   showLevel?: boolean;
+  weather?: WeatherSeries | null;
+  weatherInspectionDate?: string;
+  onInspectWeatherDate?: (date: string) => void;
 }
 const ink = "var(--ink, #18181a)",
   muted = "var(--muted, #6b6b70)",
@@ -79,6 +84,9 @@ export default function AnalysisCharts({
   showArea = false,
   prediction = null,
   showLevel = false,
+  weather = null,
+  weatherInspectionDate,
+  onInspectWeatherDate,
 }: AnalysisChartProps) {
   const predictionClipId = useId();
   const pointRefs = useRef<(SVGGElement | null)[]>([]);
@@ -91,7 +99,10 @@ export default function AnalysisCharts({
     plotHeight = 112,
     gaugeTop = publishArea ? areaTop + plotHeight + 44 : areaTop,
     levelTop = gaugeTop + plotHeight + 44,
-    height = (showLevel ? levelTop : gaugeTop) + plotHeight + 42;
+    weatherTop = (showLevel ? levelTop : gaugeTop) + plotHeight + 44,
+    height = weather
+      ? weatherTop + plotHeight + 62
+      : (showLevel ? levelTop : gaugeTop) + plotHeight + 42;
   const first = records[0]?.local_date ?? dates[0].local.slice(0, 10),
     last = records.at(-1)?.local_date ?? dates.at(-1)!.local.slice(0, 10);
   const x = (date: string) =>
@@ -154,6 +165,9 @@ export default function AnalysisCharts({
     gapWidth = Math.max(0, x(after?.local.slice(0, 10) ?? gap.end) - gapX);
   const selectedRecord = observations.get(selected.utc_date),
     selectedGauge = gauges.get(selected.utc_date);
+  const selectedWeather = weather?.records.find(
+    (row) => row.local_date === selected.local.slice(0, 10),
+  );
   const ticks = tickDates(first, last, width < 500 ? 3 : 5);
   return (
     <div className="analysis-charts" ref={ref}>
@@ -486,19 +500,36 @@ export default function AnalysisCharts({
             )}
           </g>
         )}
-        {ticks.map((date, i) => (
-          <text
-            key={date}
-            x={x(date)}
-            y={height - 16}
-            textAnchor={
-              i === 0 ? "start" : i === ticks.length - 1 ? "end" : "middle"
-            }
-            style={chartText}
-          >
-            {dateLabel(date, lang)}
-          </text>
-        ))}
+        {weather && (
+          <WeatherPanel
+            series={weather}
+            dates={dates}
+            first={first}
+            last={last}
+            x={x}
+            top={weatherTop}
+            plotHeight={plotHeight}
+            selectedDate={selected.local.slice(0, 10)}
+            inspectionDate={weatherInspectionDate}
+            onInspectDate={onInspectWeatherDate}
+            lang={lang}
+          />
+        )}
+        <g className="shared-date-axis">
+          {ticks.map((date, i) => (
+            <text
+              key={date}
+              x={x(date)}
+              y={height - 16}
+              textAnchor={
+                i === 0 ? "start" : i === ticks.length - 1 ? "end" : "middle"
+              }
+              style={chartText}
+            >
+              {dateLabel(date, lang)}
+            </text>
+          ))}
+        </g>
       </svg>
       <p className="chart-selection" aria-live="polite">
         <strong>{dateLabel(selected.utc, lang)}</strong>
@@ -507,6 +538,17 @@ export default function AnalysisCharts({
         </span>
         {publishArea && selectedRecord && (
           <span>{selectedRecord.area_km2.primary.toFixed(2)} km²</span>
+        )}
+        {weather && (
+          <span
+            title={`${rainLabel(selectedWeather, en)}${selectedWeather?.rainfall_quality_flag ? ` · CWA flag ${selectedWeather.rainfall_quality_flag}` : ""}`}
+          >
+            {en ? "Station rain" : "測站雨量"} {rainIcon(selectedWeather)}{" "}
+            {selectedWeather?.rainfall_mm != null
+              ? `${selectedWeather.rainfall_mm.toFixed(1)} mm`
+              : rainLabel(selectedWeather, en)}
+            {selectedWeather?.rainfall_quality_flag ? " †" : ""}
+          </span>
         )}
       </p>
       {showLevel && (

@@ -2096,12 +2096,7 @@ kbd {
 }
 
 .weather-context {
-  margin: 1.5rem 0;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--line);
-}
-.weather-context h2 {
-  font-size: 1.05rem;
+  margin: 4px 0;
 }
 .weather-context p,
 .weather-context label,
@@ -2112,9 +2107,10 @@ kbd {
 .weather-context a {
   color: var(--data);
 }
-.weather-plot svg {
-  display: block;
-  width: 100%;
+.rainfall-bar,
+.rainfall-trace,
+.rainfall-missing {
+  cursor: pointer;
 }
 .weather-context input {
   background: var(--bg);
@@ -2216,12 +2212,7 @@ kbd {
   margin: 2px 0;
 }
 .compact-charts .weather-context {
-  margin: 10px 0 0;
-  padding-top: 8px;
-}
-.compact-charts .weather-context h2 {
-  font-size: 16px;
-  margin: 0 0 4px;
+  margin: 4px 0 0;
 }
 .compact-charts .weather-context p,
 .compact-charts .weather-context label,
@@ -2230,7 +2221,8 @@ kbd {
   margin: 4px 0;
 }
 .compact-charts .weather-context label,
-.compact-charts .weather-context p[aria-live] {
+.compact-charts .weather-context p[aria-live],
+.compact-charts .weather-context summary {
   font-size: 16px;
 }
 .compact-charts .weather-context label {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Acquisition, OfficialSeries } from "../domain";
 import type { Language } from "../i18n";
 import { canPublishArea, type NumericalArchive } from "../numerical";
@@ -7,6 +7,7 @@ import { gradeDescription } from "../workspace";
 import AnalysisCharts, { ScatterPlot } from "./AnalysisCharts";
 import PredictionSettings from "./PredictionSettings";
 import WeatherContext from "./WeatherContext";
+import { useWeather } from "./useWeather";
 import EventNotes from "./EventNotes";
 
 export default function ChartsWorkspace({
@@ -40,6 +41,16 @@ export default function ChartsWorkspace({
   const [showEvents, setShowEvents] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [sampleCount, setSampleCount] = useState(6);
+  const weather = useWeather(reservoirKey, showWeather);
+  const [weatherDate, setWeatherDate] = useState(selected.local.slice(0, 10));
+  const [weatherDetailsOpen, setWeatherDetailsOpen] = useState(false);
+  useEffect(() => {
+    setWeatherDate(selected.local.slice(0, 10));
+  }, [selected.local]);
+  const inspectWeatherDate = (date: string) => {
+    setWeatherDate(date);
+    setWeatherDetailsOpen(true);
+  };
   const en = lang === "en";
   const publishArea = Boolean(archive && canPublishArea(archive));
   const pairCount =
@@ -203,6 +214,9 @@ export default function ChartsWorkspace({
             showArea={publishArea}
             showLevel={showLevel}
             prediction={showPrediction ? model : null}
+            weather={weather.series}
+            weatherInspectionDate={weatherDetailsOpen ? weatherDate : undefined}
+            onInspectWeatherDate={inspectWeatherDate}
           />
         ) : (
           <p role="status">
@@ -211,10 +225,13 @@ export default function ChartsWorkspace({
         )}
         {showWeather && official && (
           <WeatherContext
-            reservoirKey={reservoirKey}
-            dates={dates}
-            selected={selected}
-            records={official.records}
+            series={weather.series}
+            error={weather.error}
+            onRetry={weather.retry}
+            selectedDate={weatherDate}
+            onDateChange={setWeatherDate}
+            open={weatherDetailsOpen}
+            onOpenChange={setWeatherDetailsOpen}
             lang={lang}
           />
         )}

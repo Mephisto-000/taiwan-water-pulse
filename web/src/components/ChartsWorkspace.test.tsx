@@ -3,7 +3,8 @@ import { describe, expect, it } from "vitest";
 import ChartsWorkspace from "./ChartsWorkspace";
 import AnalysisCharts from "./AnalysisCharts";
 import PredictionSettings from "./PredictionSettings";
-import { parseIndex, parseOfficial } from "../domain";
+import { datePosition, parseIndex, parseOfficial } from "../domain";
+import { parseWeather } from "../weather";
 import {
   parseAreaSeries,
   parseNumericMeta,
@@ -15,6 +16,7 @@ import officialData from "../../public/data/official/baoshan2.json";
 import metaData from "../../public/data/reservoirs/baoshan2/meta.json";
 import seriesData from "../../public/data/reservoirs/baoshan2/timeseries.json";
 import shimenMeta from "../../public/data/reservoirs/shimen/meta.json";
+import weatherData from "../../public/data/weather/baoshan2.json";
 
 const index = parseIndex(indexData);
 const official = parseOfficial(officialData);
@@ -112,6 +114,69 @@ describe("compact comparable charts", () => {
     expect(html).toContain("外插");
     expect(html).not.toContain("<fieldset");
     expect(html).not.toMatch(/NaN|Infinity/);
+  });
+  it("adds rainfall to the same SVG and date scale without moving the existing observations", () => {
+    const weather = parseWeather(weatherData, "baoshan2");
+    const selectedDate = chartProps.selected.local.slice(0, 10);
+    const expectedX =
+      54 +
+      (datePosition(
+        selectedDate,
+        official.records[0].local_date,
+        official.records.at(-1)!.local_date,
+      ) /
+        100) *
+        (640 - 54 - 18);
+    for (const showLevel of [false, true]) {
+      for (const showArea of [false, true]) {
+        const off = renderToStaticMarkup(
+          <AnalysisCharts
+            {...chartProps}
+            showLevel={showLevel}
+            showArea={showArea}
+          />,
+        );
+        const on = renderToStaticMarkup(
+          <AnalysisCharts
+            {...chartProps}
+            showLevel={showLevel}
+            showArea={showArea}
+            weather={weather}
+          />,
+        );
+        expect(on.match(/<svg /g)).toHaveLength(1);
+        expect(on.match(/class="shared-date-axis"/g)).toHaveLength(1);
+        expect(on.match(/class="rainfall-bar"/g)).toHaveLength(349);
+        expect(on).toContain(
+          `class="weather-selected" x1="${expectedX}" x2="${expectedX}"`,
+        );
+        expect(
+          on.match(/<path[^>]*stroke="var\(--ink, #18181a\)"[^>]*>/g),
+        ).toEqual(off.match(/<path[^>]*stroke="var\(--ink, #18181a\)"[^>]*>/g));
+        expect(on.match(/<circle[^>]*>/g)).toEqual(off.match(/<circle[^>]*>/g));
+        const height = (html: string) =>
+          Number(html.match(/viewBox="0 0 640 (\d+)"/)![1]);
+        expect(height(on) - height(off)).toBe(176);
+        expect(on).not.toMatch(/NaN|Infinity/);
+      }
+    }
+  });
+  it("keeps the summary on the selected SAR day while inspecting another weather day", () => {
+    const weather = parseWeather(weatherData, "baoshan2");
+    const day = weather.records.find(
+      (row) => row.local_date === chartProps.selected.local.slice(0, 10),
+    )!;
+    const html = renderToStaticMarkup(
+      <AnalysisCharts
+        {...chartProps}
+        weather={weather}
+        weatherInspectionDate={weather.period.start}
+      />,
+    );
+    const summary = html.slice(html.indexOf('<p class="chart-selection"'));
+    expect(summary).toContain("測站雨量");
+    expect(summary).toContain(`${day.rainfall_mm!.toFixed(1)} mm`);
+    expect(html).toContain('stroke-dasharray="3 3"');
   });
   it("keeps official curves, ticks and point coordinates stable with prediction on or off", () => {
     const model = fitStoragePrediction(archive.series.records, 6)!;
